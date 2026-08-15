@@ -1,0 +1,14 @@
+@import './variables.css';
+
+body{ background:var(--bg); color:var(--text); font-family:Inter, system-ui, sans-serif; margin:0 }
+.container{ max-width:var(--container-width); margin: 0 auto; padding: 1rem }
+.site-header{ border-bottom:1px solid #e6e6e6 }
+.brand{ margin:0; display:inline-block }
+nav a{ margin-left:1rem }
+.lead{ color:var(--muted) }
+.story-list{ list-style:none; padding:0 }
+.story-item{ padding:1rem 0; border-bottom:1px solid #eee }
+.story-item.good h3{ color:var(--good-accent) }
+.story-item.bad h3{ color:var(--bad-accent) }
+.chart-placeholder{ border:1px dashed #c7c7c7; padding:1rem; margin:1rem 0; text-align:center }
+.sources{ font-size:0.95rem; color:var(--muted) }

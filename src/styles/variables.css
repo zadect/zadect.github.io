@@ -1,0 +1,15 @@
+/* Design tokens for Good (light) and Bad (heavy) themes */
+:root{
+  --bg: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --good-accent: #16a34a;
+  --bad-accent: #b91c1c;
+  --container-width: 960px;
+}
+
+[data-theme='bad']{
+  --bg: #0b0b0d;
+  --text: #e6e6e6;
+  --muted: #9ca3af;
+}
