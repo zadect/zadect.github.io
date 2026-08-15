@@ -12,7 +12,14 @@ jobs:
         with:
           node-version: 20
       - name: Install
-        run: npm install --no-audit --no-fund
+        run: |
+          if [ -f package-lock.json ]; then
+            echo "package-lock.json found, running npm ci"
+            npm ci --no-audit --no-fund
+          else
+            echo "No lockfile found, running npm install"
+            npm install --no-audit --no-fund
+          fi
       - name: Lint
         run: npm run lint || true
       - name: Test
