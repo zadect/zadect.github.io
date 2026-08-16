@@ -82,51 +82,6 @@ transformation, version, and measurement notes.
 Do not update a data file without updating its source metadata and the story
 copy if the coverage, methodology, or interpretation changes.
 
-### Future catalogue
-
-The Future category now contains two published stories — AI & Tech and Housing,
-Cities & Infrastructure — plus deliberately data-free placeholders. The
-published stories use Eurostat enterprise adoption and OECD
-house-price-to-income extracts. Their separate “Study context” cards link
-research that helps frame the question but is not copied into chart rows or
-stat cards. The remaining placeholders keep “Likely sources” as research
-directions, not citations for a chart or evidence of a trend.
-
-Do not publish another Future story or make a numerical claim until a
-compatible, versioned dataset and its methodology have been reviewed.
-
-### Future story scope
-
-- **AI & Tech** uses Eurostat dataset `isoc_eb_ai` for enterprises with 10 or
-  more employees in covered non-financial activities. The extract keeps the
-  reported years 2021, 2023, 2024, and 2025; the missing 2022 observation is
-  shown as a gap rather than interpolated.
-- **Housing, Cities & Infrastructure** currently measures only the OECD
-  `HPI_YDH` house-price-to-income index and its
-  `HPI_YDH_AVG` within-country long-term benchmark for eight countries from
-  2000–2024. It does not claim to measure rents, mortgage costs, city-level
-  affordability, construction supply, or infrastructure capacity.
-
-### Map coverage and no-data treatment
-
-- The literacy map uses the latest adult-literacy observation from 2018
-  onward. Many developed countries stopped reporting basic literacy after
-  rates approached universal levels; their older OWID observations are not
-  presented as current.
-- A World Bank/UNESCO indicator cross-check is cited on the Literacy page.
-  It confirms that the missing recent observations are a source-coverage
-  issue, not a reason to invent or merge incompatible values.
-- Country polygons remain visible even without a qualifying value. They use a
-  stronger grey fill and outline, and the map states that they are no-data
-  countries. The data table contains only rows with plotted observations.
-- The democracy map requires both 2020 and 2025 V-Dem endpoint values.
-  Countries missing either endpoint remain drawn and outlined rather than
-  being treated as zero change.
-- Map geometry is pinned locally from World Atlas/Natural Earth and joined by
-  ISO numeric code. Small territories may not have a polygon at the selected
-  110m map scale; that geometry limitation is cited separately.
-
-
 ### Citation and comparability rules
 
 - Credit the original publisher and any processor separately. For OWID
