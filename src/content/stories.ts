@@ -668,12 +668,35 @@ export const stories: StoryDefinition[] = [
     slug: 'inflation-prices-and-energy',
     title: 'Inflation, Prices & Energy',
     category: 'future',
-    status: 'coming-soon',
-    summary: 'How prices, energy systems, and efficiency shape the affordability of the next decade.',
+    status: 'published',
+    summary:
+      'Price shocks arrive in waves, while the electricity system is slowly changing underneath them.',
     plannedMetric:
-      'Core, headline, goods, and services inflation; renewable electricity share; energy intensity; and energy-price volatility',
-    geography: 'World and major economies',
-    sourceHint: 'OECD, IMF International Financial Statistics, Ember, and International Energy Agency',
+      'Consumer inflation and renewable electricity share',
+    geography: 'World and six selected countries',
+    sourceHint:
+      'IMF International Financial Statistics via World Bank and Ember, via Our World in Data',
+    comparison: {
+      title: 'Two signals, kept separate',
+      fields: [
+        {
+          label: 'Prices',
+          value: 'Annual percentage change in consumer prices: the change in the cost of a representative household consumption basket.',
+        },
+        {
+          label: 'Energy',
+          value: 'Share of electricity generation from renewable sources, including hydropower, wind, solar, bioenergy, geothermal, wave, and tidal generation.',
+        },
+        {
+          label: 'Coverage',
+          value: 'The world inflation series runs from 1981 to 2025; renewable-electricity history runs from 1900 to 2025. The country inflation panel uses Brazil, Germany, India, Sweden, the United Kingdom, and the United States at 2000, 2010, 2020, and 2024.',
+        },
+        {
+          label: 'Limit',
+          value: 'Inflation is not the same as every household’s cost of living, and renewable electricity is not renewable energy’s share of all energy use. The two lines are context, not a causal claim.',
+        },
+      ],
+    },
   },
   {
     slug: 'demographics-and-migration',

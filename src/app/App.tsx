@@ -18,6 +18,7 @@ import { ForcedDisplacementStory } from '../features/stories/ForcedDisplacementS
 import { HungerStory } from '../features/stories/HungerStory';
 import { HousingStory } from '../features/stories/HousingStory';
 import { InequalityByCountryStory } from '../features/stories/InequalityByCountryStory';
+import { InflationPricesEnergyStory } from '../features/stories/InflationPricesEnergyStory';
 import { LiteracyStory } from '../features/stories/LiteracyStory';
 import { LifeExpectancyStory } from '../features/stories/LifeExpectancyStory';
 import { VaccinationCoverageStory } from '../features/stories/VaccinationCoverageStory';
@@ -240,6 +241,10 @@ function StoryRoute() {
 
   if (story.slug === 'economic-growth-debt-and-public-finance') {
     return <EconomicGrowthDebtStory story={story} />;
+  }
+
+  if (story.slug === 'inflation-prices-and-energy') {
+    return <InflationPricesEnergyStory story={story} />;
   }
 
   if (story.slug === 'womens-rights') {
