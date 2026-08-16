@@ -186,6 +186,19 @@ describe('app routes', () => {
     expect(screen.getByText(/not the whole distribution/i)).toBeInTheDocument();
   });
 
+  it('renders the published economic growth and debt Future story', () => {
+    window.location.hash = '#/future/economic-growth-debt-and-public-finance';
+    render(<App />);
+
+    expect(
+      screen.getByRole('heading', { name: 'Economic Growth, Debt & Public Finance' }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: /growth has a rhythm of shocks/i }),
+    ).toBeInTheDocument();
+    expect(screen.getByText(/not a complete balance sheet/i)).toBeInTheDocument();
+  });
+
   it('links Good, Bad, and Future navigation to homepage sections', () => {
     render(<App />);
     expect(screen.getByRole('link', { name: 'Good' })).toHaveAttribute('href', '#/?section=good');

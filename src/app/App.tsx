@@ -12,6 +12,7 @@ import { ClimateChangeStory } from '../features/stories/ClimateChangeStory';
 import { DemocraticBackslidingStory } from '../features/stories/DemocraticBackslidingStory';
 import { ElectricitySanitationStory } from '../features/stories/ElectricitySanitationStory';
 import { EmploymentWorkSkillsStory } from '../features/stories/EmploymentWorkSkillsStory';
+import { EconomicGrowthDebtStory } from '../features/stories/EconomicGrowthDebtStory';
 import { ExtremePovertyStory } from '../features/stories/ExtremePovertyStory';
 import { ForcedDisplacementStory } from '../features/stories/ForcedDisplacementStory';
 import { HungerStory } from '../features/stories/HungerStory';
@@ -235,6 +236,10 @@ function StoryRoute() {
 
   if (story.slug === 'wealth-distribution-and-inequality') {
     return <WealthDistributionInequalityStory story={story} />;
+  }
+
+  if (story.slug === 'economic-growth-debt-and-public-finance') {
+    return <EconomicGrowthDebtStory story={story} />;
   }
 
   if (story.slug === 'womens-rights') {

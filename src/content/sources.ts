@@ -517,6 +517,60 @@ export const sources: SourceReference[] = [
       'Wealth means household financial and non-financial assets minus debts. The WID series uses the Mixed Income Capitalization-Survey method, and some values are modeled from limited underlying data, so the lines are estimates rather than direct censuses of every household balance sheet.',
   },
   {
+    id: 'world-bank-annual-gdp-growth',
+    title: 'Annual GDP growth',
+    publisher: 'Our World in Data',
+    originalPublisher: 'World Bank national accounts data and OECD National Accounts data files',
+    processor: 'Our World in Data',
+    role: 'chart-data',
+    citation:
+      'World Bank and OECD (2025), “Annual GDP growth,” processed by Our World in Data, OWID Grapher variable 1125934.',
+    methodologyHref: 'https://data.worldbank.org/indicator/NY.GDP.MKTP.KD.ZG',
+    dataHref: 'https://ourworldindata.org/grapher/annual-gdp-growth',
+    originalDataHref:
+      'https://api.worldbank.org/v2/indicator/NY.GDP.MKTP.KD.ZG?format=json',
+    metadataHref: 'https://ourworldindata.org/grapher/annual-gdp-growth.metadata.json',
+    licenseHref: 'https://ourworldindata.org/licence',
+    version: 'OWID Grapher variable 1125934; last updated 2025-10-29',
+    coverage: 'World annual series, 2000–2023 in this extract',
+    retrieved: accessDate,
+    unit: 'Annual percentage change in inflation-adjusted GDP (%)',
+    localPath: 'src/data/economic-growth-debt-public-finance.csv',
+    transformation:
+      'The local extract keeps the OWID World rows for every year from 2000 through 2023. Values are not projected, interpolated, or rescaled.',
+    note:
+      'GDP growth is an annual change in inflation-adjusted output. It is an activity signal, not a measure of household welfare, productivity composition, debt sustainability, or distribution.',
+  },
+  {
+    id: 'world-bank-public-debt',
+    title: 'Gross public-sector debt as a share of GDP',
+    publisher: 'Our World in Data',
+    originalPublisher: 'World Bank Quarterly Public Sector Debt database',
+    processor: 'Our World in Data',
+    role: 'chart-data',
+    citation:
+      'World Bank (2025), “Gross public sector debt as a share of GDP,” processed by Our World in Data, OWID Grapher variable 1125920.',
+    methodologyHref:
+      'https://data.worldbank.org/indicator/DP.DOD.DLD2.CR.CG.Z1',
+    dataHref:
+      'https://ourworldindata.org/grapher/gross-public-sector-debt-as-a-proportion-of-gdp',
+    originalDataHref:
+      'https://api.worldbank.org/v2/indicator/DP.DOD.DLD2.CR.CG.Z1?format=json',
+    metadataHref:
+      'https://ourworldindata.org/grapher/gross-public-sector-debt-as-a-proportion-of-gdp.metadata.json',
+    licenseHref: 'https://ourworldindata.org/licence',
+    version: 'OWID Grapher variable 1125920; last updated 2025-10-29',
+    coverage:
+      'Central-government debt annual series for six countries, 2000–2023 in this extract',
+    retrieved: accessDate,
+    unit: 'Gross central-government debt as a share of GDP (%)',
+    localPath: 'src/data/economic-growth-debt-public-finance.csv',
+    transformation:
+      'The local extract keeps complete OWID rows from 2000 through 2023 for Canada, France, Germany, Italy, the United Kingdom, and the United States. Countries without the same coverage are not silently added.',
+    note:
+      'The indicator is gross central-government debt, not net debt and not a complete measure of every public-sector liability. It is shown beside GDP growth as a separate fiscal-capacity signal; no causal relationship is asserted.',
+  },
+  {
     id: 'unhcr-population-api',
     title: 'UNHCR Refugee Data Finder population statistics',
     publisher: 'United Nations High Commissioner for Refugees',

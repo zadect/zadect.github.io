@@ -25,6 +25,8 @@ describe('source catalogue', () => {
       'gbd-pm25-owid',
       'ilo-employment-rate-owid',
       'wid-wealth-top-1-owid',
+      'world-bank-annual-gdp-growth',
+      'world-bank-public-debt',
       'eurostat-ai-adoption',
       'oecd-house-price-income',
     ])) {

@@ -5,14 +5,14 @@ describe('story catalogue', () => {
   it('keeps routes unique and retains the published stories', () => {
     const routes = stories.map((story) => `${story.category}/${story.slug}`);
     expect(new Set(routes).size).toBe(routes.length);
-    expect(stories.filter((story) => story.status === 'published')).toHaveLength(20);
+    expect(stories.filter((story) => story.status === 'published')).toHaveLength(21);
   });
 
   it('documents the remaining Future themes as source-directed placeholders', () => {
     const futureStories = stories.filter((story) => story.category === 'future');
 
     expect(futureStories).toHaveLength(11);
-    expect(futureStories.filter((story) => story.status === 'coming-soon')).toHaveLength(7);
+    expect(futureStories.filter((story) => story.status === 'coming-soon')).toHaveLength(6);
     expect(
       futureStories.every(
         (story) => story.plannedMetric && story.geography && story.sourceHint,
@@ -35,7 +35,7 @@ describe('story catalogue', () => {
     ]);
     expect(
         getStoriesByCategory('future').findIndex((story) => story.status === 'coming-soon'),
-    ).toBe(4);
+    ).toBe(5);
   });
 
   it('defines the comparison behind each published story', () => {
@@ -187,6 +187,19 @@ describe('story catalogue', () => {
       'Measure',
       'Long run',
       'Panel',
+      'Limit',
+    ]);
+  });
+
+  it('documents the economic growth and debt comparison and source scope', () => {
+    const story = stories.find(
+      (candidate) => candidate.slug === 'economic-growth-debt-and-public-finance',
+    );
+    expect(story?.status).toBe('published');
+    expect(story?.comparison?.fields.map((field) => field.label)).toEqual([
+      'Growth',
+      'Debt',
+      'Scope',
       'Limit',
     ]);
   });
