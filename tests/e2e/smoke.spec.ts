@@ -11,8 +11,9 @@ test('the overview links to both published stories', async ({ page }) => {
   await page.getByRole('link', { name: /back to the overview/i }).click();
   await page.getByRole('link', { name: /ceo pay gap/i }).first().click();
   await expect(page).toHaveURL(/#\/bad\/ceo-pay-gap/);
-  await expect(page.getByRole('heading', { name: /the pay gap became a chasm/i })).toBeVisible();
-  await expect(page.locator('.chart-card__visual svg')).toHaveCount(1);
+  await expect(page.getByRole('heading', { name: /the ratio is far above its 1960s level/i })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /a defined contrast/i })).toBeVisible();
+  await expect(page.locator('.chart-card__visual svg')).toHaveCount(3);
 });
 
 test('a deferred story explains its planned evidence', async ({ page }) => {

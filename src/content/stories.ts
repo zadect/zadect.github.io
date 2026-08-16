@@ -1,6 +1,11 @@
 export type StoryCategory = 'good' | 'bad';
 export type StoryStatus = 'published' | 'coming-soon';
 
+export interface StoryComparison {
+  title: string;
+  fields: Array<{ label: string; value: string }>;
+}
+
 export interface StoryDefinition {
   slug: string;
   title: string;
@@ -10,6 +15,7 @@ export interface StoryDefinition {
   plannedMetric: string;
   geography: string;
   sourceHint: string;
+  comparison?: StoryComparison;
 }
 
 export const stories: StoryDefinition[] = [
@@ -22,6 +28,19 @@ export const stories: StoryDefinition[] = [
     plannedMetric: 'Prevalence of undernourishment and food availability',
     geography: 'World',
     sourceHint: 'FAO and Our World in Data',
+    comparison: {
+      title: 'Two measures, kept separate',
+      fields: [
+        {
+          label: 'Direct measure',
+          value: 'Share of people whose habitual food intake is insufficient for an active, healthy life.',
+        },
+        {
+          label: 'Longer context',
+          value: 'Average calories available in the food supply per person per day, not actual consumption.',
+        },
+      ],
+    },
   },
   {
     slug: 'literacy',
@@ -102,6 +121,23 @@ export const stories: StoryDefinition[] = [
     plannedMetric: 'CEO-to-worker compensation ratio',
     geography: 'United States',
     sourceHint: 'Economic Policy Institute',
+    comparison: {
+      title: 'What the ratio compares',
+      fields: [
+        {
+          label: 'Numerator',
+          value: 'Average annual compensation for CEOs of the largest US public companies in EPI’s sample.',
+        },
+        {
+          label: 'Denominator',
+          value: 'Average wages plus benefits for private-sector production and nonsupervisory workers on a full-time, full-year basis.',
+        },
+        {
+          label: 'Limit',
+          value: 'An economy-wide average-to-average contrast, not an individual company’s CEO-to-median-employee ratio.',
+        },
+      ],
+    },
   },
   {
     slug: 'climate-change',

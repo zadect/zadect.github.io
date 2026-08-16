@@ -90,9 +90,8 @@ export function HungerStory({ story }: HungerStoryProps) {
     <StoryFrame story={story}>
       <section className="story-lede">
         <p className="lede">
-          The world has made more food available per person, while the share of people living with
-          insufficient dietary energy has fallen in the period covered by the direct FAO measure.
-          Those are related signals, not interchangeable ones.
+          More food has been available per person, while the direct undernourishment estimate has
+          fallen over its shorter comparable series. They are related signals, not the same measure.
         </p>
         <div className="stat-grid">
           <div className="stat-card">
@@ -116,9 +115,9 @@ export function HungerStory({ story }: HungerStoryProps) {
 
       <div className="chart-stack">
         <ChartCard
-          eyebrow="Direct measure · FAO"
+          eyebrow="Direct measure · FAO + OWID"
           title="Fewer people are undernourished"
-          description="The prevalence of undernourishment estimates the share of people whose habitual food intake is not enough for a normal, active, healthy life."
+          description="FAO’s prevalence estimate is the share of people whose habitual food intake is not enough for an active, healthy life. The series is downloaded through Our World in Data."
           spec={hungerSpec}
           data={hungerSeries.map((point) => ({
             year: point.year,
@@ -129,11 +128,12 @@ export function HungerStory({ story }: HungerStoryProps) {
             { key: 'prevalence', label: 'Undernourished (%)' },
           ]}
           sources={hungerSources}
+          definition="Share of the population estimated to be undernourished; percent, not a count of people."
         />
         <ChartCard
-          eyebrow="Longer context · FAO"
+          eyebrow="Longer context · FAO, OWID, and other sources"
           title="More calories have entered the food supply"
-          description="Average food availability has risen since 1961. This is supply, not consumption: waste, inequality, diet quality, and access still matter."
+          description="Average calories available in the food supply have risen since 1961. This is supply, not consumption, and the OWID series combines FAO with other historical sources."
           spec={foodSpec}
           data={foodAvailabilitySeries.map((point) => ({
             year: point.year,
@@ -144,17 +144,17 @@ export function HungerStory({ story }: HungerStoryProps) {
             { key: 'calories', label: 'Kilocalories / person / day' },
           ]}
           sources={foodSources}
+          definition="Kilocalories available in the national food supply per person per day; not equal access or actual intake."
         />
       </div>
 
       <section className="method-note">
         <p className="eyebrow">Read the evidence carefully</p>
-        <h2>One line starts in 2000. The other starts in 1961.</h2>
+        <h2>The two lines answer different questions.</h2>
         <p>
-          A centuries-long, globally comparable direct hunger series is not available. The first
-          chart therefore stays with FAO&apos;s standardized undernourishment estimates. The longer
-          calorie series gives historical context, but it should never be read as a direct count of
-          hunger.
+          The undernourishment estimate is the direct measure, but the globally comparable series
+          in this release begins in 2000. The calorie series reaches back to 1961 and gives useful
+          context, but it should not be read as a direct count of hunger.
         </p>
       </section>
 

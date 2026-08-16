@@ -28,4 +28,18 @@ describe('app routes', () => {
     expect(screen.getByText('Coming next')).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Literacy' })).toBeInTheDocument();
   });
+
+  it('renders the CEO definitions, absolute views, and deferred country context', () => {
+    window.location.hash = '#/bad/ceo-pay-gap';
+    render(<App />);
+
+    expect(screen.getByRole('heading', { name: /a defined contrast/i })).toBeInTheDocument();
+    expect(screen.getAllByText(/average annual compensation for CEOs/i)).not.toHaveLength(0);
+    expect(screen.getByRole('heading', { name: /CEO compensation, measured in dollars/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: /country figures need matching definitions/i }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Germany' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'France' })).toBeInTheDocument();
+  });
 });

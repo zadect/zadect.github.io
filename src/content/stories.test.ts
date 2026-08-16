@@ -15,4 +15,12 @@ describe('story catalogue', () => {
         .every((story) => story.plannedMetric && story.sourceHint),
     ).toBe(true);
   });
+
+  it('defines the comparison behind each published story', () => {
+    for (const story of stories.filter((candidate) => candidate.status === 'published')) {
+      expect(story.comparison?.title).toBeTruthy();
+      expect(story.comparison?.fields.length).toBeGreaterThan(0);
+      expect(story.comparison?.fields.every((field) => field.label && field.value)).toBe(true);
+    }
+  });
 });
