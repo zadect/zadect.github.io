@@ -50,6 +50,17 @@ test('the new literacy and democracy stories render their charts and maps', asyn
   await expect(page.getByText(/missing coverage is not mistaken for a zero change/i)).toBeVisible();
 });
 
+test('the Women’s rights story renders its legal-equality charts', async ({ page }) => {
+  await page.goto('/#/good/womens-rights');
+  await expect(page.getByRole('heading', { name: "Women's rights", exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /legal baseline has risen worldwide/i })).toBeVisible();
+  await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
+  await expect(page.getByText(/formal legal provisions, not enforcement/i)).toBeVisible();
+  await expect(
+    page.getByRole('link', { name: /Women, Business and the Law Index/i }).first(),
+  ).toBeVisible();
+});
+
 test('the published Future stories render their charts and context cards', async ({ page }) => {
   await page.goto('/#/future/tech-and-ai');
   await expect(page.getByRole('heading', { name: 'AI & Tech', exact: true })).toBeVisible();

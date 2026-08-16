@@ -8,6 +8,7 @@ describe('source catalogue', () => {
       'fao-food-availability',
       'epi-ceo-pay',
       'epi-ceo-compensation',
+      'wbl-index-owid',
       'eurostat-ai-adoption',
       'oecd-house-price-income',
     ])) {
@@ -42,6 +43,7 @@ describe('source catalogue', () => {
 
   it('marks Future research context separately from plotted data', () => {
     for (const source of getSources([
+      'wbl-methodology',
       'ilo-ai-exposure-context',
       'uk-ai-scenarios-context',
       'imf-housing-affordability-context',

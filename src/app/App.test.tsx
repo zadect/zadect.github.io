@@ -36,6 +36,15 @@ describe('app routes', () => {
     expect(screen.getByRole('heading', { name: /where the index fell/i })).toBeInTheDocument();
   });
 
+  it('renders the published Women’s rights story', () => {
+    window.location.hash = '#/good/womens-rights';
+    render(<App />);
+
+    expect(screen.getByRole('heading', { name: "Women's rights" })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /legal baseline has risen/i })).toBeInTheDocument();
+    expect(screen.getByText(/formal legal provisions, not enforcement/i)).toBeInTheDocument();
+  });
+
   it('links Good, Bad, and Future navigation to homepage sections', () => {
     render(<App />);
     expect(screen.getByRole('link', { name: 'Good' })).toHaveAttribute('href', '#/?section=good');

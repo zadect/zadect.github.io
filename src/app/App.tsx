@@ -9,6 +9,7 @@ import { DemocraticBackslidingStory } from '../features/stories/DemocraticBacksl
 import { HungerStory } from '../features/stories/HungerStory';
 import { HousingStory } from '../features/stories/HousingStory';
 import { LiteracyStory } from '../features/stories/LiteracyStory';
+import { WomensRightsStory } from '../features/stories/WomensRightsStory';
 import {
   getStory,
   getStoryCategoryPresentation,
@@ -169,6 +170,10 @@ function StoryRoute() {
 
   if (story.slug === 'housing-cities-and-infrastructure') {
     return <HousingStory story={story} />;
+  }
+
+  if (story.slug === 'womens-rights') {
+    return <WomensRightsStory story={story} />;
   }
 
   return <NotFoundPage />;

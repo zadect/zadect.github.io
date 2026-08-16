@@ -169,6 +169,52 @@ export const sources: SourceReference[] = [
       'French executive-pay research is useful context, but no open series with definitions and coverage compatible with EPI’s US measure was retained.',
   },
   {
+    id: 'wbl-index-owid',
+    title: 'Women, Business and the Law Index',
+    publisher: 'Our World in Data',
+    originalPublisher: 'World Bank Women, Business and the Law / World Bank Gender Statistics',
+    processor: 'Our World in Data',
+    role: 'chart-data',
+    citation:
+      'World Bank (2025), “Women, Business and the Law Index,” World Bank Gender Statistics, processed by Our World in Data, OWID Grapher variable 1105082.',
+    methodologyHref:
+      'https://ourworldindata.org/grapher/women-business-and-the-law-index.metadata.json',
+    dataHref: 'https://ourworldindata.org/grapher/women-business-and-the-law-index',
+    originalDataHref: 'https://wbl.worldbank.org/en/data/download-data',
+    metadataHref:
+      'https://ourworldindata.org/grapher/women-business-and-the-law-index.metadata.json',
+    licenseHref: 'https://ourworldindata.org/licence',
+    version: 'OWID Grapher variable 1105082; last updated 2025-09-08',
+    coverage: 'World annual series, 1970–2023, and 199 economies in the source release',
+    retrieved: accessDate,
+    unit: 'Index from 0 to 100',
+    localPath: 'src/data/womens-rights-index.csv',
+    transformation:
+      'The local extract keeps the exact OWID world series for 1970–2023 and selected-country observations at 1970, 1990, 2010, and 2023. No values are interpolated or recomputed.',
+    note:
+      'The index averages eight legal categories: mobility, workplace, pay, marriage, parenthood, entrepreneurship, assets, and pension. It measures formal law as written, not enforcement or lived outcomes.',
+  },
+  {
+    id: 'wbl-methodology',
+    title: 'Women, Business and the Law methodology',
+    publisher: 'World Bank',
+    originalPublisher: 'World Bank Women, Business and the Law',
+    role: 'research-context',
+    citation:
+      'World Bank (2025), “Women, Business and the Law: Methodology,” accessed 2026-08-16.',
+    methodologyHref: 'https://wbl.worldbank.org/en/data/methodology',
+    dataHref: 'https://wbl.worldbank.org/en/data/download-data',
+    originalDataHref: 'https://wbl.worldbank.org/en/data/download-data',
+    version: 'World Bank WBL methodology materials, accessed 2026-08-16',
+    coverage: 'Methodology and data-download documentation; context only, not plotted separately',
+    retrieved: accessDate,
+    unit: 'Methodology documentation',
+    transformation:
+      'No separate values are copied from the methodology materials. They document the scoring rules and standardized assumptions behind the plotted index.',
+    note:
+      'The methodology uses standardized country and respondent assumptions to make laws comparable. Federal, local, enforcement, and social differences may not be captured by the index.',
+  },
+  {
     id: 'eurostat-ai-adoption',
     title: 'Artificial intelligence by size class of enterprise',
     publisher: 'Eurostat',

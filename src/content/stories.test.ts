@@ -5,7 +5,7 @@ describe('story catalogue', () => {
   it('keeps routes unique and retains the published stories', () => {
     const routes = stories.map((story) => `${story.category}/${story.slug}`);
     expect(new Set(routes).size).toBe(routes.length);
-    expect(stories.filter((story) => story.status === 'published')).toHaveLength(6);
+    expect(stories.filter((story) => story.status === 'published')).toHaveLength(7);
   });
 
   it('documents the remaining Future themes as source-directed placeholders', () => {
