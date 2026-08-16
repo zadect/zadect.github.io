@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import type { StoryDefinition } from '../../content/stories';
+import { getStoryCategoryPresentation, type StoryDefinition } from '../../content/stories';
 import { SiteHeader } from '../../components/SiteHeader';
 
 interface ComingSoonStoryProps {
@@ -7,6 +7,8 @@ interface ComingSoonStoryProps {
 }
 
 export function ComingSoonStory({ story }: ComingSoonStoryProps) {
+  const category = getStoryCategoryPresentation(story.category);
+
   return (
     <div className={`site-shell site-shell--${story.category}`}>
       <SiteHeader />
@@ -16,7 +18,7 @@ export function ComingSoonStory({ story }: ComingSoonStoryProps) {
             ← Back to the overview
           </Link>
           <section className="coming-soon">
-            <p className="eyebrow">{story.category === 'good' ? 'Good signal' : 'Bad signal'}</p>
+            <p className="eyebrow">{category.signalLabel}</p>
             <p className="coming-soon__label">Coming next</p>
             <h1>{story.title}</h1>
             <p className="lede">{story.summary}</p>
@@ -30,7 +32,7 @@ export function ComingSoonStory({ story }: ComingSoonStoryProps) {
                 <dd>{story.geography}</dd>
               </div>
               <div>
-                <dt>Likely source</dt>
+                <dt>Likely sources</dt>
                 <dd>{story.sourceHint}</dd>
               </div>
             </dl>

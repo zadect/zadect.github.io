@@ -1,8 +1,9 @@
 # The Good and The Bad
 
 **The Good and The Bad** is an evidence-led static website about where humanity
-is heading. It puts positive and negative trends next to each other without
-turning either into a slogan.
+is heading. It puts positive and negative trends next to each other, then
+documents the forces likely to shape the years ahead without turning any of
+them into a slogan.
 
 ## Stack
 
@@ -40,6 +41,7 @@ Published story routes use hash navigation:
 - `/#/good/literacy`
 - `/#/bad/ceo-pay-gap`
 - `/#/bad/democratic-backsliding`
+- `/#/future/tech-and-ai`
 
 ### Production build and preview
 
@@ -78,6 +80,14 @@ transformation, version, and measurement notes.
 
 Do not update a data file without updating its source metadata and the story
 copy if the coverage, methodology, or interpretation changes.
+
+### Future catalogue
+
+The Future category contains deliberately data-free placeholders. Its
+“Likely sources” are research directions for a later implementation, not
+citations for a chart or evidence of a trend. Do not add a Future story to the
+source catalogue or make a numerical claim until a compatible, versioned
+dataset and its methodology have been reviewed.
 
 ### Map coverage and no-data treatment
 
@@ -128,8 +138,8 @@ copy if the coverage, methodology, or interpretation changes.
   chart.
 - Use semantic headings, keyboard-accessible links, readable contrast, and
   reduced-motion-friendly interactions.
-- Keep Good and Bad distinct through layout, surface, and tone as well as
-  color; color must never be the only category cue.
+- Keep Good, Bad, and Future distinct through layout, surface, and tone as
+  well as color; color must never be the only category cue.
 - Use focused conventional commits, for example:
   `feat: add world hunger story`.
 

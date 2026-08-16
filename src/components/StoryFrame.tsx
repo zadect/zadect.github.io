@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import type { ReactNode } from 'react';
-import type { StoryDefinition } from '../content/stories';
+import { getStoryCategoryPresentation, type StoryDefinition } from '../content/stories';
 import { SiteHeader } from './SiteHeader';
 
 interface StoryFrameProps {
@@ -9,6 +9,8 @@ interface StoryFrameProps {
 }
 
 export function StoryFrame({ story, children }: StoryFrameProps) {
+  const category = getStoryCategoryPresentation(story.category);
+
   return (
     <div className={`site-shell site-shell--${story.category}`}>
       <SiteHeader />
@@ -18,7 +20,7 @@ export function StoryFrame({ story, children }: StoryFrameProps) {
             ← Back to the overview
           </Link>
           <header className="story-hero">
-            <p className="eyebrow">{story.category === 'good' ? 'Good signal' : 'Bad signal'}</p>
+            <p className="eyebrow">{category.signalLabel}</p>
             <h1>{story.title}</h1>
             <p className="story-hero__summary">{story.summary}</p>
           </header>

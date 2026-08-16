@@ -11,11 +11,12 @@ afterEach(() => {
 });
 
 describe('app routes', () => {
-  it('renders the overview with both categories', () => {
+  it('renders the overview with all three categories', () => {
     render(<App />);
     expect(screen.getByRole('heading', { name: /where is humanity heading/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /signals of human progress/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /signals we cannot look away from/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /questions for the years ahead/i })).toBeInTheDocument();
   });
 
   it('renders published literacy and democracy stories from hash routes', () => {
@@ -35,10 +36,14 @@ describe('app routes', () => {
     expect(screen.getByRole('heading', { name: /where the index fell/i })).toBeInTheDocument();
   });
 
-  it('links Good and Bad navigation to homepage sections', () => {
+  it('links Good, Bad, and Future navigation to homepage sections', () => {
     render(<App />);
     expect(screen.getByRole('link', { name: 'Good' })).toHaveAttribute('href', '#/?section=good');
     expect(screen.getByRole('link', { name: 'Bad' })).toHaveAttribute('href', '#/?section=bad');
+    expect(screen.getByRole('link', { name: 'Future' })).toHaveAttribute(
+      'href',
+      '#/?section=future',
+    );
     expect(screen.getByRole('region', { name: /signals of human progress/i })).toHaveAttribute(
       'id',
       'good-section',
@@ -47,6 +52,20 @@ describe('app routes', () => {
       'id',
       'bad-section',
     );
+    expect(screen.getByRole('region', { name: /questions for the years ahead/i })).toHaveAttribute(
+      'id',
+      'future-section',
+    );
+  });
+
+  it('renders Future stories as source-directed placeholders', () => {
+    window.location.hash = '#/future/tech-and-ai';
+    render(<App />);
+
+    expect(screen.getByRole('heading', { name: 'Tech & AI' })).toBeInTheDocument();
+    expect(screen.getByText('Future signal')).toBeInTheDocument();
+    expect(screen.getByText(/Firm AI adoption, AI tools by role or task/i)).toBeInTheDocument();
+    expect(screen.getByText(/OECD AI Policy Observatory/i)).toBeInTheDocument();
   });
 
   it('renders the CEO definitions, absolute views, and deferred country context', () => {
