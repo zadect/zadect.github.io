@@ -5,7 +5,7 @@ describe('story catalogue', () => {
   it('keeps routes unique and retains the published stories', () => {
     const routes = stories.map((story) => `${story.category}/${story.slug}`);
     expect(new Set(routes).size).toBe(routes.length);
-    expect(stories.filter((story) => story.status === 'published')).toHaveLength(7);
+    expect(stories.filter((story) => story.status === 'published')).toHaveLength(8);
   });
 
   it('documents the remaining Future themes as source-directed placeholders', () => {
@@ -44,5 +44,16 @@ describe('story catalogue', () => {
       expect(story.comparison?.fields.length).toBeGreaterThan(0);
       expect(story.comparison?.fields.every((field) => field.label && field.value)).toBe(true);
     }
+  });
+
+  it('documents the child mortality comparison and source scope', () => {
+    const story = stories.find((candidate) => candidate.slug === 'child-mortality');
+    expect(story?.status).toBe('published');
+    expect(story?.comparison?.fields.map((field) => field.label)).toEqual([
+      'Measure',
+      'Long run',
+      'Panel',
+      'Limit',
+    ]);
   });
 });

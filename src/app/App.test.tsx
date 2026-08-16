@@ -45,6 +45,15 @@ describe('app routes', () => {
     expect(screen.getByText(/formal legal provisions, not enforcement/i)).toBeInTheDocument();
   });
 
+  it('renders the published child mortality story', () => {
+    window.location.hash = '#/good/child-mortality';
+    render(<App />);
+
+    expect(screen.getByRole('heading', { name: 'Child mortality' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /global risk fell across two centuries/i })).toBeInTheDocument();
+    expect(screen.getByText(/estimated probability that a newborn dies/i)).toBeInTheDocument();
+  });
+
   it('links Good, Bad, and Future navigation to homepage sections', () => {
     render(<App />);
     expect(screen.getByRole('link', { name: 'Good' })).toHaveAttribute('href', '#/?section=good');

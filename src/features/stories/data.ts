@@ -6,6 +6,7 @@ import foodAvailabilityCsv from '../../data/food-availability.csv?raw';
 import hungerCsv from '../../data/hunger-undernourishment.csv?raw';
 import aiAdoptionSizeCsv from '../../data/ai-adoption-size.csv?raw';
 import aiAdoptionCsv from '../../data/ai-adoption.csv?raw';
+import childMortalityCsv from '../../data/child-mortality.csv?raw';
 import housingBenchmarkCsv from '../../data/housing-price-income-benchmark.csv?raw';
 import housingPriceIncomeCsv from '../../data/housing-price-income.csv?raw';
 import isoCountryCodesCsv from '../../data/iso-country-codes.csv?raw';
@@ -96,6 +97,14 @@ export interface HungerPoint {
 export interface FoodAvailabilityPoint {
   year: number;
   calories: number;
+}
+
+export interface ChildMortalityPoint {
+  series: 'long-run' | 'panel';
+  entity: string;
+  code: string;
+  year: number;
+  rate: number;
 }
 
 export interface CeoPayPoint {
@@ -215,6 +224,33 @@ export const foodAvailabilitySeries: FoodAvailabilityPoint[] = parseCsv(foodAvai
     year: numberValue(row.year, 'food availability year'),
     calories: numberValue(row.kcal_per_person_day, 'food availability'),
   }),
+);
+
+export const childMortalitySeries = assertUnique(
+  parseCsv(childMortalityCsv).map((row) => {
+    const series = row.series;
+    if (series !== 'long-run' && series !== 'panel') {
+      throw new Error(`Invalid child mortality series: ${series}`);
+    }
+
+    return {
+      series,
+      entity: textValue(row.entity, 'child mortality entity'),
+      code: textValue(row.code, 'child mortality code'),
+      year: numberValue(row.year, 'child mortality year'),
+      rate: boundedNumberValue(row.value, 'child mortality rate', 0, 100),
+    };
+  }),
+  (row) => `${row.series}:${row.code}:${row.year}`,
+  'child mortality',
+) satisfies ChildMortalityPoint[];
+
+export const childMortalityLongRunSeries = childMortalitySeries.filter(
+  (point) => point.series === 'long-run',
+);
+
+export const childMortalityPanelSeries = childMortalitySeries.filter(
+  (point) => point.series === 'panel',
 );
 
 export const ceoPaySeries: CeoPayPoint[] = parseCsv(ceoPayCsv).map((row) => ({

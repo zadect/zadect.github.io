@@ -7,6 +7,9 @@ import {
   aiEuAdoptionSeries,
   ceoCompensationSeries,
   ceoPaySeries,
+  childMortalityLongRunSeries,
+  childMortalityPanelSeries,
+  childMortalitySeries,
   democracyMapGeoJson,
   democracyMapSeries,
   democracySeries,
@@ -31,6 +34,24 @@ describe('published story data', () => {
     expect(hungerSeries[0].year).toBe(2000);
     expect(foodAvailabilitySeries[0].year).toBe(1961);
     expect(foodAvailabilitySeries.length).toBeGreaterThan(hungerSeries.length);
+  });
+
+  it('keeps child mortality source series separate and within probability bounds', () => {
+    expect(childMortalityLongRunSeries).toHaveLength(46);
+    expect(childMortalityPanelSeries).toHaveLength(20);
+    expect(childMortalitySeries[0]).toMatchObject({
+      series: 'long-run',
+      entity: 'World',
+      year: 1800,
+      rate: 42.8,
+    });
+    expect(childMortalityLongRunSeries.at(-1)).toMatchObject({ year: 2024, rate: 3.74 });
+    expect(
+      childMortalityPanelSeries.every((point) => [1965, 1985, 2005, 2024].includes(point.year)),
+    ).toBe(true);
+    expect(childMortalitySeries.every((point) => point.rate >= 0 && point.rate <= 100)).toBe(
+      true,
+    );
   });
 
   it('contains the full CEO pay ratio range and both measures', () => {

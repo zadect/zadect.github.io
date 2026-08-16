@@ -5,6 +5,7 @@ import { StoryCard } from '../components/StoryCard';
 import { AiTechStory } from '../features/stories/AiTechStory';
 import { ComingSoonStory } from '../features/stories/ComingSoonStory';
 import { CeoPayStory } from '../features/stories/CeoPayStory';
+import { ChildMortalityStory } from '../features/stories/ChildMortalityStory';
 import { DemocraticBackslidingStory } from '../features/stories/DemocraticBackslidingStory';
 import { HungerStory } from '../features/stories/HungerStory';
 import { HousingStory } from '../features/stories/HousingStory';
@@ -154,6 +155,10 @@ function StoryRoute() {
 
   if (story.slug === 'ceo-pay-gap') {
     return <CeoPayStory story={story} />;
+  }
+
+  if (story.slug === 'child-mortality') {
+    return <ChildMortalityStory story={story} />;
   }
 
   if (story.slug === 'literacy') {

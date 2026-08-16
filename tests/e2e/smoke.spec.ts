@@ -61,6 +61,15 @@ test('the Women’s rights story renders its legal-equality charts', async ({ pa
   ).toBeVisible();
 });
 
+test('the child mortality story renders its long-run and country charts', async ({ page }) => {
+  await page.goto('/#/good/child-mortality');
+  await expect(page.getByRole('heading', { name: 'Child mortality', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /global risk fell across two centuries/i })).toBeVisible();
+  await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
+  await expect(page.getByText(/the remaining risk is still very uneven/i)).toBeVisible();
+  await expect(page.getByRole('link', { name: /Child mortality rate/i }).first()).toBeVisible();
+});
+
 test('the published Future stories render their charts and context cards', async ({ page }) => {
   await page.goto('/#/future/tech-and-ai');
   await expect(page.getByRole('heading', { name: 'AI & Tech', exact: true })).toBeVisible();
