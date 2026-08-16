@@ -17,6 +17,12 @@ test('serves cache-busted SVG and ICO favicon assets', async ({ page, request })
 test('the overview links to both published stories', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('heading', { name: /where is humanity heading/i })).toBeVisible();
+  await expect(
+    page.getByRole('heading', {
+      name: /humanity is changing in more than one direction at once/i,
+    }),
+  ).toHaveCount(0);
+  await expect(page.getByText('By: zadect; update: 2026-08-16', { exact: true })).toHaveCount(1);
   await page.getByRole('link', { name: /world hunger/i }).first().click();
   await expect(page).toHaveURL(/#\/good\/world-hunger/);
   await expect(page.getByRole('heading', { name: /fewer people are undernourished/i })).toBeVisible();
@@ -28,6 +34,73 @@ test('the overview links to both published stories', async ({ page }) => {
   await expect(page.getByRole('heading', { name: /the ratio is far above its 1960s level/i })).toBeVisible();
   await expect(page.getByRole('heading', { name: /a defined contrast/i })).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(3);
+});
+
+test('desktop landing cards contain every story title', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'chromium', 'This geometry check targets desktop cards.');
+
+  await page.goto('/');
+  const overflowingCards = await page.locator('.story-card').evaluateAll((cards) =>
+    cards
+      .map((card) => ({
+        title: card.querySelector('.story-card__title')?.textContent ?? '',
+        clientWidth: card.clientWidth,
+        scrollWidth: card.scrollWidth,
+      }))
+      .filter(({ clientWidth, scrollWidth }) => scrollWidth > clientWidth + 1),
+  );
+
+  expect(overflowingCards).toEqual([]);
+});
+
+test('mobile chart cards contain wide drawings in local scrollers', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'mobile', 'This geometry check targets the mobile layout.');
+
+  await page.goto('/#/good/world-hunger');
+  const hungerMetrics = await page.locator('.chart-card').evaluateAll((cards) =>
+    cards.map((card) => {
+      const visual = card.querySelector('.chart-card__visual');
+      return {
+        cardClientWidth: card.clientWidth,
+        cardScrollWidth: card.scrollWidth,
+        visualClientWidth: visual?.clientWidth ?? 0,
+        visualScrollWidth: visual?.scrollWidth ?? 0,
+        visualTabIndex: visual?.getAttribute('tabindex'),
+      };
+    }),
+  );
+
+  expect(hungerMetrics).not.toHaveLength(0);
+  expect(hungerMetrics.every(({ cardClientWidth, cardScrollWidth }) => cardScrollWidth <= cardClientWidth + 1)).toBe(
+    true,
+  );
+  expect(hungerMetrics.some(({ visualClientWidth, visualScrollWidth }) => visualScrollWidth > visualClientWidth + 1)).toBe(
+    true,
+  );
+  expect(hungerMetrics.every(({ visualTabIndex }) => visualTabIndex === '0')).toBe(true);
+
+  await page.goto('/#/good/literacy');
+  const mapMetrics = await page.locator('.map-card').evaluateAll((cards) =>
+    cards.map((card) => {
+      const visual = card.querySelector('.map-card__visual');
+      return {
+        cardClientWidth: card.clientWidth,
+        cardScrollWidth: card.scrollWidth,
+        visualClientWidth: visual?.clientWidth ?? 0,
+        visualScrollWidth: visual?.scrollWidth ?? 0,
+        visualTabIndex: visual?.getAttribute('tabindex'),
+      };
+    }),
+  );
+
+  expect(mapMetrics).not.toHaveLength(0);
+  expect(mapMetrics.every(({ cardClientWidth, cardScrollWidth }) => cardScrollWidth <= cardClientWidth + 1)).toBe(
+    true,
+  );
+  expect(mapMetrics.some(({ visualClientWidth, visualScrollWidth }) => visualScrollWidth > visualClientWidth + 1)).toBe(
+    true,
+  );
+  expect(mapMetrics.every(({ visualTabIndex }) => visualTabIndex === '0')).toBe(true);
 });
 
 test('the new literacy and democracy stories render their charts and maps', async ({ page }) => {

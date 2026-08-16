@@ -92,17 +92,6 @@ function HomePage() {
           </div>
         </section>
 
-        <section className="home-thesis" aria-labelledby="thesis-title">
-          <p className="eyebrow">The premise</p>
-          <h2 id="thesis-title">
-            Humanity is changing in more than one direction at once.
-          </h2>
-          <p>
-            Charts make the contrast visible. They also show which questions need better evidence
-            before the next chapter is written.
-          </p>
-        </section>
-
         <StoryIndex category="good" stories={goodStories} />
         <StoryIndex category="bad" stories={badStories} />
         <StoryIndex category="future" stories={futureStories} />
@@ -119,7 +108,7 @@ function HomePage() {
               <span>&amp; The Bad</span>
             </span>
           </Link>
-          <p>The evidence is mixed. The sources are visible.</p>
+          <p>By: zadect; update: 2026-08-16</p>
         </div>
       </footer>
     </div>

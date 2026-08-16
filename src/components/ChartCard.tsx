@@ -121,7 +121,12 @@ export function ChartCard({
           </p>
         ) : null}
       </div>
-      <div className="chart-card__visual" aria-label={`${title} chart`}>
+      <div
+        className="chart-card__visual"
+        role="region"
+        tabIndex={0}
+        aria-label={`${title} chart`}
+      >
         <VegaEmbed
           spec={{ ...chartSpec, data: { values: data } }}
           options={{ actions: false, renderer: 'svg' }}

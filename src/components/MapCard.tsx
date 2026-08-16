@@ -51,7 +51,12 @@ export function MapCard({
           </p>
         ) : null}
       </div>
-      <div className="chart-card__visual map-card__visual" aria-label={`${title} map`}>
+      <div
+        className="chart-card__visual map-card__visual"
+        role="region"
+        tabIndex={0}
+        aria-label={`${title} map`}
+      >
         <VegaEmbed spec={spec} options={{ actions: false, renderer: 'svg' }} />
       </div>
       <p className="map-card__legend-note">
