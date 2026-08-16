@@ -39,7 +39,7 @@ export function StoryFrame({ story, children }: StoryFrameProps) {
               <span>&amp; The Bad</span>
             </span>
           </Link>
-          <p>The evidence is mixed. The sources are visible.</p>
+          <p>By: zadect; update: 2026-08-16</p>
         </div>
       </footer>
     </div>

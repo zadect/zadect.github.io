@@ -17,6 +17,19 @@ describe('app routes', () => {
     expect(screen.getByRole('heading', { name: /signals of human progress/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /signals we cannot look away from/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /questions for the years ahead/i })).toBeInTheDocument();
+    expect(
+      screen.queryByRole('heading', {
+        name: /humanity is changing in more than one direction at once/i,
+      }),
+    ).not.toBeInTheDocument();
+    expect(screen.getByText('By: zadect; update: 2026-08-16')).toBeInTheDocument();
+  });
+
+  it('uses the same attribution on story pages', () => {
+    window.location.hash = '#/good/world-hunger';
+    render(<App />);
+
+    expect(screen.getByText('By: zadect; update: 2026-08-16')).toBeInTheDocument();
   });
 
   it('renders published literacy and democracy stories from hash routes', () => {

@@ -440,26 +440,6 @@ h2 {
   text-transform: uppercase;
 }
 
-.home-thesis {
-  display: grid;
-  grid-template-columns: minmax(160px, 0.32fr) minmax(0, 1fr) minmax(220px, 0.57fr);
-  gap: 2rem;
-  align-items: start;
-  width: min(100% - 2.5rem, 1240px);
-  margin: 0 auto;
-  padding: 5rem 0 8rem;
-  border-top: 1px solid var(--line);
-}
-
-.home-thesis h2 {
-  max-width: 680px;
-}
-
-.home-thesis > p:last-child {
-  color: var(--muted);
-  line-height: 1.6;
-}
-
 .story-index {
   padding: 6rem max(1.25rem, calc((100vw - 1240px) / 2)) 7rem;
 }
@@ -488,6 +468,7 @@ h2 {
   position: relative;
   display: flex;
   flex-direction: column;
+  min-width: 0;
   min-height: 230px;
   padding: 1.5rem;
   border: 1px solid var(--line);
@@ -539,6 +520,8 @@ h2 {
 }
 
 .story-card__meta {
+  min-width: 0;
+  max-width: 100%;
   color: var(--good-deep);
   font-size: 0.69rem;
   font-weight: 800;
@@ -555,20 +538,24 @@ h2 {
 }
 
 .story-card__title {
-  max-width: 480px;
+  min-width: 0;
+  max-width: 100%;
   margin-top: auto;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2rem, 4vw, 4rem);
+  font-size: clamp(1.85rem, 2.5vw, 3rem);
   line-height: 0.96;
   letter-spacing: -0.04em;
+  overflow-wrap: anywhere;
 }
 
 .story-card__summary {
-  max-width: 420px;
+  min-width: 0;
+  max-width: 100%;
   margin-top: 1.25rem;
   color: var(--muted);
   font-size: 0.95rem;
   line-height: 1.5;
+  overflow-wrap: anywhere;
 }
 
 .story-card--bad .story-card__summary {
@@ -766,9 +753,11 @@ h2 {
 .chart-stack {
   display: grid;
   gap: 1.25rem;
+  min-width: 0;
 }
 
 .chart-card {
+  min-width: 0;
   padding: clamp(1.25rem, 3vw, 2.5rem);
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.35);
@@ -796,6 +785,10 @@ h2 {
   max-width: 620px;
   margin-top: 0.65rem;
   font-size: clamp(2rem, 4vw, 3.3rem);
+}
+
+.chart-card__header {
+  min-width: 0;
 }
 
 .chart-card__header > p:not(.eyebrow) {
@@ -829,9 +822,17 @@ h2 {
 }
 
 .chart-card__visual {
+  min-width: 0;
   min-height: 320px;
   margin: 2rem -0.25rem 1rem;
   overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.chart-card__visual:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 4px;
 }
 
 .chart-card--good .chart-card__visual {
@@ -850,6 +851,7 @@ h2 {
 
 .chart-card__visual .vega-embed {
   width: 100%;
+  min-width: 0;
 }
 
 .chart-card__visual canvas,
@@ -865,6 +867,7 @@ h2 {
 }
 
 .map-card__visual .vega-embed {
+  flex: 0 0 auto;
   min-width: 620px;
 }
 
@@ -1449,14 +1452,6 @@ th {
     max-width: 620px;
   }
 
-  .home-thesis {
-    grid-template-columns: 1fr 1.5fr;
-  }
-
-  .home-thesis .eyebrow {
-    grid-row: span 2;
-  }
-
   .story-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1473,8 +1468,7 @@ th {
 @media (max-width: 640px) {
   .site-header__inner,
   .story-container,
-  .home-hero,
-  .home-thesis {
+  .home-hero {
     width: min(100% - 2rem, 1000px);
   }
 
@@ -1508,19 +1502,6 @@ th {
   .home-hero__actions {
     align-items: flex-start;
     flex-direction: column;
-  }
-
-  .home-thesis {
-    display: block;
-    padding: 4rem 0 5rem;
-  }
-
-  .home-thesis h2 {
-    margin-top: 1rem;
-  }
-
-  .home-thesis > p:last-child {
-    margin-top: 1.3rem;
   }
 
   .story-index {
