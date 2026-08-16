@@ -393,6 +393,31 @@ export const sources: SourceReference[] = [
       'The $3 international poverty line is intended for cross-country comparisons. Depending on the country and year, the underlying welfare measure is disposable income or consumption. Global and regional estimates are extrapolated to the release year using growth estimates and forecasts, as documented by the World Bank.',
   },
   {
+    id: 'owid-global-carbon-budget',
+    title: 'Fossil CO₂ emissions — Global Carbon Budget',
+    publisher: 'Our World in Data',
+    originalPublisher: 'Global Carbon Project',
+    processor: 'Our World in Data',
+    role: 'chart-data',
+    citation:
+      'Friedlingstein, P. et al. (2025), “Global Carbon Budget 2025,” processed by Our World in Data in the OWID CO₂ and Greenhouse Gas Emissions dataset.',
+    methodologyHref: 'https://ourworldindata.org/co2-dataset-sources',
+    dataHref: 'https://github.com/owid/co2-data/blob/master/owid-co2-data.csv',
+    originalDataHref: 'https://globalcarbonbudget.org/carbonbudget/',
+    metadataHref: 'https://github.com/owid/co2-data/blob/master/owid-co2-codebook.csv',
+    licenseHref: 'https://ourworldindata.org/licence',
+    version: 'OWID co2-data master; Global Carbon Budget 2025; retrieved 2026-08-16',
+    coverage:
+      'World annual series, 1850–2024; selected-country checkpoints for 1950, 1970, 1990, 2010, 2020, and 2024',
+    retrieved: accessDate,
+    unit: 'Million tonnes of CO₂ and tonnes per person',
+    localPath: 'src/data/climate-environmental-futures.csv',
+    transformation:
+      'The local extract keeps the complete OWID World series for total and per-capita fossil CO₂ emissions and six shared checkpoints for Brazil, China, Germany, India, Japan, Nigeria, the United Kingdom, and the United States. Values are rounded to the source’s three-decimal display precision; no values are interpolated.',
+    note:
+      'Fossil CO₂ covers coal, oil, gas, flaring, and cement, but excludes land-use change. The series is territorial: it counts emissions where they occur, not the emissions embodied in trade.',
+  },
+  {
     id: 'nasa-gistemp',
     title: 'GISTEMP global land-ocean temperature index',
     publisher: 'NASA Goddard Institute for Space Studies',

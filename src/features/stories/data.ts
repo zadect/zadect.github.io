@@ -14,6 +14,7 @@ import economicGrowthDebtPublicFinanceCsv from '../../data/economic-growth-debt-
 import extremePovertyCsv from '../../data/extreme-poverty.csv?raw';
 import inflationPricesEnergyCsv from '../../data/inflation-prices-energy.csv?raw';
 import demographicsMigrationCsv from '../../data/demographics-migration.csv?raw';
+import climateEnvironmentalFuturesCsv from '../../data/climate-environmental-futures.csv?raw';
 import governanceRiskSecurityCsv from '../../data/governance-risk-security.csv?raw';
 import healthLongevityHumanCapitalCsv from '../../data/health-longevity-human-capital.csv?raw';
 import foodAvailabilityCsv from '../../data/food-availability.csv?raw';
@@ -172,6 +173,14 @@ export interface ClimateDecadePoint {
   anomaly: number;
   yearsInPeriod: number;
   status: ClimateDecadeStatus;
+}
+
+export interface ClimateEnvironmentalFuturesPoint {
+  measure: 'world-total' | 'world-per-capita' | 'panel-total' | 'panel-per-capita';
+  entity: string;
+  code: string;
+  year: number;
+  value: number;
 }
 
 export interface WarsConflictPoint {
@@ -578,6 +587,88 @@ export const climateDecadeSeries = Array.from(
     };
   })
   .filter((point): point is ClimateDecadePoint => point !== undefined);
+
+export const climateEnvironmentalFuturesSeries = assertUnique(
+  parseCsv(climateEnvironmentalFuturesCsv).map((row) => {
+    const measure = row.measure;
+    if (
+      measure !== 'world-total' &&
+      measure !== 'world-per-capita' &&
+      measure !== 'panel-total' &&
+      measure !== 'panel-per-capita'
+    ) {
+      throw new Error(`Invalid climate and environmental futures measure: ${measure}`);
+    }
+
+    return {
+      measure,
+      entity: textValue(row.entity, 'climate futures entity'),
+      code: textValue(row.code, 'climate futures code'),
+      year: numberValue(row.year, 'climate futures year'),
+      value: boundedNumberValue(
+        row.value,
+        measure.endsWith('per-capita') ? 'CO2 per-capita emissions' : 'CO2 emissions',
+        0,
+        measure.endsWith('per-capita') ? 100 : 100_000,
+      ),
+    };
+  }),
+  (row) => `${row.measure}:${row.code}:${row.year}`,
+  'climate and environmental futures',
+) satisfies ClimateEnvironmentalFuturesPoint[];
+
+export const climateWorldTotalSeries = climateEnvironmentalFuturesSeries.filter(
+  (point) => point.measure === 'world-total',
+);
+
+export const climateWorldPerCapitaSeries = climateEnvironmentalFuturesSeries.filter(
+  (point) => point.measure === 'world-per-capita',
+);
+
+export const climatePanelTotalSeries = climateEnvironmentalFuturesSeries.filter(
+  (point) => point.measure === 'panel-total',
+);
+
+export const climatePanelPerCapitaSeries = climateEnvironmentalFuturesSeries.filter(
+  (point) => point.measure === 'panel-per-capita',
+);
+
+const climatePanelEntities = [
+  'Brazil',
+  'China',
+  'Germany',
+  'India',
+  'Japan',
+  'Nigeria',
+  'United Kingdom',
+  'United States',
+];
+const climatePanelCheckpoints = [1950, 1970, 1990, 2010, 2020, 2024];
+
+if (
+  climateWorldTotalSeries.length !== 175 ||
+  climateWorldPerCapitaSeries.length !== 175 ||
+  climateWorldTotalSeries.some((point, index) => point.year !== 1850 + index) ||
+  climateWorldPerCapitaSeries.some((point, index) => point.year !== 1850 + index) ||
+  climatePanelTotalSeries.length !== climatePanelEntities.length * climatePanelCheckpoints.length ||
+  climatePanelPerCapitaSeries.length !==
+    climatePanelEntities.length * climatePanelCheckpoints.length ||
+  climatePanelEntities.some(
+    (entity) =>
+      climatePanelTotalSeries.filter((point) => point.entity === entity).length !==
+        climatePanelCheckpoints.length ||
+      climatePanelPerCapitaSeries.filter((point) => point.entity === entity).length !==
+        climatePanelCheckpoints.length,
+  ) ||
+  climateEnvironmentalFuturesSeries.some(
+    (point) =>
+      point.year < 1850 ||
+      point.year > 2024 ||
+      (point.measure.startsWith('panel') && !climatePanelCheckpoints.includes(point.year)),
+  )
+) {
+  throw new Error('Climate and environmental futures series does not cover the declared panels');
+}
 
 export const warsConflictSeries = assertUnique(
   parseCsv(warsConflictCsv).map((row) => {

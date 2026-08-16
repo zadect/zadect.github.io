@@ -9,6 +9,7 @@ import { ComingSoonStory } from '../features/stories/ComingSoonStory';
 import { CeoPayStory } from '../features/stories/CeoPayStory';
 import { ChildMortalityStory } from '../features/stories/ChildMortalityStory';
 import { ClimateChangeStory } from '../features/stories/ClimateChangeStory';
+import { ClimateEnvironmentalFuturesStory } from '../features/stories/ClimateEnvironmentalFuturesStory';
 import { DemocraticBackslidingStory } from '../features/stories/DemocraticBackslidingStory';
 import { DemographicsMigrationStory } from '../features/stories/DemographicsMigrationStory';
 import { ElectricitySanitationStory } from '../features/stories/ElectricitySanitationStory';
@@ -260,6 +261,10 @@ function StoryRoute() {
 
   if (story.slug === 'governance-risk-and-security') {
     return <GovernanceRiskSecurityStory story={story} />;
+  }
+
+  if (story.slug === 'climate-and-environmental-futures') {
+    return <ClimateEnvironmentalFuturesStory story={story} />;
   }
 
   if (story.slug === 'womens-rights') {

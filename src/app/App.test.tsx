@@ -247,6 +247,17 @@ describe('app routes', () => {
     expect(screen.getByText(/score is a signal, not a verdict/i)).toBeInTheDocument();
   });
 
+  it('renders the published climate and environmental futures story', () => {
+    window.location.hash = '#/future/climate-and-environmental-futures';
+    render(<App />);
+
+    expect(
+      screen.getByRole('heading', { name: 'Climate & Environmental Futures' }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /the total keeps climbing/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /one emissions ledger/i })).toBeInTheDocument();
+  });
+
   it('links Good, Bad, and Future navigation to homepage sections', () => {
     render(<App />);
     expect(screen.getByRole('link', { name: 'Good' })).toHaveAttribute('href', '#/?section=good');

@@ -286,6 +286,17 @@ test('the published Future stories render their charts and context cards', async
   await expect(
     page.getByRole('link', { name: /WJP Rule of Law Index 2025/i }).first(),
   ).toBeVisible();
+
+  await page.goto('/#/future/climate-and-environmental-futures');
+  await expect(
+    page.getByRole('heading', { name: 'Climate & Environmental Futures', exact: true }),
+  ).toBeVisible();
+  await expect(page.getByRole('heading', { name: /the total keeps climbing/i })).toBeVisible();
+  await expect(page.locator('.chart-card__visual svg')).toHaveCount(4);
+  await expect(page.getByText(/one emissions ledger cannot answer every climate question/i)).toBeVisible();
+  await expect(
+    page.getByRole('link', { name: /Fossil CO₂ emissions — Global Carbon Budget/i }).first(),
+  ).toBeVisible();
 });
 
 test('header category links target their homepage sections', async ({ page }) => {
@@ -309,9 +320,6 @@ test('header category links target their homepage sections', async ({ page }) =>
 });
 
 test('deferred stories explain their planned evidence', async ({ page }) => {
-  await page.goto('/#/future/climate-and-environmental-futures');
-  await expect(page.getByText('Coming next')).toBeVisible();
-  await expect(page.getByText(/sector greenhouse-gas emissions/i)).toBeVisible();
   await page.goto('/#/future/capital-markets-and-money-flows');
   await expect(page.getByText('Coming next')).toBeVisible();
   await expect(page.getByText(/capital-gain concentration/i)).toBeVisible();

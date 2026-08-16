@@ -14,6 +14,11 @@ import {
   childMortalityLongRunSeries,
   childMortalityPanelSeries,
   childMortalitySeries,
+  climateEnvironmentalFuturesSeries,
+  climatePanelPerCapitaSeries,
+  climatePanelTotalSeries,
+  climateWorldPerCapitaSeries,
+  climateWorldTotalSeries,
   democracyMapGeoJson,
   democracyMapSeries,
   democracySeries,
@@ -202,6 +207,28 @@ describe('published story data', () => {
       yearsInPeriod: 6,
       status: 'partial',
     });
+  });
+
+  it('keeps carbon totals, per-capita values, and country checkpoints separate', () => {
+    expect(climateWorldTotalSeries).toHaveLength(175);
+    expect(climateWorldPerCapitaSeries).toHaveLength(175);
+    expect(climatePanelTotalSeries).toHaveLength(48);
+    expect(climatePanelPerCapitaSeries).toHaveLength(48);
+    expect(climateWorldTotalSeries[0]).toMatchObject({
+      year: 1850,
+      value: 196.848,
+    });
+    expect(climateWorldTotalSeries.at(-1)).toMatchObject({
+      year: 2024,
+      value: 38598.578,
+    });
+    expect(climateWorldPerCapitaSeries.at(-1)).toMatchObject({
+      year: 2024,
+      value: 4.729,
+    });
+    expect(
+      climateEnvironmentalFuturesSeries.every((point) => point.value >= 0),
+    ).toBe(true);
   });
 
   it('keeps the annual conflict deaths and incidence series complete', () => {
