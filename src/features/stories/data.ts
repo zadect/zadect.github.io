@@ -24,6 +24,7 @@ import literacyMapCsv from '../../data/literacy-map.csv?raw';
 import literacySeriesCsv from '../../data/literacy-series.csv?raw';
 import womensRightsCsv from '../../data/womens-rights-index.csv?raw';
 import vaccinationCoverageCsv from '../../data/vaccination-coverage.csv?raw';
+import wealthDistributionInequalityCsv from '../../data/wealth-distribution-inequality.csv?raw';
 import worldTopology from '../../data/world-countries-110m.json';
 import { feature } from 'topojson-client';
 import type { FeatureCollection, Geometry } from 'geojson';
@@ -213,6 +214,14 @@ export interface EmploymentWorkSkillsPoint {
   code: string;
   year: number;
   rate: number;
+}
+
+export interface WealthDistributionInequalityPoint {
+  series: 'world' | 'panel';
+  entity: string;
+  code: string;
+  year: number;
+  share: number;
 }
 
 export interface CeoPayPoint {
@@ -780,6 +789,59 @@ if (
   )
 ) {
   throw new Error('Employment and skills series does not cover the declared panel');
+}
+
+export const wealthDistributionInequalitySeries = assertUnique(
+  parseCsv(wealthDistributionInequalityCsv).map((row) => {
+    const series = row.series;
+    if (series !== 'world' && series !== 'panel') {
+      throw new Error(`Invalid wealth distribution and inequality series: ${series}`);
+    }
+
+    return {
+      series,
+      entity: textValue(row.entity, 'wealth distribution entity'),
+      code: textValue(row.code, 'wealth distribution code'),
+      year: numberValue(row.year, 'wealth distribution year'),
+      share: boundedNumberValue(row.value, 'top 1% wealth share', 0, 100),
+    };
+  }),
+  (row) => `${row.series}:${row.code}:${row.year}`,
+  'wealth distribution and inequality',
+) satisfies WealthDistributionInequalityPoint[];
+
+export const wealthDistributionInequalityWorldSeries =
+  wealthDistributionInequalitySeries.filter((point) => point.series === 'world');
+
+export const wealthDistributionInequalityPanelSeries =
+  wealthDistributionInequalitySeries.filter((point) => point.series === 'panel');
+
+const wealthDistributionInequalityPanel = [
+  'China',
+  'France',
+  'Germany',
+  'India',
+  'South Africa',
+  'United States',
+];
+const wealthDistributionInequalityCheckpoints = [1820, 1900, 1950, 1980, 2000, 2010, 2020, 2024];
+
+if (
+  wealthDistributionInequalityWorldSeries.length !== 56 ||
+  wealthDistributionInequalityWorldSeries[0]?.year !== 1820 ||
+  wealthDistributionInequalityWorldSeries.at(-1)?.year !== 2024 ||
+  wealthDistributionInequalityPanelSeries.length !==
+    wealthDistributionInequalityPanel.length * wealthDistributionInequalityCheckpoints.length ||
+  wealthDistributionInequalityPanel.some(
+    (entity) =>
+      wealthDistributionInequalityPanelSeries.filter((point) => point.entity === entity).length !==
+      wealthDistributionInequalityCheckpoints.length,
+  ) ||
+  wealthDistributionInequalityPanelSeries.some(
+    (point) => !wealthDistributionInequalityCheckpoints.includes(point.year),
+  )
+) {
+  throw new Error('Wealth distribution and inequality series does not cover the declared panel');
 }
 
 const airPollutionEntities = [

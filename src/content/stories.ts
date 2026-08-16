@@ -604,13 +604,33 @@ export const stories: StoryDefinition[] = [
     slug: 'wealth-distribution-and-inequality',
     title: 'Wealth Distribution & Inequality',
     category: 'future',
-    status: 'coming-soon',
-    summary: 'Who receives economic growth, who can move between income groups, and who faces rising living costs.',
-    plannedMetric:
-      'Income and wealth Gini coefficients, top and bottom income shares, intergenerational mobility, and housing costs relative to income',
-    geography: 'Countries with comparable household-distribution data',
-    sourceHint:
-      'World Inequality Database, World Bank Poverty and Inequality Platform, World Bank mobility data, and OECD Affordable Housing Database',
+    status: 'published',
+    summary:
+      'The richest 1% hold a large share of household wealth, but the level and historical path differ sharply across countries.',
+    plannedMetric: 'Share of household net wealth held by the richest 1%',
+    geography: 'World and selected countries',
+    sourceHint: 'World Inequality Database, via Our World in Data',
+    comparison: {
+      title: 'What the wealth-share measure compares',
+      fields: [
+        {
+          label: 'Measure',
+          value: 'Share of total household net wealth held by the richest 1%, where wealth includes financial and non-financial assets minus debts.',
+        },
+        {
+          label: 'Long run',
+          value: 'The world series keeps every available WID observation from 1820 to 2024; historical points are unevenly spaced rather than interpolated.',
+        },
+        {
+          label: 'Panel',
+          value: 'China, France, Germany, India, South Africa, and the United States are shown at shared checkpoints from 1820 to 2024.',
+        },
+        {
+          label: 'Limit',
+          value: 'These are modeled distributional estimates, not a direct census of household balance sheets; they do not show the bottom 50%, mobility, income, or living costs.',
+        },
+      ],
+    },
   },
   {
     slug: 'economic-growth-debt-and-public-finance',
