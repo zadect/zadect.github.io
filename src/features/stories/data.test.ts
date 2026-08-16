@@ -13,6 +13,9 @@ import {
   democracyMapGeoJson,
   democracyMapSeries,
   democracySeries,
+  electricitySanitationPanelSeries,
+  electricitySanitationSeries,
+  electricitySanitationWorldSeries,
   foodAvailabilitySeries,
   hungerSeries,
   housingBenchmarkSeries,
@@ -88,6 +91,30 @@ describe('published story data', () => {
       vaccinationPanelSeries.every((point) => [2000, 2019, 2024].includes(point.year)),
     ).toBe(true);
     expect(vaccinationCoverageSeries.every((point) => point.coverage >= 0 && point.coverage <= 100)).toBe(
+      true,
+    );
+  });
+
+  it('keeps electricity and sanitation definitions separate and within percentage bounds', () => {
+    expect(electricitySanitationWorldSeries).toHaveLength(52);
+    expect(electricitySanitationPanelSeries).toHaveLength(30);
+    expect(electricitySanitationWorldSeries[0]).toMatchObject({
+      measure: 'electricity',
+      year: 1998,
+      value: 73.200584,
+    });
+    expect(electricitySanitationWorldSeries.at(-1)).toMatchObject({
+      measure: 'sanitation',
+      year: 2024,
+      value: 82.0083,
+    });
+    expect(
+      electricitySanitationPanelSeries.every((point) => [2000, 2010, 2024].includes(point.year)),
+    ).toBe(true);
+    expect(
+      new Set(electricitySanitationPanelSeries.map((point) => point.entity)).size,
+    ).toBe(5);
+    expect(electricitySanitationSeries.every((point) => point.value >= 0 && point.value <= 100)).toBe(
       true,
     );
   });

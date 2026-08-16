@@ -74,6 +74,17 @@ describe('app routes', () => {
     ).not.toHaveLength(0);
   });
 
+  it('renders the published electricity and sanitation story', () => {
+    window.location.hash = '#/good/electricity-and-sanitation';
+    render(<App />);
+
+    expect(screen.getByRole('heading', { name: 'Electricity and sanitation' })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: /basic services spread across the world/i }),
+    ).toBeInTheDocument();
+    expect(screen.getByText(/reliability, service quality/i)).toBeInTheDocument();
+  });
+
   it('links Good, Bad, and Future navigation to homepage sections', () => {
     render(<App />);
     expect(screen.getByRole('link', { name: 'Good' })).toHaveAttribute('href', '#/?section=good');

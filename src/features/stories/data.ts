@@ -2,6 +2,7 @@ import ceoPayCsv from '../../data/ceo-pay-ratio.csv?raw';
 import ceoCompensationCsv from '../../data/ceo-pay-compensation.csv?raw';
 import democracyMapCsv from '../../data/democracy-map.csv?raw';
 import democracySeriesCsv from '../../data/democracy-series.csv?raw';
+import electricitySanitationCsv from '../../data/electricity-sanitation.csv?raw';
 import foodAvailabilityCsv from '../../data/food-availability.csv?raw';
 import hungerCsv from '../../data/hunger-undernourishment.csv?raw';
 import aiAdoptionSizeCsv from '../../data/ai-adoption-size.csv?raw';
@@ -123,6 +124,15 @@ export interface VaccinationCoveragePoint {
   code: string;
   year: number;
   coverage: number;
+}
+
+export interface ElectricitySanitationPoint {
+  series: 'world' | 'panel';
+  measure: 'electricity' | 'sanitation';
+  entity: string;
+  code: string;
+  year: number;
+  value: number;
 }
 
 export interface CeoPayPoint {
@@ -322,6 +332,39 @@ export const vaccinationWorldSeries = vaccinationCoverageSeries.filter(
 );
 
 export const vaccinationPanelSeries = vaccinationCoverageSeries.filter(
+  (point) => point.series === 'panel',
+);
+
+export const electricitySanitationSeries = assertUnique(
+  parseCsv(electricitySanitationCsv).map((row) => {
+    const series = row.series;
+    if (series !== 'world' && series !== 'panel') {
+      throw new Error(`Invalid electricity and sanitation series: ${series}`);
+    }
+
+    const measure = row.measure;
+    if (measure !== 'electricity' && measure !== 'sanitation') {
+      throw new Error(`Invalid electricity and sanitation measure: ${measure}`);
+    }
+
+    return {
+      series,
+      measure,
+      entity: textValue(row.entity, 'electricity and sanitation entity'),
+      code: textValue(row.code, 'electricity and sanitation code'),
+      year: numberValue(row.year, 'electricity and sanitation year'),
+      value: boundedNumberValue(row.value, 'electricity and sanitation percentage', 0, 100),
+    };
+  }),
+  (row) => `${row.series}:${row.measure}:${row.code}:${row.year}`,
+  'electricity and sanitation',
+) satisfies ElectricitySanitationPoint[];
+
+export const electricitySanitationWorldSeries = electricitySanitationSeries.filter(
+  (point) => point.series === 'world',
+);
+
+export const electricitySanitationPanelSeries = electricitySanitationSeries.filter(
   (point) => point.series === 'panel',
 );
 

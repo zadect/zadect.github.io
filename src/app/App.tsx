@@ -7,6 +7,7 @@ import { ComingSoonStory } from '../features/stories/ComingSoonStory';
 import { CeoPayStory } from '../features/stories/CeoPayStory';
 import { ChildMortalityStory } from '../features/stories/ChildMortalityStory';
 import { DemocraticBackslidingStory } from '../features/stories/DemocraticBackslidingStory';
+import { ElectricitySanitationStory } from '../features/stories/ElectricitySanitationStory';
 import { HungerStory } from '../features/stories/HungerStory';
 import { HousingStory } from '../features/stories/HousingStory';
 import { LiteracyStory } from '../features/stories/LiteracyStory';
@@ -169,6 +170,10 @@ function StoryRoute() {
 
   if (story.slug === 'vaccination-coverage') {
     return <VaccinationCoverageStory story={story} />;
+  }
+
+  if (story.slug === 'electricity-and-sanitation') {
+    return <ElectricitySanitationStory story={story} />;
   }
 
   if (story.slug === 'literacy') {

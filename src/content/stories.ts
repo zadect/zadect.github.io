@@ -229,11 +229,33 @@ export const stories: StoryDefinition[] = [
     slug: 'electricity-and-sanitation',
     title: 'Electricity and sanitation',
     category: 'good',
-    status: 'coming-soon',
-    summary: 'Basic services that quietly change what daily life makes possible.',
-    plannedMetric: 'Access to electricity and safely managed sanitation',
+    status: 'published',
+    summary:
+      'Basic services have spread widely, but the distance between electricity access and sanitation use still shapes daily life.',
+    plannedMetric: 'Share of the population with electricity access and basic sanitation use',
     geography: 'World and countries',
-    sourceHint: 'World Bank and WHO/UNICEF JMP',
+    sourceHint: 'World Bank and WHO/UNICEF Joint Monitoring Programme, via Our World in Data',
+    comparison: {
+      title: 'Two basic services, two definitions',
+      fields: [
+        {
+          label: 'Electricity',
+          value: 'Share of the population with an electricity source capable of basic lighting and charging a phone or radio for four hours per day.',
+        },
+        {
+          label: 'Sanitation',
+          value: 'Share of the population using an improved sanitation facility that is not shared with another household.',
+        },
+        {
+          label: 'Scope',
+          value: 'The world electricity series runs from 1998 to 2024 in this extract; the sanitation series runs from 2000 to 2024. Selected countries use common checkpoints in 2000, 2010, and 2024.',
+        },
+        {
+          label: 'Limit',
+          value: 'Neither measure captures affordability, reliability, service quality, or the full safely managed sanitation standard.',
+        },
+      ],
+    },
   },
   {
     slug: 'extreme-poverty',

@@ -88,6 +88,19 @@ test('the vaccination coverage story renders its world and country charts', asyn
   await expect(page.getByRole('link', { name: /DTP3 vaccination coverage/i }).first()).toBeVisible();
 });
 
+test('the electricity and sanitation story renders its service charts', async ({ page }) => {
+  await page.goto('/#/good/electricity-and-sanitation');
+  await expect(
+    page.getByRole('heading', { name: 'Electricity and sanitation', exact: true }),
+  ).toBeVisible();
+  await expect(page.getByRole('heading', { name: /basic services spread across the world/i })).toBeVisible();
+  await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
+  await expect(page.getByText(/reliability, service quality/i)).toBeVisible();
+  await expect(
+    page.getByRole('link', { name: /Share of the population with access to electricity/i }).first(),
+  ).toBeVisible();
+});
+
 test('the published Future stories render their charts and context cards', async ({ page }) => {
   await page.goto('/#/future/tech-and-ai');
   await expect(page.getByRole('heading', { name: 'AI & Tech', exact: true })).toBeVisible();
