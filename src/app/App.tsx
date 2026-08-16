@@ -6,6 +6,7 @@ import { AiTechStory } from '../features/stories/AiTechStory';
 import { ComingSoonStory } from '../features/stories/ComingSoonStory';
 import { CeoPayStory } from '../features/stories/CeoPayStory';
 import { ChildMortalityStory } from '../features/stories/ChildMortalityStory';
+import { ClimateChangeStory } from '../features/stories/ClimateChangeStory';
 import { DemocraticBackslidingStory } from '../features/stories/DemocraticBackslidingStory';
 import { ElectricitySanitationStory } from '../features/stories/ElectricitySanitationStory';
 import { ExtremePovertyStory } from '../features/stories/ExtremePovertyStory';
@@ -179,6 +180,10 @@ function StoryRoute() {
 
   if (story.slug === 'extreme-poverty') {
     return <ExtremePovertyStory story={story} />;
+  }
+
+  if (story.slug === 'climate-change') {
+    return <ClimateChangeStory story={story} />;
   }
 
   if (story.slug === 'literacy') {

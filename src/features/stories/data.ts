@@ -2,6 +2,7 @@ import ceoPayCsv from '../../data/ceo-pay-ratio.csv?raw';
 import ceoCompensationCsv from '../../data/ceo-pay-compensation.csv?raw';
 import democracyMapCsv from '../../data/democracy-map.csv?raw';
 import democracySeriesCsv from '../../data/democracy-series.csv?raw';
+import climateChangeCsv from '../../data/climate-change.csv?raw';
 import electricitySanitationCsv from '../../data/electricity-sanitation.csv?raw';
 import extremePovertyCsv from '../../data/extreme-poverty.csv?raw';
 import foodAvailabilityCsv from '../../data/food-availability.csv?raw';
@@ -145,6 +146,20 @@ export interface ExtremePovertyPoint {
   year: number;
   value: number;
   status: ExtremePovertyStatus;
+}
+
+export interface ClimateAnnualPoint {
+  year: number;
+  anomaly: number;
+}
+
+export type ClimateDecadeStatus = 'complete' | 'partial';
+
+export interface ClimateDecadePoint {
+  year: number;
+  anomaly: number;
+  yearsInPeriod: number;
+  status: ClimateDecadeStatus;
 }
 
 export interface CeoPayPoint {
@@ -412,6 +427,44 @@ export const extremePovertyWorldSeries = extremePovertySeries.filter(
 export const extremePovertyPanelSeries = extremePovertySeries.filter(
   (point) => point.series === 'panel',
 );
+
+export const climateAnnualSeries = assertUnique(
+  parseCsv(climateChangeCsv).map((row) => {
+    if (row.series !== 'annual') {
+      throw new Error(`Invalid climate change series: ${row.series}`);
+    }
+
+    return {
+      year: numberValue(row.year, 'climate change year'),
+      anomaly: numberValue(row.value, 'climate change anomaly'),
+    };
+  }),
+  (row) => String(row.year),
+  'climate change',
+) satisfies ClimateAnnualPoint[];
+
+const climateLastYear = climateAnnualSeries.at(-1)?.year ?? 1880;
+
+export const climateDecadeSeries = Array.from(
+  { length: Math.floor((climateLastYear - 1880) / 10) + 1 },
+  (_, index) => 1880 + index * 10,
+)
+  .map((year) => {
+    const points = climateAnnualSeries.filter(
+      (point) => point.year >= year && point.year < year + 10,
+    );
+    if (points.length === 0) return undefined;
+
+    return {
+      year,
+      anomaly: Number(
+        (points.reduce((total, point) => total + point.anomaly, 0) / points.length).toFixed(3),
+      ),
+      yearsInPeriod: points.length,
+      status: points.length === 10 ? ('complete' as const) : ('partial' as const),
+    };
+  })
+  .filter((point): point is ClimateDecadePoint => point !== undefined);
 
 export const ceoPaySeries: CeoPayPoint[] = parseCsv(ceoPayCsv).map((row) => ({
   year: numberValue(row.year, 'CEO pay year'),

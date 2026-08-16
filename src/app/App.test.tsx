@@ -96,6 +96,17 @@ describe('app routes', () => {
     expect(screen.getByText(/income data in some countries with consumption data/i)).toBeInTheDocument();
   });
 
+  it('renders the published climate change story', () => {
+    window.location.hash = '#/bad/climate-change';
+    render(<App />);
+
+    expect(screen.getByRole('heading', { name: 'Climate change' })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: /annual signal keeps moving upward/i }),
+    ).toBeInTheDocument();
+    expect(screen.getByText(/global average hides regional and seasonal differences/i)).toBeInTheDocument();
+  });
+
   it('links Good, Bad, and Future navigation to homepage sections', () => {
     render(<App />);
     expect(screen.getByRole('link', { name: 'Good' })).toHaveAttribute('href', '#/?section=good');

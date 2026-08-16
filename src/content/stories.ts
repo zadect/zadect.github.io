@@ -320,11 +320,33 @@ export const stories: StoryDefinition[] = [
     slug: 'climate-change',
     title: 'Climate change',
     category: 'bad',
-    status: 'coming-soon',
-    summary: 'A future look at the temperature signal behind a changing climate.',
-    plannedMetric: 'Global surface temperature anomaly',
+    status: 'published',
+    summary:
+      'The global temperature anomaly has moved upward for more than a century, turning a noisy annual line into a clear shift in the baseline.',
+    plannedMetric: 'Global land-ocean surface temperature anomaly',
     geography: 'World',
-    sourceHint: 'NASA, NOAA, and Berkeley Earth',
+    sourceHint: 'NASA Goddard Institute for Space Studies GISTEMP v4',
+    comparison: {
+      title: 'What the temperature line compares',
+      fields: [
+        {
+          label: 'Measure',
+          value: 'NASA GISTEMP v4 global land-ocean surface temperature anomaly, in degrees Celsius.',
+        },
+        {
+          label: 'Baseline',
+          value: 'Each annual value is measured relative to NASA’s 1951–1980 mean.',
+        },
+        {
+          label: 'Scope',
+          value: 'The full-year annual series runs from 1880 to 2025. Decade averages are calculated from those annual rows; the 2020s average covers 2020–2025 only.',
+        },
+        {
+          label: 'Limit',
+          value: 'A global average hides regional and seasonal differences. This page shows the observed temperature signal, not a forecast or an impact estimate.',
+        },
+      ],
+    },
   },
   {
     slug: 'wars-and-conflict',
