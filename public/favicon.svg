@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title>The Good and The Bad</title>
+  <rect width="64" height="64" rx="16" fill="#f4f1e9"/>
+  <path d="M10 45C20 42 23 25 34 22c8-2 12 3 20-7" fill="none" stroke="#266b61" stroke-linecap="round" stroke-width="5"/>
+  <path d="M10 18c9 3 13 18 24 21 8 2 12-3 20 7" fill="none" stroke="#b35f4a" stroke-linecap="round" stroke-width="5"/>
+  <circle cx="10" cy="45" r="3" fill="#266b61"/>
+  <circle cx="54" cy="15" r="3" fill="#266b61"/>
+  <circle cx="10" cy="18" r="3" fill="#b35f4a"/>
+  <circle cx="54" cy="46" r="3" fill="#b35f4a"/>
+</svg>
