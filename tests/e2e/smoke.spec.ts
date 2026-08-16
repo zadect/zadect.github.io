@@ -16,6 +16,36 @@ test('the overview links to both published stories', async ({ page }) => {
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(3);
 });
 
+test('the new literacy and democracy stories render their charts and maps', async ({ page }) => {
+  await page.goto('/#/good/literacy');
+  await expect(page.getByRole('heading', { name: 'Literacy', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /literacy rose across a broad panel/i })).toBeVisible();
+  await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
+  expect(await page.locator('.map-card__visual .mark-shape path').count()).toBeGreaterThan(50);
+  await expect(page.getByText(/qualifying observation from 2018 onward/i)).toBeVisible();
+
+  await page.goto('/#/bad/democratic-backsliding');
+  await expect(
+    page.getByRole('heading', { name: 'Democratic backsliding', exact: true }),
+  ).toBeVisible();
+  await expect(page.getByRole('heading', { name: /where the index fell/i })).toBeVisible();
+  await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
+  expect(await page.locator('.map-card__visual .mark-shape path').count()).toBeGreaterThan(100);
+  await expect(page.getByText(/one of the 2020 or 2025 endpoint values is missing/i)).toBeVisible();
+});
+
+test('header Good and Bad links target the homepage sections', async ({ page }) => {
+  await page.goto('/#/bad/ceo-pay-gap');
+  await page.locator('header.site-header').getByRole('link', { name: 'Good', exact: true }).click();
+  await expect(page).toHaveURL(/#\/\?section=good/);
+  await expect(page.locator('#good-section')).toBeVisible();
+
+  await page.locator('header.site-header').getByRole('link', { name: 'Bad', exact: true }).click();
+  await expect(page).toHaveURL(/#\/\?section=bad/);
+  await expect(page.locator('#bad-section')).toBeVisible();
+  await expect(page.locator('#featured-section')).toHaveCount(0);
+});
+
 test('a deferred story explains its planned evidence', async ({ page }) => {
   await page.goto('/#/bad/climate-change');
   await expect(page.getByText('Coming next')).toBeVisible();

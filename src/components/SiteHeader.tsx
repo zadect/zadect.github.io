@@ -15,8 +15,8 @@ export function SiteHeader() {
           </span>
         </Link>
         <nav className="site-nav" aria-label="Primary navigation">
-          <Link to="/good/world-hunger">Good</Link>
-          <Link to="/bad/ceo-pay-gap">Bad</Link>
+          <Link to="/?section=good">Good</Link>
+          <Link to="/?section=bad">Bad</Link>
         </nav>
       </div>
     </header>
