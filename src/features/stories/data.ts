@@ -3,6 +3,7 @@ import ceoCompensationCsv from '../../data/ceo-pay-compensation.csv?raw';
 import democracyMapCsv from '../../data/democracy-map.csv?raw';
 import democracySeriesCsv from '../../data/democracy-series.csv?raw';
 import electricitySanitationCsv from '../../data/electricity-sanitation.csv?raw';
+import extremePovertyCsv from '../../data/extreme-poverty.csv?raw';
 import foodAvailabilityCsv from '../../data/food-availability.csv?raw';
 import hungerCsv from '../../data/hunger-undernourishment.csv?raw';
 import aiAdoptionSizeCsv from '../../data/ai-adoption-size.csv?raw';
@@ -133,6 +134,17 @@ export interface ElectricitySanitationPoint {
   code: string;
   year: number;
   value: number;
+}
+
+export type ExtremePovertyStatus = 'reported-or-survey-based' | 'source-extrapolation';
+
+export interface ExtremePovertyPoint {
+  series: 'world' | 'panel';
+  entity: string;
+  code: string;
+  year: number;
+  value: number;
+  status: ExtremePovertyStatus;
 }
 
 export interface CeoPayPoint {
@@ -365,6 +377,39 @@ export const electricitySanitationWorldSeries = electricitySanitationSeries.filt
 );
 
 export const electricitySanitationPanelSeries = electricitySanitationSeries.filter(
+  (point) => point.series === 'panel',
+);
+
+export const extremePovertySeries = assertUnique(
+  parseCsv(extremePovertyCsv).map((row) => {
+    const series = row.series;
+    if (series !== 'world' && series !== 'panel') {
+      throw new Error(`Invalid extreme poverty series: ${series}`);
+    }
+
+    const status = row.status;
+    if (status !== 'reported-or-survey-based' && status !== 'source-extrapolation') {
+      throw new Error(`Invalid extreme poverty status: ${status}`);
+    }
+
+    return {
+      series,
+      entity: textValue(row.entity, 'extreme poverty entity'),
+      code: textValue(row.code, 'extreme poverty code'),
+      year: numberValue(row.year, 'extreme poverty year'),
+      value: boundedNumberValue(row.value, 'extreme poverty percentage', 0, 100),
+      status,
+    };
+  }),
+  (row) => `${row.series}:${row.code}:${row.year}`,
+  'extreme poverty',
+) satisfies ExtremePovertyPoint[];
+
+export const extremePovertyWorldSeries = extremePovertySeries.filter(
+  (point) => point.series === 'world',
+);
+
+export const extremePovertyPanelSeries = extremePovertySeries.filter(
   (point) => point.series === 'panel',
 );
 

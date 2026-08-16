@@ -5,7 +5,7 @@ describe('story catalogue', () => {
   it('keeps routes unique and retains the published stories', () => {
     const routes = stories.map((story) => `${story.category}/${story.slug}`);
     expect(new Set(routes).size).toBe(routes.length);
-    expect(stories.filter((story) => story.status === 'published')).toHaveLength(11);
+    expect(stories.filter((story) => story.status === 'published')).toHaveLength(12);
   });
 
   it('documents the remaining Future themes as source-directed placeholders', () => {
@@ -86,6 +86,17 @@ describe('story catalogue', () => {
       'Electricity',
       'Sanitation',
       'Scope',
+      'Limit',
+    ]);
+  });
+
+  it('documents the extreme poverty comparison and source scope', () => {
+    const story = stories.find((candidate) => candidate.slug === 'extreme-poverty');
+    expect(story?.status).toBe('published');
+    expect(story?.comparison?.fields.map((field) => field.label)).toEqual([
+      'Measure',
+      'World',
+      'Countries',
       'Limit',
     ]);
   });

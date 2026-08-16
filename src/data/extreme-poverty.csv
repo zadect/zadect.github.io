@@ -1,0 +1,149 @@
+series,entity,code,year,value,status
+world,World,OWID_WRL,1990,43.41358244419098,reported-or-survey-based
+world,World,OWID_WRL,1991,43.117642402648926,reported-or-survey-based
+world,World,OWID_WRL,1992,42.50909388065338,reported-or-survey-based
+world,World,OWID_WRL,1993,42.05637872219086,reported-or-survey-based
+world,World,OWID_WRL,1994,40.73289930820465,reported-or-survey-based
+world,World,OWID_WRL,1995,39.40418362617493,reported-or-survey-based
+world,World,OWID_WRL,1996,38.07438015937805,reported-or-survey-based
+world,World,OWID_WRL,1997,37.688758969306946,reported-or-survey-based
+world,World,OWID_WRL,1998,37.91733682155609,reported-or-survey-based
+world,World,OWID_WRL,1999,37.32561469078064,reported-or-survey-based
+world,World,OWID_WRL,2000,36.20489239692688,reported-or-survey-based
+world,World,OWID_WRL,2001,35.2544367313385,reported-or-survey-based
+world,World,OWID_WRL,2002,33.739686012268066,reported-or-survey-based
+world,World,OWID_WRL,2003,32.15485215187073,reported-or-survey-based
+world,World,OWID_WRL,2004,30.262309312820435,reported-or-survey-based
+world,World,OWID_WRL,2005,28.329738974571228,reported-or-survey-based
+world,World,OWID_WRL,2006,26.992404460906982,reported-or-survey-based
+world,World,OWID_WRL,2007,25.285276770591736,reported-or-survey-based
+world,World,OWID_WRL,2008,24.138276278972626,reported-or-survey-based
+world,World,OWID_WRL,2009,23.06017130613327,reported-or-survey-based
+world,World,OWID_WRL,2010,20.98396122455597,reported-or-survey-based
+world,World,OWID_WRL,2011,19.10192221403122,reported-or-survey-based
+world,World,OWID_WRL,2012,17.825224995613098,reported-or-survey-based
+world,World,OWID_WRL,2013,15.503941476345062,reported-or-survey-based
+world,World,OWID_WRL,2014,14.507512748241425,reported-or-survey-based
+world,World,OWID_WRL,2015,13.421565294265747,reported-or-survey-based
+world,World,OWID_WRL,2016,12.573675811290741,reported-or-survey-based
+world,World,OWID_WRL,2017,11.79322600364685,reported-or-survey-based
+world,World,OWID_WRL,2018,11.11886128783226,reported-or-survey-based
+world,World,OWID_WRL,2019,10.763254761695862,reported-or-survey-based
+world,World,OWID_WRL,2020,11.411947757005692,reported-or-survey-based
+world,World,OWID_WRL,2021,11.326881498098373,reported-or-survey-based
+world,World,OWID_WRL,2022,10.88874638080597,reported-or-survey-based
+world,World,OWID_WRL,2023,10.618219524621964,source-extrapolation
+world,World,OWID_WRL,2024,10.40017232298851,source-extrapolation
+world,World,OWID_WRL,2025,10.196655988693237,source-extrapolation
+world,World,OWID_WRL,2026,9.975934773683548,source-extrapolation
+panel,Brazil,BRA,1990,30.33752739429474,reported-or-survey-based
+panel,Brazil,BRA,1992,29.40422296524048,reported-or-survey-based
+panel,Brazil,BRA,1993,28.199797868728638,reported-or-survey-based
+panel,Brazil,BRA,1995,19.514116644859314,reported-or-survey-based
+panel,Brazil,BRA,1996,20.65027207136154,reported-or-survey-based
+panel,Brazil,BRA,1997,20.380136370658875,reported-or-survey-based
+panel,Brazil,BRA,1998,19.134345650672913,reported-or-survey-based
+panel,Brazil,BRA,1999,20.020058751106262,reported-or-survey-based
+panel,Brazil,BRA,2001,17.547114193439484,reported-or-survey-based
+panel,Brazil,BRA,2002,16.19352102279663,reported-or-survey-based
+panel,Brazil,BRA,2003,17.128704488277435,reported-or-survey-based
+panel,Brazil,BRA,2004,15.330196917057037,reported-or-survey-based
+panel,Brazil,BRA,2005,13.664847612380981,reported-or-survey-based
+panel,Brazil,BRA,2006,11.369175463914871,reported-or-survey-based
+panel,Brazil,BRA,2007,10.790479183197021,reported-or-survey-based
+panel,Brazil,BRA,2008,9.121086448431015,reported-or-survey-based
+panel,Brazil,BRA,2009,8.444493263959885,reported-or-survey-based
+panel,Brazil,BRA,2011,7.118549942970276,reported-or-survey-based
+panel,Brazil,BRA,2012,6.385301053524017,reported-or-survey-based
+panel,Brazil,BRA,2013,5.3765833377838135,reported-or-survey-based
+panel,Brazil,BRA,2014,4.765261709690094,reported-or-survey-based
+panel,Brazil,BRA,2015,5.376676097512245,reported-or-survey-based
+panel,Brazil,BRA,2016,6.493394076824188,reported-or-survey-based
+panel,Brazil,BRA,2017,6.957946717739105,reported-or-survey-based
+panel,Brazil,BRA,2018,6.910514086484909,reported-or-survey-based
+panel,Brazil,BRA,2019,7.032903283834457,reported-or-survey-based
+panel,Brazil,BRA,2020,2.7663500979542732,reported-or-survey-based
+panel,Brazil,BRA,2021,7.458674907684326,reported-or-survey-based
+panel,Brazil,BRA,2022,4.853658005595207,reported-or-survey-based
+panel,Brazil,BRA,2023,3.8030900061130524,reported-or-survey-based
+panel,Brazil,BRA,2024,3.0075229704380035,reported-or-survey-based
+panel,India,IND,1993,47.48263359069824,reported-or-survey-based
+panel,India,IND,2004,46.42416834831238,reported-or-survey-based
+panel,India,IND,2009,34.575578570365906,reported-or-survey-based
+panel,India,IND,2011,27.124691009521484,reported-or-survey-based
+panel,India,IND,2022,5.25164008140564,reported-or-survey-based
+panel,Nigeria,NGA,1992,55.16522526741028,reported-or-survey-based
+panel,Nigeria,NGA,1996,60.907912254333496,reported-or-survey-based
+panel,Nigeria,NGA,2003,51.09695792198181,reported-or-survey-based
+panel,Nigeria,NGA,2010,38.48505914211273,reported-or-survey-based
+panel,Nigeria,NGA,2012,37.443411350250244,reported-or-survey-based
+panel,Nigeria,NGA,2015,35.76658070087433,reported-or-survey-based
+panel,Nigeria,NGA,2018,34.19290482997894,reported-or-survey-based
+panel,Nigeria,NGA,2022,41.81954860687256,reported-or-survey-based
+panel,United States,USA,1990,0.4999999888241291,reported-or-survey-based
+panel,United States,USA,1991,0.6000000052154064,reported-or-survey-based
+panel,United States,USA,1992,0.6000000052154064,reported-or-survey-based
+panel,United States,USA,1993,0.6000000052154064,reported-or-survey-based
+panel,United States,USA,1994,0.7000000216066837,reported-or-survey-based
+panel,United States,USA,1995,0.7000000216066837,reported-or-survey-based
+panel,United States,USA,1996,0.7000000216066837,reported-or-survey-based
+panel,United States,USA,1997,0.800000037997961,reported-or-survey-based
+panel,United States,USA,1998,0.8999999612569809,reported-or-survey-based
+panel,United States,USA,1999,0.7000000216066837,reported-or-survey-based
+panel,United States,USA,2000,0.800000037997961,reported-or-survey-based
+panel,United States,USA,2001,0.8999999612569809,reported-or-survey-based
+panel,United States,USA,2002,0.8999999612569809,reported-or-survey-based
+panel,United States,USA,2003,0.9999999776482582,reported-or-survey-based
+panel,United States,USA,2004,1.0999999940395355,reported-or-survey-based
+panel,United States,USA,2005,0.9999999776482582,reported-or-survey-based
+panel,United States,USA,2006,1.0999999940395355,reported-or-survey-based
+panel,United States,USA,2007,0.9999999776482582,reported-or-survey-based
+panel,United States,USA,2008,1.0999999940395355,reported-or-survey-based
+panel,United States,USA,2009,0.9999999776482582,reported-or-survey-based
+panel,United States,USA,2010,1.0999999940395355,reported-or-survey-based
+panel,United States,USA,2011,1.0999999940395355,reported-or-survey-based
+panel,United States,USA,2012,1.0999999940395355,reported-or-survey-based
+panel,United States,USA,2013,1.0999999940395355,reported-or-survey-based
+panel,United States,USA,2014,1.3000000268220901,reported-or-survey-based
+panel,United States,USA,2015,1.2000000104308128,reported-or-survey-based
+panel,United States,USA,2016,1.2000000104308128,reported-or-survey-based
+panel,United States,USA,2017,1.3000000268220901,reported-or-survey-based
+panel,United States,USA,2018,1.0999999940395355,reported-or-survey-based
+panel,United States,USA,2019,0.9999999776482582,reported-or-survey-based
+panel,United States,USA,2020,0.4000000189989805,reported-or-survey-based
+panel,United States,USA,2021,0.3000000026077032,reported-or-survey-based
+panel,United States,USA,2022,1.4000000432133675,reported-or-survey-based
+panel,United States,USA,2023,1.2000000104308128,reported-or-survey-based
+panel,United States,USA,2024,1.0999999940395355,reported-or-survey-based
+panel,Germany,DEU,1991,0.10000000474974513,reported-or-survey-based
+panel,Germany,DEU,1992,0.10000000474974513,reported-or-survey-based
+panel,Germany,DEU,1993,0.10000000474974513,reported-or-survey-based
+panel,Germany,DEU,1994,0.20000000949949026,reported-or-survey-based
+panel,Germany,DEU,1995,0.20000000949949026,reported-or-survey-based
+panel,Germany,DEU,1996,0.10000000474974513,reported-or-survey-based
+panel,Germany,DEU,1997,0.10000000474974513,reported-or-survey-based
+panel,Germany,DEU,1998,0.10000000474974513,reported-or-survey-based
+panel,Germany,DEU,1999,0.10000000474974513,reported-or-survey-based
+panel,Germany,DEU,2000,0.10000000474974513,reported-or-survey-based
+panel,Germany,DEU,2001,0.10000000474974513,reported-or-survey-based
+panel,Germany,DEU,2002,0.10000000474974513,reported-or-survey-based
+panel,Germany,DEU,2003,0.10000000474974513,reported-or-survey-based
+panel,Germany,DEU,2004,0.10000000474974513,reported-or-survey-based
+panel,Germany,DEU,2005,0.10000000474974513,reported-or-survey-based
+panel,Germany,DEU,2006,0,reported-or-survey-based
+panel,Germany,DEU,2007,0.10000000474974513,reported-or-survey-based
+panel,Germany,DEU,2008,0.10000000474974513,reported-or-survey-based
+panel,Germany,DEU,2009,0.10000000474974513,reported-or-survey-based
+panel,Germany,DEU,2010,0.10000000474974513,reported-or-survey-based
+panel,Germany,DEU,2011,0.10000000474974513,reported-or-survey-based
+panel,Germany,DEU,2012,0.10000000474974513,reported-or-survey-based
+panel,Germany,DEU,2013,0.10000000474974513,reported-or-survey-based
+panel,Germany,DEU,2014,0.10000000474974513,reported-or-survey-based
+panel,Germany,DEU,2015,0.10000000474974513,reported-or-survey-based
+panel,Germany,DEU,2016,0.10000000474974513,reported-or-survey-based
+panel,Germany,DEU,2017,0.20000000949949026,reported-or-survey-based
+panel,Germany,DEU,2018,0.10000000474974513,reported-or-survey-based
+panel,Germany,DEU,2019,0.20000000949949026,reported-or-survey-based
+panel,Germany,DEU,2020,0.3000000026077032,reported-or-survey-based
+panel,Germany,DEU,2021,0.6000000052154064,reported-or-survey-based
+panel,Germany,DEU,2022,0.7000000216066837,reported-or-survey-based

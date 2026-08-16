@@ -261,11 +261,33 @@ export const stories: StoryDefinition[] = [
     slug: 'extreme-poverty',
     title: 'Extreme poverty',
     category: 'good',
-    status: 'coming-soon',
-    summary: 'The global poverty line has reached fewer people, while the remaining burden is concentrated.',
-    plannedMetric: 'Share of people below the international poverty line',
+    status: 'published',
+    summary:
+      'The share of people below the international poverty line has fallen sharply, while the remaining burden is concentrated and uneven.',
+    plannedMetric: 'Share of people below the $3-a-day international poverty line',
     geography: 'World and countries',
-    sourceHint: 'World Bank Poverty and Inequality Platform',
+    sourceHint: 'World Bank Poverty and Inequality Platform, via Our World in Data',
+    comparison: {
+      title: 'What the poverty line compares',
+      fields: [
+        {
+          label: 'Measure',
+          value: 'Share of people living in a household with income or consumption below $3 per person per day, expressed in 2021 international dollars.',
+        },
+        {
+          label: 'World',
+          value: 'The world series runs from 1990 to 2026. The source-extrapolated 2023–2026 tail is marked separately from the earlier series.',
+        },
+        {
+          label: 'Countries',
+          value: 'Selected-country points preserve the years available in the consolidated source; survey years are not synchronized and no missing years are interpolated.',
+        },
+        {
+          label: 'Limit',
+          value: 'The line is a monetary floor, not a complete measure of deprivation. Countries may use income or consumption data, and survey definitions can change over time.',
+        },
+      ],
+    },
   },
   {
     slug: 'ceo-pay-gap',
