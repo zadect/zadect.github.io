@@ -9,6 +9,7 @@ import { HungerStory } from '../features/stories/HungerStory';
 import { LiteracyStory } from '../features/stories/LiteracyStory';
 import {
   getStory,
+  getStoryCategoryPresentation,
   getStoriesByCategory,
   type StoryCategory,
   type StoryDefinition,
@@ -17,11 +18,12 @@ import {
 function HomePage() {
   const goodStories = getStoriesByCategory('good');
   const badStories = getStoriesByCategory('bad');
+  const futureStories = getStoriesByCategory('future');
   const location = useLocation();
 
   useEffect(() => {
     const section = new URLSearchParams(location.search).get('section');
-    if (section !== 'good' && section !== 'bad') return;
+    if (section !== 'good' && section !== 'bad' && section !== 'future') return;
 
     requestAnimationFrame(() => {
       document.getElementById(`${section}-section`)?.scrollIntoView({ behavior: 'smooth' });
@@ -40,14 +42,14 @@ function HomePage() {
               <em> heading?</em>
             </h1>
             <p className="home-hero__intro">
-              Charts that put improving conditions beside worsening ones, using the longest reliable
-              series we can find.
+              Charts that put improving conditions beside worsening ones, and track the forces
+              likely to shape the years ahead.
             </p>
             <div className="home-hero__actions">
               <Link className="button button--good" to="/?section=good">
                 Explore the stories
               </Link>
-              <span className="home-hero__aside">Good trends. Bad trends. One timeline.</span>
+              <span className="home-hero__aside">Good trends. Bad trends. What comes next.</span>
             </div>
           </div>
           <div
@@ -73,13 +75,14 @@ function HomePage() {
             Humanity is changing in more than one direction at once.
           </h2>
           <p>
-            Charts make the contrast visible. Each story keeps its units, definitions, limits, and
-            sources in view.
+            Charts make the contrast visible. They also show which questions need better evidence
+            before the next chapter is written.
           </p>
         </section>
 
         <StoryIndex category="good" stories={goodStories} />
         <StoryIndex category="bad" stories={badStories} />
+        <StoryIndex category="future" stories={futureStories} />
       </main>
       <footer className="site-footer">
         <div className="story-container">
@@ -106,6 +109,8 @@ interface StoryIndexProps {
 }
 
 function StoryIndex({ category, stories }: StoryIndexProps) {
+  const presentation = getStoryCategoryPresentation(category);
+
   return (
     <section
       className={`story-index story-index--${category}`}
@@ -114,16 +119,10 @@ function StoryIndex({ category, stories }: StoryIndexProps) {
     >
       <div className="section-heading">
         <div>
-          <p className="eyebrow">{category === 'good' ? 'The good' : 'The bad'}</p>
-          <h2 id={`${category}-title`}>
-            {category === 'good' ? 'Signals of human progress' : 'Signals we cannot look away from'}
-          </h2>
+          <p className="eyebrow">{presentation.label}</p>
+          <h2 id={`${category}-title`}>{presentation.heading}</h2>
         </div>
-        <p>
-          {category === 'good'
-            ? 'Not a victory lap. A record of what has improved, and where the work remains.'
-            : 'Not a prophecy. A record of pressure, concentration, and consequences.'}
-        </p>
+        <p>{presentation.description}</p>
       </div>
       <div className="story-list">
         {stories.map((story) => (

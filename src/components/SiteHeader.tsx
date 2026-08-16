@@ -15,8 +15,15 @@ export function SiteHeader() {
           </span>
         </Link>
         <nav className="site-nav" aria-label="Primary navigation">
-          <Link to="/?section=good">Good</Link>
-          <Link to="/?section=bad">Bad</Link>
+          <Link className="site-nav__link site-nav__link--good" to="/?section=good">
+            Good
+          </Link>
+          <Link className="site-nav__link site-nav__link--bad" to="/?section=bad">
+            Bad
+          </Link>
+          <Link className="site-nav__link site-nav__link--future" to="/?section=future">
+            Future
+          </Link>
         </nav>
       </div>
     </header>

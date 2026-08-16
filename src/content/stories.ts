@@ -1,5 +1,33 @@
-export type StoryCategory = 'good' | 'bad';
+export type StoryCategory = 'good' | 'bad' | 'future';
 export type StoryStatus = 'published' | 'coming-soon';
+
+export interface StoryCategoryPresentation {
+  label: string;
+  signalLabel: string;
+  heading: string;
+  description: string;
+}
+
+export const storyCategoryPresentation: Record<StoryCategory, StoryCategoryPresentation> = {
+  good: {
+    label: 'The good',
+    signalLabel: 'Good signal',
+    heading: 'Signals of human progress',
+    description: 'Not a victory lap. A record of what has improved, and where the work remains.',
+  },
+  bad: {
+    label: 'The bad',
+    signalLabel: 'Bad signal',
+    heading: 'Signals we cannot look away from',
+    description: 'Not a prophecy. A record of pressure, concentration, and consequences.',
+  },
+  future: {
+    label: 'The future',
+    signalLabel: 'Future signal',
+    heading: 'Questions for the years ahead',
+    description: 'A working catalogue of changes worth measuring before conclusions are drawn.',
+  },
+};
 
 export interface StoryComparison {
   title: string;
@@ -243,6 +271,135 @@ export const stories: StoryDefinition[] = [
       ],
     },
   },
+  {
+    slug: 'tech-and-ai',
+    title: 'Tech & AI',
+    category: 'future',
+    status: 'coming-soon',
+    summary: 'How artificial intelligence spreads through work, changes tasks, and may affect productivity.',
+    plannedMetric:
+      'Firm AI adoption, AI tools by role or task, automation versus augmentation, and productivity growth by sector',
+    geography: 'OECD countries and global context',
+    sourceHint: 'OECD AI Policy Observatory, Stanford AI Index, ILO, and OECD Productivity Database',
+  },
+  {
+    slug: 'employment-work-and-skills',
+    title: 'Employment, Work & Skills',
+    category: 'future',
+    status: 'coming-soon',
+    summary: 'Whether labour-market transitions lead to more secure work and broader access to useful skills.',
+    plannedMetric:
+      'Vacancy and unemployment rates, unstable schedules, involuntary part-time work, re-employment, occupation switches, and training participation',
+    geography: 'Countries with comparable labour-force and skills surveys',
+    sourceHint:
+      'ILOSTAT, OECD Employment Outlook and Job Quality Framework, Eurostat Labour Force Survey, and OECD PIAAC',
+  },
+  {
+    slug: 'wealth-distribution-and-inequality',
+    title: 'Wealth Distribution & Inequality',
+    category: 'future',
+    status: 'coming-soon',
+    summary: 'Who receives economic growth, who can move between income groups, and who faces rising living costs.',
+    plannedMetric:
+      'Income and wealth Gini coefficients, top and bottom income shares, intergenerational mobility, and housing costs relative to income',
+    geography: 'Countries with comparable household-distribution data',
+    sourceHint:
+      'World Inequality Database, World Bank Poverty and Inequality Platform, World Bank mobility data, and OECD Affordable Housing Database',
+  },
+  {
+    slug: 'economic-growth-debt-and-public-finance',
+    title: 'Economic Growth, Debt & Public Finance',
+    category: 'future',
+    status: 'coming-soon',
+    summary: 'The mix of productivity, debt, and public finance behind economic room to act.',
+    plannedMetric:
+      'Growth-accounting components, household debt and delinquencies, public debt-to-GDP, and interest payments relative to public revenue',
+    geography: 'Advanced and emerging economies',
+    sourceHint:
+      'OECD, Penn World Table or Conference Board, Bank for International Settlements, and IMF World Economic Outlook and Fiscal Monitor',
+  },
+  {
+    slug: 'inflation-prices-and-energy',
+    title: 'Inflation, Prices & Energy',
+    category: 'future',
+    status: 'coming-soon',
+    summary: 'How prices, energy systems, and efficiency shape the affordability of the next decade.',
+    plannedMetric:
+      'Core, headline, goods, and services inflation; renewable electricity share; energy intensity; and energy-price volatility',
+    geography: 'World and major economies',
+    sourceHint: 'OECD, IMF International Financial Statistics, Ember, and International Energy Agency',
+  },
+  {
+    slug: 'demographics-and-migration',
+    title: 'Demographics & Migration',
+    category: 'future',
+    status: 'coming-soon',
+    summary: 'Aging, workforce supply, and migration patterns that will shape economies and public services.',
+    plannedMetric:
+      'Median age, dependency ratios, pension replacement, labour-force participation, net migration, and labour-market integration',
+    geography: 'World, regions, and OECD countries',
+    sourceHint:
+      'UN World Population Prospects, OECD Pensions at a Glance, ILOSTAT, UN DESA, and OECD Indicators of Immigrant Integration',
+  },
+  {
+    slug: 'housing-cities-and-infrastructure',
+    title: 'Housing, Cities & Infrastructure',
+    category: 'future',
+    status: 'coming-soon',
+    summary: 'Whether homes, construction, and productive cities keep pace with the people who depend on them.',
+    plannedMetric:
+      'Home-price and rent-to-income ratios, housing supply versus household formation, and metropolitan output per worker',
+    geography: 'Countries and metropolitan areas with comparable data',
+    sourceHint:
+      'OECD Affordable Housing Database, Eurostat, national statistical agencies, and OECD metropolitan statistics',
+  },
+  {
+    slug: 'health-longevity-and-human-capital',
+    title: 'Health, Longevity & Human Capital',
+    category: 'future',
+    status: 'coming-soon',
+    summary: 'Longer lives, disease burden, care needs, and the capacity to participate in work and society.',
+    plannedMetric:
+      'Life and healthy-life expectancy, chronic-disease burden, health spending, disability, and older-worker participation',
+    geography: 'World and countries with comparable health data',
+    sourceHint:
+      'WHO Global Health Observatory and Global Health Expenditure Database, IHME Global Burden of Disease, and ILOSTAT',
+  },
+  {
+    slug: 'governance-risk-and-security',
+    title: 'Governance, Risk & Security',
+    category: 'future',
+    status: 'coming-soon',
+    summary: 'How trust, institutional capacity, and exposure to shocks affect a society’s ability to respond.',
+    plannedMetric:
+      'Institutional trust, rule of law, regulatory quality, policy responsiveness, and exposure to economic and climate shocks',
+    geography: 'Countries and regions',
+    sourceHint: 'OECD Trust Survey, World Justice Project, V-Dem, INFORM Risk, and ND-GAIN',
+  },
+  {
+    slug: 'climate-and-environmental-futures',
+    title: 'Climate & Environmental Futures',
+    category: 'future',
+    status: 'coming-soon',
+    summary: 'Emissions, physical climate risks, and adaptation capacity that will shape the conditions ahead.',
+    plannedMetric:
+      'Sector greenhouse-gas emissions, carbon intensity, disaster costs, heat exposure, and adaptation readiness',
+    geography: 'World, regions, and countries',
+    sourceHint:
+      'Global Carbon Project or EDGAR, WMO and EM-DAT, ND-GAIN, and compatible Our World in Data series',
+  },
+  {
+    slug: 'capital-markets-and-money-flows',
+    title: 'Capital Markets & Money Flows',
+    category: 'future',
+    status: 'coming-soon',
+    summary: 'Where capital accumulates, how new firms are funded, and how financial conditions reach the real economy.',
+    plannedMetric:
+      'Capital-gain concentration, venture funding and startup survival, credit growth, policy rates, and corporate defaults',
+    geography: 'Countries and capital markets with comparable coverage',
+    sourceHint:
+      'World Inequality Database, OECD financing and entrepreneurship data, Bank for International Settlements, and IMF',
+  },
 ];
 
 export function getStory(category: string | undefined, slug: string | undefined) {
@@ -251,4 +408,8 @@ export function getStory(category: string | undefined, slug: string | undefined)
 
 export function getStoriesByCategory(category: StoryCategory) {
   return stories.filter((story) => story.category === category);
+}
+
+export function getStoryCategoryPresentation(category: StoryCategory) {
+  return storyCategoryPresentation[category];
 }

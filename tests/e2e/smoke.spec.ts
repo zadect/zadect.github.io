@@ -50,7 +50,7 @@ test('the new literacy and democracy stories render their charts and maps', asyn
   await expect(page.getByText(/missing coverage is not mistaken for a zero change/i)).toBeVisible();
 });
 
-test('header Good and Bad links target the homepage sections', async ({ page }) => {
+test('header category links target their homepage sections', async ({ page }) => {
   await page.goto('/#/bad/ceo-pay-gap');
   await page.locator('header.site-header').getByRole('link', { name: 'Good', exact: true }).click();
   await expect(page).toHaveURL(/#\/\?section=good/);
@@ -60,6 +60,14 @@ test('header Good and Bad links target the homepage sections', async ({ page }) 
   await expect(page).toHaveURL(/#\/\?section=bad/);
   await expect(page.locator('#bad-section')).toBeVisible();
   await expect(page.locator('#featured-section')).toHaveCount(0);
+
+  await page.locator('header.site-header').getByRole('link', { name: 'Future', exact: true }).click();
+  await expect(page).toHaveURL(/#\/\?section=future/);
+  await expect(page.locator('#future-section')).toBeVisible();
+  await page.locator('#future-section').getByRole('link', { name: /tech & ai/i }).click();
+  await expect(page).toHaveURL(/#\/future\/tech-and-ai/);
+  await expect(page.locator('section.coming-soon > p.eyebrow')).toHaveText('Future signal');
+  await expect(page.getByText(/OECD AI Policy Observatory/i)).toBeVisible();
 });
 
 test('a deferred story explains its planned evidence', async ({ page }) => {
