@@ -3,13 +3,12 @@ import type { StoryDefinition } from '../content/stories';
 
 interface StoryCardProps {
   story: StoryDefinition;
-  featured?: boolean;
 }
 
-export function StoryCard({ story, featured = false }: StoryCardProps) {
+export function StoryCard({ story }: StoryCardProps) {
   return (
     <Link
-      className={`story-card story-card--${story.category}${featured ? ' story-card--featured' : ''}`}
+      className={`story-card story-card--${story.category}`}
       to={`/${story.category}/${story.slug}`}
     >
       <span className="story-card__meta">

@@ -18,15 +18,35 @@ describe('app routes', () => {
     expect(screen.getByRole('heading', { name: /signals we cannot look away from/i })).toBeInTheDocument();
   });
 
-  it('renders a published story and a coming-soon story from hash routes', () => {
+  it('renders published literacy and democracy stories from hash routes', () => {
     window.location.hash = '#/good/world-hunger';
     render(<App />);
     expect(screen.getByRole('heading', { name: /fewer people are undernourished/i })).toBeInTheDocument();
 
     window.location.hash = '#/good/literacy';
     render(<App />);
-    expect(screen.getByText('Coming next')).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Literacy' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /literacy rose across a broad panel/i })).toBeInTheDocument();
+    expect(screen.getByText(/World Bank\/UNESCO cross-check found the same reporting gap/i)).toBeInTheDocument();
+
+    window.location.hash = '#/bad/democratic-backsliding';
+    render(<App />);
+    expect(screen.getByRole('heading', { name: 'Democratic backsliding' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /where the index fell/i })).toBeInTheDocument();
+  });
+
+  it('links Good and Bad navigation to homepage sections', () => {
+    render(<App />);
+    expect(screen.getByRole('link', { name: 'Good' })).toHaveAttribute('href', '#/?section=good');
+    expect(screen.getByRole('link', { name: 'Bad' })).toHaveAttribute('href', '#/?section=bad');
+    expect(screen.getByRole('region', { name: /signals of human progress/i })).toHaveAttribute(
+      'id',
+      'good-section',
+    );
+    expect(screen.getByRole('region', { name: /signals we cannot look away from/i })).toHaveAttribute(
+      'id',
+      'bad-section',
+    );
   });
 
   it('renders the CEO definitions, absolute views, and deferred country context', () => {

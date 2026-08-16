@@ -433,13 +433,8 @@ h2 {
   line-height: 1.6;
 }
 
-.featured-section,
 .story-index {
   padding: 6rem max(1.25rem, calc((100vw - 1240px) / 2)) 7rem;
-}
-
-.featured-section {
-  background: var(--paper-deep);
 }
 
 .section-heading {
@@ -460,12 +455,6 @@ h2 {
   color: var(--muted);
   font-size: 0.94rem;
   line-height: 1.5;
-}
-
-.featured-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.25rem;
 }
 
 .story-card {
@@ -489,11 +478,6 @@ h2 {
 .story-card:focus-visible {
   border-color: currentColor;
   transform: translateY(-4px);
-}
-
-.story-card--featured {
-  min-height: 320px;
-  padding: clamp(1.5rem, 3vw, 2.5rem);
 }
 
 .story-card--good:hover,
@@ -795,6 +779,59 @@ h2 {
 .chart-card__visual canvas,
 .chart-card__visual svg {
   max-width: 100%;
+}
+
+.map-card__visual {
+  min-height: 390px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.map-card__visual .vega-embed {
+  min-width: 620px;
+}
+
+.map-card__visual svg {
+  height: auto;
+}
+
+.map-card__legend-note {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: -0.3rem;
+  color: var(--muted);
+  font-size: 0.74rem;
+}
+
+.map-card__legend-note span {
+  display: inline-block;
+  width: 0.85rem;
+  height: 0.85rem;
+  border: 1px solid #a7aaa6;
+  background: #b8c1bb;
+}
+
+.map-card__coverage-note {
+  max-width: 760px;
+  margin-top: 0.7rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.site-shell--bad .map-card__legend-note {
+  color: #b8b1aa;
+}
+
+.site-shell--bad .map-card__legend-note span {
+  border-color: #747a77;
+  background: #4a4f4d;
+}
+
+.site-shell--bad .map-card__coverage-note {
+  color: #b8b1aa;
 }
 
 .site-shell--bad .vega-tooltip {
@@ -1279,7 +1316,6 @@ th {
     margin-top: 1.3rem;
   }
 
-  .featured-section,
   .story-index {
     padding: 4.5rem 1rem 5rem;
   }
@@ -1292,15 +1328,10 @@ th {
     margin-top: 1rem;
   }
 
-  .featured-grid,
   .story-list,
   .stat-grid,
   .definition-grid {
     grid-template-columns: 1fr;
-  }
-
-  .story-card--featured {
-    min-height: 270px;
   }
 
   .story-list .story-card {
@@ -1328,6 +1359,14 @@ th {
 
   .chart-card__visual .vega-embed {
     min-width: 560px;
+  }
+
+  .map-card__visual {
+    min-height: 300px;
+  }
+
+  .map-card__visual .vega-embed {
+    min-width: 620px;
   }
 
   .source-item {

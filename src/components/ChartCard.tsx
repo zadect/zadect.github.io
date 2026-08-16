@@ -49,6 +49,10 @@ export function ChartCard({
           tickColor: '#9fa8a1',
           gridColor: '#d8ded8',
         };
+  const sourceConfig =
+    typeof spec.config === 'object' && spec.config !== null ? spec.config : undefined;
+  const hasSourceLegend = sourceConfig !== undefined && 'legend' in sourceConfig;
+  const sourceLegend = hasSourceLegend ? sourceConfig.legend : undefined;
   const chartSpec: TopLevelSpec = {
     ...spec,
     background: chartBackground,
@@ -61,19 +65,18 @@ export function ChartCard({
           ? spec.config.axis
           : {}),
       },
-      legend:
-        tone === 'bad'
-          ? {
+      ...(tone === 'bad'
+        ? {
+            legend: {
               labelColor: '#e8e3dc',
               titleColor: '#fffaf3',
               symbolStrokeColor: '#e8e3dc',
-              ...(typeof spec.config === 'object' && spec.config !== null && 'legend' in spec.config
-                ? spec.config.legend
-                : {}),
-            }
-          : typeof spec.config === 'object' && spec.config !== null && 'legend' in spec.config
-            ? spec.config.legend
-            : undefined,
+              ...(sourceLegend ?? {}),
+            },
+          }
+        : hasSourceLegend
+          ? { legend: sourceLegend }
+          : {}),
       view: {
         stroke: tone === 'bad' ? '#6a706d' : '#d6d8ce',
         fill: chartBackground,

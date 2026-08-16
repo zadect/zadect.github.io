@@ -1,9 +1,12 @@
-import { HashRouter, Link, Route, Routes, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { HashRouter, Link, Route, Routes, useLocation, useParams } from 'react-router-dom';
 import { SiteHeader } from '../components/SiteHeader';
 import { StoryCard } from '../components/StoryCard';
 import { ComingSoonStory } from '../features/stories/ComingSoonStory';
 import { CeoPayStory } from '../features/stories/CeoPayStory';
+import { DemocraticBackslidingStory } from '../features/stories/DemocraticBackslidingStory';
 import { HungerStory } from '../features/stories/HungerStory';
+import { LiteracyStory } from '../features/stories/LiteracyStory';
 import {
   getStory,
   getStoriesByCategory,
@@ -14,8 +17,16 @@ import {
 function HomePage() {
   const goodStories = getStoriesByCategory('good');
   const badStories = getStoriesByCategory('bad');
-  const goodFeature = goodStories[0];
-  const badFeature = badStories.find((story) => story.status === 'published') ?? badStories[0];
+  const location = useLocation();
+
+  useEffect(() => {
+    const section = new URLSearchParams(location.search).get('section');
+    if (section !== 'good' && section !== 'bad') return;
+
+    requestAnimationFrame(() => {
+      document.getElementById(`${section}-section`)?.scrollIntoView({ behavior: 'smooth' });
+    });
+  }, [location.search]);
 
   return (
     <div className="site-shell site-shell--home">
@@ -33,9 +44,9 @@ function HomePage() {
               series we can find.
             </p>
             <div className="home-hero__actions">
-              <a className="button button--good" href="#stories">
+              <Link className="button button--good" to="/?section=good">
                 Explore the stories
-              </a>
+              </Link>
               <span className="home-hero__aside">Good trends. Bad trends. One timeline.</span>
             </div>
           </div>
@@ -67,20 +78,6 @@ function HomePage() {
           </p>
         </section>
 
-        <section className="featured-section" id="stories" aria-labelledby="featured-title">
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">Start here</p>
-              <h2 id="featured-title">Two stories. One fragmented picture.</h2>
-            </div>
-            <p>Both are live now. The rest are documented until a reliable series is ready.</p>
-          </div>
-          <div className="featured-grid">
-            <StoryCard story={goodFeature} featured />
-            <StoryCard story={badFeature} featured />
-          </div>
-        </section>
-
         <StoryIndex category="good" stories={goodStories} />
         <StoryIndex category="bad" stories={badStories} />
       </main>
@@ -110,7 +107,11 @@ interface StoryIndexProps {
 
 function StoryIndex({ category, stories }: StoryIndexProps) {
   return (
-    <section className={`story-index story-index--${category}`} aria-labelledby={`${category}-title`}>
+    <section
+      className={`story-index story-index--${category}`}
+      id={`${category}-section`}
+      aria-labelledby={`${category}-title`}
+    >
       <div className="section-heading">
         <div>
           <p className="eyebrow">{category === 'good' ? 'The good' : 'The bad'}</p>
@@ -151,6 +152,14 @@ function StoryRoute() {
 
   if (story.slug === 'ceo-pay-gap') {
     return <CeoPayStory story={story} />;
+  }
+
+  if (story.slug === 'literacy') {
+    return <LiteracyStory story={story} />;
+  }
+
+  if (story.slug === 'democratic-backsliding') {
+    return <DemocraticBackslidingStory story={story} />;
   }
 
   return <NotFoundPage />;

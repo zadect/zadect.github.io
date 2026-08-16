@@ -1,5 +1,19 @@
 import { expect, test } from '@playwright/test';
 
+test('serves cache-busted SVG and ICO favicon assets', async ({ page, request }) => {
+  await page.goto('/');
+  await expect(page.locator('link[rel="icon"][type="image/svg+xml"]')).toHaveAttribute(
+    'href',
+    './favicon.svg?v=2',
+  );
+  await expect(page.locator('link[rel="icon"][type="image/x-icon"]')).toHaveAttribute(
+    'href',
+    './favicon.ico?v=2',
+  );
+  expect((await request.get('/favicon.svg?v=2')).ok()).toBe(true);
+  expect((await request.get('/favicon.ico?v=2')).ok()).toBe(true);
+});
+
 test('the overview links to both published stories', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('heading', { name: /where is humanity heading/i })).toBeVisible();
@@ -14,6 +28,38 @@ test('the overview links to both published stories', async ({ page }) => {
   await expect(page.getByRole('heading', { name: /the ratio is far above its 1960s level/i })).toBeVisible();
   await expect(page.getByRole('heading', { name: /a defined contrast/i })).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(3);
+});
+
+test('the new literacy and democracy stories render their charts and maps', async ({ page }) => {
+  await page.goto('/#/good/literacy');
+  await expect(page.getByRole('heading', { name: 'Literacy', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /literacy rose across a broad panel/i })).toBeVisible();
+  await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
+  expect(await page.locator('.map-card__visual .mark-shape path').count()).toBeGreaterThan(50);
+  await expect(page.getByText(/qualifying observation from 2018 onward/i)).toBeVisible();
+  await expect(page.getByText(/World Bank\/UNESCO cross-check found the same reporting gap/i)).toBeVisible();
+
+  await page.goto('/#/bad/democratic-backsliding');
+  await expect(
+    page.getByRole('heading', { name: 'Democratic backsliding', exact: true }),
+  ).toBeVisible();
+  await expect(page.getByRole('heading', { name: /where the index fell/i })).toBeVisible();
+  await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
+  expect(await page.locator('.map-card__visual .mark-shape path').count()).toBeGreaterThan(100);
+  await expect(page.getByText(/one of the 2020 or 2025 endpoint values is missing/i)).toBeVisible();
+  await expect(page.getByText(/missing coverage is not mistaken for a zero change/i)).toBeVisible();
+});
+
+test('header Good and Bad links target the homepage sections', async ({ page }) => {
+  await page.goto('/#/bad/ceo-pay-gap');
+  await page.locator('header.site-header').getByRole('link', { name: 'Good', exact: true }).click();
+  await expect(page).toHaveURL(/#\/\?section=good/);
+  await expect(page.locator('#good-section')).toBeVisible();
+
+  await page.locator('header.site-header').getByRole('link', { name: 'Bad', exact: true }).click();
+  await expect(page).toHaveURL(/#\/\?section=bad/);
+  await expect(page.locator('#bad-section')).toBeVisible();
+  await expect(page.locator('#featured-section')).toHaveCount(0);
 });
 
 test('a deferred story explains its planned evidence', async ({ page }) => {

@@ -4,17 +4,6 @@
 is heading. It puts positive and negative trends next to each other without
 turning either into a slogan.
 
-The first release contains two chart-driven stories:
-
-- **World hunger**: FAO prevalence of undernourishment since 2000, paired with
-  the longer FAO food-availability series since 1961.
-- **The CEO pay gap**: Economic Policy Institute CEO-to-worker compensation
-  ratios for the United States since 1965, plus absolute CEO and worker
-  compensation views in 2024 dollars.
-
-Other ideas are available as clearly labelled "Coming next" routes. They are
-catalogued, but do not make trend claims until a comparable source is ready.
-
 ## Stack
 
 - React and TypeScript
@@ -45,11 +34,12 @@ npm ci
 npm run dev
 ```
 
-Open the local URL printed by Vite. The app uses hash routes, so the published
-stories are available at:
+Published story routes use hash navigation:
 
 - `/#/good/world-hunger`
+- `/#/good/literacy`
 - `/#/bad/ceo-pay-gap`
+- `/#/bad/democratic-backsliding`
 
 ### Production build and preview
 
@@ -79,23 +69,6 @@ npx playwright install chromium
 npm run test:e2e
 ```
 
-### Manual test checklist
-
-1. Open the overview at desktop width and confirm that Good and Bad have
-   distinct visual treatments.
-2. Follow the World hunger card and confirm both charts render, their axes
-   name the units, the data table opens, and each chart has source links.
-3. Follow the CEO pay gap card and confirm both compensation measures are
-   distinguishable in the ratio chart and table. Confirm the definition panel,
-   absolute compensation charts, projected-year label, and separate
-   international research notes are visible.
-4. Open a Coming next route such as `/#/bad/climate-change` and confirm it
-   contains no unsupported chart or trend claim.
-5. Resize to a narrow mobile viewport. Confirm navigation, cards, chart
-   scrolling, focus states, and source links remain usable.
-6. Test keyboard-only navigation and verify that the visible focus indicator
-   remains clear.
-
 ## Data provenance
 
 Chart data is stored in `src/data/` as small, versioned extracts. The source
@@ -103,16 +76,28 @@ catalogue in `src/content/sources.ts` records the full citation, original
 publisher, processor, source links, coverage, retrieval date, units,
 transformation, version, and measurement notes.
 
-The hunger story intentionally uses two separate charts:
-
-- FAO prevalence of undernourishment is the direct measure, but the globally
-  comparable series in this release begins in 2000.
-- Daily calorie supply is a longer context series from 1961. It describes
-  average food available in the food system, not actual consumption or equal
-  access.
-
 Do not update a data file without updating its source metadata and the story
 copy if the coverage, methodology, or interpretation changes.
+
+### Map coverage and no-data treatment
+
+- The literacy map uses the latest adult-literacy observation from 2018
+  onward. Many developed countries stopped reporting basic literacy after
+  rates approached universal levels; their older OWID observations are not
+  presented as current.
+- A World Bank/UNESCO indicator cross-check is cited on the Literacy page.
+  It confirms that the missing recent observations are a source-coverage
+  issue, not a reason to invent or merge incompatible values.
+- Country polygons remain visible even without a qualifying value. They use a
+  stronger grey fill and outline, and the map states that they are no-data
+  countries. The data table contains only rows with plotted observations.
+- The democracy map requires both 2020 and 2025 V-Dem endpoint values.
+  Countries missing either endpoint remain drawn and outlined rather than
+  being treated as zero change.
+- Map geometry is pinned locally from World Atlas/Natural Earth and joined by
+  ISO numeric code. Small territories may not have a polygon at the selected
+  110m map scale; that geometry limitation is cited separately.
+
 
 ### Citation and comparability rules
 
@@ -127,13 +112,6 @@ copy if the coverage, methodology, or interpretation changes.
 - Define every numerator and denominator in the story. Do not combine country
   series unless company scope, worker population, compensation measure,
   aggregation, and time basis are demonstrably compatible.
-- The US CEO absolute-compensation extract follows EPI’s published chart:
-  selected CEO observations before 1992, aligned annual observations from
-  1992, and an explicitly projected 2024 value. Missing source values remain
-  missing; they are not interpolated.
-- UK, Germany, and France CEO-pay material is currently research context only.
-  Do not turn it into a chart without a reproducible, versionable dataset and
-  a country-specific definition card.
 
 ## Developer guidelines
 
