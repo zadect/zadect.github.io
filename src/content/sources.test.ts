@@ -33,6 +33,7 @@ describe('source catalogue', () => {
       'un-desa-migrant-stock-owid',
       'who-healthy-life-expectancy-owid',
       'who-health-expenditure-owid',
+      'wjp-rule-of-law',
       'eurostat-ai-adoption',
       'oecd-house-price-income',
     ])) {

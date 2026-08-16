@@ -1083,6 +1083,31 @@ export const sources: SourceReference[] = [
       'The index combines electoral freedoms, civil liberties, equality before the law, and executive constraints. A negative five-year change is a signal of democratic deterioration in this measure, not proof of a cause or a complete description of a country’s political system.',
   },
   {
+    id: 'wjp-rule-of-law',
+    title: 'WJP Rule of Law Index 2025 historical data',
+    publisher: 'World Justice Project',
+    originalPublisher: 'World Justice Project',
+    role: 'chart-data',
+    citation:
+      'World Justice Project (2025), “WJP Rule of Law Index 2025,” historical data file and methodology.',
+    methodologyHref:
+      'https://worldjusticeproject.org/rule-of-law-index/downloads/Index-Methodology-2025.pdf',
+    dataHref:
+      'https://worldjusticeproject.org/rule-of-law-index/downloads/2025_wjp_rule_of_law_index_HISTORICAL_DATA_FILE.xlsx',
+    originalDataHref: 'https://worldjusticeproject.org/rule-of-law-index/',
+    metadataHref: 'https://worldjusticeproject.org/our-work/research-and-data',
+    version: 'WJP Rule of Law Index 2025 historical data file; retrieved 2026-08-16',
+    coverage:
+      'Country scores from the 2012–2013 edition through 2025; 143 countries in the 2025 edition',
+    retrieved: accessDate,
+    unit: 'Index score from 0 to 1',
+    localPath: 'src/data/governance-risk-security.csv',
+    transformation:
+      'The local extract keeps the overall score and Factor 5 (Order and Security) for eight countries and calculates an unweighted median across all countries with a reported score in each edition. The 2012–2013 and 2017–2018 editions are plotted at their first year; no values are interpolated.',
+    note:
+      'WJP scores combine household surveys and expert assessments. Edition coverage and methodology can change, and the overall score is not a measure of public trust, resilience, crime counts, or future risk.',
+  },
+  {
     id: 'world-atlas-geometry',
     title: 'World country boundaries',
     publisher: 'World Atlas',

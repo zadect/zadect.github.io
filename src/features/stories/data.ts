@@ -14,6 +14,7 @@ import economicGrowthDebtPublicFinanceCsv from '../../data/economic-growth-debt-
 import extremePovertyCsv from '../../data/extreme-poverty.csv?raw';
 import inflationPricesEnergyCsv from '../../data/inflation-prices-energy.csv?raw';
 import demographicsMigrationCsv from '../../data/demographics-migration.csv?raw';
+import governanceRiskSecurityCsv from '../../data/governance-risk-security.csv?raw';
 import healthLongevityHumanCapitalCsv from '../../data/health-longevity-human-capital.csv?raw';
 import foodAvailabilityCsv from '../../data/food-availability.csv?raw';
 import hungerCsv from '../../data/hunger-undernourishment.csv?raw';
@@ -262,6 +263,15 @@ export interface HealthLongevityHumanCapitalPoint {
   entity: string;
   code: string;
   year: number;
+  value: number;
+}
+
+export interface GovernanceRiskSecurityPoint {
+  measure: 'overall-median' | 'overall-panel' | 'security-median' | 'security-panel';
+  entity: string;
+  code: string;
+  year: number;
+  edition: string;
   value: number;
 }
 
@@ -1153,6 +1163,84 @@ if (
   healthSpendingPanelSeries.some((point) => !healthSpendingPanelCheckpoints.includes(point.year))
 ) {
   throw new Error('Health and human-capital series does not cover the declared panels');
+}
+
+export const governanceRiskSecuritySeries = assertUnique(
+  parseCsv(governanceRiskSecurityCsv).map((row) => {
+    const measure = row.measure;
+    if (
+      measure !== 'overall-median' &&
+      measure !== 'overall-panel' &&
+      measure !== 'security-median' &&
+      measure !== 'security-panel'
+    ) {
+      throw new Error(`Invalid governance, risk, and security measure: ${measure}`);
+    }
+
+    return {
+      measure,
+      entity: textValue(row.entity, 'governance entity'),
+      code: textValue(row.code, 'governance code'),
+      year: numberValue(row.year, 'governance year'),
+      edition: textValue(row.edition, 'governance edition'),
+      value: boundedNumberValue(row.value, 'governance score', 0, 1),
+    };
+  }),
+  (row) => `${row.measure}:${row.code}:${row.year}`,
+  'governance, risk, and security',
+) satisfies GovernanceRiskSecurityPoint[];
+
+export const governanceOverallMedianSeries = governanceRiskSecuritySeries.filter(
+  (point) => point.measure === 'overall-median',
+);
+
+export const governanceOverallPanelSeries = governanceRiskSecuritySeries.filter(
+  (point) => point.measure === 'overall-panel',
+);
+
+export const governanceSecurityMedianSeries = governanceRiskSecuritySeries.filter(
+  (point) => point.measure === 'security-median',
+);
+
+export const governanceSecurityPanelSeries = governanceRiskSecuritySeries.filter(
+  (point) => point.measure === 'security-panel',
+);
+
+const governancePanelEntities = [
+  'Germany',
+  'France',
+  'United Kingdom',
+  'Japan',
+  'United States',
+  'Brazil',
+  'India',
+  'Nigeria',
+];
+const governanceEditionYears = [2012, 2014, 2015, 2016, 2017, 2019, 2020, 2021, 2022, 2023, 2024, 2025];
+
+if (
+  governanceOverallMedianSeries.length !== governanceEditionYears.length ||
+  governanceSecurityMedianSeries.length !== governanceEditionYears.length ||
+  governanceOverallMedianSeries.some(
+    (point, index) => point.year !== governanceEditionYears[index],
+  ) ||
+  governanceSecurityMedianSeries.some(
+    (point, index) => point.year !== governanceEditionYears[index],
+  ) ||
+  governanceOverallPanelSeries.length !==
+    governancePanelEntities.length * governanceEditionYears.length ||
+  governanceSecurityPanelSeries.length !==
+    governancePanelEntities.length * governanceEditionYears.length ||
+  governancePanelEntities.some(
+    (entity) =>
+      governanceOverallPanelSeries.filter((point) => point.entity === entity).length !==
+        governanceEditionYears.length ||
+      governanceSecurityPanelSeries.filter((point) => point.entity === entity).length !==
+        governanceEditionYears.length,
+  ) ||
+  governanceRiskSecuritySeries.some((point) => !governanceEditionYears.includes(point.year))
+) {
+  throw new Error('Governance, risk, and security series does not cover the declared panels');
 }
 
 const airPollutionEntities = [

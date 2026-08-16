@@ -234,6 +234,19 @@ describe('app routes', () => {
     expect(screen.getByText(/more spending is not a guarantee/i)).toBeInTheDocument();
   });
 
+  it('renders the published governance, risk, and security Future story', () => {
+    window.location.hash = '#/future/governance-risk-and-security';
+    render(<App />);
+
+    expect(
+      screen.getByRole('heading', { name: 'Governance, Risk & Security' }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: /country median barely moves/i }),
+    ).toBeInTheDocument();
+    expect(screen.getByText(/score is a signal, not a verdict/i)).toBeInTheDocument();
+  });
+
   it('links Good, Bad, and Future navigation to homepage sections', () => {
     render(<App />);
     expect(screen.getByRole('link', { name: 'Good' })).toHaveAttribute('href', '#/?section=good');
