@@ -25,6 +25,8 @@ import {
   hungerSeries,
   housingBenchmarkSeries,
   housingPriceIncomeSeries,
+  inequalityEndpointSeries,
+  inequalitySeries,
   isoCountryCodes,
   literacyMapGeoJson,
   literacyMapSeries,
@@ -192,6 +194,19 @@ describe('published story data', () => {
           point.ongoingConflicts >= 0,
       ),
     ).toBe(true);
+  });
+
+  it('keeps the selected-country Gini panel and endpoints explicit', () => {
+    expect(inequalitySeries).toHaveLength(181);
+    expect(new Set(inequalitySeries.map((point) => point.country))).toEqual(
+      new Set(['United States', 'Brazil', 'China', 'India', 'Nigeria', 'South Africa', 'Germany']),
+    );
+    expect(inequalitySeries.every((point) => point.gini >= 0 && point.gini <= 1)).toBe(true);
+    expect(inequalityEndpointSeries).toHaveLength(14);
+    expect(inequalityEndpointSeries.slice(0, 2)).toMatchObject([
+      { country: 'United States', year: 1963, gini: 0.3672647476196289 },
+      { country: 'United States', year: 2024, gini: 0.4176252782344818 },
+    ]);
   });
 
   it('contains the full CEO pay ratio range and both measures', () => {

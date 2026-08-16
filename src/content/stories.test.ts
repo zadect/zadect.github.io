@@ -5,7 +5,7 @@ describe('story catalogue', () => {
   it('keeps routes unique and retains the published stories', () => {
     const routes = stories.map((story) => `${story.category}/${story.slug}`);
     expect(new Set(routes).size).toBe(routes.length);
-    expect(stories.filter((story) => story.status === 'published')).toHaveLength(14);
+    expect(stories.filter((story) => story.status === 'published')).toHaveLength(15);
   });
 
   it('documents the remaining Future themes as source-directed placeholders', () => {
@@ -119,6 +119,17 @@ describe('story catalogue', () => {
       'Deaths',
       'Conflicts',
       'Coverage',
+      'Limit',
+    ]);
+  });
+
+  it('documents the rich and poor comparison and source scope', () => {
+    const story = stories.find((candidate) => candidate.slug === 'inequality-by-country');
+    expect(story?.status).toBe('published');
+    expect(story?.comparison?.fields.map((field) => field.label)).toEqual([
+      'Measure',
+      'Panel',
+      'Welfare data',
       'Limit',
     ]);
   });

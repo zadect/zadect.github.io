@@ -466,6 +466,31 @@ export const sources: SourceReference[] = [
       'A conflict is counted when it is ongoing in a year and reaches at least 25 battle-related deaths. This is a count of conflicts, not a count of countries, wars above a higher threshold, or a measure of how deadly each conflict was.',
   },
   {
+    id: 'world-bank-pip-gini',
+    title: 'Gini coefficient — World Bank PIP',
+    publisher: 'Our World in Data',
+    originalPublisher: 'World Bank Poverty and Inequality Platform',
+    processor: 'Our World in Data',
+    role: 'chart-data',
+    citation:
+      'World Bank Poverty and Inequality Platform (2026), “Gini coefficient — World Bank,” processed by Our World in Data, OWID Grapher variable 1277448.',
+    methodologyHref: 'https://datanalytics.worldbank.org/PIP-Methodology/',
+    dataHref: 'https://ourworldindata.org/grapher/gini-coefficient-wb?survey_comparability=no_spells',
+    originalDataHref: 'https://pip.worldbank.org/',
+    metadataHref:
+      'https://ourworldindata.org/grapher/economic-inequality-gini-index.metadata.json',
+    licenseHref: 'https://ourworldindata.org/licence',
+    version: 'OWID Grapher variable 1277448; PIP release 20260324_2021; last updated 2026-06-26',
+    coverage: 'Selected-country observations from 1963–2024 in this extract',
+    retrieved: accessDate,
+    unit: 'Gini coefficient, 0–1',
+    localPath: 'src/data/inequality-by-country.csv',
+    transformation:
+      'The local extract keeps every non-null OWID observation for the declared seven-country panel under the no-spells survey-comparability filter. Missing years are not interpolated; first and latest endpoints are derived locally for the second chart.',
+    note:
+      'The PIP series uses disposable income after taxes and benefits for many high-income countries and consumption for many low- and middle-income countries. Survey design and welfare concepts can change, so within-country movement is more defensible than a simple cross-country ranking.',
+  },
+  {
     id: 'eurostat-ai-adoption',
     title: 'Artificial intelligence by size class of enterprise',
     publisher: 'Eurostat',
