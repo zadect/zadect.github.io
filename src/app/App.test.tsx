@@ -173,6 +173,19 @@ describe('app routes', () => {
     expect(screen.getByText(/not a measure of job quality/i)).toBeInTheDocument();
   });
 
+  it('renders the published wealth distribution Future story', () => {
+    window.location.hash = '#/future/wealth-distribution-and-inequality';
+    render(<App />);
+
+    expect(
+      screen.getByRole('heading', { name: 'Wealth Distribution & Inequality' }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: /global line is not a one-way climb/i }),
+    ).toBeInTheDocument();
+    expect(screen.getByText(/not the whole distribution/i)).toBeInTheDocument();
+  });
+
   it('links Good, Bad, and Future navigation to homepage sections', () => {
     render(<App />);
     expect(screen.getByRole('link', { name: 'Good' })).toHaveAttribute('href', '#/?section=good');

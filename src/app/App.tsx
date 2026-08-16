@@ -22,6 +22,7 @@ import { LifeExpectancyStory } from '../features/stories/LifeExpectancyStory';
 import { VaccinationCoverageStory } from '../features/stories/VaccinationCoverageStory';
 import { WarsConflictStory } from '../features/stories/WarsConflictStory';
 import { WomensRightsStory } from '../features/stories/WomensRightsStory';
+import { WealthDistributionInequalityStory } from '../features/stories/WealthDistributionInequalityStory';
 import {
   getStory,
   getStoryCategoryPresentation,
@@ -230,6 +231,10 @@ function StoryRoute() {
 
   if (story.slug === 'employment-work-and-skills') {
     return <EmploymentWorkSkillsStory story={story} />;
+  }
+
+  if (story.slug === 'wealth-distribution-and-inequality') {
+    return <WealthDistributionInequalityStory story={story} />;
   }
 
   if (story.slug === 'womens-rights') {

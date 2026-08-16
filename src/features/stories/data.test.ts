@@ -52,6 +52,9 @@ import {
   vaccinationPanelSeries,
   vaccinationCoverageSeries,
   vaccinationWorldSeries,
+  wealthDistributionInequalityPanelSeries,
+  wealthDistributionInequalitySeries,
+  wealthDistributionInequalityWorldSeries,
 } from './data';
 
 describe('published story data', () => {
@@ -314,6 +317,31 @@ describe('published story data', () => {
     expect(employmentWorkSkillsSeries.every((point) => point.rate >= 0 && point.rate <= 100)).toBe(
       true,
     );
+  });
+
+  it('keeps the WID wealth-share world observations and country checkpoints explicit', () => {
+    expect(wealthDistributionInequalityWorldSeries).toHaveLength(56);
+    expect(wealthDistributionInequalityPanelSeries).toHaveLength(48);
+    expect(wealthDistributionInequalityWorldSeries[0]).toMatchObject({
+      entity: 'World',
+      year: 1820,
+      share: 45.97,
+    });
+    expect(wealthDistributionInequalityWorldSeries.at(-1)).toMatchObject({
+      year: 2024,
+      share: 36.44,
+    });
+    expect(
+      wealthDistributionInequalityPanelSeries.every((point) =>
+        [1820, 1900, 1950, 1980, 2000, 2010, 2020, 2024].includes(point.year),
+      ),
+    ).toBe(true);
+    expect(new Set(wealthDistributionInequalityPanelSeries.map((point) => point.entity))).toEqual(
+      new Set(['China', 'France', 'Germany', 'India', 'South Africa', 'United States']),
+    );
+    expect(
+      wealthDistributionInequalitySeries.every((point) => point.share >= 0 && point.share <= 100),
+    ).toBe(true);
   });
 
   it('contains the full CEO pay ratio range and both measures', () => {

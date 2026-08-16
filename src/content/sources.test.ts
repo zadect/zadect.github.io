@@ -24,6 +24,7 @@ describe('source catalogue', () => {
       'wwf-zsl-living-planet-index',
       'gbd-pm25-owid',
       'ilo-employment-rate-owid',
+      'wid-wealth-top-1-owid',
       'eurostat-ai-adoption',
       'oecd-house-price-income',
     ])) {

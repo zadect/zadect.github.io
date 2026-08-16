@@ -216,6 +216,19 @@ test('the published Future stories render their charts and context cards', async
   await expect(
     page.getByRole('link', { name: /Employment rate/i }).first(),
   ).toBeVisible();
+
+  await page.goto('/#/future/wealth-distribution-and-inequality');
+  await expect(
+    page.getByRole('heading', { name: 'Wealth Distribution & Inequality', exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: /global line is not a one-way climb/i }),
+  ).toBeVisible();
+  await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
+  await expect(page.getByText(/not the whole distribution/i)).toBeVisible();
+  await expect(
+    page.getByRole('link', { name: /Wealth share of the richest 1%/i }).first(),
+  ).toBeVisible();
 });
 
 test('header category links target their homepage sections', async ({ page }) => {
@@ -239,7 +252,7 @@ test('header category links target their homepage sections', async ({ page }) =>
 });
 
 test('a deferred story explains its planned evidence', async ({ page }) => {
-  await page.goto('/#/future/wealth-distribution-and-inequality');
+  await page.goto('/#/future/economic-growth-debt-and-public-finance');
   await expect(page.getByText('Coming next')).toBeVisible();
-  await expect(page.getByText(/income and wealth Gini coefficients/i)).toBeVisible();
+  await expect(page.getByText(/growth-accounting components/i)).toBeVisible();
 });

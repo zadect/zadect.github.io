@@ -491,6 +491,32 @@ export const sources: SourceReference[] = [
       'The PIP series uses disposable income after taxes and benefits for many high-income countries and consumption for many low- and middle-income countries. Survey design and welfare concepts can change, so within-country movement is more defensible than a simple cross-country ranking.',
   },
   {
+    id: 'wid-wealth-top-1-owid',
+    title: 'Wealth share of the richest 1%',
+    publisher: 'Our World in Data',
+    originalPublisher: 'World Inequality Database (WID.world)',
+    processor: 'Our World in Data',
+    role: 'chart-data',
+    citation:
+      'World Inequality Database (2026), “Share (top 1%, wealth) – WID,” processed by Our World in Data, OWID Grapher variable 1290257.',
+    methodologyHref:
+      'https://wid.world/document/distributional-national-accounts-dina-guidelines-2025-methods-and-concepts-used-in-the-world-inequality-database/',
+    dataHref: 'https://ourworldindata.org/grapher/wealth-share-richest',
+    originalDataHref: 'https://wid.world/data/',
+    metadataHref: 'https://ourworldindata.org/grapher/wealth-share-richest.metadata.json',
+    licenseHref: 'https://ourworldindata.org/licence',
+    version: 'OWID Grapher variable 1290257; WID 2026 release; last updated 2026-06-18',
+    coverage:
+      'World observations from 1820–2024 and six-country checkpoint panel in this extract',
+    retrieved: accessDate,
+    unit: 'Share of total household net wealth held by the richest 1 (%)',
+    localPath: 'src/data/wealth-distribution-inequality.csv',
+    transformation:
+      'The local extract keeps every available OWID world observation from 1820 through 2024 and shared checkpoints for China, France, Germany, India, South Africa, and the United States. Interpolated and extrapolated observations are excluded; missing years remain visible as gaps between points.',
+    note:
+      'Wealth means household financial and non-financial assets minus debts. The WID series uses the Mixed Income Capitalization-Survey method, and some values are modeled from limited underlying data, so the lines are estimates rather than direct censuses of every household balance sheet.',
+  },
+  {
     id: 'unhcr-population-api',
     title: 'UNHCR Refugee Data Finder population statistics',
     publisher: 'United Nations High Commissioner for Refugees',

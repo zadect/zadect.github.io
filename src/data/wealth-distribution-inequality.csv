@@ -1,0 +1,105 @@
+series,entity,code,year,value
+world,World,OWID_WRL,1820,45.97
+world,World,OWID_WRL,1850,51.58
+world,World,OWID_WRL,1880,54.66
+world,World,OWID_WRL,1900,55.53
+world,World,OWID_WRL,1910,54.28
+world,World,OWID_WRL,1920,46.98
+world,World,OWID_WRL,1930,49.57
+world,World,OWID_WRL,1940,46.14
+world,World,OWID_WRL,1950,43.99
+world,World,OWID_WRL,1960,41.14
+world,World,OWID_WRL,1970,37.69
+world,World,OWID_WRL,1980,34.41
+world,World,OWID_WRL,1981,33.96
+world,World,OWID_WRL,1982,33.38
+world,World,OWID_WRL,1983,33.28
+world,World,OWID_WRL,1984,33.15
+world,World,OWID_WRL,1985,33.4
+world,World,OWID_WRL,1986,33.76
+world,World,OWID_WRL,1987,34.4
+world,World,OWID_WRL,1988,35.06
+world,World,OWID_WRL,1989,35.16
+world,World,OWID_WRL,1990,35.03
+world,World,OWID_WRL,1991,35.24
+world,World,OWID_WRL,1992,35.56
+world,World,OWID_WRL,1993,35.34
+world,World,OWID_WRL,1994,35.5
+world,World,OWID_WRL,1995,35.59
+world,World,OWID_WRL,1996,35.87
+world,World,OWID_WRL,1997,36.41
+world,World,OWID_WRL,1998,37.22
+world,World,OWID_WRL,1999,37.45
+world,World,OWID_WRL,2000,37.34
+world,World,OWID_WRL,2001,37.4
+world,World,OWID_WRL,2002,36.9
+world,World,OWID_WRL,2003,36.68
+world,World,OWID_WRL,2004,37.31
+world,World,OWID_WRL,2005,37.16
+world,World,OWID_WRL,2006,37.02
+world,World,OWID_WRL,2007,37.45
+world,World,OWID_WRL,2008,36.5
+world,World,OWID_WRL,2009,35.5
+world,World,OWID_WRL,2010,36.11
+world,World,OWID_WRL,2011,35.79
+world,World,OWID_WRL,2012,35.62
+world,World,OWID_WRL,2013,35.59
+world,World,OWID_WRL,2014,36
+world,World,OWID_WRL,2015,36.2
+world,World,OWID_WRL,2016,35.54
+world,World,OWID_WRL,2017,35.88
+world,World,OWID_WRL,2018,36.23
+world,World,OWID_WRL,2019,35.99
+world,World,OWID_WRL,2020,36.18
+world,World,OWID_WRL,2021,37.17
+world,World,OWID_WRL,2022,36.64
+world,World,OWID_WRL,2023,36.39
+world,World,OWID_WRL,2024,36.44
+panel,China,CHN,1820,28
+panel,China,CHN,1900,37.55
+panel,China,CHN,1950,15.75
+panel,China,CHN,1980,15.8
+panel,China,CHN,2000,19.65
+panel,China,CHN,2010,30.45
+panel,China,CHN,2020,30.3
+panel,China,CHN,2024,30.42
+panel,France,FRA,1820,47.89
+panel,France,FRA,1900,54.97
+panel,France,FRA,1950,33.4
+panel,France,FRA,1980,17.17
+panel,France,FRA,2000,29.84
+panel,France,FRA,2010,24.65
+panel,France,FRA,2020,26.02
+panel,France,FRA,2024,27.68
+panel,Germany,DEU,1820,51.51
+panel,Germany,DEU,1900,51.96
+panel,Germany,DEU,1950,21.76
+panel,Germany,DEU,1980,26.96
+panel,Germany,DEU,2000,26.65
+panel,Germany,DEU,2010,27.28
+panel,Germany,DEU,2020,27.54
+panel,Germany,DEU,2024,27.85
+panel,India,IND,1820,21.22
+panel,India,IND,1900,27.61
+panel,India,IND,1950,13.52
+panel,India,IND,1980,12.54
+panel,India,IND,2000,20.67
+panel,India,IND,2010,31.78
+panel,India,IND,2020,35.25
+panel,India,IND,2024,40.14
+panel,South Africa,ZAF,1820,59.7
+panel,South Africa,ZAF,1900,64.35
+panel,South Africa,ZAF,1950,64.64
+panel,South Africa,ZAF,1980,48.86
+panel,South Africa,ZAF,2000,49.19
+panel,South Africa,ZAF,2010,57.29
+panel,South Africa,ZAF,2020,54.73
+panel,South Africa,ZAF,2024,54.91
+panel,United States,USA,1820,34.12
+panel,United States,USA,1900,35.36
+panel,United States,USA,1950,29.6
+panel,United States,USA,1980,23.23
+panel,United States,USA,2000,32.34
+panel,United States,USA,2010,34.62
+panel,United States,USA,2020,35.13
+panel,United States,USA,2024,34.78
