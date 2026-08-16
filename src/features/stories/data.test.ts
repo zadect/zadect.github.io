@@ -20,6 +20,11 @@ import {
   demographicsMigrationSeries,
   economicGrowthDebtPublicFinanceSeries,
   economicGrowthWorldSeries,
+  governanceOverallMedianSeries,
+  governanceOverallPanelSeries,
+  governanceRiskSecuritySeries,
+  governanceSecurityMedianSeries,
+  governanceSecurityPanelSeries,
   climateAnnualSeries,
   climateDecadeSeries,
   electricitySanitationPanelSeries,
@@ -470,6 +475,32 @@ describe('published story data', () => {
     ).toBe(true);
     expect(
       healthLongevityHumanCapitalSeries.every((point) => point.value >= 0),
+    ).toBe(true);
+  });
+
+  it('keeps governance editions and security dimensions separate', () => {
+    expect(governanceOverallMedianSeries).toHaveLength(12);
+    expect(governanceSecurityMedianSeries).toHaveLength(12);
+    expect(governanceOverallPanelSeries).toHaveLength(96);
+    expect(governanceSecurityPanelSeries).toHaveLength(96);
+    expect(governanceOverallMedianSeries[0]).toMatchObject({
+      year: 2012,
+      edition: '2012-2013',
+      value: 0.524597,
+    });
+    expect(governanceOverallMedianSeries.at(-1)).toMatchObject({
+      year: 2025,
+      edition: '2025',
+      value: 0.519269,
+    });
+    expect(governanceSecurityMedianSeries.at(-1)).toMatchObject({
+      year: 2025,
+      value: 0.719035,
+    });
+    expect(
+      governanceRiskSecuritySeries.every(
+        (point) => point.value >= 0 && point.value <= 1 && point.edition.length > 0,
+      ),
     ).toBe(true);
   });
 

@@ -800,12 +800,33 @@ export const stories: StoryDefinition[] = [
     slug: 'governance-risk-and-security',
     title: 'Governance, Risk & Security',
     category: 'future',
-    status: 'coming-soon',
-    summary: 'How trust, institutional capacity, and exposure to shocks affect a society’s ability to respond.',
-    plannedMetric:
-      'Institutional trust, rule of law, regulatory quality, policy responsiveness, and exposure to economic and climate shocks',
-    geography: 'Countries and regions',
-    sourceHint: 'OECD Trust Survey, World Justice Project, V-Dem, INFORM Risk, and ND-GAIN',
+    status: 'published',
+    summary:
+      'Rule-of-law scores show how institutional capacity differs across countries, and how little a global country median has shifted.',
+    plannedMetric: 'WJP Rule of Law Index and its Order and Security factor',
+    geography: 'Country median and eight selected countries',
+    sourceHint: 'World Justice Project Rule of Law Index',
+    comparison: {
+      title: 'Two dimensions of institutional capacity',
+      fields: [
+        {
+          label: 'Overall score',
+          value: 'The WJP Rule of Law Index score combines eight factors covering constraints on government powers, corruption, open government, rights, order and security, regulatory enforcement, civil justice, and criminal justice.',
+        },
+        {
+          label: 'Order and security',
+          value: 'Factor 5 measures the absence of crime, civil conflict, and violent redress, as defined by the WJP index. It is one factor, not a crime count.',
+        },
+        {
+          label: 'Median',
+          value: 'The median is calculated across countries with a reported score in each WJP edition. It is an unweighted country median, not a population-weighted world estimate.',
+        },
+        {
+          label: 'Limit',
+          value: 'The index is based on household and expert surveys, coverage changes across editions, and does not measure every dimension of trust, resilience, or future risk.',
+        },
+      ],
+    },
   },
   {
     slug: 'climate-and-environmental-futures',

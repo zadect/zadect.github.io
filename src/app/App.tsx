@@ -19,6 +19,7 @@ import { ForcedDisplacementStory } from '../features/stories/ForcedDisplacementS
 import { HungerStory } from '../features/stories/HungerStory';
 import { HousingStory } from '../features/stories/HousingStory';
 import { HealthLongevityHumanCapitalStory } from '../features/stories/HealthLongevityHumanCapitalStory';
+import { GovernanceRiskSecurityStory } from '../features/stories/GovernanceRiskSecurityStory';
 import { InequalityByCountryStory } from '../features/stories/InequalityByCountryStory';
 import { InflationPricesEnergyStory } from '../features/stories/InflationPricesEnergyStory';
 import { LiteracyStory } from '../features/stories/LiteracyStory';
@@ -255,6 +256,10 @@ function StoryRoute() {
 
   if (story.slug === 'health-longevity-and-human-capital') {
     return <HealthLongevityHumanCapitalStory story={story} />;
+  }
+
+  if (story.slug === 'governance-risk-and-security') {
+    return <GovernanceRiskSecurityStory story={story} />;
   }
 
   if (story.slug === 'womens-rights') {

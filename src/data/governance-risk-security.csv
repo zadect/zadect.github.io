@@ -1,0 +1,217 @@
+measure,entity,code,year,edition,value
+overall-median,Country median,MEDIAN,2012,2012-2013,0.524597
+overall-median,Country median,MEDIAN,2014,2014,0.509562
+overall-median,Country median,MEDIAN,2015,2015,0.522699
+overall-median,Country median,MEDIAN,2016,2016,0.541634
+overall-median,Country median,MEDIAN,2017,2017-2018,0.531055
+overall-median,Country median,MEDIAN,2019,2019,0.519230
+overall-median,Country median,MEDIAN,2020,2020,0.519360
+overall-median,Country median,MEDIAN,2021,2021,0.519755
+overall-median,Country median,MEDIAN,2022,2022,0.519377
+overall-median,Country median,MEDIAN,2023,2023,0.515710
+overall-median,Country median,MEDIAN,2024,2024,0.518510
+overall-median,Country median,MEDIAN,2025,2025,0.519269
+overall-panel,Germany,DEU,2012,2012-2013,0.791051
+overall-panel,France,FRA,2012,2012-2013,0.763880
+overall-panel,United Kingdom,GBR,2012,2012-2013,0.782503
+overall-panel,Japan,JPN,2012,2012-2013,0.805957
+overall-panel,United States,USA,2012,2012-2013,0.734025
+overall-panel,Brazil,BRA,2012,2012-2013,0.576792
+overall-panel,India,IND,2012,2012-2013,0.456212
+overall-panel,Nigeria,NGA,2012,2012-2013,0.399570
+overall-panel,Germany,DEU,2014,2014,0.795178
+overall-panel,France,FRA,2014,2014,0.742160
+overall-panel,United Kingdom,GBR,2014,2014,0.779239
+overall-panel,Japan,JPN,2014,2014,0.779249
+overall-panel,United States,USA,2014,2014,0.709409
+overall-panel,Brazil,BRA,2014,2014,0.544624
+overall-panel,India,IND,2014,2014,0.477111
+overall-panel,Nigeria,NGA,2014,2014,0.391198
+overall-panel,Germany,DEU,2015,2015,0.826823
+overall-panel,France,FRA,2015,2015,0.751660
+overall-panel,United Kingdom,GBR,2015,2015,0.800003
+overall-panel,Japan,JPN,2015,2015,0.788817
+overall-panel,United States,USA,2015,2015,0.736794
+overall-panel,Brazil,BRA,2015,2015,0.552621
+overall-panel,India,IND,2015,2015,0.514244
+overall-panel,Nigeria,NGA,2015,2015,0.422454
+overall-panel,Germany,DEU,2016,2016,0.836004
+overall-panel,France,FRA,2016,2016,0.719856
+overall-panel,United Kingdom,GBR,2016,2016,0.811355
+overall-panel,Japan,JPN,2016,2016,0.781572
+overall-panel,United States,USA,2016,2016,0.741283
+overall-panel,Brazil,BRA,2016,2016,0.558761
+overall-panel,India,IND,2016,2016,0.515081
+overall-panel,Nigeria,NGA,2016,2016,0.443871
+overall-panel,Germany,DEU,2017,2017-2018,0.835859
+overall-panel,France,FRA,2017,2017-2018,0.738109
+overall-panel,United Kingdom,GBR,2017,2017-2018,0.809427
+overall-panel,Japan,JPN,2017,2017-2018,0.787345
+overall-panel,United States,USA,2017,2017-2018,0.732833
+overall-panel,Brazil,BRA,2017,2017-2018,0.537920
+overall-panel,India,IND,2017,2017-2018,0.518195
+overall-panel,Nigeria,NGA,2017,2017-2018,0.438520
+overall-panel,Germany,DEU,2019,2019,0.835256
+overall-panel,France,FRA,2019,2019,0.736548
+overall-panel,United Kingdom,GBR,2019,2019,0.802387
+overall-panel,Japan,JPN,2019,2019,0.779750
+overall-panel,United States,USA,2019,2019,0.719890
+overall-panel,Brazil,BRA,2019,2019,0.530560
+overall-panel,India,IND,2019,2019,0.511477
+overall-panel,Nigeria,NGA,2019,2019,0.432198
+overall-panel,Germany,DEU,2020,2020,0.836311
+overall-panel,France,FRA,2020,2020,0.727223
+overall-panel,United Kingdom,GBR,2020,2020,0.788793
+overall-panel,Japan,JPN,2020,2020,0.779578
+overall-panel,United States,USA,2020,2020,0.715772
+overall-panel,Brazil,BRA,2020,2020,0.515090
+overall-panel,India,IND,2020,2020,0.508780
+overall-panel,Nigeria,NGA,2020,2020,0.428363
+overall-panel,Germany,DEU,2021,2021,0.839534
+overall-panel,France,FRA,2021,2021,0.720767
+overall-panel,United Kingdom,GBR,2021,2021,0.785400
+overall-panel,Japan,JPN,2021,2021,0.785937
+overall-panel,United States,USA,2021,2021,0.694982
+overall-panel,Brazil,BRA,2021,2021,0.500135
+overall-panel,India,IND,2021,2021,0.499008
+overall-panel,Nigeria,NGA,2021,2021,0.412372
+overall-panel,Germany,DEU,2022,2022,0.834260
+overall-panel,France,FRA,2022,2022,0.730796
+overall-panel,United Kingdom,GBR,2022,2022,0.787744
+overall-panel,Japan,JPN,2022,2022,0.785730
+overall-panel,United States,USA,2022,2022,0.707235
+overall-panel,Brazil,BRA,2022,2022,0.494266
+overall-panel,India,IND,2022,2022,0.497210
+overall-panel,Nigeria,NGA,2022,2022,0.407704
+overall-panel,Germany,DEU,2023,2023,0.834461
+overall-panel,France,FRA,2023,2023,0.728062
+overall-panel,United Kingdom,GBR,2023,2023,0.784222
+overall-panel,Japan,JPN,2023,2023,0.785783
+overall-panel,United States,USA,2023,2023,0.703256
+overall-panel,Brazil,BRA,2023,2023,0.489949
+overall-panel,India,IND,2023,2023,0.493538
+overall-panel,Nigeria,NGA,2023,2023,0.410839
+overall-panel,Germany,DEU,2024,2024,0.834288
+overall-panel,France,FRA,2024,2024,0.724743
+overall-panel,United Kingdom,GBR,2024,2024,0.784980
+overall-panel,Japan,JPN,2024,2024,0.786347
+overall-panel,United States,USA,2024,2024,0.698996
+overall-panel,Brazil,BRA,2024,2024,0.497392
+overall-panel,India,IND,2024,2024,0.497526
+overall-panel,Nigeria,NGA,2024,2024,0.404270
+overall-panel,Germany,DEU,2025,2025,0.833324
+overall-panel,France,FRA,2025,2025,0.723775
+overall-panel,United Kingdom,GBR,2025,2025,0.784473
+overall-panel,Japan,JPN,2025,2025,0.783675
+overall-panel,United States,USA,2025,2025,0.679773
+overall-panel,Brazil,BRA,2025,2025,0.502712
+overall-panel,India,IND,2025,2025,0.488987
+overall-panel,Nigeria,NGA,2025,2025,0.405654
+security-median,Country median,MEDIAN,2012,2012-2013,0.732155
+security-median,Country median,MEDIAN,2014,2014,0.739769
+security-median,Country median,MEDIAN,2015,2015,0.720661
+security-median,Country median,MEDIAN,2016,2016,0.722221
+security-median,Country median,MEDIAN,2017,2017-2018,0.727415
+security-median,Country median,MEDIAN,2019,2019,0.724377
+security-median,Country median,MEDIAN,2020,2020,0.717083
+security-median,Country median,MEDIAN,2021,2021,0.730114
+security-median,Country median,MEDIAN,2022,2022,0.721833
+security-median,Country median,MEDIAN,2023,2023,0.719933
+security-median,Country median,MEDIAN,2024,2024,0.719805
+security-median,Country median,MEDIAN,2025,2025,0.719035
+security-panel,Germany,DEU,2012,2012-2013,0.862648
+security-panel,France,FRA,2012,2012-2013,0.840991
+security-panel,United Kingdom,GBR,2012,2012-2013,0.843304
+security-panel,Japan,JPN,2012,2012-2013,0.887840
+security-panel,United States,USA,2012,2012-2013,0.825604
+security-panel,Brazil,BRA,2012,2012-2013,0.635587
+security-panel,India,IND,2012,2012-2013,0.393489
+security-panel,Nigeria,NGA,2012,2012-2013,0.473520
+security-panel,Germany,DEU,2014,2014,0.867194
+security-panel,France,FRA,2014,2014,0.807666
+security-panel,United Kingdom,GBR,2014,2014,0.842574
+security-panel,Japan,JPN,2014,2014,0.916191
+security-panel,United States,USA,2014,2014,0.851674
+security-panel,Brazil,BRA,2014,2014,0.663625
+security-panel,India,IND,2014,2014,0.513667
+security-panel,Nigeria,NGA,2014,2014,0.356152
+security-panel,Germany,DEU,2015,2015,0.875822
+security-panel,France,FRA,2015,2015,0.807456
+security-panel,United Kingdom,GBR,2015,2015,0.862229
+security-panel,Japan,JPN,2015,2015,0.921552
+security-panel,United States,USA,2015,2015,0.817026
+security-panel,Brazil,BRA,2015,2015,0.668533
+security-panel,India,IND,2015,2015,0.581820
+security-panel,Nigeria,NGA,2015,2015,0.400730
+security-panel,Germany,DEU,2016,2016,0.865612
+security-panel,France,FRA,2016,2016,0.629033
+security-panel,United Kingdom,GBR,2016,2016,0.854424
+security-panel,Japan,JPN,2016,2016,0.901312
+security-panel,United States,USA,2016,2016,0.804166
+security-panel,Brazil,BRA,2016,2016,0.669814
+security-panel,India,IND,2016,2016,0.559533
+security-panel,Nigeria,NGA,2016,2016,0.480959
+security-panel,Germany,DEU,2017,2017-2018,0.876625
+security-panel,France,FRA,2017,2017-2018,0.747022
+security-panel,United Kingdom,GBR,2017,2017-2018,0.841529
+security-panel,Japan,JPN,2017,2017-2018,0.914658
+security-panel,United States,USA,2017,2017-2018,0.788078
+security-panel,Brazil,BRA,2017,2017-2018,0.652933
+security-panel,India,IND,2017,2017-2018,0.590861
+security-panel,Nigeria,NGA,2017,2017-2018,0.366709
+security-panel,Germany,DEU,2019,2019,0.888624
+security-panel,France,FRA,2019,2019,0.765125
+security-panel,United Kingdom,GBR,2019,2019,0.847385
+security-panel,Japan,JPN,2019,2019,0.920979
+security-panel,United States,USA,2019,2019,0.804618
+security-panel,Brazil,BRA,2019,2019,0.646536
+security-panel,India,IND,2019,2019,0.588366
+security-panel,Nigeria,NGA,2019,2019,0.353053
+security-panel,Germany,DEU,2020,2020,0.887964
+security-panel,France,FRA,2020,2020,0.751229
+security-panel,United Kingdom,GBR,2020,2020,0.837229
+security-panel,Japan,JPN,2020,2020,0.923384
+security-panel,United States,USA,2020,2020,0.812163
+security-panel,Brazil,BRA,2020,2020,0.637545
+security-panel,India,IND,2020,2020,0.590040
+security-panel,Nigeria,NGA,2020,2020,0.353340
+security-panel,Germany,DEU,2021,2021,0.891453
+security-panel,France,FRA,2021,2021,0.760731
+security-panel,United Kingdom,GBR,2021,2021,0.831862
+security-panel,Japan,JPN,2021,2021,0.922148
+security-panel,United States,USA,2021,2021,0.808946
+security-panel,Brazil,BRA,2021,2021,0.643892
+security-panel,India,IND,2021,2021,0.595912
+security-panel,Nigeria,NGA,2021,2021,0.337109
+security-panel,Germany,DEU,2022,2022,0.885728
+security-panel,France,FRA,2022,2022,0.790083
+security-panel,United Kingdom,GBR,2022,2022,0.837854
+security-panel,Japan,JPN,2022,2022,0.920885
+security-panel,United States,USA,2022,2022,0.833576
+security-panel,Brazil,BRA,2022,2022,0.636457
+security-panel,India,IND,2022,2022,0.642609
+security-panel,Nigeria,NGA,2022,2022,0.364069
+security-panel,Germany,DEU,2023,2023,0.888651
+security-panel,France,FRA,2023,2023,0.794479
+security-panel,United Kingdom,GBR,2023,2023,0.841852
+security-panel,Japan,JPN,2023,2023,0.922557
+security-panel,United States,USA,2023,2023,0.828312
+security-panel,Brazil,BRA,2023,2023,0.600831
+security-panel,India,IND,2023,2023,0.642975
+security-panel,Nigeria,NGA,2023,2023,0.374518
+security-panel,Germany,DEU,2024,2024,0.886513
+security-panel,France,FRA,2024,2024,0.781392
+security-panel,United Kingdom,GBR,2024,2024,0.839321
+security-panel,Japan,JPN,2024,2024,0.925206
+security-panel,United States,USA,2024,2024,0.828446
+security-panel,Brazil,BRA,2024,2024,0.597984
+security-panel,India,IND,2024,2024,0.667811
+security-panel,Nigeria,NGA,2024,2024,0.356265
+security-panel,Germany,DEU,2025,2025,0.878314
+security-panel,France,FRA,2025,2025,0.788024
+security-panel,United Kingdom,GBR,2025,2025,0.842294
+security-panel,Japan,JPN,2025,2025,0.928469
+security-panel,United States,USA,2025,2025,0.830161
+security-panel,Brazil,BRA,2025,2025,0.622297
+security-panel,India,IND,2025,2025,0.641341
+security-panel,Nigeria,NGA,2025,2025,0.361170
