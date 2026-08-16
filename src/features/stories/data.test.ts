@@ -35,6 +35,7 @@ import {
   literacyMapSeries,
   literacySeries,
   lifeExpectancyLongRunSeries,
+  forcedDisplacementSeries,
   lifeExpectancyPanelSeries,
   lifeExpectancySeries,
   womensRightsCountrySeries,
@@ -241,6 +242,33 @@ describe('published story data', () => {
       ),
     ).toBe(true);
     expect(biodiversitySeries).toHaveLength(81);
+  });
+
+  it('keeps forced-displacement category coverage and latest totals explicit', () => {
+    expect(forcedDisplacementSeries).toHaveLength(74);
+    expect(forcedDisplacementSeries[0]).toMatchObject({
+      year: 1951,
+      refugees: 2116011,
+      asylumSeekers: undefined,
+      idps: undefined,
+      otherProtection: undefined,
+    });
+    expect(forcedDisplacementSeries.find((point) => point.year === 1993)).toMatchObject({
+      refugees: 16325299,
+      asylumSeekers: 743601,
+      idps: 4198400,
+      otherProtection: undefined,
+    });
+    expect(forcedDisplacementSeries.at(-1)).toMatchObject({
+      year: 2024,
+      refugees: 30958200,
+      asylumSeekers: 8352712,
+      idps: 68131711,
+      otherProtection: 5875359,
+    });
+    expect(
+      forcedDisplacementSeries.filter((point) => point.otherProtection !== undefined),
+    ).toHaveLength(7);
   });
 
   it('contains the full CEO pay ratio range and both measures', () => {

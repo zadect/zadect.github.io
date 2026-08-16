@@ -6,6 +6,7 @@ import climateChangeCsv from '../../data/climate-change.csv?raw';
 import warsConflictCsv from '../../data/wars-conflict.csv?raw';
 import inequalityByCountryCsv from '../../data/inequality-by-country.csv?raw';
 import biodiversityLossCsv from '../../data/biodiversity-loss.csv?raw';
+import forcedDisplacementCsv from '../../data/forced-displacement.csv?raw';
 import electricitySanitationCsv from '../../data/electricity-sanitation.csv?raw';
 import extremePovertyCsv from '../../data/extreme-poverty.csv?raw';
 import foodAvailabilityCsv from '../../data/food-availability.csv?raw';
@@ -187,6 +188,14 @@ export interface BiodiversityPoint {
   central: number;
   lower?: number;
   upper?: number;
+}
+
+export interface ForcedDisplacementPoint {
+  year: number;
+  refugees: number;
+  asylumSeekers?: number;
+  idps?: number;
+  otherProtection?: number;
 }
 
 export interface CeoPayPoint {
@@ -631,6 +640,67 @@ if (
   )
 ) {
   throw new Error('Biodiversity series does not cover the declared world and regional panels');
+}
+
+export const forcedDisplacementSeries = assertUnique(
+  parseCsv(forcedDisplacementCsv).map((row) => {
+    const year = numberValue(row.year, 'forced displacement year');
+    const refugees = boundedNumberValue(row.refugees, 'refugee population', 0, 200_000_000);
+    const asylumSeekers = optionalNumberValue(row.asylum_seekers, 'asylum-seeker population');
+    const idps = optionalNumberValue(row.idps, 'internally displaced population');
+    const otherProtection = optionalNumberValue(
+      row.oip,
+      'other people in need of international protection',
+    );
+
+    for (const [label, value] of [
+      ['asylum-seeker population', asylumSeekers],
+      ['internally displaced population', idps],
+      ['other people in need of international protection', otherProtection],
+    ] as const) {
+      if (
+        value !== undefined &&
+        (!Number.isInteger(value) || value < 0 || value > 200_000_000)
+      ) {
+        throw new Error(`Invalid ${label} value for ${year}`);
+      }
+    }
+
+    if (year < 1951 || year > 2024) {
+      throw new Error(`Invalid forced displacement year: ${year}`);
+    }
+
+    return {
+      year,
+      refugees,
+      asylumSeekers,
+      idps,
+      otherProtection,
+    };
+  }),
+  (row) => String(row.year),
+  'forced displacement',
+) satisfies ForcedDisplacementPoint[];
+
+if (
+  forcedDisplacementSeries.length !== 74 ||
+  forcedDisplacementSeries.some((point, index) => point.year !== 1951 + index) ||
+  forcedDisplacementSeries.some(
+    (point) =>
+      point.year >= 1993 &&
+      (point.asylumSeekers === undefined || point.idps === undefined),
+  ) ||
+  forcedDisplacementSeries.some(
+    (point) => point.year >= 2018 && point.otherProtection === undefined,
+  ) ||
+  forcedDisplacementSeries.some(
+    (point) => point.year < 1993 && (point.asylumSeekers !== undefined || point.idps !== undefined),
+  ) ||
+  forcedDisplacementSeries.some(
+    (point) => point.year < 2018 && point.otherProtection !== undefined,
+  )
+) {
+  throw new Error('Forced displacement series has an unexpected coverage gap');
 }
 
 export const ceoPaySeries: CeoPayPoint[] = parseCsv(ceoPayCsv).map((row) => ({

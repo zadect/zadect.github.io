@@ -140,6 +140,17 @@ describe('app routes', () => {
     expect(screen.getByText(/not a headcount of every wild animal/i)).toBeInTheDocument();
   });
 
+  it('renders the published forced displacement story', () => {
+    window.location.hash = '#/bad/forced-displacement';
+    render(<App />);
+
+    expect(screen.getByRole('heading', { name: 'Forced displacement' })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: /internal displacement now dominates/i }),
+    ).toBeInTheDocument();
+    expect(screen.getByText(/headline number depends on the accounting boundary/i)).toBeInTheDocument();
+  });
+
   it('links Good, Bad, and Future navigation to homepage sections', () => {
     render(<App />);
     expect(screen.getByRole('link', { name: 'Good' })).toHaveAttribute('href', '#/?section=good');

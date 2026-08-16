@@ -164,6 +164,17 @@ test('the biodiversity loss story renders its global and regional charts', async
   ).toBeVisible();
 });
 
+test('the forced displacement story renders its long-run and category charts', async ({ page }) => {
+  await page.goto('/#/bad/forced-displacement');
+  await expect(page.getByRole('heading', { name: 'Forced displacement', exact: true })).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: /internal displacement now dominates/i }),
+  ).toBeVisible();
+  await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
+  await expect(page.getByText(/blank values mean that the category was not reported/i)).toBeVisible();
+  await expect(page.getByRole('link', { name: /Refugee Data Finder/i }).first()).toBeVisible();
+});
+
 test('the published Future stories render their charts and context cards', async ({ page }) => {
   await page.goto('/#/future/tech-and-ai');
   await expect(page.getByRole('heading', { name: 'AI & Tech', exact: true })).toBeVisible();
@@ -204,7 +215,7 @@ test('header category links target their homepage sections', async ({ page }) =>
 });
 
 test('a deferred story explains its planned evidence', async ({ page }) => {
-  await page.goto('/#/bad/forced-displacement');
+  await page.goto('/#/bad/air-pollution');
   await expect(page.getByText('Coming next')).toBeVisible();
-  await expect(page.getByText(/refugees and internally displaced people/i)).toBeVisible();
+  await expect(page.getByText(/fine particulate matter exposure/i)).toBeVisible();
 });

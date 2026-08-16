@@ -491,6 +491,52 @@ export const sources: SourceReference[] = [
       'The PIP series uses disposable income after taxes and benefits for many high-income countries and consumption for many low- and middle-income countries. Survey design and welfare concepts can change, so within-country movement is more defensible than a simple cross-country ranking.',
   },
   {
+    id: 'unhcr-population-api',
+    title: 'UNHCR Refugee Data Finder population statistics',
+    publisher: 'United Nations High Commissioner for Refugees',
+    originalPublisher: 'United Nations High Commissioner for Refugees',
+    processor: 'The Good & The Bad local extract',
+    role: 'chart-data',
+    citation:
+      'United Nations High Commissioner for Refugees (2025), Refugee Population Statistics Database, annual population statistics for 2024, global aggregate API response.',
+    methodologyHref: 'https://www.unhcr.org/refugee-statistics/methodology/data-content',
+    dataHref:
+      'https://api.unhcr.org/population/v1/population/?yearFrom=1951&yearTo=2024&limit=100',
+    originalDataHref: 'https://www.unhcr.org/refugee-statistics/download/',
+    metadataHref: 'https://api.unhcr.org/',
+    version:
+      'Refugee Population Statistics Database annual statistics for 2024; API response retrieved 2026-08-16',
+    coverage: 'Global year-end stocks, 1951–2024; category coverage is documented separately',
+    retrieved: accessDate,
+    unit: 'People counted at year-end',
+    localPath: 'src/data/forced-displacement.csv',
+    transformation:
+      'The local extract keeps the API global aggregate for refugees, asylum-seekers, IDPs, and other people in need of international protection. API dashes and zero placeholders before a category’s observed coverage start are retained as blank; no missing category is treated as an observed zero and no categories are combined with other systems.',
+    note:
+      'The four plotted categories are year-end stocks, not annual flows. Stateless people, others of concern, and host communities are not forced-displacement categories in this comparison and are excluded.',
+  },
+  {
+    id: 'unhcr-global-trends-2024',
+    title: 'Global Trends 2024',
+    publisher: 'United Nations High Commissioner for Refugees',
+    originalPublisher: 'United Nations High Commissioner for Refugees',
+    role: 'research-context',
+    citation:
+      'United Nations High Commissioner for Refugees (2025), Global Trends: Forced Displacement in 2024.',
+    methodologyHref: 'https://www.unhcr.org/publications/global-trends-2024',
+    dataHref: 'https://www.unhcr.org/sites/default/files/2025-06/global-trends-report-2024.pdf',
+    originalDataHref: 'https://www.unhcr.org/refugee-statistics/',
+    metadataHref: 'https://www.unhcr.org/refugee-statistics/methodology',
+    version: 'Global Trends 2024 report, published 2025-06',
+    coverage: 'Global headline context for 2024; context only, not plotted as a local series',
+    retrieved: accessDate,
+    unit: 'People',
+    transformation:
+      'No numeric values from the headline total are plotted locally because the report combines UNHCR, UNRWA, and IDMC accounting that is not identical to the UNHCR API aggregate.',
+    note:
+      'The report’s 2024 headline total is broader than the four-category API extract on this page. It is cited to explain the accounting boundary, not used as a fifth line or silently merged into the charts.',
+  },
+  {
     id: 'wwf-zsl-living-planet-index',
     title: 'Living Planet Index',
     publisher: 'Our World in Data',

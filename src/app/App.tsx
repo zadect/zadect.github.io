@@ -11,6 +11,7 @@ import { ClimateChangeStory } from '../features/stories/ClimateChangeStory';
 import { DemocraticBackslidingStory } from '../features/stories/DemocraticBackslidingStory';
 import { ElectricitySanitationStory } from '../features/stories/ElectricitySanitationStory';
 import { ExtremePovertyStory } from '../features/stories/ExtremePovertyStory';
+import { ForcedDisplacementStory } from '../features/stories/ForcedDisplacementStory';
 import { HungerStory } from '../features/stories/HungerStory';
 import { HousingStory } from '../features/stories/HousingStory';
 import { InequalityByCountryStory } from '../features/stories/InequalityByCountryStory';
@@ -199,6 +200,10 @@ function StoryRoute() {
 
   if (story.slug === 'biodiversity-loss') {
     return <BiodiversityLossStory story={story} />;
+  }
+
+  if (story.slug === 'forced-displacement') {
+    return <ForcedDisplacementStory story={story} />;
   }
 
   if (story.slug === 'literacy') {

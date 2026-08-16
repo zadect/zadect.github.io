@@ -448,11 +448,34 @@ export const stories: StoryDefinition[] = [
     slug: 'forced-displacement',
     title: 'Forced displacement',
     category: 'bad',
-    status: 'coming-soon',
-    summary: 'The number of people pushed from home by conflict, persecution, and crisis.',
-    plannedMetric: 'Refugees and internally displaced people',
+    status: 'published',
+    summary:
+      'The number of people counted in UNHCR displacement categories has risen, while internal displacement now dominates the comparable panel.',
+    plannedMetric:
+      'Refugees, internally displaced people, asylum-seekers, and other people in need of international protection',
     geography: 'World and regions',
-    sourceHint: 'UNHCR Global Trends',
+    sourceHint: 'UNHCR Refugee Data Finder and Global Trends',
+    comparison: {
+      title: 'What the displacement series compares',
+      fields: [
+        {
+          label: 'Measure',
+          value: 'Year-end stocks of people in four UNHCR categories: refugees, asylum-seekers, internally displaced people, and other people in need of international protection.',
+        },
+        {
+          label: 'Long run',
+          value: 'The refugee series runs from 1951 to 2024. The other three categories have comparable observations from 1993; the other-protection series begins in 2018.',
+        },
+        {
+          label: 'Scope',
+          value: 'The charts use the UNHCR global aggregate. They do not count how many people fled during a year, and they do not add stateless people, others of concern, or host communities.',
+        },
+        {
+          label: 'Limit',
+          value: 'UNHCR’s 2024 headline total is broader than this consistent API extract because it also incorporates UNRWA and IDMC accounting. Those systems are not silently combined here.',
+        },
+      ],
+    },
   },
   {
     slug: 'air-pollution',
