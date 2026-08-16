@@ -352,11 +352,33 @@ export const stories: StoryDefinition[] = [
     slug: 'wars-and-conflict',
     title: 'Wars and conflict',
     category: 'bad',
-    status: 'coming-soon',
-    summary: 'A careful comparison of conflict frequency, duration, and human cost.',
+    status: 'published',
+    summary:
+      'Conflict has two different signals: how many people die in fighting, and how many state-based conflicts remain active.',
     plannedMetric: 'Battle deaths and conflict incidence',
     geography: 'World and regions',
     sourceHint: 'UCDP and Our World in Data',
+    comparison: {
+      title: 'Two measures of conflict, kept separate',
+      fields: [
+        {
+          label: 'Deaths',
+          value: 'Annual battle-related deaths of combatants and civilians in ongoing interstate, intrastate, and extrasystemic conflicts.',
+        },
+        {
+          label: 'Conflicts',
+          value: 'The number of ongoing state-based conflicts that caused at least 25 deaths in a year, summed across four conflict types.',
+        },
+        {
+          label: 'Coverage',
+          value: 'Worldwide annual observations from 1946 to 2025. The death series uses PRIO before 1989 and UCDP from 1989 onward.',
+        },
+        {
+          label: 'Limit',
+          value: 'Deaths from disease, hunger, displacement, and other indirect effects are excluded. Conflict counts do not measure intensity, duration, or civilian harm on their own.',
+        },
+      ],
+    },
   },
   {
     slug: 'inequality-by-country',

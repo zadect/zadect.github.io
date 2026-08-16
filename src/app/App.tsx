@@ -15,6 +15,7 @@ import { HousingStory } from '../features/stories/HousingStory';
 import { LiteracyStory } from '../features/stories/LiteracyStory';
 import { LifeExpectancyStory } from '../features/stories/LifeExpectancyStory';
 import { VaccinationCoverageStory } from '../features/stories/VaccinationCoverageStory';
+import { WarsConflictStory } from '../features/stories/WarsConflictStory';
 import { WomensRightsStory } from '../features/stories/WomensRightsStory';
 import {
   getStory,
@@ -184,6 +185,10 @@ function StoryRoute() {
 
   if (story.slug === 'climate-change') {
     return <ClimateChangeStory story={story} />;
+  }
+
+  if (story.slug === 'wars-and-conflict') {
+    return <WarsConflictStory story={story} />;
   }
 
   if (story.slug === 'literacy') {

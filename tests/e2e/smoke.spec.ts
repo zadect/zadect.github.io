@@ -125,6 +125,19 @@ test('the climate change story renders its annual and decade charts', async ({ p
   ).toBeVisible();
 });
 
+test('the wars and conflict story renders its two measures', async ({ page }) => {
+  await page.goto('/#/bad/wars-and-conflict');
+  await expect(page.getByRole('heading', { name: 'Wars and conflict', exact: true })).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: /deaths can spike when conflicts intensify/i }),
+  ).toBeVisible();
+  await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
+  await expect(page.getByText(/deaths from disease, hunger, displacement/i).first()).toBeVisible();
+  await expect(
+    page.getByRole('link', { name: /Deaths in state-based conflicts/i }).first(),
+  ).toBeVisible();
+});
+
 test('the published Future stories render their charts and context cards', async ({ page }) => {
   await page.goto('/#/future/tech-and-ai');
   await expect(page.getByRole('heading', { name: 'AI & Tech', exact: true })).toBeVisible();
@@ -165,7 +178,7 @@ test('header category links target their homepage sections', async ({ page }) =>
 });
 
 test('a deferred story explains its planned evidence', async ({ page }) => {
-  await page.goto('/#/bad/wars-and-conflict');
+  await page.goto('/#/bad/biodiversity-loss');
   await expect(page.getByText('Coming next')).toBeVisible();
-  await expect(page.getByText(/battle deaths and conflict incidence/i)).toBeVisible();
+  await expect(page.getByText(/species population and extinction-risk indicators/i)).toBeVisible();
 });

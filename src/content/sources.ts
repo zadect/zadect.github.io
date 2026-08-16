@@ -416,6 +416,56 @@ export const sources: SourceReference[] = [
       'GISTEMP anomalies compare each year with the 1951–1980 baseline. A global mean is not a local temperature or an impact estimate, and the annual table is an observational analysis rather than a climate projection.',
   },
   {
+    id: 'ucdp-conflict-deaths',
+    title: 'Deaths in state-based conflicts',
+    publisher: 'Our World in Data',
+    originalPublisher: 'Uppsala Conflict Data Program, Peace Research Institute Oslo, and geoBoundaries',
+    processor: 'Our World in Data',
+    role: 'chart-data',
+    citation:
+      'Uppsala Conflict Data Program (2026), geoBoundaries (2023), and Peace Research Institute Oslo (2017), “Deaths in state-based conflicts,” processed by Our World in Data, OWID Grapher variable 1269993.',
+    methodologyHref: 'https://ucdp.uu.se/downloads/',
+    dataHref: 'https://ourworldindata.org/grapher/deaths-in-state-based-conflicts',
+    originalDataHref: 'https://www.prio.org/data/1',
+    metadataHref:
+      'https://ourworldindata.org/grapher/deaths-in-state-based-conflicts.metadata.json',
+    licenseHref: 'https://ourworldindata.org/licence',
+    version: 'OWID Grapher variable 1269993; last updated 2026-06-10',
+    coverage: 'World annual series, 1946–2025; PRIO before 1989 and UCDP from 1989 onward',
+    retrieved: accessDate,
+    unit: 'Battle-related deaths per year',
+    localPath: 'src/data/wars-conflict.csv',
+    transformation:
+      'The local extract keeps the OWID world rows for best, low, and high estimates. No country allocation, interpolation, or indirect-death estimate is added.',
+    note:
+      'A state-based conflict involves two armed groups, at least one of which is a state, and causes at least 25 deaths in a year. The measure includes combatants and civilians killed by fighting, but not indirect deaths such as disease or starvation.',
+  },
+  {
+    id: 'ucdp-conflict-counts',
+    title: 'Number of ongoing state-based conflicts',
+    publisher: 'Our World in Data',
+    originalPublisher: 'Uppsala Conflict Data Program, Peace Research Institute Oslo, and geoBoundaries',
+    processor: 'Our World in Data',
+    role: 'chart-data',
+    citation:
+      'Uppsala Conflict Data Program and Peace Research Institute Oslo (2026), with geoBoundaries (2023), “Number of state-based conflicts,” processed by Our World in Data, OWID Grapher variables 1270083, 1270084, 1270086, and 1270087.',
+    methodologyHref: 'https://ucdp.uu.se/downloads/',
+    dataHref: 'https://ourworldindata.org/grapher/number-of-state-based-conflicts',
+    originalDataHref: 'https://ucdp.uu.se/downloads/',
+    metadataHref:
+      'https://ourworldindata.org/grapher/number-of-state-based-conflicts.metadata.json',
+    licenseHref: 'https://ourworldindata.org/licence',
+    version: 'OWID Grapher variables 1270083, 1270084, 1270086, and 1270087; last updated 2026-06-10',
+    coverage: 'World annual series, 1946–2025, split by four state-based conflict types',
+    retrieved: accessDate,
+    unit: 'Ongoing conflicts',
+    localPath: 'src/data/wars-conflict.csv',
+    transformation:
+      'The local extract sums the four mutually exclusive world conflict-type columns—interstate, internationalized intrastate, non-internationalized intrastate, and extrasystemic—into one annual total. No regional totals are summed.',
+    note:
+      'A conflict is counted when it is ongoing in a year and reaches at least 25 battle-related deaths. This is a count of conflicts, not a count of countries, wars above a higher threshold, or a measure of how deadly each conflict was.',
+  },
+  {
     id: 'eurostat-ai-adoption',
     title: 'Artificial intelligence by size class of enterprise',
     publisher: 'Eurostat',

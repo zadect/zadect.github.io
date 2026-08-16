@@ -35,6 +35,7 @@ import {
   womensRightsCountrySeries,
   womensRightsSeries,
   womensRightsWorldSeries,
+  warsConflictSeries,
   toCompensationChartSeries,
   toChartSeries,
   toWorkerCompensationChartSeries,
@@ -165,6 +166,32 @@ describe('published story data', () => {
       yearsInPeriod: 6,
       status: 'partial',
     });
+  });
+
+  it('keeps the annual conflict deaths and incidence series complete', () => {
+    expect(warsConflictSeries).toHaveLength(80);
+    expect(warsConflictSeries[0]).toMatchObject({
+      year: 1946,
+      bestDeaths: 296386,
+      lowDeaths: 51238,
+      highDeaths: 474722,
+      ongoingConflicts: 11,
+    });
+    expect(warsConflictSeries.at(-1)).toMatchObject({
+      year: 2025,
+      bestDeaths: 153643,
+      lowDeaths: 141393,
+      highDeaths: 237201,
+      ongoingConflicts: 65,
+    });
+    expect(
+      warsConflictSeries.every(
+        (point) =>
+          point.lowDeaths <= point.bestDeaths &&
+          point.bestDeaths <= point.highDeaths &&
+          point.ongoingConflicts >= 0,
+      ),
+    ).toBe(true);
   });
 
   it('contains the full CEO pay ratio range and both measures', () => {
