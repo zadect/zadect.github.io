@@ -9,6 +9,8 @@ describe('source catalogue', () => {
       'epi-ceo-pay',
       'epi-ceo-compensation',
       'wbl-index-owid',
+      'child-mortality-long-run',
+      'child-mortality-igme',
       'eurostat-ai-adoption',
       'oecd-house-price-income',
     ])) {

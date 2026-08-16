@@ -133,11 +133,33 @@ export const stories: StoryDefinition[] = [
     slug: 'child-mortality',
     title: 'Child mortality',
     category: 'good',
-    status: 'coming-soon',
-    summary: 'The fall in deaths before age five and the places where progress is unfinished.',
+    status: 'published',
+    summary:
+      'The chance of dying before age five has fallen sharply, but the distance between countries remains visible.',
     plannedMetric: 'Under-five mortality rate',
     geography: 'World and regions',
     sourceHint: 'UN Inter-agency Group for Child Mortality Estimation',
+    comparison: {
+      title: 'What child mortality means here',
+      fields: [
+        {
+          label: 'Measure',
+          value: 'Estimated deaths before age five per 100 live births, often called the under-five mortality rate.',
+        },
+        {
+          label: 'Long run',
+          value: 'The world chart uses the longest documented OWID series, with five-year checkpoints from 1800 to 2020 and a 2024 endpoint.',
+        },
+        {
+          label: 'Panel',
+          value: 'The country chart uses exact UN IGME observations for Sweden, Brazil, India, Nigeria, and the United States at shared checkpoints.',
+        },
+        {
+          label: 'Limit',
+          value: 'These are modelled estimates of probability, not a simple count of deaths; country coverage and uncertainty vary over time.',
+        },
+      ],
+    },
   },
   {
     slug: 'life-expectancy',
