@@ -263,6 +263,31 @@ export const sources: SourceReference[] = [
       'Country estimates begin in different years in the source release; the selected checkpoints are used because all five countries have observations at each point.',
   },
   {
+    id: 'life-expectancy-owid',
+    title: 'Life expectancy — long-run data',
+    publisher: 'Our World in Data',
+    originalPublisher:
+      'United Nations World Population Prospects, Human Mortality Database, Zijdeman et al., and Riley',
+    processor: 'Our World in Data',
+    role: 'chart-data',
+    citation:
+      'Riley (2005), Zijdeman et al. (2015), Human Mortality Database (2025), and UN WPP (2024), “Life expectancy — long-run data,” processed by Our World in Data, OWID Grapher variable 1118466.',
+    methodologyHref: 'https://ourworldindata.org/grapher/life-expectancy.metadata.json',
+    dataHref: 'https://ourworldindata.org/grapher/life-expectancy',
+    originalDataHref: 'https://population.un.org/wpp/downloads',
+    metadataHref: 'https://ourworldindata.org/grapher/life-expectancy.metadata.json',
+    licenseHref: 'https://ourworldindata.org/licence',
+    version: 'OWID Grapher variable 1118466; last updated 2025-10-22',
+    coverage: 'World and country estimates, 1543–2023 in the source release',
+    retrieved: accessDate,
+    unit: 'Years of life expectancy at birth',
+    localPath: 'src/data/life-expectancy.csv',
+    transformation:
+      'The local extract keeps exact World observations from 1770–2023 and selected-country observations at 1950, 1980, 2000, and 2023. No values are interpolated or recomputed.',
+    note:
+      'Period life expectancy summarizes the mortality rates observed in a given year. It is not a forecast of how long a newborn will actually live if future mortality changes.',
+  },
+  {
     id: 'eurostat-ai-adoption',
     title: 'Artificial intelligence by size class of enterprise',
     publisher: 'Eurostat',

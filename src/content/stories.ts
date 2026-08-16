@@ -165,11 +165,33 @@ export const stories: StoryDefinition[] = [
     slug: 'life-expectancy',
     title: 'Life expectancy',
     category: 'good',
-    status: 'coming-soon',
-    summary: 'Longer lives are one of the clearest signs of human progress, but not a uniform one.',
+    status: 'published',
+    summary:
+      'People are living longer than previous generations did, while the pandemic and country gaps keep the line honest.',
     plannedMetric: 'Life expectancy at birth',
     geography: 'World and countries',
     sourceHint: 'UN World Population Prospects',
+    comparison: {
+      title: 'What life expectancy means here',
+      fields: [
+        {
+          label: 'Measure',
+          value: 'Period life expectancy at birth: the average years a newborn would live if that year’s age-specific death rates stayed constant.',
+        },
+        {
+          label: 'Long run',
+          value: 'The world series uses the longest documented OWID compilation, from 1770 through 2023.',
+        },
+        {
+          label: 'Panel',
+          value: 'Selected country checkpoints show Sweden, Brazil, India, Nigeria, and the United States at 1950, 1980, 2000, and 2023.',
+        },
+        {
+          label: 'Limit',
+          value: 'It is a period measure, not a prediction for a baby born today, and historical estimates have different source coverage and uncertainty.',
+        },
+      ],
+    },
   },
   {
     slug: 'vaccination-coverage',

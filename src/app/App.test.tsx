@@ -54,6 +54,15 @@ describe('app routes', () => {
     expect(screen.getByText(/estimated probability that a newborn dies/i)).toBeInTheDocument();
   });
 
+  it('renders the published life expectancy story', () => {
+    window.location.hash = '#/good/life-expectancy';
+    render(<App />);
+
+    expect(screen.getByRole('heading', { name: 'Life expectancy' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /average human life became much longer/i })).toBeInTheDocument();
+    expect(screen.getAllByText(/period life expectancy at birth/i)).not.toHaveLength(0);
+  });
+
   it('links Good, Bad, and Future navigation to homepage sections', () => {
     render(<App />);
     expect(screen.getByRole('link', { name: 'Good' })).toHaveAttribute('href', '#/?section=good');

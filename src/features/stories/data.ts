@@ -10,6 +10,7 @@ import childMortalityCsv from '../../data/child-mortality.csv?raw';
 import housingBenchmarkCsv from '../../data/housing-price-income-benchmark.csv?raw';
 import housingPriceIncomeCsv from '../../data/housing-price-income.csv?raw';
 import isoCountryCodesCsv from '../../data/iso-country-codes.csv?raw';
+import lifeExpectancyCsv from '../../data/life-expectancy.csv?raw';
 import literacyMapCsv from '../../data/literacy-map.csv?raw';
 import literacySeriesCsv from '../../data/literacy-series.csv?raw';
 import womensRightsCsv from '../../data/womens-rights-index.csv?raw';
@@ -105,6 +106,14 @@ export interface ChildMortalityPoint {
   code: string;
   year: number;
   rate: number;
+}
+
+export interface LifeExpectancyPoint {
+  series: 'long-run' | 'panel';
+  entity: string;
+  code: string;
+  year: number;
+  years: number;
 }
 
 export interface CeoPayPoint {
@@ -250,6 +259,33 @@ export const childMortalityLongRunSeries = childMortalitySeries.filter(
 );
 
 export const childMortalityPanelSeries = childMortalitySeries.filter(
+  (point) => point.series === 'panel',
+);
+
+export const lifeExpectancySeries = assertUnique(
+  parseCsv(lifeExpectancyCsv).map((row) => {
+    const series = row.series;
+    if (series !== 'long-run' && series !== 'panel') {
+      throw new Error(`Invalid life expectancy series: ${series}`);
+    }
+
+    return {
+      series,
+      entity: textValue(row.entity, 'life expectancy entity'),
+      code: textValue(row.code, 'life expectancy code'),
+      year: numberValue(row.year, 'life expectancy year'),
+      years: boundedNumberValue(row.value, 'life expectancy', 0, 100),
+    };
+  }),
+  (row) => `${row.series}:${row.code}:${row.year}`,
+  'life expectancy',
+) satisfies LifeExpectancyPoint[];
+
+export const lifeExpectancyLongRunSeries = lifeExpectancySeries.filter(
+  (point) => point.series === 'long-run',
+);
+
+export const lifeExpectancyPanelSeries = lifeExpectancySeries.filter(
   (point) => point.series === 'panel',
 );
 

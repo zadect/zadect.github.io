@@ -11,6 +11,7 @@ describe('source catalogue', () => {
       'wbl-index-owid',
       'child-mortality-long-run',
       'child-mortality-igme',
+      'life-expectancy-owid',
       'eurostat-ai-adoption',
       'oecd-house-price-income',
     ])) {

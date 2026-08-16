@@ -70,6 +70,15 @@ test('the child mortality story renders its long-run and country charts', async 
   await expect(page.getByRole('link', { name: /Child mortality rate/i }).first()).toBeVisible();
 });
 
+test('the life expectancy story renders its long-run and country charts', async ({ page }) => {
+  await page.goto('/#/good/life-expectancy');
+  await expect(page.getByRole('heading', { name: 'Life expectancy', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /average human life became much longer/i })).toBeVisible();
+  await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
+  await expect(page.getByText(/one average hides many different lives/i)).toBeVisible();
+  await expect(page.getByRole('link', { name: /Life expectancy/i }).first()).toBeVisible();
+});
+
 test('the published Future stories render their charts and context cards', async ({ page }) => {
   await page.goto('/#/future/tech-and-ai');
   await expect(page.getByRole('heading', { name: 'AI & Tech', exact: true })).toBeVisible();
