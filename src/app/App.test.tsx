@@ -199,6 +199,17 @@ describe('app routes', () => {
     expect(screen.getByText(/not a complete balance sheet/i)).toBeInTheDocument();
   });
 
+  it('renders the published inflation, prices, and energy Future story', () => {
+    window.location.hash = '#/future/inflation-prices-and-energy';
+    render(<App />);
+
+    expect(
+      screen.getByRole('heading', { name: 'Inflation, Prices & Energy' }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /inflation arrives in waves/i })).toBeInTheDocument();
+    expect(screen.getByText(/not a single forecast/i)).toBeInTheDocument();
+  });
+
   it('links Good, Bad, and Future navigation to homepage sections', () => {
     render(<App />);
     expect(screen.getByRole('link', { name: 'Good' })).toHaveAttribute('href', '#/?section=good');

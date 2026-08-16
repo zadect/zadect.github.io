@@ -12,6 +12,7 @@ import electricitySanitationCsv from '../../data/electricity-sanitation.csv?raw'
 import employmentWorkSkillsCsv from '../../data/employment-work-skills.csv?raw';
 import economicGrowthDebtPublicFinanceCsv from '../../data/economic-growth-debt-public-finance.csv?raw';
 import extremePovertyCsv from '../../data/extreme-poverty.csv?raw';
+import inflationPricesEnergyCsv from '../../data/inflation-prices-energy.csv?raw';
 import foodAvailabilityCsv from '../../data/food-availability.csv?raw';
 import hungerCsv from '../../data/hunger-undernourishment.csv?raw';
 import aiAdoptionSizeCsv from '../../data/ai-adoption-size.csv?raw';
@@ -227,6 +228,14 @@ export interface WealthDistributionInequalityPoint {
 
 export interface EconomicGrowthDebtPublicFinancePoint {
   measure: 'growth-world' | 'debt-panel';
+  entity: string;
+  code: string;
+  year: number;
+  value: number;
+}
+
+export interface InflationPricesEnergyPoint {
+  measure: 'inflation-world' | 'inflation-panel' | 'renewables-world';
   entity: string;
   code: string;
   year: number;
@@ -894,6 +903,65 @@ if (
   economicGrowthWorldSeries.some((point) => point.value < -100)
 ) {
   throw new Error('Economic growth and public debt series does not cover the declared panel');
+}
+
+export const inflationPricesEnergySeries = assertUnique(
+  parseCsv(inflationPricesEnergyCsv).map((row) => {
+    const measure = row.measure;
+    if (
+      measure !== 'inflation-world' &&
+      measure !== 'inflation-panel' &&
+      measure !== 'renewables-world'
+    ) {
+      throw new Error(`Invalid inflation and energy measure: ${measure}`);
+    }
+
+    const value =
+      measure === 'renewables-world'
+        ? boundedNumberValue(row.value, 'renewable electricity share', 0, 100)
+        : boundedNumberValue(row.value, 'consumer inflation', -100, 1_000);
+
+    return {
+      measure,
+      entity: textValue(row.entity, 'inflation and energy entity'),
+      code: textValue(row.code, 'inflation and energy code'),
+      year: numberValue(row.year, 'inflation and energy year'),
+      value,
+    };
+  }),
+  (row) => `${row.measure}:${row.code}:${row.year}`,
+  'inflation and energy',
+) satisfies InflationPricesEnergyPoint[];
+
+export const inflationWorldSeries = inflationPricesEnergySeries.filter(
+  (point) => point.measure === 'inflation-world',
+);
+
+export const inflationPanelSeries = inflationPricesEnergySeries.filter(
+  (point) => point.measure === 'inflation-panel',
+);
+
+export const renewableElectricityWorldSeries = inflationPricesEnergySeries.filter(
+  (point) => point.measure === 'renewables-world',
+);
+
+const inflationPanel = ['Brazil', 'Germany', 'India', 'Sweden', 'United Kingdom', 'United States'];
+const inflationPanelCheckpoints = [2000, 2010, 2020, 2024];
+
+if (
+  inflationWorldSeries.length !== 45 ||
+  inflationWorldSeries.some((point, index) => point.year !== 1981 + index) ||
+  inflationPanelSeries.length !== inflationPanel.length * inflationPanelCheckpoints.length ||
+  inflationPanel.some(
+    (entity) =>
+      inflationPanelSeries.filter((point) => point.entity === entity).length !==
+      inflationPanelCheckpoints.length,
+  ) ||
+  inflationPanelSeries.some((point) => !inflationPanelCheckpoints.includes(point.year)) ||
+  renewableElectricityWorldSeries.length !== 126 ||
+  renewableElectricityWorldSeries.some((point, index) => point.year !== 1900 + index)
+) {
+  throw new Error('Inflation and renewable electricity series does not cover the declared panels');
 }
 
 const airPollutionEntities = [

@@ -27,6 +27,8 @@ describe('source catalogue', () => {
       'wid-wealth-top-1-owid',
       'world-bank-annual-gdp-growth',
       'world-bank-public-debt',
+      'imf-consumer-inflation-owid',
+      'ember-renewable-electricity-owid',
       'eurostat-ai-adoption',
       'oecd-house-price-income',
     ])) {
@@ -127,5 +129,16 @@ describe('source catalogue', () => {
     expect(sources.find((source) => source.id === 'world-bank-literacy-coverage')?.coverage).toContain(
       'Coverage audit only',
     );
+  });
+
+  it('keeps inflation and energy attribution distinct', () => {
+    const inflation = sources.find((source) => source.id === 'imf-consumer-inflation-owid');
+    const energy = sources.find((source) => source.id === 'ember-renewable-electricity-owid');
+
+    expect(inflation?.processor).toBe('Our World in Data');
+    expect(inflation?.originalPublisher).toContain('International Monetary Fund');
+    expect(energy?.processor).toBe('Our World in Data');
+    expect(energy?.originalPublisher).toContain('Ember');
+    expect(energy?.note).toContain('not a share of total energy use');
   });
 });

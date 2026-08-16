@@ -5,14 +5,14 @@ describe('story catalogue', () => {
   it('keeps routes unique and retains the published stories', () => {
     const routes = stories.map((story) => `${story.category}/${story.slug}`);
     expect(new Set(routes).size).toBe(routes.length);
-    expect(stories.filter((story) => story.status === 'published')).toHaveLength(21);
+    expect(stories.filter((story) => story.status === 'published')).toHaveLength(22);
   });
 
   it('documents the remaining Future themes as source-directed placeholders', () => {
     const futureStories = stories.filter((story) => story.category === 'future');
 
     expect(futureStories).toHaveLength(11);
-    expect(futureStories.filter((story) => story.status === 'coming-soon')).toHaveLength(6);
+    expect(futureStories.filter((story) => story.status === 'coming-soon')).toHaveLength(5);
     expect(
       futureStories.every(
         (story) => story.plannedMetric && story.geography && story.sourceHint,
@@ -35,7 +35,7 @@ describe('story catalogue', () => {
     ]);
     expect(
         getStoriesByCategory('future').findIndex((story) => story.status === 'coming-soon'),
-    ).toBe(5);
+    ).toBe(6);
   });
 
   it('defines the comparison behind each published story', () => {
@@ -200,6 +200,17 @@ describe('story catalogue', () => {
       'Growth',
       'Debt',
       'Scope',
+      'Limit',
+    ]);
+  });
+
+  it('documents the inflation and energy comparison and source scope', () => {
+    const story = stories.find((candidate) => candidate.slug === 'inflation-prices-and-energy');
+    expect(story?.status).toBe('published');
+    expect(story?.comparison?.fields.map((field) => field.label)).toEqual([
+      'Prices',
+      'Energy',
+      'Coverage',
       'Limit',
     ]);
   });

@@ -242,6 +242,17 @@ test('the published Future stories render their charts and context cards', async
   await expect(
     page.getByRole('link', { name: /Annual GDP growth/i }).first(),
   ).toBeVisible();
+
+  await page.goto('/#/future/inflation-prices-and-energy');
+  await expect(
+    page.getByRole('heading', { name: 'Inflation, Prices & Energy', exact: true }),
+  ).toBeVisible();
+  await expect(page.getByRole('heading', { name: /inflation arrives in waves/i })).toBeVisible();
+  await expect(page.locator('.chart-card__visual svg')).toHaveCount(3);
+  await expect(page.getByText(/different clocks, not a single forecast/i)).toBeVisible();
+  await expect(
+    page.getByRole('link', { name: /Inflation of consumer prices/i }).first(),
+  ).toBeVisible();
 });
 
 test('header category links target their homepage sections', async ({ page }) => {
@@ -265,7 +276,7 @@ test('header category links target their homepage sections', async ({ page }) =>
 });
 
 test('a deferred story explains its planned evidence', async ({ page }) => {
-  await page.goto('/#/future/inflation-prices-and-energy');
+  await page.goto('/#/future/demographics-and-migration');
   await expect(page.getByText('Coming next')).toBeVisible();
-  await expect(page.getByText(/core, headline, goods, and services inflation/i)).toBeVisible();
+  await expect(page.getByText(/median age, dependency ratios/i)).toBeVisible();
 });

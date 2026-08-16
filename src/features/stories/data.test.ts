@@ -34,6 +34,9 @@ import {
   hungerSeries,
   housingBenchmarkSeries,
   housingPriceIncomeSeries,
+  inflationPanelSeries,
+  inflationPricesEnergySeries,
+  inflationWorldSeries,
   inequalityEndpointSeries,
   inequalitySeries,
   isoCountryCodes,
@@ -45,6 +48,7 @@ import {
   lifeExpectancyPanelSeries,
   lifeExpectancySeries,
   publicDebtPanelSeries,
+  renewableElectricityWorldSeries,
   womensRightsCountrySeries,
   womensRightsSeries,
   womensRightsWorldSeries,
@@ -344,6 +348,41 @@ describe('published story data', () => {
     );
     expect(
       wealthDistributionInequalitySeries.every((point) => point.share >= 0 && point.share <= 100),
+    ).toBe(true    );
+  });
+
+  it('keeps inflation and renewable electricity signals separate and complete', () => {
+    expect(inflationWorldSeries).toHaveLength(45);
+    expect(inflationPanelSeries).toHaveLength(24);
+    expect(renewableElectricityWorldSeries).toHaveLength(126);
+    expect(inflationWorldSeries[0]).toMatchObject({
+      measure: 'inflation-world',
+      year: 1981,
+      value: 12.442437,
+    });
+    expect(inflationWorldSeries.at(-1)).toMatchObject({
+      year: 2025,
+      value: 3.0414133,
+    });
+    expect(renewableElectricityWorldSeries[0]).toMatchObject({
+      measure: 'renewables-world',
+      year: 1900,
+      value: 41.22445,
+    });
+    expect(renewableElectricityWorldSeries.at(-1)).toMatchObject({
+      year: 2025,
+      value: 33.760456,
+    });
+    expect(
+      inflationPanelSeries.every((point) => [2000, 2010, 2020, 2024].includes(point.year)),
+    ).toBe(true);
+    expect(new Set(inflationPanelSeries.map((point) => point.entity))).toEqual(
+      new Set(['Brazil', 'Germany', 'India', 'Sweden', 'United Kingdom', 'United States']),
+    );
+    expect(
+      inflationPricesEnergySeries
+        .filter((point) => point.measure === 'renewables-world')
+        .every((point) => point.value >= 0 && point.value <= 100),
     ).toBe(true);
   });
 
