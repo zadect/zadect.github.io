@@ -13,6 +13,8 @@ describe('source catalogue', () => {
       'child-mortality-igme',
       'life-expectancy-owid',
       'who-unicef-dtp3',
+      'world-bank-electricity',
+      'who-unicef-sanitation',
       'eurostat-ai-adoption',
       'oecd-house-price-income',
     ])) {

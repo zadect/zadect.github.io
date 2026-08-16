@@ -314,6 +314,60 @@ export const sources: SourceReference[] = [
       'WHO/UNICEF estimates combine administrative data, quality-assured surveys, and other country information. For non-reporting countries, statistical extrapolation can be used to maintain global and regional estimates.',
   },
   {
+    id: 'world-bank-electricity',
+    title: 'Share of the population with access to electricity',
+    publisher: 'Our World in Data',
+    originalPublisher: 'World Bank Sustainable Development Goals and World Development Indicators',
+    processor: 'Our World in Data',
+    role: 'chart-data',
+    citation:
+      'World Bank (2026), “Share of the population with access to electricity,” processed by Our World in Data, OWID Grapher variable 1293777.',
+    methodologyHref:
+      'https://ourworldindata.org/grapher/share-of-the-population-with-access-to-electricity.metadata.json',
+    dataHref:
+      'https://ourworldindata.org/grapher/share-of-the-population-with-access-to-electricity',
+    originalDataHref:
+      'https://api.worldbank.org/v2/country/all/indicator/EG.ELC.ACCS.ZS?format=json&per_page=20000',
+    metadataHref:
+      'https://ourworldindata.org/grapher/share-of-the-population-with-access-to-electricity.metadata.json',
+    licenseHref: 'https://ourworldindata.org/licence',
+    version: 'OWID Grapher variable 1293777; last updated 2026-07-27',
+    coverage: 'World and country estimates, source timespan 1990–2024; world extract 1998–2024',
+    retrieved: accessDate,
+    unit: 'Percent of the population',
+    localPath: 'src/data/electricity-sanitation.csv',
+    transformation:
+      'The local extract keeps the exact OWID world observations from 1998–2024 and selected-country observations at 2000, 2010, and 2024. No values are interpolated or recomputed.',
+    note:
+      'Access means having an electricity source that can provide basic lighting and charge a phone or power a radio for four hours per day. The source uses surveys, censuses, provider reports, and modelled estimates where data is missing; it does not measure reliability or affordability.',
+  },
+  {
+    id: 'who-unicef-sanitation',
+    title: 'Share of the population using at least basic sanitation',
+    publisher: 'Our World in Data',
+    originalPublisher: 'WHO/UNICEF Joint Monitoring Programme for Water Supply, Sanitation and Hygiene',
+    processor: 'Our World in Data',
+    role: 'chart-data',
+    citation:
+      'WHO/UNICEF Joint Monitoring Programme (2025), “Share of the population using at least basic sanitation,” processed by Our World in Data, OWID Grapher variable 1132764.',
+    methodologyHref:
+      'https://washdata.org/topics/methods/data-sources',
+    dataHref: 'https://ourworldindata.org/grapher/share-using-at-least-basic-sanitation',
+    originalDataHref: 'https://washdata.org/data/household#!/',
+    metadataHref:
+      'https://ourworldindata.org/grapher/share-using-at-least-basic-sanitation.metadata.json',
+    licenseHref: 'https://ourworldindata.org/licence',
+    version: 'OWID Grapher variable 1132764; last updated 2025-12-08',
+    coverage: 'World and country estimates, 2000–2024 in the source release',
+    retrieved: accessDate,
+    unit: 'Percent of the population',
+    localPath: 'src/data/electricity-sanitation.csv',
+    transformation:
+      'The local extract keeps the exact OWID world observations from 2000–2024 and selected-country observations at 2000, 2010, and 2024. No values are interpolated or recomputed.',
+    note:
+      'Basic sanitation is an improved facility not shared with another household. The JMP compiles nationally representative surveys, censuses, administrative data, and service-provider data; this is use, not the higher safely managed standard.',
+  },
+  {
     id: 'eurostat-ai-adoption',
     title: 'Artificial intelligence by size class of enterprise',
     publisher: 'Eurostat',

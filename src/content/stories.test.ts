@@ -5,7 +5,7 @@ describe('story catalogue', () => {
   it('keeps routes unique and retains the published stories', () => {
     const routes = stories.map((story) => `${story.category}/${story.slug}`);
     expect(new Set(routes).size).toBe(routes.length);
-    expect(stories.filter((story) => story.status === 'published')).toHaveLength(10);
+    expect(stories.filter((story) => story.status === 'published')).toHaveLength(11);
   });
 
   it('documents the remaining Future themes as source-directed placeholders', () => {
@@ -75,6 +75,17 @@ describe('story catalogue', () => {
       'Measure',
       'Long run',
       'Panel',
+      'Limit',
+    ]);
+  });
+
+  it('documents the electricity and sanitation comparison and source scope', () => {
+    const story = stories.find((candidate) => candidate.slug === 'electricity-and-sanitation');
+    expect(story?.status).toBe('published');
+    expect(story?.comparison?.fields.map((field) => field.label)).toEqual([
+      'Electricity',
+      'Sanitation',
+      'Scope',
       'Limit',
     ]);
   });
