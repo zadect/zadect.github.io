@@ -14,6 +14,7 @@ import lifeExpectancyCsv from '../../data/life-expectancy.csv?raw';
 import literacyMapCsv from '../../data/literacy-map.csv?raw';
 import literacySeriesCsv from '../../data/literacy-series.csv?raw';
 import womensRightsCsv from '../../data/womens-rights-index.csv?raw';
+import vaccinationCoverageCsv from '../../data/vaccination-coverage.csv?raw';
 import worldTopology from '../../data/world-countries-110m.json';
 import { feature } from 'topojson-client';
 import type { FeatureCollection, Geometry } from 'geojson';
@@ -114,6 +115,14 @@ export interface LifeExpectancyPoint {
   code: string;
   year: number;
   years: number;
+}
+
+export interface VaccinationCoveragePoint {
+  series: 'world' | 'panel';
+  entity: string;
+  code: string;
+  year: number;
+  coverage: number;
 }
 
 export interface CeoPayPoint {
@@ -286,6 +295,33 @@ export const lifeExpectancyLongRunSeries = lifeExpectancySeries.filter(
 );
 
 export const lifeExpectancyPanelSeries = lifeExpectancySeries.filter(
+  (point) => point.series === 'panel',
+);
+
+export const vaccinationCoverageSeries = assertUnique(
+  parseCsv(vaccinationCoverageCsv).map((row) => {
+    const series = row.series;
+    if (series !== 'world' && series !== 'panel') {
+      throw new Error(`Invalid vaccination coverage series: ${series}`);
+    }
+
+    return {
+      series,
+      entity: textValue(row.entity, 'vaccination entity'),
+      code: textValue(row.code, 'vaccination code'),
+      year: numberValue(row.year, 'vaccination year'),
+      coverage: boundedNumberValue(row.value, 'vaccination coverage', 0, 100),
+    };
+  }),
+  (row) => `${row.series}:${row.code}:${row.year}`,
+  'vaccination coverage',
+) satisfies VaccinationCoveragePoint[];
+
+export const vaccinationWorldSeries = vaccinationCoverageSeries.filter(
+  (point) => point.series === 'world',
+);
+
+export const vaccinationPanelSeries = vaccinationCoverageSeries.filter(
   (point) => point.series === 'panel',
 );
 

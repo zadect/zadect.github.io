@@ -12,6 +12,7 @@ describe('source catalogue', () => {
       'child-mortality-long-run',
       'child-mortality-igme',
       'life-expectancy-owid',
+      'who-unicef-dtp3',
       'eurostat-ai-adoption',
       'oecd-house-price-income',
     ])) {

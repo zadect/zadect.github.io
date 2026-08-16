@@ -288,6 +288,32 @@ export const sources: SourceReference[] = [
       'Period life expectancy summarizes the mortality rates observed in a given year. It is not a forecast of how long a newborn will actually live if future mortality changes.',
   },
   {
+    id: 'who-unicef-dtp3',
+    title: 'DTP3 vaccination coverage',
+    publisher: 'Our World in Data',
+    originalPublisher: 'WHO and UNICEF',
+    processor: 'Our World in Data',
+    role: 'chart-data',
+    citation:
+      'WHO and UNICEF (2025), “Share of one-year-olds who have had three doses of the diphtheria, tetanus and pertussis vaccine,” processed by Our World in Data, OWID Grapher variable 1077436.',
+    methodologyHref:
+      'https://ourworldindata.org/grapher/share-of-children-immunized-dtp3.metadata.json',
+    dataHref: 'https://ourworldindata.org/grapher/share-of-children-immunized-dtp3',
+    originalDataHref: 'https://immunizationdata.who.int/',
+    metadataHref:
+      'https://ourworldindata.org/grapher/share-of-children-immunized-dtp3.metadata.json',
+    licenseHref: 'https://ourworldindata.org/licence',
+    version: 'OWID Grapher variable 1077436; last updated 2025-07-15',
+    coverage: 'World and country estimates, 1980–2024 in the source release',
+    retrieved: accessDate,
+    unit: 'Percent of one-year-olds receiving DTP3',
+    localPath: 'src/data/vaccination-coverage.csv',
+    transformation:
+      'The local extract keeps the exact annual world series and selected-country observations at 2000, 2019, and 2024. No values are interpolated or recomputed.',
+    note:
+      'WHO/UNICEF estimates combine administrative data, quality-assured surveys, and other country information. For non-reporting countries, statistical extrapolation can be used to maintain global and regional estimates.',
+  },
+  {
     id: 'eurostat-ai-adoption',
     title: 'Artificial intelligence by size class of enterprise',
     publisher: 'Eurostat',

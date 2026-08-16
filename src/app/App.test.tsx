@@ -63,6 +63,17 @@ describe('app routes', () => {
     expect(screen.getAllByText(/period life expectancy at birth/i)).not.toHaveLength(0);
   });
 
+  it('renders the published vaccination coverage story', () => {
+    window.location.hash = '#/good/vaccination-coverage';
+    render(<App />);
+
+    expect(screen.getByRole('heading', { name: 'Vaccination coverage' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /high vaccination baseline/i })).toBeInTheDocument();
+    expect(
+      screen.getAllByText(/share of one-year-olds who received the third dose/i),
+    ).not.toHaveLength(0);
+  });
+
   it('links Good, Bad, and Future navigation to homepage sections', () => {
     render(<App />);
     expect(screen.getByRole('link', { name: 'Good' })).toHaveAttribute('href', '#/?section=good');

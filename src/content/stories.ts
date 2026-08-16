@@ -197,11 +197,33 @@ export const stories: StoryDefinition[] = [
     slug: 'vaccination-coverage',
     title: 'Vaccination coverage',
     category: 'good',
-    status: 'coming-soon',
-    summary: 'The spread of routine immunisation and the setbacks that can reverse it.',
+    status: 'published',
+    summary:
+      'Routine immunisation reached far more children, but the recent dip shows how quickly coverage can slip.',
     plannedMetric: 'Share of children receiving routine vaccines',
     geography: 'World and countries',
     sourceHint: 'WHO and UNICEF estimates',
+    comparison: {
+      title: 'What vaccination coverage means here',
+      fields: [
+        {
+          label: 'Measure',
+          value: 'Share of one-year-olds who received the third dose of the diphtheria, tetanus, and pertussis vaccine (DTP3).',
+        },
+        {
+          label: 'Long run',
+          value: 'The world series runs from 1980 to 2024 and keeps the annual source estimates, including the pandemic-era decline.',
+        },
+        {
+          label: 'Panel',
+          value: 'Selected countries are shown at common checkpoints in 2000, 2019, and 2024.',
+        },
+        {
+          label: 'Limit',
+          value: 'DTP3 is one routine-vaccine indicator; it does not measure every vaccine, protection quality, or whether every child completed the schedule on time.',
+        },
+      ],
+    },
   },
   {
     slug: 'electricity-and-sanitation',
