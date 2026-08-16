@@ -41,6 +41,7 @@ describe('source catalogue', () => {
   it('keeps literacy, democracy, and map geometry provenance complete', () => {
     for (const source of getSources([
       'literacy-owid',
+      'world-bank-literacy-coverage',
       'vdem-liberal-democracy',
       'world-atlas-geometry',
       'iso-country-codes',
@@ -62,6 +63,9 @@ describe('source catalogue', () => {
     );
     expect(sources.find((source) => source.id === 'vdem-liberal-democracy')?.originalPublisher).toContain(
       'V-Dem',
+    );
+    expect(sources.find((source) => source.id === 'world-bank-literacy-coverage')?.coverage).toContain(
+      'Coverage audit only',
     );
   });
 });

@@ -27,6 +27,7 @@ describe('app routes', () => {
     render(<App />);
     expect(screen.getByRole('heading', { name: 'Literacy' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /literacy rose across a broad panel/i })).toBeInTheDocument();
+    expect(screen.getByText(/World Bank\/UNESCO cross-check found the same reporting gap/i)).toBeInTheDocument();
 
     window.location.hash = '#/bad/democratic-backsliding';
     render(<App />);

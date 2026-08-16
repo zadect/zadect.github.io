@@ -116,6 +116,11 @@ export interface MapFeatureProperties {
   year?: number;
   startYear?: number;
   endYear?: number;
+  valueLabel?: string;
+  yearLabel?: string;
+  startValueLabel?: string;
+  endValueLabel?: string;
+  changeLabel?: string;
   hasData: boolean;
 }
 
@@ -231,6 +236,12 @@ function withMapProperties(
     features: worldFeatures.features.map((worldFeature) => {
       const id = String(worldFeature.id ?? '').padStart(3, '0');
       const properties = valueById.get(id);
+      const hasData = Boolean(properties);
+      const value = properties?.value;
+      const year = properties?.year;
+      const startValue = properties?.startValue;
+      const endValue = properties?.endValue;
+      const change = properties?.change;
 
       return {
         ...worldFeature,
@@ -238,7 +249,15 @@ function withMapProperties(
           id,
           country: worldFeature.properties?.country ?? worldFeature.properties?.name ?? 'Unknown',
           ...properties,
-          hasData: Boolean(properties),
+          value: value ?? 0,
+          change: change ?? 0,
+          valueLabel: hasData && value !== undefined ? value.toFixed(1) : 'No qualifying data',
+          yearLabel: hasData && year !== undefined ? String(year) : 'Not reported',
+          startValueLabel:
+            hasData && startValue !== undefined ? startValue.toFixed(3) : 'Not reported',
+          endValueLabel: hasData && endValue !== undefined ? endValue.toFixed(3) : 'Not reported',
+          changeLabel: hasData && change !== undefined ? change.toFixed(3) : 'Not reported',
+          hasData,
         },
       };
     }),

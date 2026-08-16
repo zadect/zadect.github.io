@@ -56,6 +56,18 @@ describe('published story data', () => {
     expect(literacySeries.every((point) => point.rate >= 0 && point.rate <= 100)).toBe(true);
     expect(literacyMapSeries.every((point) => point.year >= 2018)).toBe(true);
     expect(literacyMapGeoJson.features.some((mapFeature) => mapFeature.properties.hasData)).toBe(true);
+    expect(
+      literacyMapGeoJson.features.find(
+        (mapFeature) => mapFeature.properties.id === '840',
+      ),
+    ).toMatchObject({
+      properties: { hasData: false, value: 0, valueLabel: 'No qualifying data' },
+    });
+    expect(
+      literacyMapGeoJson.features.find(
+        (mapFeature) => mapFeature.properties.id === '840',
+      )?.geometry,
+    ).toBeTruthy();
   });
 
   it('keeps democracy map changes tied to both endpoints and normalized joins', () => {

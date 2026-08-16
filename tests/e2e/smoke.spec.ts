@@ -23,6 +23,7 @@ test('the new literacy and democracy stories render their charts and maps', asyn
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
   expect(await page.locator('.map-card__visual .mark-shape path').count()).toBeGreaterThan(50);
   await expect(page.getByText(/qualifying observation from 2018 onward/i)).toBeVisible();
+  await expect(page.getByText(/World Bank\/UNESCO cross-check found the same reporting gap/i)).toBeVisible();
 
   await page.goto('/#/bad/democratic-backsliding');
   await expect(
@@ -32,6 +33,7 @@ test('the new literacy and democracy stories render their charts and maps', asyn
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
   expect(await page.locator('.map-card__visual .mark-shape path').count()).toBeGreaterThan(100);
   await expect(page.getByText(/one of the 2020 or 2025 endpoint values is missing/i)).toBeVisible();
+  await expect(page.getByText(/missing coverage is not mistaken for a zero change/i)).toBeVisible();
 });
 
 test('header Good and Bad links target the homepage sections', async ({ page }) => {

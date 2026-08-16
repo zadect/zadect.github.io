@@ -72,11 +72,25 @@ const democracyMapSpec: TopLevelSpec = {
       },
       value: '#4a4f4d',
     },
+    stroke: {
+      condition: {
+        test: 'datum.properties.hasData === true',
+        value: '#313535',
+      },
+      value: '#b8b1aa',
+    },
+    strokeWidth: {
+      condition: {
+        test: 'datum.properties.hasData === true',
+        value: 0.45,
+      },
+      value: 0.9,
+    },
     tooltip: [
       { field: 'properties.country', type: 'nominal', title: 'Country' },
-      { field: 'properties.startValue', type: 'quantitative', title: '2020 index', format: '.3f' },
-      { field: 'properties.endValue', type: 'quantitative', title: '2025 index', format: '.3f' },
-      { field: 'properties.change', type: 'quantitative', title: 'Change', format: '+.3f' },
+      { field: 'properties.startValueLabel', type: 'nominal', title: '2020 index' },
+      { field: 'properties.endValueLabel', type: 'nominal', title: '2025 index' },
+      { field: 'properties.changeLabel', type: 'nominal', title: 'Change' },
     ],
   },
   background: '#313535',
@@ -113,6 +127,10 @@ export function DemocraticBackslidingStory({ story }: DemocraticBackslidingStory
     'world-atlas-geometry',
     'iso-country-codes',
   ]);
+  const mappedFeatures = democracyMapGeoJson.features.filter(
+    (mapFeature) => mapFeature.properties.country !== 'Unknown',
+  );
+  const noDataFeatures = mappedFeatures.filter((mapFeature) => !mapFeature.properties.hasData);
 
   return (
     <StoryFrame story={story}>
@@ -193,7 +211,8 @@ export function DemocraticBackslidingStory({ story }: DemocraticBackslidingStory
         sources={mapSources}
         tone="bad"
         definition="Difference between the 2025 and 2020 Liberal Democracy Index values; negative means the index declined."
-        noDataLabel="Grey indicates that one of the 2020 or 2025 endpoint values is missing."
+        noDataLabel="Grey outlined countries are present on the map, but one of the 2020 or 2025 endpoint values is missing."
+        coverageNote={`${noDataFeatures.length} of ${mappedFeatures.length} mapped country polygons lack one of the two endpoint values. They remain drawn and outlined so missing coverage is not mistaken for a zero change.`}
       />
 
       <section className="method-note method-note--dark">

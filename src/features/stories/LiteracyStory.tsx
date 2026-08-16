@@ -65,12 +65,26 @@ const literacyMapSpec: TopLevelSpec = {
         scale: { domain: [0, 100], range: ['#d8ebdd', '#8abfa5', '#2d746a'] },
         legend: { title: 'Literacy (%)' },
       },
-      value: '#d9ddd6',
+      value: '#b8c1bb',
+    },
+    stroke: {
+      condition: {
+        test: 'datum.properties.hasData === true',
+        value: '#f4f1e9',
+      },
+      value: '#66736b',
+    },
+    strokeWidth: {
+      condition: {
+        test: 'datum.properties.hasData === true',
+        value: 0.45,
+      },
+      value: 0.9,
     },
     tooltip: [
       { field: 'properties.country', type: 'nominal', title: 'Country' },
-      { field: 'properties.value', type: 'quantitative', title: 'Literacy', format: '.1f' },
-      { field: 'properties.year', type: 'quantitative', title: 'Reported year', format: 'd' },
+      { field: 'properties.valueLabel', type: 'nominal', title: 'Literacy (%)' },
+      { field: 'properties.yearLabel', type: 'nominal', title: 'Reported year' },
     ],
   },
 };
@@ -87,12 +101,31 @@ export function LiteracyStory({ story }: LiteracyStoryProps) {
   const lowerReference = latestFor('Nigeria');
   const upperReference = latestFor('Spain');
   const storySources = getSources(['literacy-owid']);
-  const mapSources = getSources(['literacy-owid', 'world-atlas-geometry', 'iso-country-codes']);
-  const allSources = getSources([
+  const mapSources = getSources([
     'literacy-owid',
+    'world-bank-literacy-coverage',
     'world-atlas-geometry',
     'iso-country-codes',
   ]);
+  const allSources = getSources([
+    'literacy-owid',
+    'world-bank-literacy-coverage',
+    'world-atlas-geometry',
+    'iso-country-codes',
+  ]);
+  const mappedFeatures = literacyMapGeoJson.features.filter(
+    (mapFeature) => mapFeature.properties.country !== 'Unknown',
+  );
+  const noDataFeatures = mappedFeatures.filter((mapFeature) => !mapFeature.properties.hasData);
+  const westernExamples = [
+    ['United States', '840'],
+    ['Canada', '124'],
+    ['Germany', '276'],
+    ['France', '250'],
+    ['United Kingdom', '826'],
+  ]
+    .filter(([, id]) => noDataFeatures.some((mapFeature) => mapFeature.properties.id === id))
+    .map(([country]) => country);
 
   return (
     <StoryFrame story={story}>
@@ -158,7 +191,8 @@ export function LiteracyStory({ story }: LiteracyStoryProps) {
         ]}
         sources={mapSources}
         definition="Latest available basic adult-literacy observation per country, restricted to observations from 2018 onward; reporting years are not identical."
-        noDataLabel="Grey indicates no qualifying observation from 2018 onward."
+        noDataLabel="Grey outlined countries are present on the map, but have no qualifying observation from 2018 onward."
+        coverageNote={`${noDataFeatures.length} of ${mappedFeatures.length} mapped country polygons have no qualifying recent observation. OWID contains older historical entries for some of them, but those are not treated as current. A World Bank/UNESCO cross-check found the same reporting gap; examples here include ${westernExamples.join(', ')}.`}
       />
 
       <section className="method-note">
@@ -166,8 +200,9 @@ export function LiteracyStory({ story }: LiteracyStoryProps) {
         <h2>More literacy is a real gain. The measurement is still imperfect.</h2>
         <p>
           Earlier observations often used different age thresholds, survey methods, or minimum
-          definitions of literacy. Many countries stopped reporting once rates became close to
-          universal. The map keeps those limits visible instead of filling the gaps with estimates.
+          definitions of literacy. Many developed countries stopped reporting once rates became
+          close to universal. The map keeps those countries visible and outlined instead of
+          filling the gaps with estimates or presenting a 1950 observation as current.
         </p>
       </section>
 

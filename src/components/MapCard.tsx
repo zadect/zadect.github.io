@@ -17,6 +17,7 @@ interface MapCardProps {
   sources: SourceReference[];
   tone?: 'good' | 'bad';
   noDataLabel?: string;
+  coverageNote?: string;
 }
 
 export function MapCard({
@@ -30,6 +31,7 @@ export function MapCard({
   sources,
   tone = 'good',
   noDataLabel = 'Grey indicates no data in the map extract.',
+  coverageNote,
 }: MapCardProps) {
   const mapId = title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 
@@ -56,6 +58,7 @@ export function MapCard({
         <span aria-hidden="true" />
         {noDataLabel}
       </p>
+      {coverageNote ? <p className="map-card__coverage-note">{coverageNote}</p> : null}
       <details className="data-table">
         <summary>View the map data</summary>
         <div className="data-table__scroll">

@@ -810,7 +810,15 @@ h2 {
   width: 0.85rem;
   height: 0.85rem;
   border: 1px solid #a7aaa6;
-  background: #d9ddd6;
+  background: #b8c1bb;
+}
+
+.map-card__coverage-note {
+  max-width: 760px;
+  margin-top: 0.7rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.55;
 }
 
 .site-shell--bad .map-card__legend-note {
@@ -820,6 +828,10 @@ h2 {
 .site-shell--bad .map-card__legend-note span {
   border-color: #747a77;
   background: #4a4f4d;
+}
+
+.site-shell--bad .map-card__coverage-note {
+  color: #b8b1aa;
 }
 
 .site-shell--bad .vega-tooltip {

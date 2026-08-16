@@ -191,6 +191,28 @@ export const sources: SourceReference[] = [
       'This is basic literacy: the share of adults able to read and write a simple statement about everyday life. Historical definitions and population coverage vary, and the measure does not capture functional literacy.',
   },
   {
+    id: 'world-bank-literacy-coverage',
+    title: 'Literacy rate, adult total',
+    publisher: 'World Bank World Development Indicators',
+    originalPublisher: 'UNESCO Institute for Statistics',
+    processor: 'World Bank',
+    citation:
+      'World Bank (2026), World Development Indicators, “Literacy rate, adult total (% of people ages 15 and above),” indicator SE.ADT.LITR.ZS; coverage cross-check accessed 2026-08-16.',
+    methodologyHref: 'https://data.worldbank.org/indicator/SE.ADT.LITR.ZS',
+    dataHref:
+      'https://api.worldbank.org/v2/country/all/indicator/SE.ADT.LITR.ZS?format=json&per_page=20000',
+    originalDataHref: 'https://databrowser.uis.unesco.org/resources/bulk',
+    metadataHref: 'https://api.worldbank.org/v2/sources/2/series/SE.ADT.LITR.ZS?format=json',
+    version: 'World Development Indicators source 2; last updated 2026-07-13',
+    coverage: 'Coverage audit only; no World Bank values are merged into the plotted map',
+    retrieved: accessDate,
+    unit: 'Percent of people aged 15 and older',
+    transformation:
+      'The latest non-null country observations were checked against the OWID extract. No values are merged because the indicator does not provide a newer comparable observation for many developed countries.',
+    note:
+      'This independent UNESCO-based indicator confirms the reporting gap for many high-income countries. It is cited to explain missing recent observations, not presented as a second series on the map.',
+  },
+  {
     id: 'vdem-liberal-democracy',
     title: 'Liberal Democracy Index',
     publisher: 'Our World in Data',
