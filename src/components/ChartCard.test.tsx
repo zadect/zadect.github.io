@@ -37,4 +37,24 @@ describe('ChartCard', () => {
     expect(screen.getByText('A clearly defined measure.')).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /CEO-to-worker compensation ratio/i })).toBeInTheDocument();
   });
+
+  it('supports the Future chart treatment', () => {
+    render(
+      <ChartCard
+        eyebrow="Future signal"
+        title="A lilac chart"
+        description="Description"
+        spec={spec}
+        data={[{ year: 2024, value: 10 }]}
+        columns={[
+          { key: 'year', label: 'Year' },
+          { key: 'value', label: 'Value' },
+        ]}
+        sources={getSources(['eurostat-ai-adoption'])}
+        tone="future"
+      />,
+    );
+
+    expect(screen.getByRole('article')).toHaveAttribute('data-chart-tone', 'future');
+  });
 });

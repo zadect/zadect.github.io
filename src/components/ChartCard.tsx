@@ -6,7 +6,7 @@ interface ChartRow {
   [key: string]: number | string | undefined;
 }
 
-type ChartTone = 'good' | 'bad';
+export type ChartTone = 'good' | 'bad' | 'future';
 
 interface ChartCardProps {
   eyebrow: string;
@@ -32,7 +32,8 @@ export function ChartCard({
   definition,
 }: ChartCardProps) {
   const chartId = title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-  const chartBackground = tone === 'bad' ? '#313535' : '#f8f6ef';
+  const chartBackground =
+    tone === 'bad' ? '#313535' : tone === 'future' ? '#f7f4fa' : '#f8f6ef';
   const defaultAxis =
     tone === 'bad'
       ? {
@@ -42,6 +43,14 @@ export function ChartCard({
           tickColor: '#a7aaa6',
           gridColor: '#555b59',
         }
+      : tone === 'future'
+        ? {
+            labelColor: '#5f5870',
+            titleColor: '#3e3459',
+            domainColor: '#aaa0bd',
+            tickColor: '#aaa0bd',
+            gridColor: '#ddd5e8',
+          }
       : {
           labelColor: '#5b635f',
           titleColor: '#35403d',
@@ -74,11 +83,20 @@ export function ChartCard({
               ...(sourceLegend ?? {}),
             },
           }
+        : tone === 'future'
+          ? {
+              legend: {
+                labelColor: '#5f5870',
+                titleColor: '#3e3459',
+                symbolStrokeColor: '#6b5a98',
+                ...(sourceLegend ?? {}),
+              },
+            }
         : hasSourceLegend
           ? { legend: sourceLegend }
           : {}),
       view: {
-        stroke: tone === 'bad' ? '#6a706d' : '#d6d8ce',
+        stroke: tone === 'bad' ? '#6a706d' : tone === 'future' ? '#d7cee4' : '#d6d8ce',
         fill: chartBackground,
         ...(typeof spec.config === 'object' && spec.config !== null && 'view' in spec.config
           ? spec.config.view

@@ -58,14 +58,20 @@ describe('app routes', () => {
     );
   });
 
-  it('renders Future stories as source-directed placeholders', () => {
+  it('renders the published AI and housing Future stories', () => {
     window.location.hash = '#/future/tech-and-ai';
     render(<App />);
 
-    expect(screen.getByRole('heading', { name: 'Tech & AI' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'AI & Tech' })).toBeInTheDocument();
     expect(screen.getByText('Future signal')).toBeInTheDocument();
-    expect(screen.getByText(/Firm AI adoption, AI tools by role or task/i)).toBeInTheDocument();
-    expect(screen.getByText(/OECD AI Policy Observatory/i)).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /adoption rose/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /useful studies, kept out/i })).toBeInTheDocument();
+
+    window.location.hash = '#/future/housing-cities-and-infrastructure';
+    render(<App />);
+    expect(screen.getByRole('heading', { name: 'Housing, Cities & Infrastructure' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /prices and incomes did not move together/i })).toBeInTheDocument();
+    expect(screen.getByText(/does not measure rents/i)).toBeInTheDocument();
   });
 
   it('renders the CEO definitions, absolute views, and deferred country context', () => {
