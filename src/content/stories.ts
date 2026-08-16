@@ -702,13 +702,34 @@ export const stories: StoryDefinition[] = [
     slug: 'demographics-and-migration',
     title: 'Demographics & Migration',
     category: 'future',
-    status: 'coming-soon',
-    summary: 'Aging, workforce supply, and migration patterns that will shape economies and public services.',
-    plannedMetric:
-      'Median age, dependency ratios, pension replacement, labour-force participation, net migration, and labour-market integration',
-    geography: 'World, regions, and OECD countries',
+    status: 'published',
+    summary:
+      'The world is getting older on a long arc, while the share of people born abroad changes on a different, more uneven clock.',
+    plannedMetric: 'Median age and share of the population born in another country',
+    geography: 'World and six selected countries',
     sourceHint:
-      'UN World Population Prospects, OECD Pensions at a Glance, ILOSTAT, UN DESA, and OECD Indicators of Immigrant Integration',
+      'UN World Population Prospects and UN DESA International Migrant Stock, via Our World in Data',
+    comparison: {
+      title: 'Two population signals, kept separate',
+      fields: [
+        {
+          label: 'Age',
+          value: 'Median age: the age dividing a population into two equal halves. The world chart separates observed estimates from the UN medium-scenario projection.',
+        },
+        {
+          label: 'Migration',
+          value: 'Share of residents born in another country, measured as migrant stock rather than annual migration flow.',
+        },
+        {
+          label: 'Coverage',
+          value: 'Median-age estimates run from 1950 to 2023, with a medium-scenario projection from 2024 to 2100. Migrant-stock observations cover 1990 to 2024 at five-year intervals.',
+        },
+        {
+          label: 'Limit',
+          value: 'Neither line measures dependency, pension readiness, integration, or the causes of population change. The projection is a scenario, and the migration series is not a flow count.',
+        },
+      ],
+    },
   },
   {
     slug: 'housing-cities-and-infrastructure',

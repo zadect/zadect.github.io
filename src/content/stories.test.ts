@@ -5,14 +5,14 @@ describe('story catalogue', () => {
   it('keeps routes unique and retains the published stories', () => {
     const routes = stories.map((story) => `${story.category}/${story.slug}`);
     expect(new Set(routes).size).toBe(routes.length);
-    expect(stories.filter((story) => story.status === 'published')).toHaveLength(22);
+    expect(stories.filter((story) => story.status === 'published')).toHaveLength(23);
   });
 
   it('documents the remaining Future themes as source-directed placeholders', () => {
     const futureStories = stories.filter((story) => story.category === 'future');
 
     expect(futureStories).toHaveLength(11);
-    expect(futureStories.filter((story) => story.status === 'coming-soon')).toHaveLength(5);
+    expect(futureStories.filter((story) => story.status === 'coming-soon')).toHaveLength(4);
     expect(
       futureStories.every(
         (story) => story.plannedMetric && story.geography && story.sourceHint,
@@ -35,7 +35,7 @@ describe('story catalogue', () => {
     ]);
     expect(
         getStoriesByCategory('future').findIndex((story) => story.status === 'coming-soon'),
-    ).toBe(6);
+    ).toBe(7);
   });
 
   it('defines the comparison behind each published story', () => {
@@ -210,6 +210,17 @@ describe('story catalogue', () => {
     expect(story?.comparison?.fields.map((field) => field.label)).toEqual([
       'Prices',
       'Energy',
+      'Coverage',
+      'Limit',
+    ]);
+  });
+
+  it('documents the demographics and migration comparison and source scope', () => {
+    const story = stories.find((candidate) => candidate.slug === 'demographics-and-migration');
+    expect(story?.status).toBe('published');
+    expect(story?.comparison?.fields.map((field) => field.label)).toEqual([
+      'Age',
+      'Migration',
       'Coverage',
       'Limit',
     ]);

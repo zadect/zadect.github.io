@@ -17,6 +17,7 @@ import {
   democracyMapGeoJson,
   democracyMapSeries,
   democracySeries,
+  demographicsMigrationSeries,
   economicGrowthDebtPublicFinanceSeries,
   economicGrowthWorldSeries,
   climateAnnualSeries,
@@ -47,6 +48,11 @@ import {
   forcedDisplacementSeries,
   lifeExpectancyPanelSeries,
   lifeExpectancySeries,
+  medianAgeObservedWorldSeries,
+  medianAgePanelSeries,
+  medianAgeProjectionWorldSeries,
+  migrationPanelSeries,
+  migrationWorldSeries,
   publicDebtPanelSeries,
   renewableElectricityWorldSeries,
   womensRightsCountrySeries,
@@ -383,6 +389,46 @@ describe('published story data', () => {
       inflationPricesEnergySeries
         .filter((point) => point.measure === 'renewables-world')
         .every((point) => point.value >= 0 && point.value <= 100),
+    ).toBe(true);
+  });
+
+  it('keeps demographic estimates, projections, and migrant stock separate', () => {
+    expect(medianAgeObservedWorldSeries).toHaveLength(74);
+    expect(medianAgeProjectionWorldSeries).toHaveLength(77);
+    expect(medianAgePanelSeries).toHaveLength(24);
+    expect(migrationWorldSeries).toHaveLength(8);
+    expect(migrationPanelSeries).toHaveLength(30);
+    expect(medianAgeObservedWorldSeries[0]).toMatchObject({
+      measure: 'median-observed-world',
+      year: 1950,
+      value: 22.159,
+    });
+    expect(medianAgeObservedWorldSeries.at(-1)).toMatchObject({
+      year: 2023,
+      value: 30.364,
+    });
+    expect(medianAgeProjectionWorldSeries[0]).toMatchObject({
+      measure: 'median-projection-world',
+      year: 2024,
+      value: 30.621,
+    });
+    expect(medianAgeProjectionWorldSeries.at(-1)).toMatchObject({
+      year: 2100,
+      value: 42.125,
+    });
+    expect(migrationWorldSeries.at(-1)).toMatchObject({
+      measure: 'migration-world',
+      year: 2024,
+      value: 3.7256262,
+    });
+    expect(
+      medianAgePanelSeries.every((point) => [1950, 1980, 2000, 2023].includes(point.year)),
+    ).toBe(true);
+    expect(
+      migrationPanelSeries.every((point) => [1990, 2000, 2010, 2020, 2024].includes(point.year)),
+    ).toBe(true);
+    expect(
+      demographicsMigrationSeries.every((point) => point.value >= 0 && point.value <= 100),
     ).toBe(true);
   });
 

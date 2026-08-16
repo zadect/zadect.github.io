@@ -13,6 +13,7 @@ import employmentWorkSkillsCsv from '../../data/employment-work-skills.csv?raw';
 import economicGrowthDebtPublicFinanceCsv from '../../data/economic-growth-debt-public-finance.csv?raw';
 import extremePovertyCsv from '../../data/extreme-poverty.csv?raw';
 import inflationPricesEnergyCsv from '../../data/inflation-prices-energy.csv?raw';
+import demographicsMigrationCsv from '../../data/demographics-migration.csv?raw';
 import foodAvailabilityCsv from '../../data/food-availability.csv?raw';
 import hungerCsv from '../../data/hunger-undernourishment.csv?raw';
 import aiAdoptionSizeCsv from '../../data/ai-adoption-size.csv?raw';
@@ -236,6 +237,19 @@ export interface EconomicGrowthDebtPublicFinancePoint {
 
 export interface InflationPricesEnergyPoint {
   measure: 'inflation-world' | 'inflation-panel' | 'renewables-world';
+  entity: string;
+  code: string;
+  year: number;
+  value: number;
+}
+
+export interface DemographicsMigrationPoint {
+  measure:
+    | 'median-observed-world'
+    | 'median-projection-world'
+    | 'median-panel'
+    | 'migration-world'
+    | 'migration-panel';
   entity: string;
   code: string;
   year: number;
@@ -962,6 +976,94 @@ if (
   renewableElectricityWorldSeries.some((point, index) => point.year !== 1900 + index)
 ) {
   throw new Error('Inflation and renewable electricity series does not cover the declared panels');
+}
+
+export const demographicsMigrationSeries = assertUnique(
+  parseCsv(demographicsMigrationCsv).map((row) => {
+    const measure = row.measure;
+    if (
+      measure !== 'median-observed-world' &&
+      measure !== 'median-projection-world' &&
+      measure !== 'median-panel' &&
+      measure !== 'migration-world' &&
+      measure !== 'migration-panel'
+    ) {
+      throw new Error(`Invalid demographics and migration measure: ${measure}`);
+    }
+
+    return {
+      measure,
+      entity: textValue(row.entity, 'demographics and migration entity'),
+      code: textValue(row.code, 'demographics and migration code'),
+      year: numberValue(row.year, 'demographics and migration year'),
+      value: boundedNumberValue(
+        row.value,
+        measure.startsWith('median') ? 'median age' : 'foreign-born population share',
+        0,
+        100,
+      ),
+    };
+  }),
+  (row) => `${row.measure}:${row.code}:${row.year}`,
+  'demographics and migration',
+) satisfies DemographicsMigrationPoint[];
+
+export const medianAgeObservedWorldSeries = demographicsMigrationSeries.filter(
+  (point) => point.measure === 'median-observed-world',
+);
+
+export const medianAgeProjectionWorldSeries = demographicsMigrationSeries.filter(
+  (point) => point.measure === 'median-projection-world',
+);
+
+export const medianAgePanelSeries = demographicsMigrationSeries.filter(
+  (point) => point.measure === 'median-panel',
+);
+
+export const migrationWorldSeries = demographicsMigrationSeries.filter(
+  (point) => point.measure === 'migration-world',
+);
+
+export const migrationPanelSeries = demographicsMigrationSeries.filter(
+  (point) => point.measure === 'migration-panel',
+);
+
+const demographicsPanelEntities = [
+  'Brazil',
+  'Germany',
+  'India',
+  'Japan',
+  'Nigeria',
+  'United States',
+];
+const medianAgePanelCheckpoints = [1950, 1980, 2000, 2023];
+const migrationPanelCheckpoints = [1990, 2000, 2010, 2020, 2024];
+
+if (
+  medianAgeObservedWorldSeries.length !== 74 ||
+  medianAgeObservedWorldSeries.some((point, index) => point.year !== 1950 + index) ||
+  medianAgeProjectionWorldSeries.length !== 77 ||
+  medianAgeProjectionWorldSeries.some((point, index) => point.year !== 2024 + index) ||
+  medianAgePanelSeries.length !== demographicsPanelEntities.length * medianAgePanelCheckpoints.length ||
+  demographicsPanelEntities.some(
+    (entity) =>
+      medianAgePanelSeries.filter((point) => point.entity === entity).length !==
+      medianAgePanelCheckpoints.length,
+  ) ||
+  medianAgePanelSeries.some((point) => !medianAgePanelCheckpoints.includes(point.year)) ||
+  migrationWorldSeries.length !== 8 ||
+  migrationWorldSeries.some(
+    (point, index) => point.year !== [1990, 1995, 2000, 2005, 2010, 2015, 2020, 2024][index],
+  ) ||
+  migrationPanelSeries.length !== demographicsPanelEntities.length * migrationPanelCheckpoints.length ||
+  demographicsPanelEntities.some(
+    (entity) =>
+      migrationPanelSeries.filter((point) => point.entity === entity).length !==
+      migrationPanelCheckpoints.length,
+  ) ||
+  migrationPanelSeries.some((point) => !migrationPanelCheckpoints.includes(point.year))
+) {
+  throw new Error('Demographics and migration series does not cover the declared panels');
 }
 
 const airPollutionEntities = [

@@ -29,6 +29,8 @@ describe('source catalogue', () => {
       'world-bank-public-debt',
       'imf-consumer-inflation-owid',
       'ember-renewable-electricity-owid',
+      'un-wpp-median-age-owid',
+      'un-desa-migrant-stock-owid',
       'eurostat-ai-adoption',
       'oecd-house-price-income',
     ])) {
@@ -140,5 +142,17 @@ describe('source catalogue', () => {
     expect(energy?.processor).toBe('Our World in Data');
     expect(energy?.originalPublisher).toContain('Ember');
     expect(energy?.note).toContain('not a share of total energy use');
+  });
+
+  it('keeps demographic and migration attribution distinct', () => {
+    const age = sources.find((source) => source.id === 'un-wpp-median-age-owid');
+    const migration = sources.find((source) => source.id === 'un-desa-migrant-stock-owid');
+
+    expect(age?.processor).toBe('Our World in Data');
+    expect(age?.citation).toContain('World Population Prospects 2024');
+    expect(age?.note).toContain('medium scenario');
+    expect(migration?.processor).toBe('Our World in Data');
+    expect(migration?.citation).toContain('International Migrant Stock 2024');
+    expect(migration?.note).toContain('not an annual migration flow');
   });
 });

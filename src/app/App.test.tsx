@@ -210,6 +210,17 @@ describe('app routes', () => {
     expect(screen.getByText(/not a single forecast/i)).toBeInTheDocument();
   });
 
+  it('renders the published demographics and migration Future story', () => {
+    window.location.hash = '#/future/demographics-and-migration';
+    render(<App />);
+
+    expect(screen.getByRole('heading', { name: 'Demographics & Migration' })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: /the world gets older on a long arc/i }),
+    ).toBeInTheDocument();
+    expect(screen.getByText(/population structure is not destiny/i)).toBeInTheDocument();
+  });
+
   it('links Good, Bad, and Future navigation to homepage sections', () => {
     render(<App />);
     expect(screen.getByRole('link', { name: 'Good' })).toHaveAttribute('href', '#/?section=good');
