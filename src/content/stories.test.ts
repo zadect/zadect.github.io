@@ -5,14 +5,14 @@ describe('story catalogue', () => {
   it('keeps routes unique and retains the published stories', () => {
     const routes = stories.map((story) => `${story.category}/${story.slug}`);
     expect(new Set(routes).size).toBe(routes.length);
-    expect(stories.filter((story) => story.status === 'published')).toHaveLength(25);
+    expect(stories.filter((story) => story.status === 'published')).toHaveLength(26);
   });
 
   it('documents the remaining Future themes as source-directed placeholders', () => {
     const futureStories = stories.filter((story) => story.category === 'future');
 
     expect(futureStories).toHaveLength(11);
-    expect(futureStories.filter((story) => story.status === 'coming-soon')).toHaveLength(2);
+    expect(futureStories.filter((story) => story.status === 'coming-soon')).toHaveLength(1);
     expect(
       futureStories.every(
         (story) => story.plannedMetric && story.geography && story.sourceHint,
@@ -35,7 +35,7 @@ describe('story catalogue', () => {
     ]);
     expect(
         getStoriesByCategory('future').findIndex((story) => story.status === 'coming-soon'),
-    ).toBe(9);
+    ).toBe(10);
   });
 
   it('defines the comparison behind each published story', () => {
@@ -248,6 +248,19 @@ describe('story catalogue', () => {
       'Overall score',
       'Order and security',
       'Median',
+      'Limit',
+    ]);
+  });
+
+  it('documents the climate and environmental futures comparison and source scope', () => {
+    const story = stories.find(
+      (candidate) => candidate.slug === 'climate-and-environmental-futures',
+    );
+    expect(story?.status).toBe('published');
+    expect(story?.comparison?.fields.map((field) => field.label)).toEqual([
+      'Total',
+      'Per person',
+      'Coverage',
       'Limit',
     ]);
   });

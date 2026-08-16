@@ -832,13 +832,33 @@ export const stories: StoryDefinition[] = [
     slug: 'climate-and-environmental-futures',
     title: 'Climate & Environmental Futures',
     category: 'future',
-    status: 'coming-soon',
-    summary: 'Emissions, physical climate risks, and adaptation capacity that will shape the conditions ahead.',
-    plannedMetric:
-      'Sector greenhouse-gas emissions, carbon intensity, disaster costs, heat exposure, and adaptation readiness',
-    geography: 'World, regions, and countries',
-    sourceHint:
-      'Global Carbon Project or EDGAR, WMO and EM-DAT, ND-GAIN, and compatible Our World in Data series',
+    status: 'published',
+    summary:
+      'Fossil CO₂ emissions have risen sharply, while the per-person picture is split between high emitters and a still lower-emitting majority.',
+    plannedMetric: 'Territorial fossil CO₂ emissions and fossil CO₂ emissions per person',
+    geography: 'World and eight selected countries',
+    sourceHint: 'Global Carbon Project via Our World in Data',
+    comparison: {
+      title: 'What the emissions lines compare',
+      fields: [
+        {
+          label: 'Total',
+          value: 'Annual territorial fossil CO₂ emissions from coal, oil, gas, flaring, and cement, measured in million tonnes.',
+        },
+        {
+          label: 'Per person',
+          value: 'The same territorial fossil CO₂ total divided by the population in that year, measured in tonnes per person.',
+        },
+        {
+          label: 'Coverage',
+          value: 'The world series runs from 1850 to 2024. The country panel uses Brazil, China, Germany, India, Japan, Nigeria, the United Kingdom, and the United States at shared checkpoints from 1950 to 2024.',
+        },
+        {
+          label: 'Limit',
+          value: 'These are production-based emissions, not the emissions embodied in imported goods. They exclude land-use change and do not forecast future emissions or climate impacts.',
+        },
+      ],
+    },
   },
   {
     slug: 'capital-markets-and-money-flows',
