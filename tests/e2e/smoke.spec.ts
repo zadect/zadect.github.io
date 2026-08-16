@@ -50,6 +50,25 @@ test('the new literacy and democracy stories render their charts and maps', asyn
   await expect(page.getByText(/missing coverage is not mistaken for a zero change/i)).toBeVisible();
 });
 
+test('the published Future stories render their charts and context cards', async ({ page }) => {
+  await page.goto('/#/future/tech-and-ai');
+  await expect(page.getByRole('heading', { name: 'AI & Tech', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /adoption rose, but the series has a real gap/i })).toBeVisible();
+  await expect(page.locator('.chart-card__visual svg')).toHaveCount(3);
+  await expect(page.getByText(/2022 position is deliberate/i)).toBeVisible();
+  await expect(page.getByRole('heading', { name: /useful studies, kept out/i })).toBeVisible();
+  await expect(page.locator('.study-card')).toHaveCount(2);
+
+  await page.goto('/#/future/housing-cities-and-infrastructure');
+  await expect(
+    page.getByRole('heading', { name: 'Housing, Cities & Infrastructure', exact: true }),
+  ).toBeVisible();
+  await expect(page.getByRole('heading', { name: /prices and incomes did not move together/i })).toBeVisible();
+  await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
+  await expect(page.getByText(/not an absolute affordability ranking/i)).toBeVisible();
+  await expect(page.locator('.study-card')).toHaveCount(2);
+});
+
 test('header category links target their homepage sections', async ({ page }) => {
   await page.goto('/#/bad/ceo-pay-gap');
   await page.locator('header.site-header').getByRole('link', { name: 'Good', exact: true }).click();
@@ -64,10 +83,10 @@ test('header category links target their homepage sections', async ({ page }) =>
   await page.locator('header.site-header').getByRole('link', { name: 'Future', exact: true }).click();
   await expect(page).toHaveURL(/#\/\?section=future/);
   await expect(page.locator('#future-section')).toBeVisible();
-  await page.locator('#future-section').getByRole('link', { name: /tech & ai/i }).click();
+  await page.locator('#future-section').getByRole('link', { name: /ai & tech/i }).click();
   await expect(page).toHaveURL(/#\/future\/tech-and-ai/);
-  await expect(page.locator('section.coming-soon > p.eyebrow')).toHaveText('Future signal');
-  await expect(page.getByText(/OECD AI Policy Observatory/i)).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'AI & Tech', exact: true })).toBeVisible();
+  await expect(page.locator('.chart-card__visual svg')).toHaveCount(3);
 });
 
 test('a deferred story explains its planned evidence', async ({ page }) => {

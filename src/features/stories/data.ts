@@ -4,6 +4,10 @@ import democracyMapCsv from '../../data/democracy-map.csv?raw';
 import democracySeriesCsv from '../../data/democracy-series.csv?raw';
 import foodAvailabilityCsv from '../../data/food-availability.csv?raw';
 import hungerCsv from '../../data/hunger-undernourishment.csv?raw';
+import aiAdoptionSizeCsv from '../../data/ai-adoption-size.csv?raw';
+import aiAdoptionCsv from '../../data/ai-adoption.csv?raw';
+import housingBenchmarkCsv from '../../data/housing-price-income-benchmark.csv?raw';
+import housingPriceIncomeCsv from '../../data/housing-price-income.csv?raw';
 import isoCountryCodesCsv from '../../data/iso-country-codes.csv?raw';
 import literacyMapCsv from '../../data/literacy-map.csv?raw';
 import literacySeriesCsv from '../../data/literacy-series.csv?raw';
@@ -49,6 +53,40 @@ function boundedNumberValue(value: string, field: string, minimum: number, maxim
   return parsed;
 }
 
+function textValue(value: string, field: string) {
+  if (!value.trim()) {
+    throw new Error(`Invalid ${field} value: empty`);
+  }
+  return value;
+}
+
+function assertUnique<T>(rows: T[], keyOf: (row: T) => string, label: string) {
+  const keys = rows.map(keyOf);
+  if (new Set(keys).size !== keys.length) {
+    throw new Error(`Duplicate ${label} row`);
+  }
+  return rows;
+}
+
+function assertCompleteAnnualPanel(
+  rows: Array<{ geo: string; year: number }>,
+  countries: string[],
+  startYear: number,
+  endYear: number,
+  label: string,
+) {
+  const expectedYears = endYear - startYear + 1;
+  for (const country of countries) {
+    const countryRows = rows.filter((row) => row.geo === country);
+    if (
+      countryRows.length !== expectedYears ||
+      countryRows.some((row) => row.year < startYear || row.year > endYear)
+    ) {
+      throw new Error(`Incomplete ${label} panel for ${country}`);
+    }
+  }
+}
+
 export interface HungerPoint {
   year: number;
   prevalence: number;
@@ -74,6 +112,41 @@ export interface CeoCompensationPoint {
   workersAll: number;
   workersIndustries?: number;
   status: CeoValueStatus;
+}
+
+export interface AiAdoptionPoint {
+  geo: string;
+  country: string;
+  year: number;
+  value: number;
+}
+
+export interface AiEnterpriseSizePoint {
+  geo: string;
+  country: string;
+  sizeEmp: string;
+  year: number;
+  value: number;
+}
+
+export interface AiAdoptionChartPoint {
+  year: number;
+  value?: number;
+  status: 'reported' | 'not-reported';
+}
+
+export interface HousingPriceIncomePoint {
+  geo: string;
+  country: string;
+  year: number;
+  value: number;
+}
+
+export interface HousingBenchmarkPoint {
+  geo: string;
+  country: string;
+  year: number;
+  value: number;
 }
 
 export interface LiteracyPoint {
@@ -162,6 +235,114 @@ export const ceoCompensationSeries: CeoCompensationPoint[] = parseCsv(ceoCompens
     };
   },
 );
+
+const aiReportedYears = new Set([2021, 2023, 2024, 2025]);
+
+export const aiAdoptionSeries = assertUnique(
+  parseCsv(aiAdoptionCsv).map((row) => {
+    const year = numberValue(row.year, 'AI adoption year');
+    if (!aiReportedYears.has(year)) {
+      throw new Error(`Unexpected AI adoption year: ${year}`);
+    }
+
+    return {
+      geo: textValue(row.geo, 'AI adoption geography'),
+      country: textValue(row.country, 'AI adoption country'),
+      year,
+      value: boundedNumberValue(row.value, 'AI adoption percentage', 0, 100),
+    };
+  }),
+  (row) => `${row.geo}:${row.year}`,
+  'AI adoption',
+);
+
+export const aiEuAdoptionSeries = aiAdoptionSeries.filter((row) => row.geo === 'EU27_2020');
+
+export const aiCountryAdoptionSeries = aiAdoptionSeries.filter(
+  (row) => row.geo !== 'EU27_2020',
+);
+
+export const aiEuAdoptionChartSeries: AiAdoptionChartPoint[] = [2021, 2022, 2023, 2024, 2025].map(
+  (year) => {
+    const point = aiEuAdoptionSeries.find((row) => row.year === year);
+    return point
+      ? { year, value: point.value, status: 'reported' }
+      : { year, status: 'not-reported' };
+  },
+);
+
+export const aiCountryEndpointSeries = aiCountryAdoptionSeries.filter(
+  (row) => row.year === 2021 || row.year === 2025,
+);
+
+export const aiEnterpriseSizeSeries = assertUnique(
+  parseCsv(aiAdoptionSizeCsv).map((row) => {
+    const year = numberValue(row.year, 'AI enterprise-size year');
+    if (year !== 2025) {
+      throw new Error(`Unexpected AI enterprise-size year: ${year}`);
+    }
+
+    if (!['10-49', '50-249', 'GE250'].includes(row.size_emp)) {
+      throw new Error(`Unexpected AI enterprise-size class: ${row.size_emp}`);
+    }
+
+    return {
+      geo: textValue(row.geo, 'AI enterprise-size geography'),
+      country: textValue(row.country, 'AI enterprise-size country'),
+      sizeEmp: row.size_emp,
+      year,
+      value: boundedNumberValue(row.value, 'AI enterprise-size percentage', 0, 100),
+    };
+  }),
+  (row) => `${row.geo}:${row.sizeEmp}:${row.year}`,
+  'AI enterprise-size',
+);
+
+const housingCountries = ['CAN', 'FRA', 'DEU', 'JPN', 'NLD', 'SWE', 'GBR', 'USA'];
+
+export const housingPriceIncomeSeries = assertUnique(
+  parseCsv(housingPriceIncomeCsv).map((row) => ({
+    geo: textValue(row.geo, 'housing geography'),
+    country: textValue(row.country, 'housing country'),
+    year: numberValue(row.year, 'housing year'),
+    value: numberValue(row.value, 'house-price-to-income index'),
+  })),
+  (row) => `${row.geo}:${row.year}`,
+  'housing price-to-income',
+);
+
+assertCompleteAnnualPanel(
+  housingPriceIncomeSeries,
+  housingCountries,
+  2000,
+  2024,
+  'housing price-to-income',
+);
+
+export const housingBenchmarkSeries = assertUnique(
+  parseCsv(housingBenchmarkCsv).map((row) => {
+    const year = numberValue(row.year, 'housing benchmark year');
+    if (year !== 2024) {
+      throw new Error(`Unexpected housing benchmark year: ${year}`);
+    }
+
+    return {
+      geo: textValue(row.geo, 'housing benchmark geography'),
+      country: textValue(row.country, 'housing benchmark country'),
+      year,
+      value: numberValue(row.value, 'housing long-term benchmark'),
+    };
+  }),
+  (row) => `${row.geo}:${row.year}`,
+  'housing long-term benchmark',
+);
+
+if (
+  new Set(housingBenchmarkSeries.map((row) => row.geo)).size !== housingCountries.length ||
+  housingBenchmarkSeries.some((row) => !housingCountries.includes(row.geo))
+) {
+  throw new Error('Housing long-term benchmark does not cover the declared country panel');
+}
 
 export const literacySeries: LiteracyPoint[] = parseCsv(literacySeriesCsv).map((row) => ({
   country: row.country,

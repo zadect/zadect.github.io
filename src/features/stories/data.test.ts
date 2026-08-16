@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import {
+  aiAdoptionSeries,
+  aiCountryEndpointSeries,
+  aiEnterpriseSizeSeries,
+  aiEuAdoptionChartSeries,
+  aiEuAdoptionSeries,
   ceoCompensationSeries,
   ceoPaySeries,
   democracyMapGeoJson,
@@ -7,6 +12,8 @@ import {
   democracySeries,
   foodAvailabilitySeries,
   hungerSeries,
+  housingBenchmarkSeries,
+  housingPriceIncomeSeries,
   isoCountryCodes,
   literacyMapGeoJson,
   literacyMapSeries,
@@ -48,6 +55,38 @@ describe('published story data', () => {
     expect(aligned[0].year).toBe(1992);
     expect(toCompensationChartSeries(aligned)).toHaveLength(aligned.length * 2);
     expect(toWorkerCompensationChartSeries(aligned)).toHaveLength(aligned.length);
+  });
+
+  it('keeps the Eurostat AI reporting gap and declared enterprise scopes explicit', () => {
+    expect(aiAdoptionSeries).toHaveLength(36);
+    expect(aiEuAdoptionSeries.map((point) => point.year)).toEqual([2021, 2023, 2024, 2025]);
+    expect(aiEuAdoptionChartSeries).toHaveLength(5);
+    expect(aiEuAdoptionChartSeries[1]).toMatchObject({ year: 2022, status: 'not-reported' });
+    expect(aiCountryEndpointSeries).toHaveLength(16);
+    expect(aiEnterpriseSizeSeries).toHaveLength(3);
+    expect(aiEnterpriseSizeSeries.find((point) => point.sizeEmp === 'GE250')?.value).toBe(55.03);
+    expect(aiAdoptionSeries.every((point) => point.value >= 0 && point.value <= 100)).toBe(true);
+  });
+
+  it('keeps the OECD housing panel complete and its benchmark separate', () => {
+    expect(housingPriceIncomeSeries).toHaveLength(200);
+    expect(new Set(housingPriceIncomeSeries.map((point) => point.geo)).size).toBe(8);
+    expect(
+      housingPriceIncomeSeries.every((point) => point.year >= 2000 && point.year <= 2024),
+    ).toBe(true);
+    expect(
+      new Set(
+        housingPriceIncomeSeries
+          .filter((point) => point.geo === 'CAN')
+          .map((point) => point.year),
+      ).size,
+    ).toBe(25);
+    expect(housingBenchmarkSeries).toHaveLength(8);
+    expect(housingBenchmarkSeries.every((point) => point.year === 2024)).toBe(true);
+    expect(housingBenchmarkSeries.find((point) => point.geo === 'CAN')?.value).toBeCloseTo(
+      156.6927,
+      3,
+    );
   });
 
   it('keeps the literacy panel and latest-observation map within the stated bounds', () => {

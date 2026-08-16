@@ -1,18 +1,18 @@
 import { describe, expect, it } from 'vitest';
-import { stories } from './stories';
+import { getStoriesByCategory, stories } from './stories';
 
 describe('story catalogue', () => {
   it('keeps routes unique and retains the published stories', () => {
     const routes = stories.map((story) => `${story.category}/${story.slug}`);
     expect(new Set(routes).size).toBe(routes.length);
-    expect(stories.filter((story) => story.status === 'published')).toHaveLength(4);
+    expect(stories.filter((story) => story.status === 'published')).toHaveLength(6);
   });
 
-  it('documents all Future themes as source-directed placeholders', () => {
+  it('documents the remaining Future themes as source-directed placeholders', () => {
     const futureStories = stories.filter((story) => story.category === 'future');
 
     expect(futureStories).toHaveLength(11);
-    expect(futureStories.every((story) => story.status === 'coming-soon')).toBe(true);
+    expect(futureStories.filter((story) => story.status === 'coming-soon')).toHaveLength(9);
     expect(
       futureStories.every(
         (story) => story.plannedMetric && story.geography && story.sourceHint,
@@ -26,6 +26,16 @@ describe('story catalogue', () => {
         .filter((story) => story.status === 'coming-soon')
         .every((story) => story.plannedMetric && story.sourceHint),
     ).toBe(true);
+  });
+
+  it('puts published stories first while preserving catalogue order within each status', () => {
+    expect(getStoriesByCategory('future').map((story) => story.slug).slice(0, 2)).toEqual([
+        'tech-and-ai',
+        'housing-cities-and-infrastructure',
+    ]);
+    expect(
+        getStoriesByCategory('future').findIndex((story) => story.status === 'coming-soon'),
+    ).toBe(2);
   });
 
   it('defines the comparison behind each published story', () => {

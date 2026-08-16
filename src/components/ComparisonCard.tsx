@@ -1,15 +1,16 @@
 interface ComparisonCardProps {
   title: string;
   fields: Array<{ label: string; value: string }>;
-  tone?: 'good' | 'bad';
+  tone?: 'good' | 'bad' | 'future';
 }
 
 export function ComparisonCard({ title, fields, tone = 'good' }: ComparisonCardProps) {
   const titleId = `comparison-card-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+  const toneClass = tone === 'bad' ? ' definition-card--dark' : tone === 'future' ? ' definition-card--future' : '';
 
   return (
     <section
-      className={`definition-card${tone === 'bad' ? ' definition-card--dark' : ''}`}
+      className={`definition-card${toneClass}`}
       aria-labelledby={titleId}
     >
       <p className="eyebrow">What this compares</p>

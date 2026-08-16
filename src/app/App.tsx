@@ -2,10 +2,12 @@ import { useEffect } from 'react';
 import { HashRouter, Link, Route, Routes, useLocation, useParams } from 'react-router-dom';
 import { SiteHeader } from '../components/SiteHeader';
 import { StoryCard } from '../components/StoryCard';
+import { AiTechStory } from '../features/stories/AiTechStory';
 import { ComingSoonStory } from '../features/stories/ComingSoonStory';
 import { CeoPayStory } from '../features/stories/CeoPayStory';
 import { DemocraticBackslidingStory } from '../features/stories/DemocraticBackslidingStory';
 import { HungerStory } from '../features/stories/HungerStory';
+import { HousingStory } from '../features/stories/HousingStory';
 import { LiteracyStory } from '../features/stories/LiteracyStory';
 import {
   getStory,
@@ -159,6 +161,14 @@ function StoryRoute() {
 
   if (story.slug === 'democratic-backsliding') {
     return <DemocraticBackslidingStory story={story} />;
+  }
+
+  if (story.slug === 'tech-and-ai') {
+    return <AiTechStory story={story} />;
+  }
+
+  if (story.slug === 'housing-cities-and-infrastructure') {
+    return <HousingStory story={story} />;
   }
 
   return <NotFoundPage />;

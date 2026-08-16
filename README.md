@@ -42,6 +42,7 @@ Published story routes use hash navigation:
 - `/#/bad/ceo-pay-gap`
 - `/#/bad/democratic-backsliding`
 - `/#/future/tech-and-ai`
+- `/#/future/housing-cities-and-infrastructure`
 
 ### Production build and preview
 
@@ -80,34 +81,6 @@ transformation, version, and measurement notes.
 
 Do not update a data file without updating its source metadata and the story
 copy if the coverage, methodology, or interpretation changes.
-
-### Future catalogue
-
-The Future category contains deliberately data-free placeholders. Its
-“Likely sources” are research directions for a later implementation, not
-citations for a chart or evidence of a trend. Do not add a Future story to the
-source catalogue or make a numerical claim until a compatible, versioned
-dataset and its methodology have been reviewed.
-
-### Map coverage and no-data treatment
-
-- The literacy map uses the latest adult-literacy observation from 2018
-  onward. Many developed countries stopped reporting basic literacy after
-  rates approached universal levels; their older OWID observations are not
-  presented as current.
-- A World Bank/UNESCO indicator cross-check is cited on the Literacy page.
-  It confirms that the missing recent observations are a source-coverage
-  issue, not a reason to invent or merge incompatible values.
-- Country polygons remain visible even without a qualifying value. They use a
-  stronger grey fill and outline, and the map states that they are no-data
-  countries. The data table contains only rows with plotted observations.
-- The democracy map requires both 2020 and 2025 V-Dem endpoint values.
-  Countries missing either endpoint remain drawn and outlined rather than
-  being treated as zero change.
-- Map geometry is pinned locally from World Atlas/Natural Earth and joined by
-  ISO numeric code. Small territories may not have a polygon at the selected
-  110m map scale; that geometry limitation is cited separately.
-
 
 ### Citation and comparability rules
 

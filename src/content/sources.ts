@@ -4,6 +4,7 @@ export interface SourceReference {
   publisher: string;
   originalPublisher: string;
   processor?: string;
+  role?: 'chart-data' | 'research-context' | 'coverage' | 'geometry';
   citation: string;
   methodologyHref: string;
   dataHref: string;
@@ -166,6 +167,150 @@ export const sources: SourceReference[] = [
     transformation: 'No figures are reported because no open, compatible, versionable series was identified.',
     note:
       'French executive-pay research is useful context, but no open series with definitions and coverage compatible with EPI’s US measure was retained.',
+  },
+  {
+    id: 'eurostat-ai-adoption',
+    title: 'Artificial intelligence by size class of enterprise',
+    publisher: 'Eurostat',
+    originalPublisher: 'Eurostat',
+    processor: 'The Good & The Bad local extract',
+    role: 'chart-data',
+    citation:
+      'Eurostat (2026), “Artificial intelligence by size class of enterprise,” dataset isoc_eb_ai, accessed 2026-08-16.',
+    methodologyHref:
+      'https://ec.europa.eu/eurostat/databrowser/view/isoc_eb_ai/default/table?lang=en',
+    dataHref:
+      'https://ec.europa.eu/eurostat/databrowser/view/isoc_eb_ai/default/table?lang=en',
+    originalDataHref:
+      'https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/isoc_eb_ai',
+    metadataHref: 'https://ec.europa.eu/eurostat/databrowser/view/isoc_eb_ai/default/table?lang=en',
+    version: 'Eurostat dataset isoc_eb_ai, retrieved 2026-08-16',
+    coverage:
+      'Enterprises with 10 or more persons employed in covered non-financial activities; EU-27 and eight selected European countries, reported years 2021, 2023, 2024, and 2025',
+    retrieved: accessDate,
+    unit: 'Percentage of enterprises',
+    localPath: 'src/data/ai-adoption.csv and src/data/ai-adoption-size.csv',
+    transformation:
+      'The local extracts retain Eurostat values for E_AI_TANY, unit PC_ENT, size GE10, and activity code C10-S951_X_K. The API-reported 2022 absence is kept as a gap; no values are interpolated.',
+    note:
+      'E_AI_TANY means enterprises using at least one listed AI technology. Adoption is not a measure of productivity, job creation, job loss, worker access, or social benefit.',
+  },
+  {
+    id: 'ilo-ai-exposure-context',
+    title: 'Generative AI and Jobs: A Refined Global Index of Occupational Exposure',
+    publisher: 'International Labour Organization',
+    originalPublisher: 'International Labour Organization',
+    role: 'research-context',
+    citation:
+      'Gmyrek et al. (2025), “Generative AI and Jobs: A Refined Global Index of Occupational Exposure,” ILO Working Paper 140.',
+    methodologyHref:
+      'https://researchrepository.ilo.org/esploro/outputs/encyclopediaEntry/Generative-AI-and-jobs-a-refined/995653520102676',
+    dataHref:
+      'https://researchrepository.ilo.org/esploro/outputs/encyclopediaEntry/Generative-AI-and-jobs-a-refined/995653520102676',
+    originalDataHref: 'https://doi.org/10.54394/HETP0387',
+    version: 'ILO Working Paper 140, 2025',
+    coverage: 'Global occupational exposure analysis; context only, not plotted',
+    retrieved: accessDate,
+    unit: 'Research estimates; not a chart unit',
+    transformation:
+      'No study estimates are copied into local extracts or chart rows. The page summarizes the study’s method and boundary only.',
+    note:
+      'The paper combines task-level occupational data, worker assessment, and expert review to estimate exposure gradients. Exposure is not a forecast of job losses.',
+  },
+  {
+    id: 'uk-ai-scenarios-context',
+    title: 'AI Scenarios 2030: Helping policymakers plan for the future of AI',
+    publisher: 'UK Government Office for Science',
+    originalPublisher: 'UK Government Office for Science',
+    role: 'research-context',
+    citation:
+      'UK Government Office for Science (2026), “AI Scenarios 2030: Helping policymakers plan for the future of AI.”',
+    methodologyHref:
+      'https://www.gov.uk/government/publications/ai-scenarios-2030-helping-policymakers-plan-for-the-future-of-ai',
+    dataHref:
+      'https://www.gov.uk/government/publications/ai-scenarios-2030-helping-policymakers-plan-for-the-future-of-ai',
+    originalDataHref:
+      'https://assets.publishing.service.gov.uk/media/6a2aa1fbe50716856ed4aeea/AI_Scenarios_2030_pdf.pdf',
+    version: 'UK Government Office for Science publication, updated 2026-06-15',
+    coverage: 'Five plausible AI futures to 2030; context only, not plotted',
+    retrieved: accessDate,
+    unit: 'Scenario narratives; not a chart unit',
+    transformation:
+      'No scenario values are copied into local extracts or chart rows. The page uses the publication only to frame uncertainty and planning.',
+    note:
+      'This is expert-informed scenario planning for stress-testing policy. Its scenarios are not predictions and do not extend the observed Eurostat series.',
+  },
+  {
+    id: 'oecd-house-price-income',
+    title: 'Analytical house prices indicators',
+    publisher: 'OECD',
+    originalPublisher: 'National statistical offices and other OECD data providers',
+    processor: 'OECD',
+    role: 'chart-data',
+    citation:
+      'OECD (2026), “Analytical house prices indicators,” OECD Data Explorer, dataflow DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES, accessed 2026-08-16.',
+    methodologyHref:
+      'https://sdmx.oecd.org/public/rest/v1/dataflow/OECD.ECO.MPD/DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES/1.0?format=sdmx-json',
+    dataHref:
+      'https://data-explorer.oecd.org/vis?df%5Bds%5D=OECD.ECO.MPD%2CDSD_AN_HOUSE_PRICES%40DF_HOUSE_PRICES%2C1.0',
+    originalDataHref:
+      'https://sdmx.oecd.org/public/rest/v1/data/OECD.ECO.MPD,DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES,1.0/',
+    metadataHref:
+      'https://sdmx.oecd.org/public/rest/v1/dataflow/OECD.ECO.MPD/DSD_AN_HOUSE_PRICES@DF_HOUSE_PRICES/1.0?format=sdmx-json',
+    version: 'OECD dataflow version 1.0, retrieved 2026-08-16',
+    coverage:
+      'Annual HPI_YDH and HPI_YDH_AVG observations for Canada, France, Germany, Japan, the Netherlands, Sweden, the United Kingdom, and the United States, 2000–2024',
+    retrieved: accessDate,
+    unit: 'Index, 2015 = 100; long-term benchmark in percent of country average',
+    localPath:
+      'src/data/housing-price-income.csv and src/data/housing-price-income-benchmark.csv',
+    transformation:
+      'The local trajectory extract keeps HPI_YDH with unit IX. The benchmark extract keeps HPI_YDH_AVG with unit PT_AVG_L_TERM for 2024. Values are not converted into rents, mortgage payments, or an international affordability ranking.',
+    note:
+      'HPI_YDH compares nominal house prices with nominal disposable household income per head. It does not measure rent, borrowing costs, housing quality, construction supply, city-level affordability, or infrastructure capacity.',
+  },
+  {
+    id: 'imf-housing-affordability-context',
+    title: 'Housing Affordability: A New Dataset',
+    publisher: 'International Monetary Fund and Bank for International Settlements',
+    originalPublisher: 'Nina Biljanovska, Chenxu Fu, and Deniz Igan',
+    role: 'research-context',
+    citation:
+      'Biljanovska, N., Fu, C., & Igan, D. (2023), “Housing Affordability: A New Dataset,” IMF Working Paper 2023/247 and BIS Working Paper 1149.',
+    methodologyHref: 'https://www.bis.org/publ/work1149.htm',
+    dataHref: 'https://www.bis.org/publ/work1149.htm',
+    originalDataHref: 'https://www.bis.org/publ/work1149.pdf',
+    version: 'IMF Working Paper 2023/247; BIS Working Paper 1149',
+    coverage: 'Research dataset covering 40 countries from 1970Q1 to 2021Q4; context only, not plotted',
+    retrieved: accessDate,
+    unit: 'Research affordability measure; not a chart unit',
+    transformation:
+      'No research values are copied into local extracts or chart rows. The study is presented as a broader comparison, separate from the OECD price-to-income index.',
+    note:
+      'The study combines prices, incomes, mortgage rates, loan-to-value limits, and household size. It is a research measure, not a forecast and not interchangeable with the OECD series shown above.',
+  },
+  {
+    id: 'un-habitat-housing-context',
+    title: 'World Cities Report 2026: The Global Housing Crisis — Pathways to Action',
+    publisher: 'UN-Habitat',
+    originalPublisher: 'United Nations Human Settlements Programme (UN-Habitat)',
+    role: 'research-context',
+    citation:
+      'UN-Habitat (2026), “World Cities Report 2026: The Global Housing Crisis — Pathways to Action.”',
+    methodologyHref:
+      'https://unhabitat.org/sites/default/files/2026/05/wcr_2026_chapter_1.pdf',
+    dataHref:
+      'https://unhabitat.org/nearly-half-of-humanity-caught-in-a-global-housing-crisis',
+    originalDataHref:
+      'https://unhabitat.org/sites/default/files/2026/05/wcr_2026_chapter_1.pdf',
+    version: 'World Cities Report 2026, retrieved 2026-08-16',
+    coverage: 'Global urban housing evidence synthesis; context only, not plotted',
+    retrieved: accessDate,
+    unit: 'Evidence synthesis; not a chart unit',
+    transformation:
+      'No report figures are copied into local extracts or chart rows. The report is used only to widen the page’s discussion beyond the OECD indicator.',
+    note:
+      'The report connects affordability with informality, displacement, climate risk, services, and liveability. It is an evidence synthesis, not a forecast and not a substitute for the plotted national series.',
   },
   {
     id: 'literacy-owid',

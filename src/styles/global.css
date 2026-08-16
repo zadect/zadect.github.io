@@ -727,6 +727,11 @@ h2 {
   background: var(--night-soft);
 }
 
+.site-shell--future .stat-card {
+  border-color: var(--future);
+  background: var(--future-soft);
+}
+
 .stat-card__value {
   color: var(--good-deep);
   font-family: Georgia, "Times New Roman", serif;
@@ -739,6 +744,10 @@ h2 {
   color: #e49179;
 }
 
+.site-shell--future .stat-card__value {
+  color: var(--future-deep);
+}
+
 .stat-card__label {
   max-width: 300px;
   color: var(--muted);
@@ -748,6 +757,10 @@ h2 {
 
 .stat-card--dark .stat-card__label {
   color: #c6c0b8;
+}
+
+.site-shell--future .stat-card__label {
+  color: #5f5870;
 }
 
 .chart-stack {
@@ -767,6 +780,11 @@ h2 {
 
 .chart-card--bad {
   background: var(--night-soft);
+}
+
+.chart-card--future {
+  border-color: var(--future-line);
+  background: var(--future-paper);
 }
 
 .site-shell--bad .chart-card {
@@ -823,6 +841,11 @@ h2 {
 .chart-card--bad .chart-card__visual {
   border: 1px solid #626966;
   background: var(--night-soft);
+}
+
+.chart-card--future .chart-card__visual {
+  border: 1px solid var(--future-line);
+  background: var(--future-paper);
 }
 
 .chart-card__visual .vega-embed {
@@ -918,6 +941,14 @@ h2 {
   color: #e49179;
 }
 
+.site-shell--future .data-table {
+  border-color: var(--future-line);
+}
+
+.site-shell--future .data-table summary {
+  color: var(--future-deep);
+}
+
 .data-table__scroll {
   max-height: 320px;
   overflow: auto;
@@ -956,6 +987,16 @@ th {
   background: #292b2b;
 }
 
+.site-shell--future th,
+.site-shell--future td {
+  border-color: var(--future-line);
+}
+
+.site-shell--future th {
+  color: #5f5870;
+  background: #ede8f3;
+}
+
 .chart-card__sources {
   display: flex;
   flex-wrap: wrap;
@@ -979,6 +1020,16 @@ th {
 
 .site-shell--bad .chart-card__sources span {
   color: var(--white);
+}
+
+.site-shell--future .chart-card__sources {
+  color: #6c647d;
+}
+
+.site-shell--future .chart-card__sources span,
+.site-shell--future .chart-card__sources a,
+.site-shell--future .source-item__links a {
+  color: var(--future-deep);
 }
 
 .chart-card__sources a,
@@ -1021,6 +1072,15 @@ th {
   color: #c6c0b8;
 }
 
+.method-note--future {
+  border-color: var(--future);
+  background: var(--future-soft);
+}
+
+.method-note--future > p:last-child {
+  color: #5f5870;
+}
+
 .definition-card {
   margin-bottom: 1.25rem;
   padding: clamp(1.5rem, 4vw, 3rem);
@@ -1031,6 +1091,11 @@ th {
 .definition-card--dark {
   border-color: var(--bad);
   background: var(--night-soft);
+}
+
+.definition-card--future {
+  border-color: var(--future);
+  background: var(--future-soft);
 }
 
 .definition-card h2 {
@@ -1067,6 +1132,14 @@ th {
   color: #f0c56f;
 }
 
+.definition-card--future .definition-grid > div {
+  border-color: var(--future-line);
+}
+
+.definition-card--future .definition-grid dt {
+  color: var(--future-deep);
+}
+
 .definition-grid dd {
   max-width: 500px;
   margin-top: 0.55rem;
@@ -1076,6 +1149,74 @@ th {
 
 .definition-card--dark .definition-grid dd {
   color: #d0c9c1;
+}
+
+.definition-card--future .definition-grid dd {
+  color: #5f5870;
+}
+
+.study-context {
+  margin: 5rem 0 6rem;
+}
+
+.study-context h2 {
+  max-width: 760px;
+  margin-top: 0.75rem;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+}
+
+.study-context__intro {
+  max-width: 700px;
+  margin-top: 1rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.study-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.study-card {
+  display: grid;
+  align-content: start;
+  gap: 0.8rem;
+  padding: 1.3rem;
+  border: 1px solid var(--future-line);
+  background: rgba(231, 224, 240, 0.45);
+}
+
+.study-card__meta {
+  color: var(--future-deep);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.study-card h3 {
+  color: var(--future-deep);
+  font-size: 1.55rem;
+}
+
+.study-card p:not(.study-card__meta) {
+  color: #5f5870;
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.study-card strong {
+  color: var(--future-deep);
+}
+
+.study-card a {
+  width: fit-content;
+  margin-top: 0.25rem;
+  color: var(--future-deep);
+  font-size: 0.8rem;
+  font-weight: 800;
 }
 
 .international-context {
@@ -1321,6 +1462,10 @@ th {
   }
 
   .research-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .study-grid {
     grid-template-columns: 1fr;
   }
 }

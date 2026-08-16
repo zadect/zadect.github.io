@@ -1,0 +1,4 @@
+geo,country,size_emp,year,value
+EU27_2020,European Union (27 countries),10-49,2025,17
+EU27_2020,European Union (27 countries),50-249,2025,30.36
+EU27_2020,European Union (27 countries),GE250,2025,55.03

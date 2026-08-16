@@ -273,14 +273,35 @@ export const stories: StoryDefinition[] = [
   },
   {
     slug: 'tech-and-ai',
-    title: 'Tech & AI',
+    title: 'AI & Tech',
     category: 'future',
-    status: 'coming-soon',
-    summary: 'How artificial intelligence spreads through work, changes tasks, and may affect productivity.',
-    plannedMetric:
-      'Firm AI adoption, AI tools by role or task, automation versus augmentation, and productivity growth by sector',
-    geography: 'OECD countries and global context',
-    sourceHint: 'OECD AI Policy Observatory, Stanford AI Index, ILO, and OECD Productivity Database',
+    status: 'published',
+    summary:
+      'Businesses are adopting AI faster, but adoption alone does not tell us whether work is better, fewer jobs exist, or productivity has risen.',
+    plannedMetric: 'Share of enterprises using at least one AI technology',
+    geography: 'EU-27 and selected European countries',
+    sourceHint: 'Eurostat enterprise ICT survey',
+    comparison: {
+      title: 'What AI adoption means here',
+      fields: [
+        {
+          label: 'Measure',
+          value: 'Share of enterprises with 10 or more persons employed that report using at least one listed AI technology.',
+        },
+        {
+          label: 'Scope',
+          value: 'Covered non-financial activities in the EU-27 and a selected eight-country panel; the enterprise is the unit, not the worker.',
+        },
+        {
+          label: 'Reporting',
+          value: 'The comparable extract reports 2021, 2023, 2024, and 2025. Eurostat has no observation in this extract for 2022.',
+        },
+        {
+          label: 'Limit',
+          value: 'The measure records adoption, not productivity, job creation, job loss, task displacement, worker access, or social benefit.',
+        },
+      ],
+    },
   },
   {
     slug: 'employment-work-and-skills',
@@ -345,13 +366,33 @@ export const stories: StoryDefinition[] = [
     slug: 'housing-cities-and-infrastructure',
     title: 'Housing, Cities & Infrastructure',
     category: 'future',
-    status: 'coming-soon',
-    summary: 'Whether homes, construction, and productive cities keep pace with the people who depend on them.',
-    plannedMetric:
-      'Home-price and rent-to-income ratios, housing supply versus household formation, and metropolitan output per worker',
-    geography: 'Countries and metropolitan areas with comparable data',
-    sourceHint:
-      'OECD Affordable Housing Database, Eurostat, national statistical agencies, and OECD metropolitan statistics',
+    status: 'published',
+    summary:
+      'House prices have moved faster than incomes in some countries, but a national price-to-income index is only one part of housing pressure.',
+    plannedMetric: 'OECD house-price-to-income index',
+    geography: 'Canada, France, Germany, Japan, Netherlands, Sweden, UK, and US',
+    sourceHint: 'OECD Analytical house prices indicators',
+    comparison: {
+      title: 'What the housing index compares',
+      fields: [
+        {
+          label: 'Numerator',
+          value: 'OECD’s nominal residential house-price index for each country.',
+        },
+        {
+          label: 'Denominator',
+          value: 'Nominal disposable household income per head in the same country.',
+        },
+        {
+          label: 'Base',
+          value: 'The plotted HPI_YDH index is set to 100 in 2015. The secondary benchmark expresses 2024 as a percentage of each country’s own long-term average.',
+        },
+        {
+          label: 'Limit',
+          value: 'It does not measure rents, mortgage payments, housing quality, construction supply, city-level affordability, urban productivity, or infrastructure capacity.',
+        },
+      ],
+    },
   },
   {
     slug: 'health-longevity-and-human-capital',
@@ -407,7 +448,17 @@ export function getStory(category: string | undefined, slug: string | undefined)
 }
 
 export function getStoriesByCategory(category: StoryCategory) {
-  return stories.filter((story) => story.category === category);
+  return stories
+    .map((story, index) => ({ story, index }))
+    .filter(({ story }) => story.category === category)
+    .sort((left, right) => {
+      const statusOrder = { published: 0, 'coming-soon': 1 };
+      return (
+        statusOrder[left.story.status] - statusOrder[right.story.status] ||
+        left.index - right.index
+      );
+    })
+    .map(({ story }) => story);
 }
 
 export function getStoryCategoryPresentation(category: StoryCategory) {
