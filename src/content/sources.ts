@@ -624,6 +624,58 @@ export const sources: SourceReference[] = [
       'Renewables include hydropower, wind, solar, bioenergy, geothermal, wave, and tidal generation. This is a share of electricity, not a share of total energy use or a measure of emissions.',
   },
   {
+    id: 'un-wpp-median-age-owid',
+    title: 'Median age of the population',
+    publisher: 'Our World in Data',
+    originalPublisher: 'United Nations, Department of Economic and Social Affairs, Population Division',
+    processor: 'Our World in Data',
+    role: 'chart-data',
+    citation:
+      'United Nations, Department of Economic and Social Affairs, Population Division (2024), World Population Prospects 2024, “Median age,” processed by Our World in Data, OWID Grapher variables 950958 and 950961.',
+    methodologyHref: 'https://population.un.org/wpp/',
+    dataHref: 'https://ourworldindata.org/grapher/median-age',
+    originalDataHref:
+      'https://population.un.org/wpp/assets/Excel%20Files/1_Indicator%20(Standard)/EXCEL_FILES/1_General/WPP2024_GEN_F01_DEMOGRAPHIC_INDICATORS_FULL.xlsx',
+    metadataHref: 'https://ourworldindata.org/grapher/median-age.metadata.json',
+    licenseHref: 'https://population.un.org/wpp/downloads/',
+    version: 'UN World Population Prospects 2024; OWID variables 950958 and 950961',
+    coverage:
+      'World observed estimates 1950–2023, medium-scenario projections 2024–2100, and six-country checkpoints',
+    retrieved: accessDate,
+    unit: 'Median age in years',
+    localPath: 'src/data/demographics-migration.csv',
+    transformation:
+      'The local extract keeps the complete OWID World observed series, the complete medium-scenario World projection, and four observed checkpoints for Brazil, Germany, India, Japan, Nigeria, and the United States. Observations and projections remain separate.',
+    note:
+      'Median age is the age dividing a population into two equal halves. The projected line is the UN medium scenario, not a prediction that must occur; it depends on assumptions about future fertility, mortality, and migration.',
+  },
+  {
+    id: 'un-desa-migrant-stock-owid',
+    title: 'Share of the population born in another country',
+    publisher: 'Our World in Data',
+    originalPublisher: 'United Nations Department of Economic and Social Affairs, Population Division',
+    processor: 'Our World in Data',
+    role: 'chart-data',
+    citation:
+      'United Nations Department of Economic and Social Affairs, Population Division (2024), International Migrant Stock 2024, “Share of the population born in another country,” processed by Our World in Data, OWID Grapher variable 1015603.',
+    methodologyHref: 'https://www.un.org/development/desa/pd/content/international-migrant-stock',
+    dataHref: 'https://ourworldindata.org/grapher/migrant-stock-share',
+    originalDataHref:
+      'https://www.un.org/development/desa/pd/sites/www.un.org.development.desa.pd/files/undesa_pd_2024_ims_stock_by_sex_and_destination.xlsx',
+    metadataHref: 'https://ourworldindata.org/grapher/migrant-stock-share.metadata.json',
+    licenseHref: 'https://www.un.org/development/desa/pd/content/international-migrant-stock',
+    version: 'UN DESA International Migrant Stock 2024; OWID variable 1015603',
+    coverage:
+      'World observations at 1990, 1995, 2000, 2005, 2010, 2015, 2020, and 2024; six-country checkpoints',
+    retrieved: accessDate,
+    unit: 'Share of the total population born in another country (%)',
+    localPath: 'src/data/demographics-migration.csv',
+    transformation:
+      'The local extract keeps all eight OWID World observations and five shared checkpoints for Brazil, Germany, India, Japan, Nigeria, and the United States. The source’s five-year reporting rhythm is preserved; no annual values are interpolated.',
+    note:
+      'This is migrant stock: the share of residents born abroad at a point in time. It is not an annual migration flow, a measure of integration, or a count of people who moved during that year.',
+  },
+  {
     id: 'unhcr-population-api',
     title: 'UNHCR Refugee Data Finder population statistics',
     publisher: 'United Nations High Commissioner for Refugees',

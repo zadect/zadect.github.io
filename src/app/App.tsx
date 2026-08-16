@@ -10,6 +10,7 @@ import { CeoPayStory } from '../features/stories/CeoPayStory';
 import { ChildMortalityStory } from '../features/stories/ChildMortalityStory';
 import { ClimateChangeStory } from '../features/stories/ClimateChangeStory';
 import { DemocraticBackslidingStory } from '../features/stories/DemocraticBackslidingStory';
+import { DemographicsMigrationStory } from '../features/stories/DemographicsMigrationStory';
 import { ElectricitySanitationStory } from '../features/stories/ElectricitySanitationStory';
 import { EmploymentWorkSkillsStory } from '../features/stories/EmploymentWorkSkillsStory';
 import { EconomicGrowthDebtStory } from '../features/stories/EconomicGrowthDebtStory';
@@ -245,6 +246,10 @@ function StoryRoute() {
 
   if (story.slug === 'inflation-prices-and-energy') {
     return <InflationPricesEnergyStory story={story} />;
+  }
+
+  if (story.slug === 'demographics-and-migration') {
+    return <DemographicsMigrationStory story={story} />;
   }
 
   if (story.slug === 'womens-rights') {
