@@ -101,11 +101,33 @@ export const stories: StoryDefinition[] = [
     slug: 'womens-rights',
     title: "Women's rights",
     category: 'good',
-    status: 'coming-soon',
-    summary: 'A future view of legal rights, political representation, and everyday autonomy.',
-    plannedMetric: 'Composite legal and political rights indicators',
-    geography: 'Countries and regions',
-    sourceHint: 'World Bank Women, Business and the Law',
+    status: 'published',
+    summary:
+      'The laws shaping women’s economic lives have changed substantially, but legal equality is not the same as lived equality.',
+    plannedMetric: 'Women, Business and the Law Index',
+    geography: 'World and selected countries',
+    sourceHint: 'World Bank Women, Business and the Law, via Our World in Data',
+    comparison: {
+      title: 'What the index measures',
+      fields: [
+        {
+          label: 'Measure',
+          value: 'A 0–100 index of legal gender equality across mobility, workplace, pay, marriage, parenthood, entrepreneurship, assets, and pension.',
+        },
+        {
+          label: 'Scope',
+          value: 'The chart records laws and regulations that affect women’s economic opportunity in the World Bank’s standardized country comparison.',
+        },
+        {
+          label: 'Time',
+          value: 'The historical series runs from 1970 to 2023 in this release. Selected country checkpoints are shown at 1970, 1990, 2010, and 2023.',
+        },
+        {
+          label: 'Limit',
+          value: 'It describes formal legal provisions, not enforcement, social norms, political representation, safety, or women’s actual economic outcomes.',
+        },
+      ],
+    },
   },
   {
     slug: 'child-mortality',

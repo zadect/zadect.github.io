@@ -18,6 +18,9 @@ import {
   literacyMapGeoJson,
   literacyMapSeries,
   literacySeries,
+  womensRightsCountrySeries,
+  womensRightsSeries,
+  womensRightsWorldSeries,
   toCompensationChartSeries,
   toChartSeries,
   toWorkerCompensationChartSeries,
@@ -86,6 +89,20 @@ describe('published story data', () => {
     expect(housingBenchmarkSeries.find((point) => point.geo === 'CAN')?.value).toBeCloseTo(
       156.6927,
       3,
+    );
+  });
+
+  it('keeps the women rights index within bounds and preserves its source checkpoints', () => {
+    expect(womensRightsWorldSeries).toHaveLength(54);
+    expect(womensRightsSeries).toHaveLength(86);
+    expect(womensRightsCountrySeries).toHaveLength(32);
+    expect(womensRightsWorldSeries[0]).toMatchObject({ year: 1970, value: 45.70395 });
+    expect(womensRightsWorldSeries.at(-1)).toMatchObject({ year: 2023, value: 77.85526 });
+    expect(
+      womensRightsCountrySeries.every((point) => [1970, 1990, 2010, 2023].includes(point.year)),
+    ).toBe(true);
+    expect(womensRightsSeries.every((point) => point.value >= 0 && point.value <= 100)).toBe(
+      true,
     );
   });
 

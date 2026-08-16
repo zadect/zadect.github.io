@@ -11,6 +11,7 @@ import housingPriceIncomeCsv from '../../data/housing-price-income.csv?raw';
 import isoCountryCodesCsv from '../../data/iso-country-codes.csv?raw';
 import literacyMapCsv from '../../data/literacy-map.csv?raw';
 import literacySeriesCsv from '../../data/literacy-series.csv?raw';
+import womensRightsCsv from '../../data/womens-rights-index.csv?raw';
 import worldTopology from '../../data/world-countries-110m.json';
 import { feature } from 'topojson-client';
 import type { FeatureCollection, Geometry } from 'geojson';
@@ -145,6 +146,13 @@ export interface HousingPriceIncomePoint {
 export interface HousingBenchmarkPoint {
   geo: string;
   country: string;
+  year: number;
+  value: number;
+}
+
+export interface WomensRightsPoint {
+  entity: string;
+  code: string;
   year: number;
   value: number;
 }
@@ -343,6 +351,21 @@ if (
 ) {
   throw new Error('Housing long-term benchmark does not cover the declared country panel');
 }
+
+export const womensRightsSeries = parseCsv(womensRightsCsv).map((row) => ({
+  entity: textValue(row.entity, 'women rights entity'),
+  code: textValue(row.code, 'women rights code'),
+  year: numberValue(row.year, 'women rights year'),
+  value: boundedNumberValue(row.value, 'women rights index', 0, 100),
+})) satisfies WomensRightsPoint[];
+
+export const womensRightsWorldSeries = womensRightsSeries.filter(
+  (point) => point.code === 'OWID_WRL',
+);
+
+export const womensRightsCountrySeries = womensRightsSeries.filter(
+  (point) => point.code !== 'OWID_WRL',
+);
 
 export const literacySeries: LiteracyPoint[] = parseCsv(literacySeriesCsv).map((row) => ({
   country: row.country,
