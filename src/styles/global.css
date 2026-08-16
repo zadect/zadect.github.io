@@ -365,7 +365,8 @@ h2 {
 
 .direction-map__line--good {
   bottom: 17%;
-  border-color: var(--good);
+  border-top: 0;
+  border-bottom: 3px solid var(--good);
   transform: rotate(-18deg);
 }
 
@@ -387,9 +388,15 @@ h2 {
   letter-spacing: 0.16em;
 }
 
-.direction-map__line--bad .direction-map__label {
+.direction-map__line--good .direction-map__label {
   top: auto;
   bottom: -1.5rem;
+  color: var(--good-deep);
+}
+
+.direction-map__line--bad .direction-map__label {
+  top: -1.5rem;
+  bottom: auto;
   color: var(--bad-deep);
 }
 
