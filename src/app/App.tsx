@@ -29,17 +29,20 @@ function HomePage() {
               <em> heading?</em>
             </h1>
             <p className="home-hero__intro">
-              A calm look at the lines moving in the right direction, the lines moving in the wrong
-              one, and the space between them.
+              Charts that put improving conditions beside worsening ones, using the longest reliable
+              series we can find.
             </p>
             <div className="home-hero__actions">
               <a className="button button--good" href="#stories">
                 Explore the stories
               </a>
-              <span className="home-hero__aside">Good news. Hard truths. Same timeline.</span>
+              <span className="home-hero__aside">Good trends. Bad trends. One timeline.</span>
             </div>
           </div>
-          <div className="direction-map" aria-label="Two diverging lines represent good and bad trends">
+          <div
+            className="direction-map"
+            aria-label="The green line rises from then to now. The red line falls from then to now."
+          >
             <div className="direction-map__line direction-map__line--good">
               <span className="direction-map__label">GOOD</span>
             </div>
@@ -56,11 +59,11 @@ function HomePage() {
         <section className="home-thesis" aria-labelledby="thesis-title">
           <p className="eyebrow">The premise</p>
           <h2 id="thesis-title">
-            Progress is not a verdict. It is a collection of lines, moving at different speeds.
+            Humanity is changing in more than one direction at once.
           </h2>
           <p>
-            We use charts because a single headline cannot hold the whole picture. Every story
-            keeps its units visible, names its limits, and points back to the source.
+            Charts make the contrast visible. Each story keeps its units, definitions, limits, and
+            sources in view.
           </p>
         </section>
 
@@ -70,7 +73,7 @@ function HomePage() {
               <p className="eyebrow">Start here</p>
               <h2 id="featured-title">Two stories. One fragmented picture.</h2>
             </div>
-            <p>Both are live now. The rest are documented and waiting for the right evidence.</p>
+            <p>Both are live now. The rest are documented until a reliable series is ready.</p>
           </div>
           <div className="featured-grid">
             <StoryCard story={goodFeature} featured />
@@ -93,7 +96,7 @@ function HomePage() {
               <span>&amp; The Bad</span>
             </span>
           </Link>
-          <p>Progress is real. So are the contradictions.</p>
+          <p>The evidence is mixed. The sources are visible.</p>
         </div>
       </footer>
     </div>
