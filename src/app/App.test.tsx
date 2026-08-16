@@ -107,6 +107,17 @@ describe('app routes', () => {
     expect(screen.getByText(/global average hides regional and seasonal differences/i)).toBeInTheDocument();
   });
 
+  it('renders the published wars and conflict story', () => {
+    window.location.hash = '#/bad/wars-and-conflict';
+    render(<App />);
+
+    expect(screen.getByRole('heading', { name: 'Wars and conflict' })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: /deaths can spike when conflicts intensify/i }),
+    ).toBeInTheDocument();
+    expect(screen.getAllByText(/deaths from disease, hunger, displacement/i)).not.toHaveLength(0);
+  });
+
   it('links Good, Bad, and Future navigation to homepage sections', () => {
     render(<App />);
     expect(screen.getByRole('link', { name: 'Good' })).toHaveAttribute('href', '#/?section=good');

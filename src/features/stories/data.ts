@@ -3,6 +3,7 @@ import ceoCompensationCsv from '../../data/ceo-pay-compensation.csv?raw';
 import democracyMapCsv from '../../data/democracy-map.csv?raw';
 import democracySeriesCsv from '../../data/democracy-series.csv?raw';
 import climateChangeCsv from '../../data/climate-change.csv?raw';
+import warsConflictCsv from '../../data/wars-conflict.csv?raw';
 import electricitySanitationCsv from '../../data/electricity-sanitation.csv?raw';
 import extremePovertyCsv from '../../data/extreme-poverty.csv?raw';
 import foodAvailabilityCsv from '../../data/food-availability.csv?raw';
@@ -160,6 +161,14 @@ export interface ClimateDecadePoint {
   anomaly: number;
   yearsInPeriod: number;
   status: ClimateDecadeStatus;
+}
+
+export interface WarsConflictPoint {
+  year: number;
+  bestDeaths: number;
+  lowDeaths: number;
+  highDeaths: number;
+  ongoingConflicts: number;
 }
 
 export interface CeoPayPoint {
@@ -465,6 +474,49 @@ export const climateDecadeSeries = Array.from(
     };
   })
   .filter((point): point is ClimateDecadePoint => point !== undefined);
+
+export const warsConflictSeries = assertUnique(
+  parseCsv(warsConflictCsv).map((row) => {
+    const year = numberValue(row.year, 'wars and conflict year');
+    const bestDeaths = numberValue(row.best_deaths, 'best conflict deaths');
+    const lowDeaths = numberValue(row.low_deaths, 'low conflict deaths');
+    const highDeaths = numberValue(row.high_deaths, 'high conflict deaths');
+    const ongoingConflicts = numberValue(row.ongoing_conflicts, 'ongoing conflicts');
+
+    if (
+      year < 1946 ||
+      year > 2025 ||
+      bestDeaths < 0 ||
+      lowDeaths < 0 ||
+      highDeaths < 0 ||
+      ongoingConflicts < 0 ||
+      !Number.isInteger(ongoingConflicts) ||
+      lowDeaths > bestDeaths ||
+      bestDeaths > highDeaths
+    ) {
+      throw new Error(`Invalid wars and conflict row for ${year}`);
+    }
+
+    return {
+      year,
+      bestDeaths,
+      lowDeaths,
+      highDeaths,
+      ongoingConflicts,
+    };
+  }),
+  (row) => String(row.year),
+  'wars and conflict',
+) satisfies WarsConflictPoint[];
+
+if (
+  warsConflictSeries.length !== 80 ||
+  warsConflictSeries[0]?.year !== 1946 ||
+  warsConflictSeries.at(-1)?.year !== 2025 ||
+  warsConflictSeries.some((point, index) => point.year !== 1946 + index)
+) {
+  throw new Error('Wars and conflict series must cover every year from 1946 through 2025');
+}
 
 export const ceoPaySeries: CeoPayPoint[] = parseCsv(ceoPayCsv).map((row) => ({
   year: numberValue(row.year, 'CEO pay year'),
