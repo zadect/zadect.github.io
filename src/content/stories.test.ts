@@ -5,7 +5,7 @@ describe('story catalogue', () => {
   it('keeps routes unique and retains the published stories', () => {
     const routes = stories.map((story) => `${story.category}/${story.slug}`);
     expect(new Set(routes).size).toBe(routes.length);
-    expect(stories.filter((story) => story.status === 'published')).toHaveLength(12);
+    expect(stories.filter((story) => story.status === 'published')).toHaveLength(13);
   });
 
   it('documents the remaining Future themes as source-directed placeholders', () => {
@@ -97,6 +97,17 @@ describe('story catalogue', () => {
       'Measure',
       'World',
       'Countries',
+      'Limit',
+    ]);
+  });
+
+  it('documents the climate change comparison and source scope', () => {
+    const story = stories.find((candidate) => candidate.slug === 'climate-change');
+    expect(story?.status).toBe('published');
+    expect(story?.comparison?.fields.map((field) => field.label)).toEqual([
+      'Measure',
+      'Baseline',
+      'Scope',
       'Limit',
     ]);
   });

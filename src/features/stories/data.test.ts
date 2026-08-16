@@ -13,6 +13,8 @@ import {
   democracyMapGeoJson,
   democracyMapSeries,
   democracySeries,
+  climateAnnualSeries,
+  climateDecadeSeries,
   electricitySanitationPanelSeries,
   electricitySanitationSeries,
   electricitySanitationWorldSeries,
@@ -144,6 +146,25 @@ describe('published story data', () => {
     expect(extremePovertySeries.every((point) => point.value >= 0 && point.value <= 100)).toBe(
       true,
     );
+  });
+
+  it('keeps the NASA climate record complete and marks the partial decade', () => {
+    expect(climateAnnualSeries).toHaveLength(146);
+    expect(climateAnnualSeries[0]).toMatchObject({ year: 1880, anomaly: -0.17 });
+    expect(climateAnnualSeries.at(-1)).toMatchObject({ year: 2025, anomaly: 1.19 });
+    expect(climateDecadeSeries).toHaveLength(15);
+    expect(climateDecadeSeries[0]).toMatchObject({
+      year: 1880,
+      anomaly: -0.212,
+      yearsInPeriod: 10,
+      status: 'complete',
+    });
+    expect(climateDecadeSeries.at(-1)).toMatchObject({
+      year: 2020,
+      anomaly: 1.065,
+      yearsInPeriod: 6,
+      status: 'partial',
+    });
   });
 
   it('contains the full CEO pay ratio range and both measures', () => {

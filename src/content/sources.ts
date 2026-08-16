@@ -393,6 +393,29 @@ export const sources: SourceReference[] = [
       'The $3 international poverty line is intended for cross-country comparisons. Depending on the country and year, the underlying welfare measure is disposable income or consumption. Global and regional estimates are extrapolated to the release year using growth estimates and forecasts, as documented by the World Bank.',
   },
   {
+    id: 'nasa-gistemp',
+    title: 'GISTEMP global land-ocean temperature index',
+    publisher: 'NASA Goddard Institute for Space Studies',
+    originalPublisher: 'NASA Goddard Institute for Space Studies',
+    processor: 'The Good & The Bad local extract',
+    role: 'chart-data',
+    citation:
+      'NASA GISS (2026), “GISTEMP v4: Land-Ocean Temperature Index, global annual means,” accessed 2026-08-16.',
+    methodologyHref: 'https://data.giss.nasa.gov/gistemp/',
+    dataHref: 'https://data.giss.nasa.gov/gistemp/tabledata_v4/GLB.Ts+dSST.csv',
+    originalDataHref: 'https://data.giss.nasa.gov/gistemp/tabledata_v4/GLB.Ts+dSST.csv',
+    metadataHref: 'https://data.giss.nasa.gov/gistemp/data_v4.html',
+    version: 'GISTEMP v4 annual table; retrieved 2026-08-16',
+    coverage: 'Global full-year annual means, 1880–2025; current-year 2026 omitted as incomplete',
+    retrieved: accessDate,
+    unit: 'Degrees Celsius relative to the 1951–1980 mean',
+    localPath: 'src/data/climate-change.csv',
+    transformation:
+      'The local extract keeps NASA’s annual J-D global land-ocean means for 1880–2025. The second chart derives arithmetic decade averages from those annual rows; the 2020s point includes 2020–2025 only and is labelled partial.',
+    note:
+      'GISTEMP anomalies compare each year with the 1951–1980 baseline. A global mean is not a local temperature or an impact estimate, and the annual table is an observational analysis rather than a climate projection.',
+  },
+  {
     id: 'eurostat-ai-adoption',
     title: 'Artificial intelligence by size class of enterprise',
     publisher: 'Eurostat',

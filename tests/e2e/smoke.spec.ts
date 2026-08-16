@@ -113,6 +113,18 @@ test('the extreme poverty story renders its world and country charts', async ({ 
   ).toBeVisible();
 });
 
+test('the climate change story renders its annual and decade charts', async ({ page }) => {
+  await page.goto('/#/bad/climate-change');
+  await expect(page.getByRole('heading', { name: 'Climate change', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /annual signal keeps moving upward/i })).toBeVisible();
+  await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
+  await expect(page.getByText(/2020s point uses six complete years/i)).toBeVisible();
+  await expect(page.getByText(/global average hides regional and seasonal differences/i)).toBeVisible();
+  await expect(
+    page.getByRole('link', { name: /GISTEMP global land-ocean temperature index/i }).first(),
+  ).toBeVisible();
+});
+
 test('the published Future stories render their charts and context cards', async ({ page }) => {
   await page.goto('/#/future/tech-and-ai');
   await expect(page.getByRole('heading', { name: 'AI & Tech', exact: true })).toBeVisible();
@@ -153,7 +165,7 @@ test('header category links target their homepage sections', async ({ page }) =>
 });
 
 test('a deferred story explains its planned evidence', async ({ page }) => {
-  await page.goto('/#/bad/climate-change');
+  await page.goto('/#/bad/wars-and-conflict');
   await expect(page.getByText('Coming next')).toBeVisible();
-  await expect(page.getByText(/global surface temperature anomaly/i)).toBeVisible();
+  await expect(page.getByText(/battle deaths and conflict incidence/i)).toBeVisible();
 });
