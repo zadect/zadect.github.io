@@ -129,6 +129,17 @@ describe('app routes', () => {
     expect(screen.getByText(/survey redesigns can create breaks/i)).toBeInTheDocument();
   });
 
+  it('renders the published biodiversity loss story', () => {
+    window.location.hash = '#/bad/biodiversity-loss';
+    render(<App />);
+
+    expect(screen.getByRole('heading', { name: 'Biodiversity loss' })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: /monitored-population signal fell sharply/i }),
+    ).toBeInTheDocument();
+    expect(screen.getByText(/not a headcount of every wild animal/i)).toBeInTheDocument();
+  });
+
   it('links Good, Bad, and Future navigation to homepage sections', () => {
     render(<App />);
     expect(screen.getByRole('link', { name: 'Good' })).toHaveAttribute('href', '#/?section=good');

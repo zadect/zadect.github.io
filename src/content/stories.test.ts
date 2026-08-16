@@ -5,7 +5,7 @@ describe('story catalogue', () => {
   it('keeps routes unique and retains the published stories', () => {
     const routes = stories.map((story) => `${story.category}/${story.slug}`);
     expect(new Set(routes).size).toBe(routes.length);
-    expect(stories.filter((story) => story.status === 'published')).toHaveLength(15);
+    expect(stories.filter((story) => story.status === 'published')).toHaveLength(16);
   });
 
   it('documents the remaining Future themes as source-directed placeholders', () => {
@@ -130,6 +130,17 @@ describe('story catalogue', () => {
       'Measure',
       'Panel',
       'Welfare data',
+      'Limit',
+    ]);
+  });
+
+  it('documents the biodiversity loss comparison and source scope', () => {
+    const story = stories.find((candidate) => candidate.slug === 'biodiversity-loss');
+    expect(story?.status).toBe('published');
+    expect(story?.comparison?.fields.map((field) => field.label)).toEqual([
+      'Measure',
+      'Scope',
+      'Uncertainty',
       'Limit',
     ]);
   });

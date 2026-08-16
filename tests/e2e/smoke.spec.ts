@@ -151,6 +151,19 @@ test('the rich and poor story renders its Gini charts', async ({ page }) => {
   ).toBeVisible();
 });
 
+test('the biodiversity loss story renders its global and regional charts', async ({ page }) => {
+  await page.goto('/#/bad/biodiversity-loss');
+  await expect(page.getByRole('heading', { name: 'Biodiversity loss', exact: true })).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: /monitored-population signal fell sharply/i }),
+  ).toBeVisible();
+  await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
+  await expect(page.getByText(/not a headcount of every wild animal/i)).toBeVisible();
+  await expect(
+    page.getByRole('link', { name: /Living Planet Index/i }).first(),
+  ).toBeVisible();
+});
+
 test('the published Future stories render their charts and context cards', async ({ page }) => {
   await page.goto('/#/future/tech-and-ai');
   await expect(page.getByRole('heading', { name: 'AI & Tech', exact: true })).toBeVisible();
@@ -191,7 +204,7 @@ test('header category links target their homepage sections', async ({ page }) =>
 });
 
 test('a deferred story explains its planned evidence', async ({ page }) => {
-  await page.goto('/#/bad/biodiversity-loss');
+  await page.goto('/#/bad/forced-displacement');
   await expect(page.getByText('Coming next')).toBeVisible();
-  await expect(page.getByText(/species population and extinction-risk indicators/i)).toBeVisible();
+  await expect(page.getByText(/refugees and internally displaced people/i)).toBeVisible();
 });

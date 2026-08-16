@@ -5,6 +5,9 @@ import {
   aiEnterpriseSizeSeries,
   aiEuAdoptionChartSeries,
   aiEuAdoptionSeries,
+  biodiversityRegionSeries,
+  biodiversitySeries,
+  biodiversityWorldSeries,
   ceoCompensationSeries,
   ceoPaySeries,
   childMortalityLongRunSeries,
@@ -207,6 +210,37 @@ describe('published story data', () => {
       { country: 'United States', year: 1963, gini: 0.3672647476196289 },
       { country: 'United States', year: 2024, gini: 0.4176252782344818 },
     ]);
+  });
+
+  it('keeps the Living Planet Index world uncertainty and regional checkpoints explicit', () => {
+    expect(biodiversityWorldSeries).toHaveLength(51);
+    expect(biodiversityRegionSeries).toHaveLength(30);
+    expect(biodiversityWorldSeries[0]).toMatchObject({
+      year: 1970,
+      central: 100,
+      lower: 100,
+      upper: 100,
+    });
+    expect(biodiversityWorldSeries.at(-1)).toMatchObject({
+      year: 2020,
+      central: 27.134067,
+      lower: 21.972492,
+      upper: 33.27644,
+    });
+    expect(
+      biodiversityWorldSeries.every(
+        (point) =>
+          point.lower !== undefined &&
+          point.lower <= point.central &&
+          point.central <= (point.upper ?? point.central),
+      ),
+    ).toBe(true);
+    expect(
+      biodiversityRegionSeries.every((point) =>
+        [1970, 1980, 1990, 2000, 2010, 2020].includes(point.year),
+      ),
+    ).toBe(true);
+    expect(biodiversitySeries).toHaveLength(81);
   });
 
   it('contains the full CEO pay ratio range and both measures', () => {
