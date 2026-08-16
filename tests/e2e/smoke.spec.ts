@@ -1,5 +1,19 @@
 import { expect, test } from '@playwright/test';
 
+test('serves cache-busted SVG and ICO favicon assets', async ({ page, request }) => {
+  await page.goto('/');
+  await expect(page.locator('link[rel="icon"][type="image/svg+xml"]')).toHaveAttribute(
+    'href',
+    './favicon.svg?v=2',
+  );
+  await expect(page.locator('link[rel="icon"][type="image/x-icon"]')).toHaveAttribute(
+    'href',
+    './favicon.ico?v=2',
+  );
+  expect((await request.get('/favicon.svg?v=2')).ok()).toBe(true);
+  expect((await request.get('/favicon.ico?v=2')).ok()).toBe(true);
+});
+
 test('the overview links to both published stories', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('heading', { name: /where is humanity heading/i })).toBeVisible();
