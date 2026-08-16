@@ -175,6 +175,17 @@ test('the forced displacement story renders its long-run and category charts', a
   await expect(page.getByRole('link', { name: /Refugee Data Finder/i }).first()).toBeVisible();
 });
 
+test('the air pollution story renders its global and country charts', async ({ page }) => {
+  await page.goto('/#/bad/air-pollution');
+  await expect(page.getByRole('heading', { name: 'Air pollution', exact: true })).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: /global average remains far above/i }),
+  ).toBeVisible();
+  await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
+  await expect(page.getByText(/the line is the population-weighted annual mean/i)).toBeVisible();
+  await expect(page.getByText('WHO global air quality guidelines', { exact: true })).toBeVisible();
+});
+
 test('the published Future stories render their charts and context cards', async ({ page }) => {
   await page.goto('/#/future/tech-and-ai');
   await expect(page.getByRole('heading', { name: 'AI & Tech', exact: true })).toBeVisible();
@@ -215,7 +226,7 @@ test('header category links target their homepage sections', async ({ page }) =>
 });
 
 test('a deferred story explains its planned evidence', async ({ page }) => {
-  await page.goto('/#/bad/air-pollution');
+  await page.goto('/#/future/employment-work-and-skills');
   await expect(page.getByText('Coming next')).toBeVisible();
-  await expect(page.getByText(/fine particulate matter exposure/i)).toBeVisible();
+  await expect(page.getByText(/vacancy and unemployment rates/i)).toBeVisible();
 });

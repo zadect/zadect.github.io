@@ -3,6 +3,7 @@ import { HashRouter, Link, Route, Routes, useLocation, useParams } from 'react-r
 import { SiteHeader } from '../components/SiteHeader';
 import { StoryCard } from '../components/StoryCard';
 import { AiTechStory } from '../features/stories/AiTechStory';
+import { AirPollutionStory } from '../features/stories/AirPollutionStory';
 import { BiodiversityLossStory } from '../features/stories/BiodiversityLossStory';
 import { ComingSoonStory } from '../features/stories/ComingSoonStory';
 import { CeoPayStory } from '../features/stories/CeoPayStory';
@@ -204,6 +205,10 @@ function StoryRoute() {
 
   if (story.slug === 'forced-displacement') {
     return <ForcedDisplacementStory story={story} />;
+  }
+
+  if (story.slug === 'air-pollution') {
+    return <AirPollutionStory story={story} />;
   }
 
   if (story.slug === 'literacy') {
