@@ -11,6 +11,7 @@ import { ChildMortalityStory } from '../features/stories/ChildMortalityStory';
 import { ClimateChangeStory } from '../features/stories/ClimateChangeStory';
 import { DemocraticBackslidingStory } from '../features/stories/DemocraticBackslidingStory';
 import { ElectricitySanitationStory } from '../features/stories/ElectricitySanitationStory';
+import { EmploymentWorkSkillsStory } from '../features/stories/EmploymentWorkSkillsStory';
 import { ExtremePovertyStory } from '../features/stories/ExtremePovertyStory';
 import { ForcedDisplacementStory } from '../features/stories/ForcedDisplacementStory';
 import { HungerStory } from '../features/stories/HungerStory';
@@ -225,6 +226,10 @@ function StoryRoute() {
 
   if (story.slug === 'housing-cities-and-infrastructure') {
     return <HousingStory story={story} />;
+  }
+
+  if (story.slug === 'employment-work-and-skills') {
+    return <EmploymentWorkSkillsStory story={story} />;
   }
 
   if (story.slug === 'womens-rights') {

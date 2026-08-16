@@ -25,6 +25,9 @@ import {
   extremePovertyPanelSeries,
   extremePovertySeries,
   extremePovertyWorldSeries,
+  employmentWorkSkillsPanelSeries,
+  employmentWorkSkillsSeries,
+  employmentWorkSkillsWorldSeries,
   foodAvailabilitySeries,
   hungerSeries,
   housingBenchmarkSeries,
@@ -286,6 +289,31 @@ describe('published story data', () => {
       pm25: 32.872383,
     });
     expect(airPollutionSeries.every((point) => point.pm25 >= 0 && point.pm25 <= 200)).toBe(true);
+  });
+
+  it('keeps the employment world series and country checkpoints explicit', () => {
+    expect(employmentWorkSkillsWorldSeries).toHaveLength(35);
+    expect(employmentWorkSkillsPanelSeries).toHaveLength(30);
+    expect(employmentWorkSkillsWorldSeries[0]).toMatchObject({
+      entity: 'World',
+      year: 1991,
+      rate: 62.049725,
+    });
+    expect(employmentWorkSkillsWorldSeries.at(-1)).toMatchObject({
+      year: 2025,
+      rate: 58.059036,
+    });
+    expect(
+      employmentWorkSkillsPanelSeries.every((point) =>
+        [1991, 2000, 2010, 2020, 2025].includes(point.year),
+      ),
+    ).toBe(true);
+    expect(new Set(employmentWorkSkillsPanelSeries.map((point) => point.entity))).toEqual(
+      new Set(['Germany', 'India', 'Japan', 'Nigeria', 'Sweden', 'United States']),
+    );
+    expect(employmentWorkSkillsSeries.every((point) => point.rate >= 0 && point.rate <= 100)).toBe(
+      true,
+    );
   });
 
   it('contains the full CEO pay ratio range and both measures', () => {

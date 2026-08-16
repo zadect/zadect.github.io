@@ -5,14 +5,14 @@ describe('story catalogue', () => {
   it('keeps routes unique and retains the published stories', () => {
     const routes = stories.map((story) => `${story.category}/${story.slug}`);
     expect(new Set(routes).size).toBe(routes.length);
-    expect(stories.filter((story) => story.status === 'published')).toHaveLength(18);
+    expect(stories.filter((story) => story.status === 'published')).toHaveLength(19);
   });
 
   it('documents the remaining Future themes as source-directed placeholders', () => {
     const futureStories = stories.filter((story) => story.category === 'future');
 
     expect(futureStories).toHaveLength(11);
-    expect(futureStories.filter((story) => story.status === 'coming-soon')).toHaveLength(9);
+    expect(futureStories.filter((story) => story.status === 'coming-soon')).toHaveLength(8);
     expect(
       futureStories.every(
         (story) => story.plannedMetric && story.geography && story.sourceHint,
@@ -31,11 +31,11 @@ describe('story catalogue', () => {
   it('puts published stories first while preserving catalogue order within each status', () => {
     expect(getStoriesByCategory('future').map((story) => story.slug).slice(0, 2)).toEqual([
         'tech-and-ai',
-        'housing-cities-and-infrastructure',
+        'employment-work-and-skills',
     ]);
     expect(
         getStoriesByCategory('future').findIndex((story) => story.status === 'coming-soon'),
-    ).toBe(2);
+    ).toBe(3);
   });
 
   it('defines the comparison behind each published story', () => {
@@ -163,6 +163,17 @@ describe('story catalogue', () => {
       'Measure',
       'Panel',
       'Reference',
+      'Limit',
+    ]);
+  });
+
+  it('documents the employment and skills comparison and source scope', () => {
+    const story = stories.find((candidate) => candidate.slug === 'employment-work-and-skills');
+    expect(story?.status).toBe('published');
+    expect(story?.comparison?.fields.map((field) => field.label)).toEqual([
+      'Measure',
+      'World',
+      'Panel',
       'Limit',
     ]);
   });

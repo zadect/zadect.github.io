@@ -23,6 +23,7 @@ describe('source catalogue', () => {
       'world-bank-pip-gini',
       'wwf-zsl-living-planet-index',
       'gbd-pm25-owid',
+      'ilo-employment-rate-owid',
       'eurostat-ai-adoption',
       'oecd-house-price-income',
     ])) {

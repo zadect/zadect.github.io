@@ -162,6 +162,17 @@ describe('app routes', () => {
     expect(screen.getByText(/modeled exposure estimates, not direct monitor readings/i)).toBeInTheDocument();
   });
 
+  it('renders the published employment and skills Future story', () => {
+    window.location.hash = '#/future/employment-work-and-skills';
+    render(<App />);
+
+    expect(screen.getByRole('heading', { name: 'Employment, Work & Skills' })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: /global work rate dipped/i }),
+    ).toBeInTheDocument();
+    expect(screen.getByText(/not a measure of job quality/i)).toBeInTheDocument();
+  });
+
   it('links Good, Bad, and Future navigation to homepage sections', () => {
     render(<App />);
     expect(screen.getByRole('link', { name: 'Good' })).toHaveAttribute('href', '#/?section=good');

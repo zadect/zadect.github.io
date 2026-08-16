@@ -1,0 +1,66 @@
+series,entity,code,year,value
+world,World,OWID_WRL,1991,62.049725
+world,World,OWID_WRL,1992,61.819923
+world,World,OWID_WRL,1993,61.40446
+world,World,OWID_WRL,1994,61.191498
+world,World,OWID_WRL,1995,61.000546
+world,World,OWID_WRL,1996,60.842655
+world,World,OWID_WRL,1997,60.769634
+world,World,OWID_WRL,1998,60.571953
+world,World,OWID_WRL,1999,60.514904
+world,World,OWID_WRL,2000,60.49788
+world,World,OWID_WRL,2001,60.257626
+world,World,OWID_WRL,2002,59.94762
+world,World,OWID_WRL,2003,59.77732
+world,World,OWID_WRL,2004,59.797478
+world,World,OWID_WRL,2005,59.78511
+world,World,OWID_WRL,2006,59.737656
+world,World,OWID_WRL,2007,59.70713
+world,World,OWID_WRL,2008,59.4348
+world,World,OWID_WRL,2009,58.81217
+world,World,OWID_WRL,2010,58.62544
+world,World,OWID_WRL,2011,58.55161
+world,World,OWID_WRL,2012,58.32922
+world,World,OWID_WRL,2013,58.198208
+world,World,OWID_WRL,2014,58.09019
+world,World,OWID_WRL,2015,57.943077
+world,World,OWID_WRL,2016,57.813515
+world,World,OWID_WRL,2017,57.68302
+world,World,OWID_WRL,2018,57.641556
+world,World,OWID_WRL,2019,57.618694
+world,World,OWID_WRL,2020,55.715584
+world,World,OWID_WRL,2021,56.733814
+world,World,OWID_WRL,2022,57.557266
+world,World,OWID_WRL,2023,58.23093
+world,World,OWID_WRL,2024,58.194744
+world,World,OWID_WRL,2025,58.059036
+panel,Germany,DEU,1991,56.43
+panel,Germany,DEU,2000,53.398
+panel,Germany,DEU,2010,55.134
+panel,Germany,DEU,2020,58.131
+panel,Germany,DEU,2025,58.323
+panel,India,IND,1991,53.537
+panel,India,IND,2000,55.52
+panel,India,IND,2010,50.586
+panel,India,IND,2020,47.496
+panel,India,IND,2025,53.31
+panel,Japan,JPN,1991,62.48
+panel,Japan,JPN,2000,59.478
+panel,Japan,JPN,2010,56.539
+panel,Japan,JPN,2020,60.207
+panel,Japan,JPN,2025,61.893
+panel,Nigeria,NGA,1991,79.235
+panel,Nigeria,NGA,2000,80.075
+panel,Nigeria,NGA,2010,78.239
+panel,Nigeria,NGA,2020,74.782
+panel,Nigeria,NGA,2025,79.988
+panel,Sweden,SWE,1991,64.137
+panel,Sweden,SWE,2000,58.605
+panel,Sweden,SWE,2010,57.755
+panel,Sweden,SWE,2020,58.834
+panel,Sweden,SWE,2025,58.979
+panel,United States,USA,1991,60.58
+panel,United States,USA,2000,63.506
+panel,United States,USA,2010,57.592
+panel,United States,USA,2020,56.598
+panel,United States,USA,2025,59.114

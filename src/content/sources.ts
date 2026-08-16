@@ -584,6 +584,33 @@ export const sources: SourceReference[] = [
       'The guideline is a health-protection recommendation, not a legal limit or a claim that risk disappears below the line. It is not used to rank countries or explain causes.',
   },
   {
+    id: 'ilo-employment-rate-owid',
+    title: 'Employment rate',
+    publisher: 'Our World in Data',
+    originalPublisher: 'International Labour Organization Modelled Estimates, via World Bank World Development Indicators',
+    processor: 'Our World in Data',
+    role: 'chart-data',
+    citation:
+      'International Labour Organization (2026), “Employment rate – ILO Modelled Estimates,” via World Bank World Development Indicators, processed by Our World in Data, OWID Grapher variable 1294723.',
+    methodologyHref: 'https://ilostat.ilo.org/methods/concepts-and-definitions/ilo-modelled-estimates/',
+    dataHref: 'https://ourworldindata.org/grapher/employment-to-population-ratio',
+    originalDataHref:
+      'https://api.worldbank.org/v2/indicator/SL.EMP.TOTL.SP.ZS?format=json',
+    metadataHref:
+      'https://ourworldindata.org/grapher/employment-to-population-ratio.metadata.json',
+    licenseHref: 'https://ourworldindata.org/licence',
+    version: 'OWID Grapher variable 1294723; last updated 2026-07-27',
+    coverage:
+      'World annual series 1991–2025 and six-country checkpoint panel in this extract',
+    retrieved: accessDate,
+    unit: 'Share of the population aged 15 and older that is employed (%)',
+    localPath: 'src/data/employment-work-skills.csv',
+    transformation:
+      'The local extract keeps the OWID world series for every year from 1991 through 2025 and five shared checkpoints for Germany, India, Japan, Nigeria, Sweden, and the United States. Values are not interpolated or rescaled.',
+    note:
+      'The ILO modeled estimate counts people aged 15 and older who worked for at least one hour in the reference period, including paid work, self-employment, and production of goods for own use. It is a broad employment signal, not a measure of job quality, skills, hours, pay, or security.',
+  },
+  {
     id: 'wwf-zsl-living-planet-index',
     title: 'Living Planet Index',
     publisher: 'Our World in Data',
