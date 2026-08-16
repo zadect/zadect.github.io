@@ -30,6 +30,9 @@ import {
   toCompensationChartSeries,
   toChartSeries,
   toWorkerCompensationChartSeries,
+  vaccinationPanelSeries,
+  vaccinationCoverageSeries,
+  vaccinationWorldSeries,
 } from './data';
 
 describe('published story data', () => {
@@ -72,6 +75,19 @@ describe('published story data', () => {
       lifeExpectancyPanelSeries.every((point) => [1950, 1980, 2000, 2023].includes(point.year)),
     ).toBe(true);
     expect(lifeExpectancySeries.every((point) => point.years > 0 && point.years <= 100)).toBe(
+      true,
+    );
+  });
+
+  it('keeps vaccination coverage source series separate and within percentage bounds', () => {
+    expect(vaccinationWorldSeries).toHaveLength(45);
+    expect(vaccinationPanelSeries).toHaveLength(15);
+    expect(vaccinationWorldSeries[0]).toMatchObject({ year: 1980, coverage: 20 });
+    expect(vaccinationWorldSeries.at(-1)).toMatchObject({ year: 2024, coverage: 85 });
+    expect(
+      vaccinationPanelSeries.every((point) => [2000, 2019, 2024].includes(point.year)),
+    ).toBe(true);
+    expect(vaccinationCoverageSeries.every((point) => point.coverage >= 0 && point.coverage <= 100)).toBe(
       true,
     );
   });

@@ -5,7 +5,7 @@ describe('story catalogue', () => {
   it('keeps routes unique and retains the published stories', () => {
     const routes = stories.map((story) => `${story.category}/${story.slug}`);
     expect(new Set(routes).size).toBe(routes.length);
-    expect(stories.filter((story) => story.status === 'published')).toHaveLength(9);
+    expect(stories.filter((story) => story.status === 'published')).toHaveLength(10);
   });
 
   it('documents the remaining Future themes as source-directed placeholders', () => {
@@ -59,6 +59,17 @@ describe('story catalogue', () => {
 
   it('documents the life expectancy comparison and source scope', () => {
     const story = stories.find((candidate) => candidate.slug === 'life-expectancy');
+    expect(story?.status).toBe('published');
+    expect(story?.comparison?.fields.map((field) => field.label)).toEqual([
+      'Measure',
+      'Long run',
+      'Panel',
+      'Limit',
+    ]);
+  });
+
+  it('documents the vaccination coverage comparison and source scope', () => {
+    const story = stories.find((candidate) => candidate.slug === 'vaccination-coverage');
     expect(story?.status).toBe('published');
     expect(story?.comparison?.fields.map((field) => field.label)).toEqual([
       'Measure',

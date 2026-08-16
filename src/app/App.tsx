@@ -11,6 +11,7 @@ import { HungerStory } from '../features/stories/HungerStory';
 import { HousingStory } from '../features/stories/HousingStory';
 import { LiteracyStory } from '../features/stories/LiteracyStory';
 import { LifeExpectancyStory } from '../features/stories/LifeExpectancyStory';
+import { VaccinationCoverageStory } from '../features/stories/VaccinationCoverageStory';
 import { WomensRightsStory } from '../features/stories/WomensRightsStory';
 import {
   getStory,
@@ -164,6 +165,10 @@ function StoryRoute() {
 
   if (story.slug === 'life-expectancy') {
     return <LifeExpectancyStory story={story} />;
+  }
+
+  if (story.slug === 'vaccination-coverage') {
+    return <VaccinationCoverageStory story={story} />;
   }
 
   if (story.slug === 'literacy') {

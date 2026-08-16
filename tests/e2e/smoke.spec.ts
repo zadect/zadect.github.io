@@ -79,6 +79,15 @@ test('the life expectancy story renders its long-run and country charts', async 
   await expect(page.getByRole('link', { name: /Life expectancy/i }).first()).toBeVisible();
 });
 
+test('the vaccination coverage story renders its world and country charts', async ({ page }) => {
+  await page.goto('/#/good/vaccination-coverage');
+  await expect(page.getByRole('heading', { name: 'Vaccination coverage', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /high vaccination baseline/i })).toBeVisible();
+  await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
+  await expect(page.getByText(/coverage is a system signal/i)).toBeVisible();
+  await expect(page.getByRole('link', { name: /DTP3 vaccination coverage/i }).first()).toBeVisible();
+});
+
 test('the published Future stories render their charts and context cards', async ({ page }) => {
   await page.goto('/#/future/tech-and-ai');
   await expect(page.getByRole('heading', { name: 'AI & Tech', exact: true })).toBeVisible();
