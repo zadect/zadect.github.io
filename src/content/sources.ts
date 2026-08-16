@@ -393,6 +393,30 @@ export const sources: SourceReference[] = [
       'The $3 international poverty line is intended for cross-country comparisons. Depending on the country and year, the underlying welfare measure is disposable income or consumption. Global and regional estimates are extrapolated to the release year using growth estimates and forecasts, as documented by the World Bank.',
   },
   {
+    id: 'bis-private-credit-gdp',
+    title: 'Credit to the private non-financial sector as a share of GDP',
+    publisher: 'Bank for International Settlements',
+    originalPublisher: 'Bank for International Settlements',
+    processor: 'The Good & The Bad local extract',
+    role: 'chart-data',
+    citation:
+      'Bank for International Settlements (2026), “Credit to the non-financial sector” (WS_TC), private non-financial sector, market value, percentage of GDP, adjusted for breaks, accessed 2026-08-16.',
+    methodologyHref: 'https://www.bis.org/statistics/totcredit/credpriv_doc.pdf',
+    dataHref: 'https://data.bis.org/static/bulk/WS_TC_csv_col.zip',
+    originalDataHref: 'https://data.bis.org/topics/TOTAL_CREDIT/data',
+    metadataHref: 'https://www.bis.org/statistics/totcredit.htm',
+    version: 'WS_TC_csv_col.zip dated 2026-06-09; retrieved 2026-08-16',
+    coverage:
+      'All-reporting-economies aggregate, 1999–2025; eight-country panel, 2000–2025 annual checkpoints',
+    retrieved: accessDate,
+    unit: 'Credit to the private non-financial sector as a percentage of GDP',
+    localPath: 'src/data/capital-markets-money-flows.csv',
+    transformation:
+      'The extract keeps BIS series with private non-financial borrowers, all-sector lenders, market valuation, break-adjusted percentage-of-GDP units, and the latest Q4 observation for each year. The panel contains Brazil, China, France, Germany, India, Japan, the United Kingdom, and the United States; missing values are not interpolated.',
+    note:
+      'The ratio measures the stock of credit relative to GDP, not annual lending, household wealth, market capitalization, interest burden, or a forecast of financial stress. “All reporting economies” is a BIS aggregate, not a population-weighted world estimate.',
+  },
+  {
     id: 'owid-global-carbon-budget',
     title: 'Fossil CO₂ emissions — Global Carbon Budget',
     publisher: 'Our World in Data',

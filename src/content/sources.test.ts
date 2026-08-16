@@ -17,6 +17,7 @@ describe('source catalogue', () => {
       'who-unicef-sanitation',
       'world-bank-pip-extreme-poverty',
       'nasa-gistemp',
+      'bis-private-credit-gdp',
       'owid-global-carbon-budget',
       'ucdp-conflict-deaths',
       'ucdp-conflict-counts',

@@ -5,6 +5,7 @@ import { StoryCard } from '../components/StoryCard';
 import { AiTechStory } from '../features/stories/AiTechStory';
 import { AirPollutionStory } from '../features/stories/AirPollutionStory';
 import { BiodiversityLossStory } from '../features/stories/BiodiversityLossStory';
+import { CapitalMarketsMoneyFlowsStory } from '../features/stories/CapitalMarketsMoneyFlowsStory';
 import { ComingSoonStory } from '../features/stories/ComingSoonStory';
 import { CeoPayStory } from '../features/stories/CeoPayStory';
 import { ChildMortalityStory } from '../features/stories/ChildMortalityStory';
@@ -265,6 +266,10 @@ function StoryRoute() {
 
   if (story.slug === 'climate-and-environmental-futures') {
     return <ClimateEnvironmentalFuturesStory story={story} />;
+  }
+
+  if (story.slug === 'capital-markets-and-money-flows') {
+    return <CapitalMarketsMoneyFlowsStory story={story} />;
   }
 
   if (story.slug === 'womens-rights') {

@@ -258,6 +258,17 @@ describe('app routes', () => {
     expect(screen.getByRole('heading', { name: /one emissions ledger/i })).toBeInTheDocument();
   });
 
+  it('renders the published capital markets and money flows story', () => {
+    window.location.hash = '#/future/capital-markets-and-money-flows';
+    render(<App />);
+
+    expect(
+      screen.getByRole('heading', { name: 'Capital Markets & Money Flows' }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /credit rose, then pulled back/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /a large credit bridge/i })).toBeInTheDocument();
+  });
+
   it('links Good, Bad, and Future navigation to homepage sections', () => {
     render(<App />);
     expect(screen.getByRole('link', { name: 'Good' })).toHaveAttribute('href', '#/?section=good');
