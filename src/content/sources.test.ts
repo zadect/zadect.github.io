@@ -22,6 +22,7 @@ describe('source catalogue', () => {
       'unhcr-population-api',
       'world-bank-pip-gini',
       'wwf-zsl-living-planet-index',
+      'gbd-pm25-owid',
       'eurostat-ai-adoption',
       'oecd-house-price-income',
     ])) {
@@ -80,6 +81,17 @@ describe('source catalogue', () => {
     expect(report?.role).toBe('research-context');
     expect(report?.coverage).toContain('context only');
     expect(report?.localPath).toBeUndefined();
+  });
+
+  it('keeps the PM2.5 guideline separate from modeled exposure data', () => {
+    const exposure = sources.find((source) => source.id === 'gbd-pm25-owid');
+    const guideline = sources.find((source) => source.id === 'who-air-quality-guidelines');
+
+    expect(exposure?.processor).toBe('Our World in Data');
+    expect(exposure?.originalPublisher).toContain('Global Burden of Disease Study 2023');
+    expect(guideline?.role).toBe('research-context');
+    expect(guideline?.coverage).toContain('context only');
+    expect(guideline?.localPath).toBeUndefined();
   });
 
   it('keeps literacy, democracy, and map geometry provenance complete', () => {

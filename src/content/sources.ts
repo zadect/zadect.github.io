@@ -537,6 +537,53 @@ export const sources: SourceReference[] = [
       'The report’s 2024 headline total is broader than the four-category API extract on this page. It is cited to explain the accounting boundary, not used as a fifth line or silently merged into the charts.',
   },
   {
+    id: 'gbd-pm25-owid',
+    title: 'Average annual exposure to PM2.5 air pollution',
+    publisher: 'Our World in Data',
+    originalPublisher:
+      'Global Burden of Disease Study 2023, Institute for Health Metrics and Evaluation, via World Bank World Development Indicators',
+    processor: 'Our World in Data',
+    role: 'chart-data',
+    citation:
+      'Global Burden of Disease Study 2023, Institute for Health Metrics and Evaluation (2026), via World Bank, “PM2.5 air pollution, mean annual exposure,” processed by Our World in Data, OWID Grapher variable 1293799.',
+    methodologyHref: 'https://data.worldbank.org/indicator/EN.ATM.PM25.MC.M3',
+    dataHref: 'https://ourworldindata.org/grapher/average-exposure-pm25-pollution',
+    originalDataHref: 'https://api.worldbank.org/v2/indicator/EN.ATM.PM25.MC.M3?format=json',
+    metadataHref:
+      'https://ourworldindata.org/grapher/average-exposure-pm25-pollution.metadata.json',
+    licenseHref: 'https://ourworldindata.org/licence',
+    version: 'OWID Grapher variable 1293799; last updated 2026-07-27',
+    coverage: 'World and six selected countries, annual 1990–2023 in this extract',
+    retrieved: accessDate,
+    unit: 'Population-weighted annual mean PM2.5 exposure (µg/m³)',
+    localPath: 'src/data/air-pollution.csv',
+    transformation:
+      'The local extract keeps the OWID rows for the world and six selected countries from 1990 through 2023. Values are not interpolated or converted; the WHO guideline is shown separately as research context.',
+    note:
+      'This is a population-weighted modeled exposure estimate, not a direct monitor reading or a count of pollution-related deaths. It includes ambient PM2.5 exposure and does not identify the source of each particle.',
+  },
+  {
+    id: 'who-air-quality-guidelines',
+    title: 'WHO global air quality guidelines',
+    publisher: 'World Health Organization',
+    originalPublisher: 'World Health Organization',
+    role: 'research-context',
+    citation:
+      'World Health Organization (2021), WHO global air quality guidelines: particulate matter (PM2.5 and PM10), ozone, nitrogen dioxide, sulfur dioxide and carbon monoxide.',
+    methodologyHref: 'https://www.who.int/publications/i/item/9789240034228',
+    dataHref: 'https://www.who.int/publications/i/item/9789240034228',
+    originalDataHref: 'https://www.who.int/publications/i/item/9789240034228',
+    metadataHref: 'https://www.who.int/teams/environment-climate-change-and-health/air-quality-and-health/air-quality-guidelines',
+    version: 'WHO 2021 global air quality guidelines',
+    coverage: 'Annual PM2.5 guideline context; context only, not a local data series',
+    retrieved: accessDate,
+    unit: 'Annual mean PM2.5 guideline: 5 µg/m³',
+    transformation:
+      'No WHO guideline value is added as an observation. The 5 µg/m³ annual mean recommendation is drawn as a reference rule on the country chart.',
+    note:
+      'The guideline is a health-protection recommendation, not a legal limit or a claim that risk disappears below the line. It is not used to rank countries or explain causes.',
+  },
+  {
     id: 'wwf-zsl-living-planet-index',
     title: 'Living Planet Index',
     publisher: 'Our World in Data',

@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
+  airPollutionSeries,
   aiAdoptionSeries,
   aiCountryEndpointSeries,
   aiEnterpriseSizeSeries,
@@ -269,6 +270,22 @@ describe('published story data', () => {
     expect(
       forcedDisplacementSeries.filter((point) => point.otherProtection !== undefined),
     ).toHaveLength(7);
+  });
+
+  it('keeps the PM2.5 world and selected-country panel complete', () => {
+    expect(airPollutionSeries).toHaveLength(238);
+    expect(new Set(airPollutionSeries.map((point) => point.entity))).toEqual(
+      new Set(['World', 'Brazil', 'China', 'Germany', 'India', 'Nigeria', 'United States']),
+    );
+    expect(airPollutionSeries.filter((point) => point.entity === 'World')[0]).toMatchObject({
+      year: 1990,
+      pm25: 36.67,
+    });
+    expect(airPollutionSeries.filter((point) => point.entity === 'World').at(-1)).toMatchObject({
+      year: 2023,
+      pm25: 32.872383,
+    });
+    expect(airPollutionSeries.every((point) => point.pm25 >= 0 && point.pm25 <= 200)).toBe(true);
   });
 
   it('contains the full CEO pay ratio range and both measures', () => {

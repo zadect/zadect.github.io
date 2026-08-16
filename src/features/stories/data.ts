@@ -7,6 +7,7 @@ import warsConflictCsv from '../../data/wars-conflict.csv?raw';
 import inequalityByCountryCsv from '../../data/inequality-by-country.csv?raw';
 import biodiversityLossCsv from '../../data/biodiversity-loss.csv?raw';
 import forcedDisplacementCsv from '../../data/forced-displacement.csv?raw';
+import airPollutionCsv from '../../data/air-pollution.csv?raw';
 import electricitySanitationCsv from '../../data/electricity-sanitation.csv?raw';
 import extremePovertyCsv from '../../data/extreme-poverty.csv?raw';
 import foodAvailabilityCsv from '../../data/food-availability.csv?raw';
@@ -196,6 +197,13 @@ export interface ForcedDisplacementPoint {
   asylumSeekers?: number;
   idps?: number;
   otherProtection?: number;
+}
+
+export interface AirPollutionPoint {
+  entity: string;
+  code: string;
+  year: number;
+  pm25: number;
 }
 
 export interface CeoPayPoint {
@@ -701,6 +709,40 @@ if (
   )
 ) {
   throw new Error('Forced displacement series has an unexpected coverage gap');
+}
+
+export const airPollutionSeries = assertUnique(
+  parseCsv(airPollutionCsv).map((row) => ({
+    entity: textValue(row.entity, 'air pollution entity'),
+    code: textValue(row.code, 'air pollution code'),
+    year: numberValue(row.year, 'air pollution year'),
+    pm25: boundedNumberValue(row.pm25, 'PM2.5 exposure', 0, 200),
+  })),
+  (row) => `${row.code}:${row.year}`,
+  'air pollution',
+) satisfies AirPollutionPoint[];
+
+const airPollutionEntities = [
+  'World',
+  'Brazil',
+  'China',
+  'Germany',
+  'India',
+  'Nigeria',
+  'United States',
+];
+
+if (
+  airPollutionSeries.length !== airPollutionEntities.length * 34 ||
+  airPollutionEntities.some(
+    (entity) =>
+      airPollutionSeries.filter((point) => point.entity === entity).length !== 34 ||
+      airPollutionSeries.some(
+        (point) => point.entity === entity && (point.year < 1990 || point.year > 2023),
+      ),
+  )
+) {
+  throw new Error('Air pollution series does not cover the declared annual panel');
 }
 
 export const ceoPaySeries: CeoPayPoint[] = parseCsv(ceoPayCsv).map((row) => ({

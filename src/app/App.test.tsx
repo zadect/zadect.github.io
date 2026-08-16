@@ -151,6 +151,17 @@ describe('app routes', () => {
     expect(screen.getByText(/headline number depends on the accounting boundary/i)).toBeInTheDocument();
   });
 
+  it('renders the published air pollution story', () => {
+    window.location.hash = '#/bad/air-pollution';
+    render(<App />);
+
+    expect(screen.getByRole('heading', { name: 'Air pollution' })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: /global average remains far above/i }),
+    ).toBeInTheDocument();
+    expect(screen.getByText(/modeled exposure estimates, not direct monitor readings/i)).toBeInTheDocument();
+  });
+
   it('links Good, Bad, and Future navigation to homepage sections', () => {
     render(<App />);
     expect(screen.getByRole('link', { name: 'Good' })).toHaveAttribute('href', '#/?section=good');

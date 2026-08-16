@@ -481,11 +481,33 @@ export const stories: StoryDefinition[] = [
     slug: 'air-pollution',
     title: 'Air pollution',
     category: 'bad',
-    status: 'coming-soon',
-    summary: 'The health cost of polluted air and the uneven pace of clean-up.',
-    plannedMetric: 'Fine particulate matter exposure',
+    status: 'published',
+    summary:
+      'Average PM2.5 exposure has fallen in some countries, but the world line remains far above the level WHO recommends for health protection.',
+    plannedMetric: 'Population-weighted annual mean PM2.5 exposure',
     geography: 'World and cities',
-    sourceHint: 'WHO Global Health Observatory',
+    sourceHint: 'Global Burden of Disease Study, World Bank, Our World in Data, and WHO',
+    comparison: {
+      title: 'What the air-pollution series compares',
+      fields: [
+        {
+          label: 'Measure',
+          value: 'Population-weighted annual mean exposure to outdoor fine particulate matter (PM2.5), measured in micrograms per cubic metre.',
+        },
+        {
+          label: 'Panel',
+          value: 'The world and six selected countries use the same annual 1990–2023 GBD 2023 series, without filling missing years.',
+        },
+        {
+          label: 'Reference',
+          value: 'The 5 µg/m³ line is WHO’s 2021 annual mean guideline recommendation; it is a health reference, not a legal limit or a claim that risk vanishes below it.',
+        },
+        {
+          label: 'Limit',
+          value: 'These are population-weighted modeled exposure estimates, not direct monitor readings, source attribution, or a count of pollution-related deaths.',
+        },
+      ],
+    },
   },
   {
     slug: 'democratic-backsliding',
