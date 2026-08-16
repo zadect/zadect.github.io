@@ -1,0 +1,169 @@
+measure,entity,code,year,value
+growth-world,World,OWID_WRL,2000,4.52
+growth-world,World,OWID_WRL,2001,2.06
+growth-world,World,OWID_WRL,2002,2.3
+growth-world,World,OWID_WRL,2003,3.09
+growth-world,World,OWID_WRL,2004,4.46
+growth-world,World,OWID_WRL,2005,4.01
+growth-world,World,OWID_WRL,2006,4.45
+growth-world,World,OWID_WRL,2007,4.36
+growth-world,World,OWID_WRL,2008,2.06
+growth-world,World,OWID_WRL,2009,-1.34
+growth-world,World,OWID_WRL,2010,4.48
+growth-world,World,OWID_WRL,2011,3.33
+growth-world,World,OWID_WRL,2012,2.7
+growth-world,World,OWID_WRL,2013,2.88
+growth-world,World,OWID_WRL,2014,3.12
+growth-world,World,OWID_WRL,2015,3.14
+growth-world,World,OWID_WRL,2016,2.82
+growth-world,World,OWID_WRL,2017,3.45
+growth-world,World,OWID_WRL,2018,3.29
+growth-world,World,OWID_WRL,2019,2.67
+growth-world,World,OWID_WRL,2020,-2.92
+growth-world,World,OWID_WRL,2021,6.35
+growth-world,World,OWID_WRL,2022,3.24
+growth-world,World,OWID_WRL,2023,2.85
+debt-panel,Canada,CAN,2000,40.81
+debt-panel,Canada,CAN,2001,39.07
+debt-panel,Canada,CAN,2002,37.55
+debt-panel,Canada,CAN,2003,35.31
+debt-panel,Canada,CAN,2004,31.51
+debt-panel,Canada,CAN,2005,29.23
+debt-panel,Canada,CAN,2006,27.05
+debt-panel,Canada,CAN,2007,24.41
+debt-panel,Canada,CAN,2008,28.42
+debt-panel,Canada,CAN,2009,36.22
+debt-panel,Canada,CAN,2010,36.58
+debt-panel,Canada,CAN,2011,36.37
+debt-panel,Canada,CAN,2012,37.01
+debt-panel,Canada,CAN,2013,36.45
+debt-panel,Canada,CAN,2014,33.68
+debt-panel,Canada,CAN,2015,35.11
+debt-panel,Canada,CAN,2016,35.65
+debt-panel,Canada,CAN,2017,34.7
+debt-panel,Canada,CAN,2018,33.42
+debt-panel,Canada,CAN,2019,32.96
+debt-panel,Canada,CAN,2020,51.03
+debt-panel,Canada,CAN,2021,50.04
+debt-panel,Canada,CAN,2022,45.72
+debt-panel,Canada,CAN,2023,46.61
+debt-panel,France,FRA,2000,51.67
+debt-panel,France,FRA,2001,51.76
+debt-panel,France,FRA,2002,54.32
+debt-panel,France,FRA,2003,56.96
+debt-panel,France,FRA,2004,56.87
+debt-panel,France,FRA,2005,57.36
+debt-panel,France,FRA,2006,54.54
+debt-panel,France,FRA,2007,54.49
+debt-panel,France,FRA,2008,58.37
+debt-panel,France,FRA,2009,70.45
+debt-panel,France,FRA,2010,71.77
+debt-panel,France,FRA,2011,73.45
+debt-panel,France,FRA,2012,76.53
+debt-panel,France,FRA,2013,79
+debt-panel,France,FRA,2014,80.14
+debt-panel,France,FRA,2015,80.97
+debt-panel,France,FRA,2016,82.07
+debt-panel,France,FRA,2017,83.29
+debt-panel,France,FRA,2018,84.3
+debt-panel,France,FRA,2019,84.82
+debt-panel,France,FRA,2020,97.66
+debt-panel,France,FRA,2021,96.67
+debt-panel,France,FRA,2022,96.13
+debt-panel,France,FRA,2023,95.46
+debt-panel,Germany,DEU,2000,38.27
+debt-panel,Germany,DEU,2001,36.45
+debt-panel,Germany,DEU,2002,37.08
+debt-panel,Germany,DEU,2003,38.93
+debt-panel,Germany,DEU,2004,39.77
+debt-panel,Germany,DEU,2005,41.17
+debt-panel,Germany,DEU,2006,41
+debt-panel,Germany,DEU,2007,39.35
+debt-panel,Germany,DEU,2008,39.85
+debt-panel,Germany,DEU,2009,44.03
+debt-panel,Germany,DEU,2010,51.59
+debt-panel,Germany,DEU,2011,49.47
+debt-panel,Germany,DEU,2012,50.09
+debt-panel,Germany,DEU,2013,49.01
+debt-panel,Germany,DEU,2014,47.3
+debt-panel,Germany,DEU,2015,44.92
+debt-panel,Germany,DEU,2016,43.18
+debt-panel,Germany,DEU,2017,40.94
+debt-panel,Germany,DEU,2018,38.97
+debt-panel,Germany,DEU,2019,37.22
+debt-panel,Germany,DEU,2020,44.36
+debt-panel,Germany,DEU,2021,45.79
+debt-panel,Germany,DEU,2022,45.03
+debt-panel,Germany,DEU,2023,44.36
+debt-panel,Italy,ITA,2000,105.67
+debt-panel,Italy,ITA,2001,105.24
+debt-panel,Italy,ITA,2002,102.75
+debt-panel,Italy,ITA,2003,100.88
+debt-panel,Italy,ITA,2004,100.3
+debt-panel,Italy,ITA,2005,101.16
+debt-panel,Italy,ITA,2006,100.3
+debt-panel,Italy,ITA,2007,97.4
+debt-panel,Italy,ITA,2008,100.06
+debt-panel,Italy,ITA,2009,109.34
+debt-panel,Italy,ITA,2010,112.04
+debt-panel,Italy,ITA,2011,112.63
+debt-panel,Italy,ITA,2012,119.43
+debt-panel,Italy,ITA,2013,125.72
+debt-panel,Italy,ITA,2014,129.22
+debt-panel,Italy,ITA,2015,129.51
+debt-panel,Italy,ITA,2016,129.32
+debt-panel,Italy,ITA,2017,129.09
+debt-panel,Italy,ITA,2018,129.77
+debt-panel,Italy,ITA,2019,129.63
+debt-panel,Italy,ITA,2020,149.86
+debt-panel,Italy,ITA,2021,141.54
+debt-panel,Italy,ITA,2022,134.65
+debt-panel,Italy,ITA,2023,131.69
+debt-panel,United Kingdom,GBR,2000,37.82
+debt-panel,United Kingdom,GBR,2001,35.26
+debt-panel,United Kingdom,GBR,2002,35.91
+debt-panel,United Kingdom,GBR,2003,37.23
+debt-panel,United Kingdom,GBR,2004,40.33
+debt-panel,United Kingdom,GBR,2005,41.76
+debt-panel,United Kingdom,GBR,2006,42.89
+debt-panel,United Kingdom,GBR,2007,44.05
+debt-panel,United Kingdom,GBR,2008,52.08
+debt-panel,United Kingdom,GBR,2009,67.23
+debt-panel,United Kingdom,GBR,2010,78.36
+debt-panel,United Kingdom,GBR,2011,84.21
+debt-panel,United Kingdom,GBR,2012,87.92
+debt-panel,United Kingdom,GBR,2013,88.62
+debt-panel,United Kingdom,GBR,2014,90.31
+debt-panel,United Kingdom,GBR,2015,91.59
+debt-panel,United Kingdom,GBR,2016,92.2
+debt-panel,United Kingdom,GBR,2017,91.1
+debt-panel,United Kingdom,GBR,2018,90.56
+debt-panel,United Kingdom,GBR,2019,89.98
+debt-panel,United Kingdom,GBR,2020,111.75
+debt-panel,United Kingdom,GBR,2021,111.64
+debt-panel,United Kingdom,GBR,2022,104.73
+debt-panel,United Kingdom,GBR,2023,103.74
+debt-panel,United States,USA,2000,40.27
+debt-panel,United States,USA,2001,39.54
+debt-panel,United States,USA,2002,40.89
+debt-panel,United States,USA,2003,42.69
+debt-panel,United States,USA,2004,43.34
+debt-panel,United States,USA,2005,43.16
+debt-panel,United States,USA,2006,42.34
+debt-panel,United States,USA,2007,42.29
+debt-panel,United States,USA,2008,50.26
+debt-panel,United States,USA,2009,62.03
+debt-panel,United States,USA,2010,70.61
+debt-panel,United States,USA,2011,75.42
+debt-panel,United States,USA,2012,79.65
+debt-panel,United States,USA,2013,81.78
+debt-panel,United States,USA,2014,82.57
+debt-panel,United States,USA,2015,83.42
+debt-panel,United States,USA,2016,85.66
+debt-panel,United States,USA,2017,85.19
+debt-panel,United States,USA,2018,86.96
+debt-panel,United States,USA,2019,88.85
+debt-panel,United States,USA,2020,111.09
+debt-panel,United States,USA,2021,107.75
+debt-panel,United States,USA,2022,103.96
+debt-panel,United States,USA,2023,107.04

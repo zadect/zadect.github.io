@@ -636,13 +636,33 @@ export const stories: StoryDefinition[] = [
     slug: 'economic-growth-debt-and-public-finance',
     title: 'Economic Growth, Debt & Public Finance',
     category: 'future',
-    status: 'coming-soon',
-    summary: 'The mix of productivity, debt, and public finance behind economic room to act.',
-    plannedMetric:
-      'Growth-accounting components, household debt and delinquencies, public debt-to-GDP, and interest payments relative to public revenue',
-    geography: 'Advanced and emerging economies',
-    sourceHint:
-      'OECD, Penn World Table or Conference Board, Bank for International Settlements, and IMF World Economic Outlook and Fiscal Monitor',
+    status: 'published',
+    summary:
+      'Growth can slow while public debt rises, leaving governments with less room to absorb the next shock.',
+    plannedMetric: 'Annual GDP growth and gross central-government debt as a share of GDP',
+    geography: 'World growth and six selected countries',
+    sourceHint: 'World Bank national accounts and public-sector debt data, via Our World in Data',
+    comparison: {
+      title: 'Two signals, kept separate',
+      fields: [
+        {
+          label: 'Growth',
+          value: 'Annual percentage change in inflation-adjusted GDP for the world, from 2000 through 2023.',
+        },
+        {
+          label: 'Debt',
+          value: 'Gross central-government debt as a share of GDP for Canada, France, Germany, Italy, the United Kingdom, and the United States.',
+        },
+        {
+          label: 'Scope',
+          value: 'Both series are observed annual data through 2023; the debt panel begins in 2000 and does not represent every public-sector liability.',
+        },
+        {
+          label: 'Limit',
+          value: 'These lines do not explain why growth or debt moved, measure productivity composition, or show interest burdens, household debt, or fiscal sustainability by themselves.',
+        },
+      ],
+    },
   },
   {
     slug: 'inflation-prices-and-energy',

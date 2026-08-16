@@ -17,6 +17,8 @@ import {
   democracyMapGeoJson,
   democracyMapSeries,
   democracySeries,
+  economicGrowthDebtPublicFinanceSeries,
+  economicGrowthWorldSeries,
   climateAnnualSeries,
   climateDecadeSeries,
   electricitySanitationPanelSeries,
@@ -42,6 +44,7 @@ import {
   forcedDisplacementSeries,
   lifeExpectancyPanelSeries,
   lifeExpectancySeries,
+  publicDebtPanelSeries,
   womensRightsCountrySeries,
   womensRightsSeries,
   womensRightsWorldSeries,
@@ -401,6 +404,29 @@ describe('published story data', () => {
       156.6927,
       3,
     );
+  });
+
+  it('keeps growth and public-debt measures separate and complete', () => {
+    expect(economicGrowthWorldSeries).toHaveLength(24);
+    expect(publicDebtPanelSeries).toHaveLength(144);
+    expect(economicGrowthWorldSeries[0]).toMatchObject({
+      entity: 'World',
+      year: 2000,
+      value: 4.52,
+    });
+    expect(economicGrowthWorldSeries.at(-1)).toMatchObject({
+      year: 2023,
+      value: 2.85,
+    });
+    expect(publicDebtPanelSeries.find((point) => point.entity === 'Italy' && point.year === 2020)).toMatchObject({
+      value: 149.86,
+    });
+    expect(
+      new Set(publicDebtPanelSeries.map((point) => point.entity)),
+    ).toEqual(
+      new Set(['Canada', 'France', 'Germany', 'Italy', 'United Kingdom', 'United States']),
+    );
+    expect(economicGrowthDebtPublicFinanceSeries).toHaveLength(168);
   });
 
   it('keeps the women rights index within bounds and preserves its source checkpoints', () => {

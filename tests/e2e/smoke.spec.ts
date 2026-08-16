@@ -229,6 +229,19 @@ test('the published Future stories render their charts and context cards', async
   await expect(
     page.getByRole('link', { name: /Wealth share of the richest 1%/i }).first(),
   ).toBeVisible();
+
+  await page.goto('/#/future/economic-growth-debt-and-public-finance');
+  await expect(
+    page.getByRole('heading', { name: 'Economic Growth, Debt & Public Finance', exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: /growth has a rhythm of shocks/i }),
+  ).toBeVisible();
+  await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
+  await expect(page.getByText(/not a complete balance sheet/i)).toBeVisible();
+  await expect(
+    page.getByRole('link', { name: /Annual GDP growth/i }).first(),
+  ).toBeVisible();
 });
 
 test('header category links target their homepage sections', async ({ page }) => {
@@ -252,7 +265,7 @@ test('header category links target their homepage sections', async ({ page }) =>
 });
 
 test('a deferred story explains its planned evidence', async ({ page }) => {
-  await page.goto('/#/future/economic-growth-debt-and-public-finance');
+  await page.goto('/#/future/inflation-prices-and-energy');
   await expect(page.getByText('Coming next')).toBeVisible();
-  await expect(page.getByText(/growth-accounting components/i)).toBeVisible();
+  await expect(page.getByText(/core, headline, goods, and services inflation/i)).toBeVisible();
 });

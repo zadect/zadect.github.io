@@ -10,6 +10,7 @@ import forcedDisplacementCsv from '../../data/forced-displacement.csv?raw';
 import airPollutionCsv from '../../data/air-pollution.csv?raw';
 import electricitySanitationCsv from '../../data/electricity-sanitation.csv?raw';
 import employmentWorkSkillsCsv from '../../data/employment-work-skills.csv?raw';
+import economicGrowthDebtPublicFinanceCsv from '../../data/economic-growth-debt-public-finance.csv?raw';
 import extremePovertyCsv from '../../data/extreme-poverty.csv?raw';
 import foodAvailabilityCsv from '../../data/food-availability.csv?raw';
 import hungerCsv from '../../data/hunger-undernourishment.csv?raw';
@@ -222,6 +223,14 @@ export interface WealthDistributionInequalityPoint {
   code: string;
   year: number;
   share: number;
+}
+
+export interface EconomicGrowthDebtPublicFinancePoint {
+  measure: 'growth-world' | 'debt-panel';
+  entity: string;
+  code: string;
+  year: number;
+  value: number;
 }
 
 export interface CeoPayPoint {
@@ -842,6 +851,49 @@ if (
   )
 ) {
   throw new Error('Wealth distribution and inequality series does not cover the declared panel');
+}
+
+export const economicGrowthDebtPublicFinanceSeries = assertUnique(
+  parseCsv(economicGrowthDebtPublicFinanceCsv).map((row) => {
+    const measure = row.measure;
+    if (measure !== 'growth-world' && measure !== 'debt-panel') {
+      throw new Error(`Invalid economic growth and debt measure: ${measure}`);
+    }
+
+    return {
+      measure,
+      entity: textValue(row.entity, 'economic growth and debt entity'),
+      code: textValue(row.code, 'economic growth and debt code'),
+      year: numberValue(row.year, 'economic growth and debt year'),
+      value: numberValue(row.value, 'economic growth and debt value'),
+    };
+  }),
+  (row) => `${row.measure}:${row.code}:${row.year}`,
+  'economic growth and debt',
+) satisfies EconomicGrowthDebtPublicFinancePoint[];
+
+export const economicGrowthWorldSeries = economicGrowthDebtPublicFinanceSeries.filter(
+  (point) => point.measure === 'growth-world',
+);
+
+export const publicDebtPanelSeries = economicGrowthDebtPublicFinanceSeries.filter(
+  (point) => point.measure === 'debt-panel',
+);
+
+const publicDebtPanel = ['Canada', 'France', 'Germany', 'Italy', 'United Kingdom', 'United States'];
+
+if (
+  economicGrowthWorldSeries.length !== 24 ||
+  economicGrowthWorldSeries.some((point, index) => point.year !== 2000 + index) ||
+  publicDebtPanelSeries.length !== publicDebtPanel.length * 24 ||
+  publicDebtPanel.some(
+    (entity) =>
+      publicDebtPanelSeries.filter((point) => point.entity === entity).length !== 24,
+  ) ||
+  publicDebtPanelSeries.some((point) => point.year < 2000 || point.year > 2023) ||
+  economicGrowthWorldSeries.some((point) => point.value < -100)
+) {
+  throw new Error('Economic growth and public debt series does not cover the declared panel');
 }
 
 const airPollutionEntities = [
