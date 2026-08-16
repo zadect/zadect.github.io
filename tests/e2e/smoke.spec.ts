@@ -203,6 +203,19 @@ test('the published Future stories render their charts and context cards', async
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
   await expect(page.getByText(/not an absolute affordability ranking/i)).toBeVisible();
   await expect(page.locator('.study-card')).toHaveCount(2);
+
+  await page.goto('/#/future/employment-work-and-skills');
+  await expect(
+    page.getByRole('heading', { name: 'Employment, Work & Skills', exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: /global work rate dipped/i }),
+  ).toBeVisible();
+  await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
+  await expect(page.getByText(/not a measure of job quality/i)).toBeVisible();
+  await expect(
+    page.getByRole('link', { name: /Employment rate/i }).first(),
+  ).toBeVisible();
 });
 
 test('header category links target their homepage sections', async ({ page }) => {
@@ -226,7 +239,7 @@ test('header category links target their homepage sections', async ({ page }) =>
 });
 
 test('a deferred story explains its planned evidence', async ({ page }) => {
-  await page.goto('/#/future/employment-work-and-skills');
+  await page.goto('/#/future/wealth-distribution-and-inequality');
   await expect(page.getByText('Coming next')).toBeVisible();
-  await expect(page.getByText(/vacancy and unemployment rates/i)).toBeVisible();
+  await expect(page.getByText(/income and wealth Gini coefficients/i)).toBeVisible();
 });

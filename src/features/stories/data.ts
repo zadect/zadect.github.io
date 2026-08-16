@@ -9,6 +9,7 @@ import biodiversityLossCsv from '../../data/biodiversity-loss.csv?raw';
 import forcedDisplacementCsv from '../../data/forced-displacement.csv?raw';
 import airPollutionCsv from '../../data/air-pollution.csv?raw';
 import electricitySanitationCsv from '../../data/electricity-sanitation.csv?raw';
+import employmentWorkSkillsCsv from '../../data/employment-work-skills.csv?raw';
 import extremePovertyCsv from '../../data/extreme-poverty.csv?raw';
 import foodAvailabilityCsv from '../../data/food-availability.csv?raw';
 import hungerCsv from '../../data/hunger-undernourishment.csv?raw';
@@ -204,6 +205,14 @@ export interface AirPollutionPoint {
   code: string;
   year: number;
   pm25: number;
+}
+
+export interface EmploymentWorkSkillsPoint {
+  series: 'world' | 'panel';
+  entity: string;
+  code: string;
+  year: number;
+  rate: number;
 }
 
 export interface CeoPayPoint {
@@ -721,6 +730,57 @@ export const airPollutionSeries = assertUnique(
   (row) => `${row.code}:${row.year}`,
   'air pollution',
 ) satisfies AirPollutionPoint[];
+
+export const employmentWorkSkillsSeries = assertUnique(
+  parseCsv(employmentWorkSkillsCsv).map((row) => {
+    const series = row.series;
+    if (series !== 'world' && series !== 'panel') {
+      throw new Error(`Invalid employment and skills series: ${series}`);
+    }
+
+    return {
+      series,
+      entity: textValue(row.entity, 'employment and skills entity'),
+      code: textValue(row.code, 'employment and skills code'),
+      year: numberValue(row.year, 'employment and skills year'),
+      rate: boundedNumberValue(row.value, 'employment rate', 0, 100),
+    };
+  }),
+  (row) => `${row.series}:${row.code}:${row.year}`,
+  'employment and skills',
+) satisfies EmploymentWorkSkillsPoint[];
+
+export const employmentWorkSkillsWorldSeries = employmentWorkSkillsSeries.filter(
+  (point) => point.series === 'world',
+);
+
+export const employmentWorkSkillsPanelSeries = employmentWorkSkillsSeries.filter(
+  (point) => point.series === 'panel',
+);
+
+const employmentWorkSkillsPanel = [
+  'Germany',
+  'India',
+  'Japan',
+  'Nigeria',
+  'Sweden',
+  'United States',
+];
+
+if (
+  employmentWorkSkillsWorldSeries.length !== 35 ||
+  employmentWorkSkillsWorldSeries.some((point, index) => point.year !== 1991 + index) ||
+  employmentWorkSkillsPanelSeries.length !== employmentWorkSkillsPanel.length * 5 ||
+  employmentWorkSkillsPanel.some(
+    (entity) =>
+      employmentWorkSkillsPanelSeries.filter((point) => point.entity === entity).length !== 5,
+  ) ||
+  employmentWorkSkillsPanelSeries.some(
+    (point) => ![1991, 2000, 2010, 2020, 2025].includes(point.year),
+  )
+) {
+  throw new Error('Employment and skills series does not cover the declared panel');
+}
 
 const airPollutionEntities = [
   'World',

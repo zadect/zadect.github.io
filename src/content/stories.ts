@@ -572,13 +572,33 @@ export const stories: StoryDefinition[] = [
     slug: 'employment-work-and-skills',
     title: 'Employment, Work & Skills',
     category: 'future',
-    status: 'coming-soon',
-    summary: 'Whether labour-market transitions lead to more secure work and broader access to useful skills.',
-    plannedMetric:
-      'Vacancy and unemployment rates, unstable schedules, involuntary part-time work, re-employment, occupation switches, and training participation',
-    geography: 'Countries with comparable labour-force and skills surveys',
-    sourceHint:
-      'ILOSTAT, OECD Employment Outlook and Job Quality Framework, Eurostat Labour Force Survey, and OECD PIAAC',
+    status: 'published',
+    summary:
+      'The share of adults in work has moved unevenly across the world, offering a baseline before we ask whether those jobs are good ones.',
+    plannedMetric: 'Employment-to-population ratio',
+    geography: 'World and selected countries',
+    sourceHint: 'International Labour Organization Modelled Estimates, via World Bank and Our World in Data',
+    comparison: {
+      title: 'What the employment rate compares',
+      fields: [
+        {
+          label: 'Measure',
+          value: 'Share of people aged 15 and older who worked for at least one hour in the reference period, in paid work, self-employment, or production for own use.',
+        },
+        {
+          label: 'World',
+          value: 'The annual global series runs from 1991 to 2025 and uses the ILO’s modeled estimates for comparable coverage.',
+        },
+        {
+          label: 'Panel',
+          value: 'Germany, India, Japan, Nigeria, Sweden, and the United States are shown at shared checkpoints: 1991, 2000, 2010, 2020, and 2025.',
+        },
+        {
+          label: 'Limit',
+          value: 'The rate does not tell us whether work is secure, well paid, full-time, formal, skilled, or compatible with a healthy life.',
+        },
+      ],
+    },
   },
   {
     slug: 'wealth-distribution-and-inequality',
