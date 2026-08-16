@@ -368,6 +368,31 @@ export const sources: SourceReference[] = [
       'Basic sanitation is an improved facility not shared with another household. The JMP compiles nationally representative surveys, censuses, administrative data, and service-provider data; this is use, not the higher safely managed standard.',
   },
   {
+    id: 'world-bank-pip-extreme-poverty',
+    title: 'Share of population in poverty ($3 a day)',
+    publisher: 'Our World in Data',
+    originalPublisher: 'World Bank Poverty and Inequality Platform',
+    processor: 'Our World in Data',
+    role: 'chart-data',
+    citation:
+      'World Bank Poverty and Inequality Platform (2026), “Share of population in poverty ($3 a day),” processed by Our World in Data, OWID Grapher variable 1281387.',
+    methodologyHref: 'https://datanalytics.worldbank.org/PIP-Methodology/lineupestimates.html',
+    dataHref: 'https://ourworldindata.org/grapher/share-of-population-in-extreme-poverty',
+    originalDataHref: 'https://pip.worldbank.org/',
+    metadataHref:
+      'https://ourworldindata.org/grapher/share-of-population-in-extreme-poverty.metadata.json',
+    licenseHref: 'https://ourworldindata.org/licence',
+    version: 'OWID Grapher variable 1281387; PIP release 20260324_2021; last updated 2026-06-26',
+    coverage: 'World series 1990–2026; selected-country observations 1990–2024 in this extract',
+    retrieved: accessDate,
+    unit: 'Percent of the population below $3/day in 2021 international dollars',
+    localPath: 'src/data/extreme-poverty.csv',
+    transformation:
+      'The local extract keeps exact OWID world observations from 1990–2026 and all non-null selected-country observations from 1990–2024 for Brazil, India, Nigeria, the United States, and Germany. No missing country years are interpolated; source-extrapolated world points from 2023 onward are marked.',
+    note:
+      'The $3 international poverty line is intended for cross-country comparisons. Depending on the country and year, the underlying welfare measure is disposable income or consumption. Global and regional estimates are extrapolated to the release year using growth estimates and forecasts, as documented by the World Bank.',
+  },
+  {
     id: 'eurostat-ai-adoption',
     title: 'Artificial intelligence by size class of enterprise',
     publisher: 'Eurostat',

@@ -101,6 +101,18 @@ test('the electricity and sanitation story renders its service charts', async ({
   ).toBeVisible();
 });
 
+test('the extreme poverty story renders its world and country charts', async ({ page }) => {
+  await page.goto('/#/good/extreme-poverty');
+  await expect(page.getByRole('heading', { name: 'Extreme poverty', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /global poverty line moved downward/i })).toBeVisible();
+  await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
+  await expect(page.getByText(/source-extrapolated 2023–2026 tail/i).first()).toBeVisible();
+  await expect(page.getByText(/income data in some countries with consumption data/i)).toBeVisible();
+  await expect(
+    page.getByRole('link', { name: /Share of population in poverty/i }).first(),
+  ).toBeVisible();
+});
+
 test('the published Future stories render their charts and context cards', async ({ page }) => {
   await page.goto('/#/future/tech-and-ai');
   await expect(page.getByRole('heading', { name: 'AI & Tech', exact: true })).toBeVisible();

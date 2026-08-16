@@ -16,6 +16,9 @@ import {
   electricitySanitationPanelSeries,
   electricitySanitationSeries,
   electricitySanitationWorldSeries,
+  extremePovertyPanelSeries,
+  extremePovertySeries,
+  extremePovertyWorldSeries,
   foodAvailabilitySeries,
   hungerSeries,
   housingBenchmarkSeries,
@@ -115,6 +118,30 @@ describe('published story data', () => {
       new Set(electricitySanitationPanelSeries.map((point) => point.entity)).size,
     ).toBe(5);
     expect(electricitySanitationSeries.every((point) => point.value >= 0 && point.value <= 100)).toBe(
+      true,
+    );
+  });
+
+  it('keeps extreme poverty source extrapolations and country gaps explicit', () => {
+    expect(extremePovertyWorldSeries).toHaveLength(37);
+    expect(extremePovertyPanelSeries).toHaveLength(111);
+    expect(extremePovertyWorldSeries[0]).toMatchObject({
+      year: 1990,
+      value: 43.41358244419098,
+      status: 'reported-or-survey-based',
+    });
+    expect(extremePovertyWorldSeries.at(-1)).toMatchObject({
+      year: 2026,
+      value: 9.975934773683548,
+      status: 'source-extrapolation',
+    });
+    expect(
+      extremePovertyWorldSeries.filter((point) => point.status === 'source-extrapolation'),
+    ).toHaveLength(4);
+    expect(new Set(extremePovertyPanelSeries.map((point) => point.entity))).toEqual(
+      new Set(['Brazil', 'India', 'Nigeria', 'United States', 'Germany']),
+    );
+    expect(extremePovertySeries.every((point) => point.value >= 0 && point.value <= 100)).toBe(
       true,
     );
   });

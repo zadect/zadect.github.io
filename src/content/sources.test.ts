@@ -15,6 +15,7 @@ describe('source catalogue', () => {
       'who-unicef-dtp3',
       'world-bank-electricity',
       'who-unicef-sanitation',
+      'world-bank-pip-extreme-poverty',
       'eurostat-ai-adoption',
       'oecd-house-price-income',
     ])) {

@@ -85,6 +85,17 @@ describe('app routes', () => {
     expect(screen.getByText(/reliability, service quality/i)).toBeInTheDocument();
   });
 
+  it('renders the published extreme poverty story', () => {
+    window.location.hash = '#/good/extreme-poverty';
+    render(<App />);
+
+    expect(screen.getByRole('heading', { name: 'Extreme poverty' })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: /global poverty line moved downward/i }),
+    ).toBeInTheDocument();
+    expect(screen.getByText(/income data in some countries with consumption data/i)).toBeInTheDocument();
+  });
+
   it('links Good, Bad, and Future navigation to homepage sections', () => {
     render(<App />);
     expect(screen.getByRole('link', { name: 'Good' })).toHaveAttribute('href', '#/?section=good');
