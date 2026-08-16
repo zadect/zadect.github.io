@@ -384,11 +384,33 @@ export const stories: StoryDefinition[] = [
     slug: 'inequality-by-country',
     title: 'Rich and poor',
     category: 'bad',
-    status: 'coming-soon',
-    summary: 'How income distributions have shifted within selected countries.',
+    status: 'published',
+    summary:
+      'Inequality moves differently across countries: some lines rose, some fell, and the surveys do not all measure the same welfare concept.',
     plannedMetric: 'Gini coefficient and income shares',
     geography: 'Selected countries',
     sourceHint: 'World Bank Poverty and Inequality Platform',
+    comparison: {
+      title: 'What the Gini lines compare',
+      fields: [
+        {
+          label: 'Measure',
+          value: 'The Gini coefficient, from 0 for perfect equality to 1 for maximum inequality; higher values mean a more unequal distribution.',
+        },
+        {
+          label: 'Panel',
+          value: 'United States, Brazil, China, India, Nigeria, South Africa, and Germany, using every available observation retained by the World Bank PIP series.',
+        },
+        {
+          label: 'Welfare data',
+          value: 'Depending on country and year, the underlying survey measures disposable income after taxes and benefits or household consumption per person.',
+        },
+        {
+          label: 'Limit',
+          value: 'Survey years and methods differ, so country levels are not a clean global ranking and missing years are not interpolated.',
+        },
+      ],
+    },
   },
   {
     slug: 'biodiversity-loss',

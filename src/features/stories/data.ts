@@ -4,6 +4,7 @@ import democracyMapCsv from '../../data/democracy-map.csv?raw';
 import democracySeriesCsv from '../../data/democracy-series.csv?raw';
 import climateChangeCsv from '../../data/climate-change.csv?raw';
 import warsConflictCsv from '../../data/wars-conflict.csv?raw';
+import inequalityByCountryCsv from '../../data/inequality-by-country.csv?raw';
 import electricitySanitationCsv from '../../data/electricity-sanitation.csv?raw';
 import extremePovertyCsv from '../../data/extreme-poverty.csv?raw';
 import foodAvailabilityCsv from '../../data/food-availability.csv?raw';
@@ -169,6 +170,13 @@ export interface WarsConflictPoint {
   lowDeaths: number;
   highDeaths: number;
   ongoingConflicts: number;
+}
+
+export interface InequalityPoint {
+  country: string;
+  code: string;
+  year: number;
+  gini: number;
 }
 
 export interface CeoPayPoint {
@@ -517,6 +525,46 @@ if (
 ) {
   throw new Error('Wars and conflict series must cover every year from 1946 through 2025');
 }
+
+export const inequalitySeries = assertUnique(
+  parseCsv(inequalityByCountryCsv).map((row) => ({
+    country: textValue(row.country, 'inequality country'),
+    code: textValue(row.code, 'inequality code'),
+    year: numberValue(row.year, 'inequality year'),
+    gini: boundedNumberValue(row.gini, 'Gini coefficient', 0, 1),
+  })),
+  (row) => `${row.code}:${row.year}`,
+  'inequality',
+) satisfies InequalityPoint[];
+
+const inequalityCountries = [
+  'United States',
+  'Brazil',
+  'China',
+  'India',
+  'Nigeria',
+  'South Africa',
+  'Germany',
+];
+
+if (
+  new Set(inequalitySeries.map((point) => point.country)).size !== inequalityCountries.length ||
+  inequalityCountries.some(
+    (country) => !inequalitySeries.some((point) => point.country === country),
+  )
+) {
+  throw new Error('Inequality series does not cover the declared country panel');
+}
+
+export const inequalityEndpointSeries = inequalityCountries.flatMap((country) => {
+  const countrySeries = inequalitySeries.filter((point) => point.country === country);
+  const first = countrySeries[0];
+  const latest = countrySeries.at(-1);
+  if (!first || !latest) {
+    throw new Error(`Inequality series is incomplete for ${country}`);
+  }
+  return first === latest ? [first] : [first, latest];
+});
 
 export const ceoPaySeries: CeoPayPoint[] = parseCsv(ceoPayCsv).map((row) => ({
   year: numberValue(row.year, 'CEO pay year'),

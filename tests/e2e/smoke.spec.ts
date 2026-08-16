@@ -138,6 +138,19 @@ test('the wars and conflict story renders its two measures', async ({ page }) =>
   ).toBeVisible();
 });
 
+test('the rich and poor story renders its Gini charts', async ({ page }) => {
+  await page.goto('/#/bad/inequality-by-country');
+  await expect(page.getByRole('heading', { name: 'Rich and poor', exact: true })).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: /inequality does not move in one direction/i }),
+  ).toBeVisible();
+  await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
+  await expect(page.getByText(/survey redesigns can create breaks/i)).toBeVisible();
+  await expect(
+    page.getByRole('link', { name: /Gini coefficient — World Bank PIP/i }).first(),
+  ).toBeVisible();
+});
+
 test('the published Future stories render their charts and context cards', async ({ page }) => {
   await page.goto('/#/future/tech-and-ai');
   await expect(page.getByRole('heading', { name: 'AI & Tech', exact: true })).toBeVisible();

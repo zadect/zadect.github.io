@@ -118,6 +118,17 @@ describe('app routes', () => {
     expect(screen.getAllByText(/deaths from disease, hunger, displacement/i)).not.toHaveLength(0);
   });
 
+  it('renders the published rich and poor story', () => {
+    window.location.hash = '#/bad/inequality-by-country';
+    render(<App />);
+
+    expect(screen.getByRole('heading', { name: 'Rich and poor' })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: /inequality does not move in one direction/i }),
+    ).toBeInTheDocument();
+    expect(screen.getByText(/survey redesigns can create breaks/i)).toBeInTheDocument();
+  });
+
   it('links Good, Bad, and Future navigation to homepage sections', () => {
     render(<App />);
     expect(screen.getByRole('link', { name: 'Good' })).toHaveAttribute('href', '#/?section=good');

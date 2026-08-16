@@ -19,6 +19,7 @@ describe('source catalogue', () => {
       'nasa-gistemp',
       'ucdp-conflict-deaths',
       'ucdp-conflict-counts',
+      'world-bank-pip-gini',
       'eurostat-ai-adoption',
       'oecd-house-price-income',
     ])) {
