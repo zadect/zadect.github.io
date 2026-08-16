@@ -46,11 +46,28 @@ export const stories: StoryDefinition[] = [
     slug: 'literacy',
     title: 'Literacy',
     category: 'good',
-    status: 'coming-soon',
-    summary: 'How access to reading and writing has expanded across generations.',
+    status: 'published',
+    summary: 'Basic literacy has spread widely, though the map still shows uneven coverage and unfinished progress.',
     plannedMetric: 'Adult literacy rate',
-    geography: 'World and regions',
-    sourceHint: 'UNESCO Institute for Statistics',
+    geography: 'Selected countries and latest reported country observations',
+    sourceHint: 'UNESCO Institute for Statistics and Our World in Data',
+    comparison: {
+      title: 'What literacy means here',
+      fields: [
+        {
+          label: 'Measure',
+          value: 'Share of people aged 15 and older who can read and write a simple statement about everyday life.',
+        },
+        {
+          label: 'Map',
+          value: 'Each country uses its latest reported observation from 2018 onward; the year is shown because reporting is not simultaneous.',
+        },
+        {
+          label: 'Limit',
+          value: 'Definitions and population coverage changed over time, and basic literacy is not the same as functional literacy.',
+        },
+      ],
+    },
   },
   {
     slug: 'womens-rights',
@@ -203,11 +220,28 @@ export const stories: StoryDefinition[] = [
     slug: 'democratic-backsliding',
     title: 'Democratic backsliding',
     category: 'bad',
-    status: 'coming-soon',
-    summary: 'A measured view of civic freedoms, institutions, and the quality of public choice.',
+    status: 'published',
+    summary: 'The latest five-year changes show democratic deterioration in some countries and recovery in others.',
     plannedMetric: 'Democracy and civil-liberties indices',
-    geography: 'Countries and regions',
-    sourceHint: 'V-Dem and Freedom House',
+    geography: 'Selected countries and countries with comparable 2020–2025 values',
+    sourceHint: 'V-Dem and Our World in Data',
+    comparison: {
+      title: 'What backsliding means here',
+      fields: [
+        {
+          label: 'Index',
+          value: 'V-Dem’s Liberal Democracy Index, a 0–1 estimate combining elections, civil liberties, rights, and executive constraints.',
+        },
+        {
+          label: 'Change',
+          value: 'The map shows the index in 2025 minus the index in 2020; negative values indicate deterioration in this measure.',
+        },
+        {
+          label: 'Limit',
+          value: 'This is a model-based signal of change, not a causal explanation or a complete ranking of political systems.',
+        },
+      ],
+    },
   },
 ];
 

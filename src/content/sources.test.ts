@@ -37,4 +37,31 @@ describe('source catalogue', () => {
       expect(source.localPath).toBeUndefined();
     }
   });
+
+  it('keeps literacy, democracy, and map geometry provenance complete', () => {
+    for (const source of getSources([
+      'literacy-owid',
+      'vdem-liberal-democracy',
+      'world-atlas-geometry',
+      'iso-country-codes',
+    ])) {
+      expect(source.citation).toBeTruthy();
+      expect(source.version).toBeTruthy();
+      expect(source.coverage).toBeTruthy();
+      expect(source.unit).toBeTruthy();
+      expect(source.transformation).toBeTruthy();
+      expect(source.methodologyHref).toMatch(/^https:\/\//);
+      expect(source.dataHref).toMatch(/^https:\/\//);
+    }
+
+    expect(sources.find((source) => source.id === 'literacy-owid')?.processor).toBe(
+      'Our World in Data',
+    );
+    expect(sources.find((source) => source.id === 'literacy-owid')?.originalPublisher).toContain(
+      'UNESCO',
+    );
+    expect(sources.find((source) => source.id === 'vdem-liberal-democracy')?.originalPublisher).toContain(
+      'V-Dem',
+    );
+  });
 });
