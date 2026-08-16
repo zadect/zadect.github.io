@@ -42,6 +42,7 @@ Published story routes use hash navigation:
 - `/#/bad/ceo-pay-gap`
 - `/#/bad/democratic-backsliding`
 - `/#/future/tech-and-ai`
+- `/#/future/housing-cities-and-infrastructure`
 
 ### Production build and preview
 
@@ -83,11 +84,28 @@ copy if the coverage, methodology, or interpretation changes.
 
 ### Future catalogue
 
-The Future category contains deliberately data-free placeholders. Its
-“Likely sources” are research directions for a later implementation, not
-citations for a chart or evidence of a trend. Do not add a Future story to the
-source catalogue or make a numerical claim until a compatible, versioned
-dataset and its methodology have been reviewed.
+The Future category now contains two published stories — AI & Tech and Housing,
+Cities & Infrastructure — plus deliberately data-free placeholders. The
+published stories use Eurostat enterprise adoption and OECD
+house-price-to-income extracts. Their separate “Study context” cards link
+research that helps frame the question but is not copied into chart rows or
+stat cards. The remaining placeholders keep “Likely sources” as research
+directions, not citations for a chart or evidence of a trend.
+
+Do not publish another Future story or make a numerical claim until a
+compatible, versioned dataset and its methodology have been reviewed.
+
+### Future story scope
+
+- **AI & Tech** uses Eurostat dataset `isoc_eb_ai` for enterprises with 10 or
+  more employees in covered non-financial activities. The extract keeps the
+  reported years 2021, 2023, 2024, and 2025; the missing 2022 observation is
+  shown as a gap rather than interpolated.
+- **Housing, Cities & Infrastructure** currently measures only the OECD
+  `HPI_YDH` house-price-to-income index and its
+  `HPI_YDH_AVG` within-country long-term benchmark for eight countries from
+  2000–2024. It does not claim to measure rents, mortgage costs, city-level
+  affordability, construction supply, or infrastructure capacity.
 
 ### Map coverage and no-data treatment
 
