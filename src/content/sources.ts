@@ -491,6 +491,31 @@ export const sources: SourceReference[] = [
       'The PIP series uses disposable income after taxes and benefits for many high-income countries and consumption for many low- and middle-income countries. Survey design and welfare concepts can change, so within-country movement is more defensible than a simple cross-country ranking.',
   },
   {
+    id: 'wwf-zsl-living-planet-index',
+    title: 'Living Planet Index',
+    publisher: 'Our World in Data',
+    originalPublisher: 'World Wildlife Fund and Zoological Society of London',
+    processor: 'Our World in Data',
+    role: 'chart-data',
+    citation:
+      'World Wildlife Fund and Zoological Society of London (2024), “Living Planet Index,” processed by Our World in Data, OWID Grapher variables 990513–990515.',
+    methodologyHref: 'https://livingplanetindex.org/methodology',
+    dataHref: 'https://ourworldindata.org/grapher/global-living-planet-index',
+    originalDataHref: 'https://livingplanetindex.org/data_portal',
+    metadataHref:
+      'https://ourworldindata.org/grapher/global-living-planet-index.metadata.json',
+    licenseHref: 'https://ourworldindata.org/licence',
+    version: 'Living Planet Report 2024; OWID variables 990513–990515; last updated 2024-09-30',
+    coverage: 'World annual index 1970–2020 and five-region checkpoint panel in this extract',
+    retrieved: accessDate,
+    unit: 'Index relative to 1970 = 100',
+    localPath: 'src/data/biodiversity-loss.csv',
+    transformation:
+      'OWID values are multiplied by the documented conversion factor of 100 so the local index is 1970 = 100. The local extract keeps all 51 world annual rows with central, lower, and upper estimates. Regional rows are retained at six shared checkpoints from 1970 to 2020; no values are interpolated or recomputed.',
+    note:
+      'The LPI tracks the average change in monitored vertebrate population abundance. It is not a count of all wild animals or species, and a decline in the index does not mean every monitored population declined by the same amount.',
+  },
+  {
     id: 'eurostat-ai-adoption',
     title: 'Artificial intelligence by size class of enterprise',
     publisher: 'Eurostat',

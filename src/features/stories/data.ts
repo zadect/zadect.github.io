@@ -5,6 +5,7 @@ import democracySeriesCsv from '../../data/democracy-series.csv?raw';
 import climateChangeCsv from '../../data/climate-change.csv?raw';
 import warsConflictCsv from '../../data/wars-conflict.csv?raw';
 import inequalityByCountryCsv from '../../data/inequality-by-country.csv?raw';
+import biodiversityLossCsv from '../../data/biodiversity-loss.csv?raw';
 import electricitySanitationCsv from '../../data/electricity-sanitation.csv?raw';
 import extremePovertyCsv from '../../data/extreme-poverty.csv?raw';
 import foodAvailabilityCsv from '../../data/food-availability.csv?raw';
@@ -177,6 +178,15 @@ export interface InequalityPoint {
   code: string;
   year: number;
   gini: number;
+}
+
+export interface BiodiversityPoint {
+  series: 'world' | 'region';
+  entity: string;
+  year: number;
+  central: number;
+  lower?: number;
+  upper?: number;
 }
 
 export interface CeoPayPoint {
@@ -565,6 +575,63 @@ export const inequalityEndpointSeries = inequalityCountries.flatMap((country) =>
   }
   return first === latest ? [first] : [first, latest];
 });
+
+export const biodiversitySeries = assertUnique(
+  parseCsv(biodiversityLossCsv).map((row) => {
+    const series = row.series;
+    if (series !== 'world' && series !== 'region') {
+      throw new Error(`Invalid biodiversity series: ${series}`);
+    }
+
+    const lower = optionalNumberValue(row.lower, 'biodiversity lower estimate');
+    const upper = optionalNumberValue(row.upper, 'biodiversity upper estimate');
+    if (series === 'world' && (lower === undefined || upper === undefined)) {
+      throw new Error(`World biodiversity row is missing uncertainty bounds for ${row.year}`);
+    }
+    if (series === 'region' && (lower !== undefined || upper !== undefined)) {
+      throw new Error(`Regional biodiversity row unexpectedly has uncertainty bounds for ${row.year}`);
+    }
+
+    return {
+      series,
+      entity: textValue(row.entity, 'biodiversity entity'),
+      year: numberValue(row.year, 'biodiversity year'),
+      central: boundedNumberValue(row.central, 'biodiversity index', 0, 200),
+      lower,
+      upper,
+    };
+  }),
+  (row) => `${row.series}:${row.entity}:${row.year}`,
+  'biodiversity',
+) satisfies BiodiversityPoint[];
+
+export const biodiversityWorldSeries = biodiversitySeries.filter(
+  (point) => point.series === 'world',
+);
+
+export const biodiversityRegionSeries = biodiversitySeries.filter(
+  (point) => point.series === 'region',
+);
+
+const biodiversityRegions = [
+  'Africa',
+  'Asia and Pacific',
+  'Europe and Central Asia',
+  'Latin America and the Caribbean',
+  'North America',
+];
+
+if (
+  biodiversityWorldSeries.length !== 51 ||
+  biodiversityWorldSeries.some((point, index) => point.year !== 1970 + index) ||
+  biodiversityRegionSeries.length !== biodiversityRegions.length * 6 ||
+  biodiversityRegions.some(
+    (region) =>
+      biodiversityRegionSeries.filter((point) => point.entity === region).length !== 6,
+  )
+) {
+  throw new Error('Biodiversity series does not cover the declared world and regional panels');
+}
 
 export const ceoPaySeries: CeoPayPoint[] = parseCsv(ceoPayCsv).map((row) => ({
   year: numberValue(row.year, 'CEO pay year'),

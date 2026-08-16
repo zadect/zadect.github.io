@@ -20,6 +20,7 @@ describe('source catalogue', () => {
       'ucdp-conflict-deaths',
       'ucdp-conflict-counts',
       'world-bank-pip-gini',
+      'wwf-zsl-living-planet-index',
       'eurostat-ai-adoption',
       'oecd-house-price-income',
     ])) {

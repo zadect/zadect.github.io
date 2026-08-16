@@ -3,6 +3,7 @@ import { HashRouter, Link, Route, Routes, useLocation, useParams } from 'react-r
 import { SiteHeader } from '../components/SiteHeader';
 import { StoryCard } from '../components/StoryCard';
 import { AiTechStory } from '../features/stories/AiTechStory';
+import { BiodiversityLossStory } from '../features/stories/BiodiversityLossStory';
 import { ComingSoonStory } from '../features/stories/ComingSoonStory';
 import { CeoPayStory } from '../features/stories/CeoPayStory';
 import { ChildMortalityStory } from '../features/stories/ChildMortalityStory';
@@ -194,6 +195,10 @@ function StoryRoute() {
 
   if (story.slug === 'inequality-by-country') {
     return <InequalityByCountryStory story={story} />;
+  }
+
+  if (story.slug === 'biodiversity-loss') {
+    return <BiodiversityLossStory story={story} />;
   }
 
   if (story.slug === 'literacy') {

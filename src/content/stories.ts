@@ -416,11 +416,33 @@ export const stories: StoryDefinition[] = [
     slug: 'biodiversity-loss',
     title: 'Biodiversity loss',
     category: 'bad',
-    status: 'coming-soon',
-    summary: 'The pressure on species and ecosystems that prosperity can hide.',
+    status: 'published',
+    summary:
+      'Monitored vertebrate populations have declined sharply since 1970, with regional lines moving at very different speeds.',
     plannedMetric: 'Species population and extinction-risk indicators',
     geography: 'World and biomes',
     sourceHint: 'Living Planet Index and IUCN Red List',
+    comparison: {
+      title: 'What the Living Planet Index measures',
+      fields: [
+        {
+          label: 'Measure',
+          value: 'The average change in the size of monitored vertebrate populations, indexed to 100 in 1970.',
+        },
+        {
+          label: 'Scope',
+          value: 'The world series covers 34,836 monitored populations across 5,495 native vertebrate species in the 2024 report; the regional chart shows five broad regions.',
+        },
+        {
+          label: 'Uncertainty',
+          value: 'The world chart includes the report’s lower and upper estimates around the central index; regional checkpoints show central estimates only.',
+        },
+        {
+          label: 'Limit',
+          value: 'This is not a census of all wildlife, a count of species, or a direct measure of extinction. Monitoring coverage is uneven and the index is sensitive to which populations are observed.',
+        },
+      ],
+    },
   },
   {
     slug: 'forced-displacement',
