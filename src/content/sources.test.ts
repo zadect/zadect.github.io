@@ -31,6 +31,8 @@ describe('source catalogue', () => {
       'ember-renewable-electricity-owid',
       'un-wpp-median-age-owid',
       'un-desa-migrant-stock-owid',
+      'who-healthy-life-expectancy-owid',
+      'who-health-expenditure-owid',
       'eurostat-ai-adoption',
       'oecd-house-price-income',
     ])) {
@@ -154,5 +156,17 @@ describe('source catalogue', () => {
     expect(migration?.processor).toBe('Our World in Data');
     expect(migration?.citation).toContain('International Migrant Stock 2024');
     expect(migration?.note).toContain('not an annual migration flow');
+  });
+
+  it('keeps healthy-life and health-spending attribution distinct', () => {
+    const hale = sources.find((source) => source.id === 'who-healthy-life-expectancy-owid');
+    const spending = sources.find((source) => source.id === 'who-health-expenditure-owid');
+
+    expect(hale?.processor).toBe('Our World in Data');
+    expect(hale?.originalPublisher).toContain('World Health Organization');
+    expect(hale?.note).toContain('not the same as total life expectancy');
+    expect(spending?.processor).toBe('Our World in Data');
+    expect(spending?.citation).toContain('Global Health Expenditure Database');
+    expect(spending?.note).toContain('not a measure of care quality');
   });
 });

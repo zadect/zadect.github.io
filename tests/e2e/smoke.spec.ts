@@ -264,6 +264,17 @@ test('the published Future stories render their charts and context cards', async
   await expect(
     page.getByRole('link', { name: /Median age of the population/i }).first(),
   ).toBeVisible();
+
+  await page.goto('/#/future/health-longevity-and-human-capital');
+  await expect(
+    page.getByRole('heading', { name: 'Health, Longevity & Human Capital', exact: true }),
+  ).toBeVisible();
+  await expect(page.getByRole('heading', { name: /healthy years rose/i })).toBeVisible();
+  await expect(page.locator('.chart-card__visual svg')).toHaveCount(4);
+  await expect(page.getByText(/more spending is not a guarantee/i)).toBeVisible();
+  await expect(
+    page.getByRole('link', { name: /Healthy life expectancy at birth/i }).first(),
+  ).toBeVisible();
 });
 
 test('header category links target their homepage sections', async ({ page }) => {
@@ -287,7 +298,7 @@ test('header category links target their homepage sections', async ({ page }) =>
 });
 
 test('a deferred story explains its planned evidence', async ({ page }) => {
-  await page.goto('/#/future/health-longevity-and-human-capital');
+  await page.goto('/#/future/governance-risk-and-security');
   await expect(page.getByText('Coming next')).toBeVisible();
-  await expect(page.getByText(/life and healthy-life expectancy/i)).toBeVisible();
+  await expect(page.getByText(/institutional trust, rule of law/i)).toBeVisible();
 });

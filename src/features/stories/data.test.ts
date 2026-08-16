@@ -35,6 +35,11 @@ import {
   hungerSeries,
   housingBenchmarkSeries,
   housingPriceIncomeSeries,
+  healthLongevityHumanCapitalSeries,
+  healthSpendingPanelSeries,
+  healthSpendingWorldSeries,
+  healthyLifeExpectancyPanelSeries,
+  healthyLifeExpectancyWorldSeries,
   inflationPanelSeries,
   inflationPricesEnergySeries,
   inflationWorldSeries,
@@ -429,6 +434,42 @@ describe('published story data', () => {
     ).toBe(true);
     expect(
       demographicsMigrationSeries.every((point) => point.value >= 0 && point.value <= 100),
+    ).toBe(true);
+  });
+
+  it('keeps healthy-life and health-spending signals separate and complete', () => {
+    expect(healthyLifeExpectancyWorldSeries).toHaveLength(22);
+    expect(healthyLifeExpectancyPanelSeries).toHaveLength(24);
+    expect(healthSpendingWorldSeries).toHaveLength(24);
+    expect(healthSpendingPanelSeries).toHaveLength(24);
+    expect(healthyLifeExpectancyWorldSeries[0]).toMatchObject({
+      measure: 'hale-world',
+      year: 2000,
+      value: 58.123444,
+    });
+    expect(healthyLifeExpectancyWorldSeries.at(-1)).toMatchObject({
+      year: 2021,
+      value: 61.91107,
+    });
+    expect(healthSpendingWorldSeries[0]).toMatchObject({
+      measure: 'health-spending-world',
+      year: 2000,
+      value: 592.5282,
+    });
+    expect(healthSpendingWorldSeries.at(-1)).toMatchObject({
+      year: 2023,
+      value: 1891.1688,
+    });
+    expect(
+      healthyLifeExpectancyPanelSeries.every((point) =>
+        [2000, 2010, 2020, 2021].includes(point.year),
+      ),
+    ).toBe(true);
+    expect(
+      healthSpendingPanelSeries.every((point) => [2000, 2010, 2020, 2023].includes(point.year)),
+    ).toBe(true);
+    expect(
+      healthLongevityHumanCapitalSeries.every((point) => point.value >= 0),
     ).toBe(true);
   });
 
