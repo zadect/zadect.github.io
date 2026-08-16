@@ -8,6 +8,8 @@ describe('source catalogue', () => {
       'fao-food-availability',
       'epi-ceo-pay',
       'epi-ceo-compensation',
+      'eurostat-ai-adoption',
+      'oecd-house-price-income',
     ])) {
       expect(source.citation).toBeTruthy();
       expect(source.version).toBeTruthy();
@@ -35,6 +37,21 @@ describe('source catalogue', () => {
     ])) {
       expect(source.coverage).toContain('not plotted');
       expect(source.localPath).toBeUndefined();
+    }
+  });
+
+  it('marks Future research context separately from plotted data', () => {
+    for (const source of getSources([
+      'ilo-ai-exposure-context',
+      'uk-ai-scenarios-context',
+      'imf-housing-affordability-context',
+      'un-habitat-housing-context',
+    ])) {
+      expect(source.role).toBe('research-context');
+      expect(source.coverage).toContain('context only');
+      expect(source.localPath).toBeUndefined();
+      expect(source.dataHref).toMatch(/^https:\/\//);
+      expect(source.transformation).toContain('No ');
     }
   });
 
