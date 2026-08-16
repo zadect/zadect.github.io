@@ -21,6 +21,9 @@ import {
   literacyMapGeoJson,
   literacyMapSeries,
   literacySeries,
+  lifeExpectancyLongRunSeries,
+  lifeExpectancyPanelSeries,
+  lifeExpectancySeries,
   womensRightsCountrySeries,
   womensRightsSeries,
   womensRightsWorldSeries,
@@ -50,6 +53,25 @@ describe('published story data', () => {
       childMortalityPanelSeries.every((point) => [1965, 1985, 2005, 2024].includes(point.year)),
     ).toBe(true);
     expect(childMortalitySeries.every((point) => point.rate >= 0 && point.rate <= 100)).toBe(
+      true,
+    );
+  });
+
+  it('keeps life expectancy source series separate and within plausible bounds', () => {
+    expect(lifeExpectancyLongRunSeries).toHaveLength(81);
+    expect(lifeExpectancyPanelSeries).toHaveLength(20);
+    expect(lifeExpectancyLongRunSeries[0]).toMatchObject({
+      year: 1770,
+      years: 28.5,
+    });
+    expect(lifeExpectancyLongRunSeries.at(-1)).toMatchObject({
+      year: 2023,
+      years: 73.1694,
+    });
+    expect(
+      lifeExpectancyPanelSeries.every((point) => [1950, 1980, 2000, 2023].includes(point.year)),
+    ).toBe(true);
+    expect(lifeExpectancySeries.every((point) => point.years > 0 && point.years <= 100)).toBe(
       true,
     );
   });

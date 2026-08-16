@@ -10,6 +10,7 @@ import { DemocraticBackslidingStory } from '../features/stories/DemocraticBacksl
 import { HungerStory } from '../features/stories/HungerStory';
 import { HousingStory } from '../features/stories/HousingStory';
 import { LiteracyStory } from '../features/stories/LiteracyStory';
+import { LifeExpectancyStory } from '../features/stories/LifeExpectancyStory';
 import { WomensRightsStory } from '../features/stories/WomensRightsStory';
 import {
   getStory,
@@ -159,6 +160,10 @@ function StoryRoute() {
 
   if (story.slug === 'child-mortality') {
     return <ChildMortalityStory story={story} />;
+  }
+
+  if (story.slug === 'life-expectancy') {
+    return <LifeExpectancyStory story={story} />;
   }
 
   if (story.slug === 'literacy') {
