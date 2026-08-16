@@ -864,13 +864,33 @@ export const stories: StoryDefinition[] = [
     slug: 'capital-markets-and-money-flows',
     title: 'Capital Markets & Money Flows',
     category: 'future',
-    status: 'coming-soon',
-    summary: 'Where capital accumulates, how new firms are funded, and how financial conditions reach the real economy.',
-    plannedMetric:
-      'Capital-gain concentration, venture funding and startup survival, credit growth, policy rates, and corporate defaults',
-    geography: 'Countries and capital markets with comparable coverage',
-    sourceHint:
-      'World Inequality Database, OECD financing and entrepreneurship data, Bank for International Settlements, and IMF',
+    status: 'published',
+    summary:
+      'Credit is a bridge between financial markets and the real economy, but the bridge is not equally large or equally stable across countries.',
+    plannedMetric: 'Credit to the private non-financial sector as a share of GDP',
+    geography: 'BIS all-reporting-economies aggregate and eight selected countries',
+    sourceHint: 'Bank for International Settlements, total credit dataset',
+    comparison: {
+      title: 'What the credit ratio compares',
+      fields: [
+        {
+          label: 'Numerator',
+          value: 'The stock of credit from all lender sectors to the private non-financial sector, valued at market value and adjusted for breaks.',
+        },
+        {
+          label: 'Denominator',
+          value: 'Gross domestic product in the same economy and period. The ratio is expressed as a percentage of GDP.',
+        },
+        {
+          label: 'Timing',
+          value: 'Each point is the fourth-quarter observation for that year. The aggregate starts in 1999; the eight-country panel uses a common 2000–2025 window.',
+        },
+        {
+          label: 'Limit',
+          value: 'A high ratio is not automatically a crisis, and a low ratio is not automatically healthy. This is a credit-stock signal, not a measure of wealth, annual lending, interest burden, or market capitalization.',
+        },
+      ],
+    },
   },
 ];
 

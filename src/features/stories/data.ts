@@ -15,6 +15,7 @@ import extremePovertyCsv from '../../data/extreme-poverty.csv?raw';
 import inflationPricesEnergyCsv from '../../data/inflation-prices-energy.csv?raw';
 import demographicsMigrationCsv from '../../data/demographics-migration.csv?raw';
 import climateEnvironmentalFuturesCsv from '../../data/climate-environmental-futures.csv?raw';
+import capitalMarketsMoneyFlowsCsv from '../../data/capital-markets-money-flows.csv?raw';
 import governanceRiskSecurityCsv from '../../data/governance-risk-security.csv?raw';
 import healthLongevityHumanCapitalCsv from '../../data/health-longevity-human-capital.csv?raw';
 import foodAvailabilityCsv from '../../data/food-availability.csv?raw';
@@ -177,6 +178,14 @@ export interface ClimateDecadePoint {
 
 export interface ClimateEnvironmentalFuturesPoint {
   measure: 'world-total' | 'world-per-capita' | 'panel-total' | 'panel-per-capita';
+  entity: string;
+  code: string;
+  year: number;
+  value: number;
+}
+
+export interface CapitalMarketsMoneyFlowsPoint {
+  series: 'aggregate' | 'panel';
   entity: string;
   code: string;
   year: number;
@@ -668,6 +677,64 @@ if (
   )
 ) {
   throw new Error('Climate and environmental futures series does not cover the declared panels');
+}
+
+export const capitalMarketsMoneyFlowsSeries = assertUnique(
+  parseCsv(capitalMarketsMoneyFlowsCsv).map((row) => {
+    const series = row.series;
+    if (series !== 'aggregate' && series !== 'panel') {
+      throw new Error(`Invalid capital markets series: ${series}`);
+    }
+
+    return {
+      series,
+      entity: textValue(row.entity, 'capital markets entity'),
+      code: textValue(row.code, 'capital markets code'),
+      year: numberValue(row.year, 'capital markets year'),
+      value: boundedNumberValue(row.value, 'credit-to-GDP ratio', 0, 500),
+    };
+  }),
+  (row) => `${row.series}:${row.code}:${row.year}`,
+  'capital markets and money flows',
+) satisfies CapitalMarketsMoneyFlowsPoint[];
+
+export const capitalMarketsAggregateSeries = capitalMarketsMoneyFlowsSeries.filter(
+  (point) => point.series === 'aggregate',
+);
+
+export const capitalMarketsPanelSeries = capitalMarketsMoneyFlowsSeries.filter(
+  (point) => point.series === 'panel',
+);
+
+const capitalMarketsPanelEntities = [
+  'Brazil',
+  'China',
+  'France',
+  'Germany',
+  'India',
+  'Japan',
+  'United Kingdom',
+  'United States',
+];
+
+if (
+  capitalMarketsAggregateSeries.length !== 27 ||
+  capitalMarketsAggregateSeries.some((point, index) => point.year !== 1999 + index) ||
+  capitalMarketsPanelSeries.length !== capitalMarketsPanelEntities.length * 26 ||
+  capitalMarketsPanelEntities.some(
+    (entity) =>
+      capitalMarketsPanelSeries.filter(
+        (point) => point.entity === entity && point.year >= 2000 && point.year <= 2025,
+      ).length !== 26,
+  ) ||
+  capitalMarketsMoneyFlowsSeries.some(
+    (point) =>
+      point.year < 1999 ||
+      point.year > 2025 ||
+      (point.series === 'panel' && (point.year < 2000 || point.year > 2025)),
+  )
+) {
+  throw new Error('Capital markets and money flows series does not cover the declared panel');
 }
 
 export const warsConflictSeries = assertUnique(

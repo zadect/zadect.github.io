@@ -1,0 +1,236 @@
+series,entity,code,year,value
+aggregate,All reporting economies,5A,1999,131.6
+aggregate,All reporting economies,5A,2000,128.3
+aggregate,All reporting economies,5A,2001,129.5
+aggregate,All reporting economies,5A,2002,141.0
+aggregate,All reporting economies,5A,2003,144.0
+aggregate,All reporting economies,5A,2004,142.9
+aggregate,All reporting economies,5A,2005,134.3
+aggregate,All reporting economies,5A,2006,143.4
+aggregate,All reporting economies,5A,2007,149.1
+aggregate,All reporting economies,5A,2008,139.3
+aggregate,All reporting economies,5A,2009,156.3
+aggregate,All reporting economies,5A,2010,149.5
+aggregate,All reporting economies,5A,2011,140.2
+aggregate,All reporting economies,5A,2012,145.8
+aggregate,All reporting economies,5A,2013,147.0
+aggregate,All reporting economies,5A,2014,141.6
+aggregate,All reporting economies,5A,2015,150.2
+aggregate,All reporting economies,5A,2016,150.6
+aggregate,All reporting economies,5A,2017,158.5
+aggregate,All reporting economies,5A,2018,149.9
+aggregate,All reporting economies,5A,2019,155.3
+aggregate,All reporting economies,5A,2020,176.4
+aggregate,All reporting economies,5A,2021,160.1
+aggregate,All reporting economies,5A,2022,155.0
+aggregate,All reporting economies,5A,2023,153.6
+aggregate,All reporting economies,5A,2024,147.7
+aggregate,All reporting economies,5A,2025,153.0
+panel,Brazil,BR,2000,47.2
+panel,Brazil,BR,2001,49.3
+panel,Brazil,BR,2002,52.9
+panel,Brazil,BR,2003,48.4
+panel,Brazil,BR,2004,45.1
+panel,Brazil,BR,2005,46.5
+panel,Brazil,BR,2006,50.1
+panel,Brazil,BR,2007,47.8
+panel,Brazil,BR,2008,55.5
+panel,Brazil,BR,2009,58.0
+panel,Brazil,BR,2010,59.0
+panel,Brazil,BR,2011,62.3
+panel,Brazil,BR,2012,66.7
+panel,Brazil,BR,2013,70.7
+panel,Brazil,BR,2014,74.4
+panel,Brazil,BR,2015,81.8
+panel,Brazil,BR,2016,74.4
+panel,Brazil,BR,2017,72.5
+panel,Brazil,BR,2018,74.4
+panel,Brazil,BR,2019,77.0
+panel,Brazil,BR,2020,86.5
+panel,Brazil,BR,2021,84.9
+panel,Brazil,BR,2022,86.1
+panel,Brazil,BR,2023,85.5
+panel,Brazil,BR,2024,93.2
+panel,Brazil,BR,2025,93.0
+panel,China,CN,2000,104.5
+panel,China,CN,2001,96.9
+panel,China,CN,2002,110.5
+panel,China,CN,2003,118.9
+panel,China,CN,2004,114.9
+panel,China,CN,2005,108.3
+panel,China,CN,2006,109.2
+panel,China,CN,2007,107.6
+panel,China,CN,2008,106.3
+panel,China,CN,2009,133.3
+panel,China,CN,2010,137.6
+panel,China,CN,2011,137.6
+panel,China,CN,2012,149.4
+panel,China,CN,2013,161.9
+panel,China,CN,2014,171.9
+panel,China,CN,2015,186.7
+panel,China,CN,2016,188.5
+panel,China,CN,2017,182.4
+panel,China,CN,2018,177.3
+panel,China,CN,2019,179.9
+panel,China,CN,2020,192.4
+panel,China,CN,2021,182.5
+panel,China,CN,2022,187.3
+panel,China,CN,2023,193.0
+panel,China,CN,2024,197.9
+panel,China,CN,2025,200.8
+panel,Germany,DE,2000,147.7
+panel,Germany,DE,2001,149.1
+panel,Germany,DE,2002,151.6
+panel,Germany,DE,2003,152.5
+panel,Germany,DE,2004,144.8
+panel,Germany,DE,2005,145.7
+panel,Germany,DE,2006,146.0
+panel,Germany,DE,2007,141.9
+panel,Germany,DE,2008,143.3
+panel,Germany,DE,2009,146.6
+panel,Germany,DE,2010,141.7
+panel,Germany,DE,2011,138.0
+panel,Germany,DE,2012,137.0
+panel,Germany,DE,2013,138.7
+panel,Germany,DE,2014,132.5
+panel,Germany,DE,2015,132.8
+panel,Germany,DE,2016,134.8
+panel,Germany,DE,2017,134.1
+panel,Germany,DE,2018,135.0
+panel,Germany,DE,2019,137.8
+panel,Germany,DE,2020,148.9
+panel,Germany,DE,2021,147.6
+panel,Germany,DE,2022,146.3
+panel,Germany,DE,2023,139.6
+panel,Germany,DE,2024,137.7
+panel,Germany,DE,2025,136.7
+panel,France,FR,2000,139.6
+panel,France,FR,2001,145.0
+panel,France,FR,2002,145.3
+panel,France,FR,2003,144.6
+panel,France,FR,2004,147.6
+panel,France,FR,2005,151.3
+panel,France,FR,2006,155.4
+panel,France,FR,2007,159.4
+panel,France,FR,2008,166.5
+panel,France,FR,2009,173.7
+panel,France,FR,2010,174.0
+panel,France,FR,2011,180.6
+panel,France,FR,2012,185.1
+panel,France,FR,2013,182.8
+panel,France,FR,2014,189.3
+panel,France,FR,2015,194.7
+panel,France,FR,2016,199.0
+panel,France,FR,2017,201.5
+panel,France,FR,2018,206.2
+panel,France,FR,2019,212.0
+panel,France,FR,2020,239.8
+panel,France,FR,2021,227.8
+panel,France,FR,2022,224.9
+panel,France,FR,2023,216.8
+panel,France,FR,2024,214.2
+panel,France,FR,2025,215.4
+panel,United Kingdom,GB,2000,135.5
+panel,United Kingdom,GB,2001,143.8
+panel,United Kingdom,GB,2002,154.0
+panel,United Kingdom,GB,2003,154.1
+panel,United Kingdom,GB,2004,157.6
+panel,United Kingdom,GB,2005,165.1
+panel,United Kingdom,GB,2006,171.5
+panel,United Kingdom,GB,2007,175.2
+panel,United Kingdom,GB,2008,184.3
+panel,United Kingdom,GB,2009,184.0
+panel,United Kingdom,GB,2010,176.2
+panel,United Kingdom,GB,2011,171.4
+panel,United Kingdom,GB,2012,172.0
+panel,United Kingdom,GB,2013,166.4
+panel,United Kingdom,GB,2014,158.2
+panel,United Kingdom,GB,2015,156.1
+panel,United Kingdom,GB,2016,161.6
+panel,United Kingdom,GB,2017,161.8
+panel,United Kingdom,GB,2018,156.2
+panel,United Kingdom,GB,2019,154.6
+panel,United Kingdom,GB,2020,173.8
+panel,United Kingdom,GB,2021,163.4
+panel,United Kingdom,GB,2022,149.3
+panel,United Kingdom,GB,2023,139.8
+panel,United Kingdom,GB,2024,137.7
+panel,United Kingdom,GB,2025,132.6
+panel,India,IN,2000,62.5
+panel,India,IN,2001,64.1
+panel,India,IN,2002,70.6
+panel,India,IN,2003,70.8
+panel,India,IN,2004,78.2
+panel,India,IN,2005,87.5
+panel,India,IN,2006,97.2
+panel,India,IN,2007,102.1
+panel,India,IN,2008,109.2
+panel,India,IN,2009,109.4
+panel,India,IN,2010,114.8
+panel,India,IN,2011,114.2
+panel,India,IN,2012,114.8
+panel,India,IN,2013,104.7
+panel,India,IN,2014,107.1
+panel,India,IN,2015,103.7
+panel,India,IN,2016,93.9
+panel,India,IN,2017,107.5
+panel,India,IN,2018,99.2
+panel,India,IN,2019,93.7
+panel,India,IN,2020,103.1
+panel,India,IN,2021,96.5
+panel,India,IN,2022,92.6
+panel,India,IN,2023,93.8
+panel,India,IN,2024,95.3
+panel,India,IN,2025,102.3
+panel,Japan,JP,2000,184.7
+panel,Japan,JP,2001,180.1
+panel,Japan,JP,2002,176.4
+panel,Japan,JP,2003,169.0
+panel,Japan,JP,2004,162.4
+panel,Japan,JP,2005,162.4
+panel,Japan,JP,2006,161.4
+panel,Japan,JP,2007,159.2
+panel,Japan,JP,2008,164.1
+panel,Japan,JP,2009,170.8
+panel,Japan,JP,2010,161.9
+panel,Japan,JP,2011,162.3
+panel,Japan,JP,2012,160.1
+panel,Japan,JP,2013,158.5
+panel,Japan,JP,2014,155.7
+panel,Japan,JP,2015,151.3
+panel,Japan,JP,2016,153.2
+panel,Japan,JP,2017,153.5
+panel,Japan,JP,2018,156.6
+panel,Japan,JP,2019,161.4
+panel,Japan,JP,2020,179.6
+panel,Japan,JP,2021,178.3
+panel,Japan,JP,2022,179.0
+panel,Japan,JP,2023,174.9
+panel,Japan,JP,2024,174.3
+panel,Japan,JP,2025,175.1
+panel,United States,US,2000,136.7
+panel,United States,US,2001,141.4
+panel,United States,US,2002,145.6
+panel,United States,US,2003,149.3
+panel,United States,US,2004,153.2
+panel,United States,US,2005,157.3
+panel,United States,US,2006,163.9
+panel,United States,US,2007,170.6
+panel,United States,US,2008,170.7
+panel,United States,US,2009,169.2
+panel,United States,US,2010,160.4
+panel,United States,US,2011,155.8
+panel,United States,US,2012,152.4
+panel,United States,US,2013,151.3
+panel,United States,US,2014,150.4
+panel,United States,US,2015,150.5
+panel,United States,US,2016,152.2
+panel,United States,US,2017,153.9
+panel,United States,US,2018,153.2
+panel,United States,US,2019,152.9
+panel,United States,US,2020,164.1
+panel,United States,US,2021,159.3
+panel,United States,US,2022,153.4
+panel,United States,US,2023,147.1
+panel,United States,US,2024,142.5
+panel,United States,US,2025,140.3

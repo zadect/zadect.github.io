@@ -14,6 +14,9 @@ import {
   childMortalityLongRunSeries,
   childMortalityPanelSeries,
   childMortalitySeries,
+  capitalMarketsAggregateSeries,
+  capitalMarketsMoneyFlowsSeries,
+  capitalMarketsPanelSeries,
   climateEnvironmentalFuturesSeries,
   climatePanelPerCapitaSeries,
   climatePanelTotalSeries,
@@ -228,6 +231,22 @@ describe('published story data', () => {
     });
     expect(
       climateEnvironmentalFuturesSeries.every((point) => point.value >= 0),
+    ).toBe(true);
+  });
+
+  it('keeps BIS aggregate and country credit-to-GDP snapshots complete', () => {
+    expect(capitalMarketsAggregateSeries).toHaveLength(27);
+    expect(capitalMarketsPanelSeries).toHaveLength(208);
+    expect(capitalMarketsAggregateSeries[0]).toMatchObject({
+      year: 1999,
+      value: 131.6,
+    });
+    expect(capitalMarketsAggregateSeries.at(-1)).toMatchObject({
+      year: 2025,
+      value: 153,
+    });
+    expect(
+      capitalMarketsMoneyFlowsSeries.every((point) => point.value >= 0 && point.value <= 500),
     ).toBe(true);
   });
 

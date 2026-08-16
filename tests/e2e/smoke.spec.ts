@@ -297,6 +297,17 @@ test('the published Future stories render their charts and context cards', async
   await expect(
     page.getByRole('link', { name: /Fossil CO₂ emissions — Global Carbon Budget/i }).first(),
   ).toBeVisible();
+
+  await page.goto('/#/future/capital-markets-and-money-flows');
+  await expect(
+    page.getByRole('heading', { name: 'Capital Markets & Money Flows', exact: true }),
+  ).toBeVisible();
+  await expect(page.getByRole('heading', { name: /credit rose, then pulled back/i })).toBeVisible();
+  await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
+  await expect(page.getByText(/a large credit bridge is not a verdict/i)).toBeVisible();
+  await expect(
+    page.getByRole('link', { name: /Credit to the private non-financial sector/i }).first(),
+  ).toBeVisible();
 });
 
 test('header category links target their homepage sections', async ({ page }) => {
@@ -317,10 +328,4 @@ test('header category links target their homepage sections', async ({ page }) =>
   await expect(page).toHaveURL(/#\/future\/tech-and-ai/);
   await expect(page.getByRole('heading', { name: 'AI & Tech', exact: true })).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(3);
-});
-
-test('deferred stories explain their planned evidence', async ({ page }) => {
-  await page.goto('/#/future/capital-markets-and-money-flows');
-  await expect(page.getByText('Coming next')).toBeVisible();
-  await expect(page.getByText(/capital-gain concentration/i)).toBeVisible();
 });
