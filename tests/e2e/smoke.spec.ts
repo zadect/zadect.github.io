@@ -66,7 +66,7 @@ test('header category links target their homepage sections', async ({ page }) =>
   await expect(page.locator('#future-section')).toBeVisible();
   await page.locator('#future-section').getByRole('link', { name: /tech & ai/i }).click();
   await expect(page).toHaveURL(/#\/future\/tech-and-ai/);
-  await expect(page.getByText('Future signal')).toBeVisible();
+  await expect(page.locator('.coming-soon .eyebrow')).toHaveText('Future signal');
   await expect(page.getByText(/OECD AI Policy Observatory/i)).toBeVisible();
 });
 
