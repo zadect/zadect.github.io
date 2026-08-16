@@ -19,6 +19,7 @@ describe('source catalogue', () => {
       'nasa-gistemp',
       'ucdp-conflict-deaths',
       'ucdp-conflict-counts',
+      'unhcr-population-api',
       'world-bank-pip-gini',
       'wwf-zsl-living-planet-index',
       'eurostat-ai-adoption',
@@ -67,6 +68,18 @@ describe('source catalogue', () => {
       expect(source.dataHref).toMatch(/^https:\/\//);
       expect(source.transformation).toContain('No ');
     }
+  });
+
+  it('keeps forced-displacement context separate from the plotted API extract', () => {
+    const api = sources.find((source) => source.id === 'unhcr-population-api');
+    const report = sources.find((source) => source.id === 'unhcr-global-trends-2024');
+
+    expect(api?.originalPublisher).toContain('United Nations High Commissioner');
+    expect(api?.localPath).toBe('src/data/forced-displacement.csv');
+    expect(api?.transformation).toContain('no missing category is treated as an observed zero');
+    expect(report?.role).toBe('research-context');
+    expect(report?.coverage).toContain('context only');
+    expect(report?.localPath).toBeUndefined();
   });
 
   it('keeps literacy, democracy, and map geometry provenance complete', () => {
