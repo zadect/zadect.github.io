@@ -767,13 +767,34 @@ export const stories: StoryDefinition[] = [
     slug: 'health-longevity-and-human-capital',
     title: 'Health, Longevity & Human Capital',
     category: 'future',
-    status: 'coming-soon',
-    summary: 'Longer lives, disease burden, care needs, and the capacity to participate in work and society.',
-    plannedMetric:
-      'Life and healthy-life expectancy, chronic-disease burden, health spending, disability, and older-worker participation',
-    geography: 'World and countries with comparable health data',
+    status: 'published',
+    summary:
+      'Living longer matters most when the extra years are healthy, and when health systems can afford to support them.',
+    plannedMetric: 'Healthy life expectancy and total health spending per person',
+    geography: 'World and six selected countries',
     sourceHint:
-      'WHO Global Health Observatory and Global Health Expenditure Database, IHME Global Burden of Disease, and ILOSTAT',
+      'WHO Global Health Observatory and Global Health Expenditure Database via World Bank and Our World in Data',
+    comparison: {
+      title: 'Two health signals, kept separate',
+      fields: [
+        {
+          label: 'Healthy years',
+          value: 'Healthy life expectancy at birth: estimated years lived in full health after adjusting period life expectancy for disease and injury burden.',
+        },
+        {
+          label: 'Spending',
+          value: 'Total current health expenditure per person: public and private spending combined, expressed in current international dollars at purchasing power parity.',
+        },
+        {
+          label: 'Coverage',
+          value: 'Healthy life expectancy runs from 2000 to 2021; health-spending data runs from 2000 to 2023 in this extract. Both use Brazil, Germany, India, Japan, Nigeria, and the United States at shared checkpoints.',
+        },
+        {
+          label: 'Limit',
+          value: 'Spending is not care quality or access, and healthy life expectancy is not a diagnosis count. The two measures are context, not evidence that spending caused an outcome.',
+        },
+      ],
+    },
   },
   {
     slug: 'governance-risk-and-security',

@@ -1,0 +1,95 @@
+measure,entity,code,year,value
+hale-world,World,OWID_WRL,2000,58.123444
+hale-world,World,OWID_WRL,2001,58.402687
+hale-world,World,OWID_WRL,2002,58.63425
+hale-world,World,OWID_WRL,2003,58.872124
+hale-world,World,OWID_WRL,2004,59.15355
+hale-world,World,OWID_WRL,2005,59.52213
+hale-world,World,OWID_WRL,2006,60.00628
+hale-world,World,OWID_WRL,2007,60.386
+hale-world,World,OWID_WRL,2008,60.639107
+hale-world,World,OWID_WRL,2009,61.078648
+hale-world,World,OWID_WRL,2010,61.32394
+hale-world,World,OWID_WRL,2011,61.680794
+hale-world,World,OWID_WRL,2012,61.985447
+hale-world,World,OWID_WRL,2013,62.2747
+hale-world,World,OWID_WRL,2014,62.508305
+hale-world,World,OWID_WRL,2015,62.70618
+hale-world,World,OWID_WRL,2016,62.906796
+hale-world,World,OWID_WRL,2017,63.09979
+hale-world,World,OWID_WRL,2018,63.26989
+hale-world,World,OWID_WRL,2019,63.45015
+hale-world,World,OWID_WRL,2020,62.82665
+hale-world,World,OWID_WRL,2021,61.91107
+hale-panel,Brazil,BRA,2000,60.916176
+hale-panel,Brazil,BRA,2010,63.145786
+hale-panel,Brazil,BRA,2020,63.272644
+hale-panel,Brazil,BRA,2021,61.826534
+hale-panel,Germany,DEU,2000,67.4711
+hale-panel,Germany,DEU,2010,68.9009
+hale-panel,Germany,DEU,2020,69.24162
+hale-panel,Germany,DEU,2021,68.93389
+hale-panel,India,IND,2000,54.129272
+hale-panel,India,IND,2010,57.907383
+hale-panel,India,IND,2020,60.35599
+hale-panel,India,IND,2021,58.146748
+hale-panel,Japan,JPN,2000,71.10644
+hale-panel,Japan,JPN,2010,72.30784
+hale-panel,Japan,JPN,2020,73.63808
+hale-panel,Japan,JPN,2021,73.39519
+hale-panel,Nigeria,NGA,2000,46.629925
+hale-panel,Nigeria,NGA,2010,51.859253
+hale-panel,Nigeria,NGA,2020,54.540764
+hale-panel,Nigeria,NGA,2021,54.949795
+hale-panel,United States,USA,2000,65.322075
+hale-panel,United States,USA,2010,66.55658
+hale-panel,United States,USA,2020,64.43126
+hale-panel,United States,USA,2021,63.91496
+health-spending-world,World,OWID_WRL,2000,592.5282
+health-spending-world,World,OWID_WRL,2001,632.69385
+health-spending-world,World,OWID_WRL,2002,671.2249
+health-spending-world,World,OWID_WRL,2003,710.8205
+health-spending-world,World,OWID_WRL,2004,749.3438
+health-spending-world,World,OWID_WRL,2005,792.4474
+health-spending-world,World,OWID_WRL,2006,848.29016
+health-spending-world,World,OWID_WRL,2007,896.329
+health-spending-world,World,OWID_WRL,2008,944.95996
+health-spending-world,World,OWID_WRL,2009,1001.73425
+health-spending-world,World,OWID_WRL,2010,1025.0732
+health-spending-world,World,OWID_WRL,2011,1069.1571
+health-spending-world,World,OWID_WRL,2012,1112.1687
+health-spending-world,World,OWID_WRL,2013,1156.8181
+health-spending-world,World,OWID_WRL,2014,1199.4371
+health-spending-world,World,OWID_WRL,2015,1240.6556
+health-spending-world,World,OWID_WRL,2016,1281.9486
+health-spending-world,World,OWID_WRL,2017,1319.8892
+health-spending-world,World,OWID_WRL,2018,1372.3563
+health-spending-world,World,OWID_WRL,2019,1443.7677
+health-spending-world,World,OWID_WRL,2020,1566.2365
+health-spending-world,World,OWID_WRL,2021,1682.8685
+health-spending-world,World,OWID_WRL,2022,1803.3635
+health-spending-world,World,OWID_WRL,2023,1891.1688
+health-spending-panel,Brazil,BRA,2000,757.7606
+health-spending-panel,Brazil,BRA,2010,1148.2129
+health-spending-panel,Brazil,BRA,2020,1549.5015
+health-spending-panel,Brazil,BRA,2023,2070.4382
+health-spending-panel,Germany,DEU,2000,2682.2317
+health-spending-panel,Germany,DEU,2010,4301.946
+health-spending-panel,Germany,DEU,2020,7316.328
+health-spending-panel,Germany,DEU,2023,8306.183
+health-spending-panel,India,IND,2000,85.84422
+health-spending-panel,India,IND,2010,140.33836
+health-spending-panel,India,IND,2020,232.77542
+health-spending-panel,India,IND,2023,346.24625
+health-spending-panel,Japan,JPN,2000,1916.7474
+health-spending-panel,Japan,JPN,2010,3199.5674
+health-spending-panel,Japan,JPN,2020,4855.961
+health-spending-panel,Japan,JPN,2023,5365.075
+health-spending-panel,Nigeria,NGA,2000,74.814064
+health-spending-panel,Nigeria,NGA,2010,149.82187
+health-spending-panel,Nigeria,NGA,2020,180.9892
+health-spending-panel,Nigeria,NGA,2023,260.14462
+health-spending-panel,United States,USA,2000,4548.5547
+health-spending-panel,United States,USA,2010,7836.0884
+health-spending-panel,United States,USA,2020,11648.495
+health-spending-panel,United States,USA,2023,13473.193

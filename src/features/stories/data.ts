@@ -14,6 +14,7 @@ import economicGrowthDebtPublicFinanceCsv from '../../data/economic-growth-debt-
 import extremePovertyCsv from '../../data/extreme-poverty.csv?raw';
 import inflationPricesEnergyCsv from '../../data/inflation-prices-energy.csv?raw';
 import demographicsMigrationCsv from '../../data/demographics-migration.csv?raw';
+import healthLongevityHumanCapitalCsv from '../../data/health-longevity-human-capital.csv?raw';
 import foodAvailabilityCsv from '../../data/food-availability.csv?raw';
 import hungerCsv from '../../data/hunger-undernourishment.csv?raw';
 import aiAdoptionSizeCsv from '../../data/ai-adoption-size.csv?raw';
@@ -250,6 +251,14 @@ export interface DemographicsMigrationPoint {
     | 'median-panel'
     | 'migration-world'
     | 'migration-panel';
+  entity: string;
+  code: string;
+  year: number;
+  value: number;
+}
+
+export interface HealthLongevityHumanCapitalPoint {
+  measure: 'hale-world' | 'hale-panel' | 'health-spending-world' | 'health-spending-panel';
   entity: string;
   code: string;
   year: number;
@@ -1064,6 +1073,86 @@ if (
   migrationPanelSeries.some((point) => !migrationPanelCheckpoints.includes(point.year))
 ) {
   throw new Error('Demographics and migration series does not cover the declared panels');
+}
+
+export const healthLongevityHumanCapitalSeries = assertUnique(
+  parseCsv(healthLongevityHumanCapitalCsv).map((row) => {
+    const measure = row.measure;
+    if (
+      measure !== 'hale-world' &&
+      measure !== 'hale-panel' &&
+      measure !== 'health-spending-world' &&
+      measure !== 'health-spending-panel'
+    ) {
+      throw new Error(`Invalid health and human-capital measure: ${measure}`);
+    }
+
+    return {
+      measure,
+      entity: textValue(row.entity, 'health and human-capital entity'),
+      code: textValue(row.code, 'health and human-capital code'),
+      year: numberValue(row.year, 'health and human-capital year'),
+      value: boundedNumberValue(
+        row.value,
+        measure.startsWith('hale') ? 'healthy life expectancy' : 'health expenditure per person',
+        0,
+        measure.startsWith('hale') ? 100 : 100_000,
+      ),
+    };
+  }),
+  (row) => `${row.measure}:${row.code}:${row.year}`,
+  'health and human capital',
+) satisfies HealthLongevityHumanCapitalPoint[];
+
+export const healthyLifeExpectancyWorldSeries = healthLongevityHumanCapitalSeries.filter(
+  (point) => point.measure === 'hale-world',
+);
+
+export const healthyLifeExpectancyPanelSeries = healthLongevityHumanCapitalSeries.filter(
+  (point) => point.measure === 'hale-panel',
+);
+
+export const healthSpendingWorldSeries = healthLongevityHumanCapitalSeries.filter(
+  (point) => point.measure === 'health-spending-world',
+);
+
+export const healthSpendingPanelSeries = healthLongevityHumanCapitalSeries.filter(
+  (point) => point.measure === 'health-spending-panel',
+);
+
+const healthPanelEntities = [
+  'Brazil',
+  'Germany',
+  'India',
+  'Japan',
+  'Nigeria',
+  'United States',
+];
+const halePanelCheckpoints = [2000, 2010, 2020, 2021];
+const healthSpendingPanelCheckpoints = [2000, 2010, 2020, 2023];
+
+if (
+  healthyLifeExpectancyWorldSeries.length !== 22 ||
+  healthyLifeExpectancyWorldSeries.some((point, index) => point.year !== 2000 + index) ||
+  healthyLifeExpectancyPanelSeries.length !== healthPanelEntities.length * halePanelCheckpoints.length ||
+  healthPanelEntities.some(
+    (entity) =>
+      healthyLifeExpectancyPanelSeries.filter((point) => point.entity === entity).length !==
+      halePanelCheckpoints.length,
+  ) ||
+  healthyLifeExpectancyPanelSeries.some((point) => !halePanelCheckpoints.includes(point.year)) ||
+  healthSpendingWorldSeries.length !== 24 ||
+  healthSpendingWorldSeries.some((point, index) => point.year !== 2000 + index) ||
+  healthSpendingPanelSeries.length !==
+    healthPanelEntities.length * healthSpendingPanelCheckpoints.length ||
+  healthPanelEntities.some(
+    (entity) =>
+      healthSpendingPanelSeries.filter((point) => point.entity === entity).length !==
+      healthSpendingPanelCheckpoints.length,
+  ) ||
+  healthSpendingPanelSeries.some((point) => !healthSpendingPanelCheckpoints.includes(point.year))
+) {
+  throw new Error('Health and human-capital series does not cover the declared panels');
 }
 
 const airPollutionEntities = [

@@ -221,6 +221,19 @@ describe('app routes', () => {
     expect(screen.getByText(/population structure is not destiny/i)).toBeInTheDocument();
   });
 
+  it('renders the published health, longevity, and human capital Future story', () => {
+    window.location.hash = '#/future/health-longevity-and-human-capital';
+    render(<App />);
+
+    expect(
+      screen.getByRole('heading', { name: 'Health, Longevity & Human Capital' }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: /healthy years rose/i }),
+    ).toBeInTheDocument();
+    expect(screen.getByText(/more spending is not a guarantee/i)).toBeInTheDocument();
+  });
+
   it('links Good, Bad, and Future navigation to homepage sections', () => {
     render(<App />);
     expect(screen.getByRole('link', { name: 'Good' })).toHaveAttribute('href', '#/?section=good');

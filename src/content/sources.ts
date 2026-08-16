@@ -676,6 +676,56 @@ export const sources: SourceReference[] = [
       'This is migrant stock: the share of residents born abroad at a point in time. It is not an annual migration flow, a measure of integration, or a count of people who moved during that year.',
   },
   {
+    id: 'who-healthy-life-expectancy-owid',
+    title: 'Healthy life expectancy at birth',
+    publisher: 'Our World in Data',
+    originalPublisher: 'World Health Organization, Global Health Observatory',
+    processor: 'Our World in Data',
+    role: 'chart-data',
+    citation:
+      'World Health Organization (2026), Global Health Observatory, “Healthy life expectancy (HALE) at birth (years) – both sexes,” processed by Our World in Data, OWID Grapher variable 1245239.',
+    methodologyHref: 'https://www.who.int/data/gho',
+    dataHref: 'https://ourworldindata.org/grapher/healthy-life-expectancy-at-birth',
+    originalDataHref: 'https://www.who.int/data/gho',
+    metadataHref:
+      'https://ourworldindata.org/grapher/healthy-life-expectancy-at-birth.metadata.json',
+    licenseHref: 'https://www.who.int/about/policies/publishing/copyright',
+    version: 'WHO Global Health Observatory (2026); OWID variable 1245239',
+    coverage: 'World and six-country annual observations, 2000–2021 in this extract',
+    retrieved: accessDate,
+    unit: 'Healthy life expectancy at birth (years)',
+    localPath: 'src/data/health-longevity-human-capital.csv',
+    transformation:
+      'The local extract keeps the complete OWID World series and four shared checkpoints for Brazil, Germany, India, Japan, Nigeria, and the United States. Values are not extended beyond the source’s 2021 endpoint.',
+    note:
+      'Healthy life expectancy adjusts period life expectancy for time lived in less than full health because of disease or injury. It is not the same as total life expectancy or a diagnosis count.',
+  },
+  {
+    id: 'who-health-expenditure-owid',
+    title: 'Total health spending per person',
+    publisher: 'Our World in Data',
+    originalPublisher: 'Global Health Expenditure Database, World Health Organization, via World Bank World Development Indicators',
+    processor: 'Our World in Data',
+    role: 'chart-data',
+    citation:
+      'Global Health Expenditure Database, WHO, via World Bank (2026), “Current health expenditure per capita, PPP (current international $),” processed by Our World in Data, OWID Grapher variable 1294650.',
+    methodologyHref: 'https://data.worldbank.org/indicator/SH.XPD.CHEX.PP.CD',
+    dataHref: 'https://ourworldindata.org/grapher/annual-healthcare-expenditure-per-capita',
+    originalDataHref: 'https://data.worldbank.org/indicator/SH.XPD.CHEX.PP.CD',
+    metadataHref:
+      'https://ourworldindata.org/grapher/annual-healthcare-expenditure-per-capita.metadata.json',
+    licenseHref: 'https://datacatalog.worldbank.org/search/dataset/0037712/World-Development-Indicators',
+    version: 'World Bank WDI release 2026; OWID variable 1294650',
+    coverage: 'World and six-country annual observations, 2000–2023 in this extract',
+    retrieved: accessDate,
+    unit: 'Current international dollars per person at purchasing power parity',
+    localPath: 'src/data/health-longevity-human-capital.csv',
+    transformation:
+      'The local extract keeps the complete OWID World observations available through 2023 and four shared checkpoints for Brazil, Germany, India, Japan, Nigeria, and the United States. Values are current international dollars and are not locally inflation-adjusted.',
+    note:
+      'This is the sum of public and private current health expenditure per person, adjusted for cross-country purchasing power. It is not a measure of care quality, access, outcomes, or financial protection.',
+  },
+  {
     id: 'unhcr-population-api',
     title: 'UNHCR Refugee Data Finder population statistics',
     publisher: 'United Nations High Commissioner for Refugees',
