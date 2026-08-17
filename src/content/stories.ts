@@ -13,19 +13,19 @@ export const storyCategoryPresentation: Record<StoryCategory, StoryCategoryPrese
     label: 'The good',
     signalLabel: 'Good signal',
     heading: 'Signals of human progress',
-    description: 'Not a victory lap. A record of what has improved, and where the work remains.',
+    description: 'Categories of signals that indicate positive developments in human welfare.',
   },
   bad: {
     label: 'The bad',
     signalLabel: 'Bad signal',
     heading: 'Signals we cannot look away from',
-    description: 'Not a prophecy. A record of pressure, concentration, and consequences.',
+    description: 'Categories of signals that indicate negative developments in human welfare.',
   },
   future: {
     label: 'The future',
     signalLabel: 'Future signal',
     heading: 'Questions for the years ahead',
-    description: 'A working catalogue of changes worth measuring before conclusions are drawn.',
+    description: 'Selected signals that point to potential future developments for humanity.',
   },
 };
 
