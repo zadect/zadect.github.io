@@ -90,8 +90,8 @@ function HomePage() {
               <em> heading?</em>
             </h1>
             <p className="home-hero__intro">
-              Sourced time series on human welfare, persistent harms, and the conditions shaping
-              future decisions.
+              Sourced time series on human welfare, persistent harms, and the topics shaping
+              the future of humanity.
             </p>
             <div className="home-hero__actions">
               <Link className="button button--good" to="/?section=good">
