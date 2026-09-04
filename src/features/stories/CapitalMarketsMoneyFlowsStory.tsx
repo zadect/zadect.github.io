@@ -141,8 +141,9 @@ export function CapitalMarketsMoneyFlowsStory({
     <StoryFrame story={story}>
       <section className="story-lede">
         <p className="lede">
-          Credit can make the future easier to finance—or make the next shock harder to absorb.
-          The BIS ratio shows the size of that bridge relative to the economy it serves.
+          The BIS credit-to-GDP ratio measures the stock of private-sector credit relative to
+          output. The aggregate reached a 2020 peak before easing; it does not show annual lending
+          or capital-market activity.
         </p>
         <div className="stat-grid">
           <div className="stat-card">
@@ -184,7 +185,7 @@ export function CapitalMarketsMoneyFlowsStory({
 
       <ChartCard
         eyebrow="BIS aggregate · fourth-quarter observations · 1999–2025"
-        title="Credit rose, then pulled back"
+        title="Private-sector credit relative to GDP"
         description="Across all reporting economies, private-sector credit reached a 2020 peak before falling back. The aggregate is a coverage group, not a world estimate."
         spec={aggregateSpec}
         data={capitalMarketsAggregateSeries.map((point) => ({
@@ -202,8 +203,8 @@ export function CapitalMarketsMoneyFlowsStory({
 
       <ChartCard
         eyebrow="Eight selected countries · fourth-quarter observations · 2000–2025"
-        title="Countries do not share one credit cycle"
-        description="The same measure produces very different levels and turning points. The lines show a signal about financial scale, not a league table of economic health."
+        title="Credit-to-GDP ratios in selected countries"
+        description="The same measure produces very different levels and turning points. The ratios describe financial scale; they do not rank economic health."
         spec={panelSpec}
         data={capitalMarketsPanelSeries.map((point) => ({
           entity: point.entity,
@@ -221,8 +222,8 @@ export function CapitalMarketsMoneyFlowsStory({
       />
 
       <section className="method-note method-note--future">
-        <p className="eyebrow">Read the evidence carefully</p>
-        <h2>A large credit bridge is not a verdict.</h2>
+        <p className="eyebrow">Scope and limits</p>
+        <h2>A credit-to-GDP ratio is a stock measure.</h2>
         <p>
           Credit supports households and businesses, but the same ratio can reflect different
           institutions, asset prices, borrower mixes, and policy environments. These charts show
@@ -234,7 +235,7 @@ export function CapitalMarketsMoneyFlowsStory({
 
       <section className="sources-section">
         <p className="eyebrow">Sources and definitions</p>
-        <h2>Where the credit signal comes from</h2>
+        <h2>Sources and methodology</h2>
         <SourceList sources={source} />
       </section>
     </StoryFrame>

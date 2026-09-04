@@ -158,9 +158,9 @@ export function WarsConflictStory({ story }: WarsConflictStoryProps) {
     <StoryFrame story={story}>
       <section className="story-lede">
         <p className="lede">
-          War is not one line. A small number of conflicts can become extraordinarily deadly, while
-          a larger number of conflicts can remain active at lower intensity. These two measures keep
-          those signals visible instead of turning them into one score.
+          Battle-related deaths and the number of active state-based conflicts measure different
+          parts of organized violence. A year can contain many conflicts without the same death
+          toll as a smaller number of intense wars.
         </p>
         <div className="stat-grid">
           <div className="stat-card">
@@ -196,8 +196,8 @@ export function WarsConflictStory({ story }: WarsConflictStoryProps) {
 
       <ChartCard
         eyebrow="World · UCDP / PRIO via Our World in Data"
-        title="Deaths can spike when conflicts intensify"
-        description="The line is the best estimate of people killed by fighting in state-based conflicts. The shaded area shows the source’s low-to-high range."
+        title="Battle-related deaths in state-based conflicts"
+        description="The central series gives the best estimate of people killed by fighting. The shaded area gives the source’s low-to-high range."
         spec={deathsSpec}
         data={warsConflictSeries.map((point) => ({
           year: point.year,
@@ -218,7 +218,7 @@ export function WarsConflictStory({ story }: WarsConflictStoryProps) {
 
       <ChartCard
         eyebrow="World · UCDP / PRIO via Our World in Data"
-        title="The number of active conflicts tells a different story"
+        title="Ongoing state-based conflicts"
         description="This is the annual count of ongoing state-based conflicts. It rises when more conflicts meet the source’s threshold, not only when existing conflicts become deadlier."
         spec={conflictsSpec}
         data={warsConflictSeries.map((point) => ({
@@ -235,8 +235,8 @@ export function WarsConflictStory({ story }: WarsConflictStoryProps) {
       />
 
       <section className="method-note">
-        <p className="eyebrow">Read the evidence carefully</p>
-        <h2>A death count is not a complete account of war.</h2>
+        <p className="eyebrow">Scope and limits</p>
+        <h2>Battle deaths cover one part of war’s human cost.</h2>
         <p>
           The series counts deaths attributed to fighting, not the wider human cost of war. It
           leaves out deaths from disease, hunger, displacement, and other indirect effects. Before
@@ -250,7 +250,7 @@ export function WarsConflictStory({ story }: WarsConflictStoryProps) {
 
       <section className="sources-section">
         <p className="eyebrow">Sources and definitions</p>
-        <h2>Where the conflict measures come from</h2>
+        <h2>Sources and methodology</h2>
         <SourceList sources={sources} />
       </section>
     </StoryFrame>

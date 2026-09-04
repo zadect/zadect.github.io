@@ -113,6 +113,39 @@ const workerCompensationSpec: TopLevelSpec = {
   },
 };
 
+const indexedCompensationSpec: TopLevelSpec = {
+  $schema: 'https://vega.github.io/schema/vega-lite/v6.json',
+  width: 'container',
+  height: 320,
+  data: { name: 'series' },
+  mark: { type: 'line', point: { filled: true, size: 30 }, strokeWidth: 3 },
+  encoding: {
+    x: {
+      field: 'year',
+      type: 'quantitative',
+      title: 'Year',
+      axis: { format: 'd', tickCount: 7 },
+    },
+    y: {
+      field: 'index',
+      type: 'quantitative',
+      title: 'Index (1992 = 100)',
+      scale: { zero: false },
+    },
+    color: {
+      field: 'measure',
+      type: 'nominal',
+      title: 'Measure',
+      scale: { range: ['#ff9a7f', '#f0c56f'] },
+    },
+    tooltip: [
+      { field: 'year', type: 'quantitative', title: 'Year', format: 'd' },
+      { field: 'measure', type: 'nominal', title: 'Measure' },
+      { field: 'index', type: 'quantitative', title: 'Index', format: '.0f' },
+    ],
+  },
+};
+
 function formatMillions(thousands: number) {
   return `$${(thousands / 1000).toFixed(1)}m`;
 }
@@ -135,6 +168,28 @@ export function CeoPayStory({ story }: CeoPayStoryProps) {
   const chartSeries = toChartSeries(ceoPaySeries);
   const compensationChartSeries = toCompensationChartSeries(alignedAbsolute);
   const workerChartSeries = toWorkerCompensationChartSeries(alignedAbsolute);
+  const firstAligned = alignedAbsolute[0];
+  const firstWorkerCompensation = firstAligned?.workersIndustries;
+  if (!firstAligned || firstWorkerCompensation === undefined) {
+    throw new Error('CEO compensation data is missing the first aligned worker observation');
+  }
+  const indexedSeries = alignedAbsolute.flatMap((point) => {
+    if (point.workersIndustries === undefined) {
+      return [];
+    }
+    return [
+      {
+        year: point.year,
+        measure: 'Realized CEO compensation',
+        index: (point.realized / firstAligned.realized) * 100,
+      },
+      {
+        year: point.year,
+        measure: 'Worker compensation',
+        index: (point.workersIndustries / firstWorkerCompensation) * 100,
+      },
+    ];
+  });
 
   return (
     <StoryFrame story={story}>
@@ -142,8 +197,7 @@ export function CeoPayStory({ story }: CeoPayStoryProps) {
         <p className="lede">
           EPI’s comparison is an average-to-average ratio: compensation for CEOs at the largest US
           public companies against compensation for production and nonsupervisory workers. The
-          ratio is far higher now than it was in the 1960s, with large swings when stock prices
-          move.
+          ratio is far higher now than in the 1960s, with large swings when stock prices move.
         </p>
         <div className="stat-grid">
           <div className="stat-card stat-card--dark">
@@ -167,7 +221,7 @@ export function CeoPayStory({ story }: CeoPayStoryProps) {
 
       <section className="definition-card definition-card--dark" aria-labelledby="ceo-definition-title">
         <p className="eyebrow">What this compares</p>
-        <h2 id="ceo-definition-title">A defined contrast, not a company-level pay ratio.</h2>
+        <h2 id="ceo-definition-title">How the two compensation averages are defined.</h2>
         <dl className="definition-grid">
           <div>
             <dt>Numerator</dt>
@@ -193,8 +247,8 @@ export function CeoPayStory({ story }: CeoPayStoryProps) {
           <div>
             <dt>Limit</dt>
             <dd>
-              The ratio compares two averages from different populations. It is not the pay ratio
-              between a particular CEO and that company’s median employee.
+              The ratio compares two averages from different populations. It cannot be read as the
+              pay ratio between a particular CEO and that company’s median employee.
             </dd>
           </div>
         </dl>
@@ -218,6 +272,22 @@ export function CeoPayStory({ story }: CeoPayStoryProps) {
         sources={storySources}
         tone="bad"
         definition="Average annual CEO compensation divided by average annual compensation for private-sector production and nonsupervisory workers."
+      />
+
+      <ChartCard
+        eyebrow="US indexed comparison · EPI"
+        title="Since 1992, the two compensation series diverged"
+        description="Each series is indexed to its first aligned observation in 1992. The chart compares growth from the same starting point; it does not replace the absolute-dollar charts below."
+        spec={indexedCompensationSpec}
+        data={indexedSeries}
+        columns={[
+          { key: 'year', label: 'Year' },
+          { key: 'measure', label: 'Measure' },
+          { key: 'index', label: 'Index (1992 = 100)' },
+        ]}
+        sources={compensationSources}
+        tone="bad"
+        definition="Realized CEO compensation and worker compensation indexed to their respective 1992 values, using the aligned EPI series."
       />
 
       <section className="method-note method-note--dark">
@@ -255,7 +325,7 @@ export function CeoPayStory({ story }: CeoPayStoryProps) {
         <ChartCard
           eyebrow="US absolute compensation · EPI"
           title="Worker compensation in the same industries"
-          description="Average annual compensation for production and nonsupervisory workers in the industries represented by the CEO sample. This is not a median employee wage."
+          description="Average annual compensation for production and nonsupervisory workers in the industries represented by the CEO sample. It is an average worker-compensation series, rather than a median employee wage."
           spec={workerCompensationSpec}
           data={workerChartSeries.map((point) => ({
             year: point.year,
@@ -310,7 +380,7 @@ export function CeoPayStory({ story }: CeoPayStoryProps) {
 
       <section className="sources-section">
         <p className="eyebrow">Sources and definitions</p>
-        <h2>Where the numbers come from</h2>
+        <h2>Sources and methodology</h2>
         <SourceList sources={allSources} />
       </section>
     </StoryFrame>

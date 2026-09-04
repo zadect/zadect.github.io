@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { VegaEmbed } from 'react-vega';
 import type { TopLevelSpec } from 'vega-lite';
 import type { SourceReference } from '../content/sources';
+import { getEvidenceStatusLabel, useStoryEvidence } from './StoryEvidence';
 
 interface ChartRow {
   [key: string]: number | string | undefined;
@@ -31,7 +33,22 @@ export function ChartCard({
   tone = 'good',
   definition,
 }: ChartCardProps) {
+  const storyEvidence = useStoryEvidence();
   const chartId = title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+  const seriesField = ['entity', 'country', 'signal', 'phase', 'measure'].find((field) => {
+    if (!columns.some((column) => column.key === field)) return false;
+    return new Set(data.map((row) => row[field]).filter((value) => value !== undefined)).size > 1;
+  });
+  const seriesValues = seriesField
+    ? Array.from(
+        new Set(data.map((row) => row[seriesField]).filter((value): value is string => typeof value === 'string')),
+      )
+    : [];
+  const [selectedSeries, setSelectedSeries] = useState('');
+  const visibleData =
+    seriesField && selectedSeries
+      ? data.filter((row) => row[seriesField] === selectedSeries)
+      : data;
   const chartBackground =
     tone === 'bad' ? '#313535' : tone === 'future' ? '#f7f4fa' : '#f8f6ef';
   const defaultAxis =
@@ -120,6 +137,30 @@ export function ChartCard({
             <strong>Measure:</strong> {definition}
           </p>
         ) : null}
+        {storyEvidence ? (
+          <p className="chart-card__evidence" data-evidence-status={storyEvidence.status}>
+            <strong>{getEvidenceStatusLabel(storyEvidence.status)}</strong>
+            <span>Data through {storyEvidence.dataThrough}</span>
+          </p>
+        ) : null}
+        {seriesField && seriesValues.length > 1 ? (
+          <div className="chart-card__series-control">
+            <label htmlFor={`${chartId}-series`}>Show series</label>
+            <select
+              id={`${chartId}-series`}
+              value={selectedSeries}
+              onChange={(event) => setSelectedSeries(event.target.value)}
+            >
+              <option value="">All series</option>
+              {seriesValues.map((value) => (
+                <option key={value} value={value}>
+                  {value}
+                </option>
+              ))}
+            </select>
+            <span>Choose one to read its path without matching colors across the chart.</span>
+          </div>
+        ) : null}
       </div>
       <div
         className="chart-card__visual"
@@ -128,10 +169,11 @@ export function ChartCard({
         aria-label={`${title} chart`}
       >
         <VegaEmbed
-          spec={{ ...chartSpec, data: { values: data } }}
+          spec={{ ...chartSpec, data: { values: visibleData } }}
           options={{ actions: false, renderer: 'svg' }}
         />
       </div>
+      <p className="chart-card__scroll-cue">Swipe to pan chart</p>
       <details className="data-table">
         <summary>View the data table</summary>
         <div className="data-table__scroll">

@@ -1,9 +1,21 @@
 export type StoryCategory = 'good' | 'bad' | 'future';
 export type StoryStatus = 'published' | 'coming-soon';
+export type EvidenceStatus =
+  | 'historical-observation'
+  | 'historical-estimate'
+  | 'modelled-estimate'
+  | 'source-extrapolation'
+  | 'source-projection';
+
+export interface StoryEvidence {
+  status: EvidenceStatus;
+  dataThrough: string;
+  note: string;
+  cardLabel: string;
+}
 
 export interface StoryCategoryPresentation {
   label: string;
-  signalLabel: string;
   heading: string;
   description: string;
 }
@@ -11,21 +23,18 @@ export interface StoryCategoryPresentation {
 export const storyCategoryPresentation: Record<StoryCategory, StoryCategoryPresentation> = {
   good: {
     label: 'The good',
-    signalLabel: 'Good signal',
-    heading: 'Signals of human progress',
-    description: 'Categories of signals that indicate positive developments in human welfare.',
+    heading: 'Measured improvements in human welfare',
+    description: 'Each story links to a sourced time series, its definition, and the date of its latest data.',
   },
   bad: {
     label: 'The bad',
-    signalLabel: 'Bad signal',
-    heading: 'Signals we cannot look away from',
-    description: 'Categories of signals that indicate negative developments in human welfare.',
+    heading: 'Measured harms and widening gaps',
+    description: 'Each story links to a sourced time series, its definition, and the date of its latest data.',
   },
   future: {
     label: 'The future',
-    signalLabel: 'Future signal',
-    heading: 'Questions for the years ahead',
-    description: 'Selected signals that point to potential future developments for humanity.',
+    heading: 'Topics shaping the next decades',
+    description: 'Historical baselines for decisions that will shape the years ahead.',
   },
 };
 
@@ -44,15 +53,19 @@ export interface StoryDefinition {
   geography: string;
   sourceHint: string;
   comparison?: StoryComparison;
+  evidence: StoryEvidence;
 }
 
-export const stories: StoryDefinition[] = [
+type StorySeed = Omit<StoryDefinition, 'evidence'>;
+
+const storyCatalogue: StorySeed[] = [
   {
     slug: 'world-hunger',
     title: 'World hunger',
     category: 'good',
     status: 'published',
-    summary: 'A long decline in the share of people without enough food, with important limits to the evidence.',
+    summary:
+      'Undernourishment is measured from 2000; food supply reaches back to 1961. The two series point in the same direction but measure different things.',
     plannedMetric: 'Prevalence of undernourishment and food availability',
     geography: 'World',
     sourceHint: 'FAO and Our World in Data',
@@ -72,10 +85,11 @@ export const stories: StoryDefinition[] = [
   },
   {
     slug: 'literacy',
-    title: 'Literacy',
+    title: 'Adult literacy',
     category: 'good',
     status: 'published',
-    summary: 'Basic literacy has spread widely, though the map still shows uneven coverage and unfinished progress.',
+    summary:
+      'Basic literacy has spread widely. The latest country observations still arrive in different years and leave visible reporting gaps.',
     plannedMetric: 'Adult literacy rate',
     geography: 'Selected countries and latest reported country observations',
     sourceHint: 'UNESCO Institute for Statistics and Our World in Data',
@@ -99,11 +113,11 @@ export const stories: StoryDefinition[] = [
   },
   {
     slug: 'womens-rights',
-    title: "Women's rights",
+    title: 'Legal equality for women',
     category: 'good',
     status: 'published',
     summary:
-      'The laws shaping women’s economic lives have changed substantially, but legal equality is not the same as lived equality.',
+      'The World Bank’s legal-equality index has risen substantially. It measures formal economic rights, not whether those rights are enforced or experienced equally.',
     plannedMetric: 'Women, Business and the Law Index',
     geography: 'World and selected countries',
     sourceHint: 'World Bank Women, Business and the Law, via Our World in Data',
@@ -195,12 +209,12 @@ export const stories: StoryDefinition[] = [
   },
   {
     slug: 'vaccination-coverage',
-    title: 'Vaccination coverage',
+    title: 'DTP3 vaccination coverage',
     category: 'good',
     status: 'published',
     summary:
-      'Routine immunisation reached far more children, but the recent dip shows how quickly coverage can slip.',
-    plannedMetric: 'Share of children receiving routine vaccines',
+      'The share of one-year-olds receiving a third DTP dose rose sharply, dipped during the pandemic, and recovered without reaching every child.',
+    plannedMetric: 'Third dose of the diphtheria, tetanus, and pertussis vaccine (DTP3)',
     geography: 'World and countries',
     sourceHint: 'WHO and UNICEF estimates',
     comparison: {
@@ -231,7 +245,7 @@ export const stories: StoryDefinition[] = [
     category: 'good',
     status: 'published',
     summary:
-      'Basic services have spread widely, but the distance between electricity access and sanitation use still shapes daily life.',
+      'Electricity access and at least basic sanitation have spread, but they remain separate services with different gaps and definitions.',
     plannedMetric: 'Share of the population with electricity access and basic sanitation use',
     geography: 'World and countries',
     sourceHint: 'World Bank and WHO/UNICEF Joint Monitoring Programme, via Our World in Data',
@@ -284,7 +298,7 @@ export const stories: StoryDefinition[] = [
         },
         {
           label: 'Limit',
-          value: 'The line is a monetary floor, not a complete measure of deprivation. Countries may use income or consumption data, and survey definitions can change over time.',
+          value: 'The $3 threshold captures purchasing power, not every dimension of deprivation. Countries may use income or consumption data, and survey definitions can change over time.',
         },
       ],
     },
@@ -322,7 +336,7 @@ export const stories: StoryDefinition[] = [
     category: 'bad',
     status: 'published',
     summary:
-      'The global temperature anomaly has moved upward for more than a century, turning a noisy annual line into a clear shift in the baseline.',
+      'Annual temperature anomalies vary, while recent decades sit well above the earlier NASA baseline.',
     plannedMetric: 'Global land-ocean surface temperature anomaly',
     geography: 'World',
     sourceHint: 'NASA Goddard Institute for Space Studies GISTEMP v4',
@@ -343,7 +357,7 @@ export const stories: StoryDefinition[] = [
         },
         {
           label: 'Limit',
-          value: 'A global average hides regional and seasonal differences. This page shows the observed temperature signal, not a forecast or an impact estimate.',
+          value: 'A global average hides regional and seasonal differences. This page shows the observed temperature record, not a forecast or an impact estimate.',
         },
       ],
     },
@@ -354,7 +368,7 @@ export const stories: StoryDefinition[] = [
     category: 'bad',
     status: 'published',
     summary:
-      'Conflict has two different signals: how many people die in fighting, and how many state-based conflicts remain active.',
+      'State-based conflict can be counted by deaths and by active conflicts. Those measures describe different parts of organized violence.',
     plannedMetric: 'Battle deaths and conflict incidence',
     geography: 'World and regions',
     sourceHint: 'UCDP and Our World in Data',
@@ -386,8 +400,8 @@ export const stories: StoryDefinition[] = [
     category: 'bad',
     status: 'published',
     summary:
-      'Inequality moves differently across countries: some lines rose, some fell, and the surveys do not all measure the same welfare concept.',
-    plannedMetric: 'Gini coefficient and income shares',
+      'Inequality changed in different directions across countries, and the surveys do not all measure the same welfare concept.',
+    plannedMetric: 'Gini coefficient',
     geography: 'Selected countries',
     sourceHint: 'World Bank Poverty and Inequality Platform',
     comparison: {
@@ -414,13 +428,13 @@ export const stories: StoryDefinition[] = [
   },
   {
     slug: 'biodiversity-loss',
-    title: 'Biodiversity loss',
+    title: 'Monitored vertebrate populations',
     category: 'bad',
     status: 'published',
     summary:
-      'Monitored vertebrate populations have declined sharply since 1970, with regional lines moving at very different speeds.',
-    plannedMetric: 'Species population and extinction-risk indicators',
-    geography: 'World and biomes',
+      'The Living Planet Index shows a sharp decline in monitored vertebrate populations since 1970, with regional trends moving at different speeds.',
+    plannedMetric: 'Living Planet Index of monitored vertebrate populations',
+    geography: 'World and broad regions',
     sourceHint: 'Living Planet Index and IUCN Red List',
     comparison: {
       title: 'What the Living Planet Index measures',
@@ -439,18 +453,18 @@ export const stories: StoryDefinition[] = [
         },
         {
           label: 'Limit',
-          value: 'This is not a census of all wildlife, a count of species, or a direct measure of extinction. Monitoring coverage is uneven and the index is sensitive to which populations are observed.',
+          value: 'The index is not a census of wildlife or species and cannot measure extinction directly. Monitoring coverage is uneven and the result depends on which populations are observed.',
         },
       ],
     },
   },
   {
     slug: 'forced-displacement',
-    title: 'Forced displacement',
+    title: 'Refugees and forced displacement',
     category: 'bad',
     status: 'published',
     summary:
-      'The number of people counted in UNHCR displacement categories has risen, while internal displacement now dominates the comparable panel.',
+      'The long series counts refugees. A separate four-category UNHCR panel shows how internally displaced people now dominate that accounting boundary.',
     plannedMetric:
       'Refugees, internally displaced people, asylum-seekers, and other people in need of international protection',
     geography: 'World and regions',
@@ -479,13 +493,13 @@ export const stories: StoryDefinition[] = [
   },
   {
     slug: 'air-pollution',
-    title: 'Air pollution',
+    title: 'Ambient PM2.5 exposure',
     category: 'bad',
     status: 'published',
     summary:
-      'Average PM2.5 exposure has fallen in some countries, but the world line remains far above the level WHO recommends for health protection.',
+      'Population-weighted ambient PM2.5 exposure has fallen in some countries, but the world estimate remains above the WHO health guideline.',
     plannedMetric: 'Population-weighted annual mean PM2.5 exposure',
-    geography: 'World and cities',
+    geography: 'World and selected countries',
     sourceHint: 'Global Burden of Disease Study, World Bank, Our World in Data, and WHO',
     comparison: {
       title: 'What the air-pollution series compares',
@@ -514,8 +528,9 @@ export const stories: StoryDefinition[] = [
     title: 'Democratic backsliding',
     category: 'bad',
     status: 'published',
-    summary: 'The latest five-year changes show democratic deterioration in some countries and recovery in others.',
-    plannedMetric: 'Democracy and civil-liberties indices',
+    summary:
+      'The V-Dem liberal-democracy index fell in some countries between 2020 and 2025 and rose in others; small changes need cautious reading.',
+    plannedMetric: 'V-Dem Liberal Democracy Index',
     geography: 'Selected countries and countries with comparable 2020–2025 values',
     sourceHint: 'V-Dem and Our World in Data',
     comparison: {
@@ -531,18 +546,18 @@ export const stories: StoryDefinition[] = [
         },
         {
           label: 'Limit',
-          value: 'This is a model-based signal of change, not a causal explanation or a complete ranking of political systems.',
+          value: 'This model-based estimate describes change in one index; it does not identify causes or rank every part of a political system.',
         },
       ],
     },
   },
   {
     slug: 'tech-and-ai',
-    title: 'AI & Tech',
+    title: 'Firm AI adoption',
     category: 'future',
     status: 'published',
     summary:
-      'Businesses are adopting AI faster, but adoption alone does not tell us whether work is better, fewer jobs exist, or productivity has risen.',
+      'Eurostat records a rising share of firms using at least one AI technology across the EU and selected European countries. The missing 2022 observation remains a reporting gap.',
     plannedMetric: 'Share of enterprises using at least one AI technology',
     geography: 'EU-27 and selected European countries',
     sourceHint: 'Eurostat enterprise ICT survey',
@@ -570,11 +585,11 @@ export const stories: StoryDefinition[] = [
   },
   {
     slug: 'employment-work-and-skills',
-    title: 'Employment, Work & Skills',
+    title: 'Employment rates',
     category: 'future',
     status: 'published',
     summary:
-      'The share of adults in work has moved unevenly across the world, offering a baseline before we ask whether those jobs are good ones.',
+      'The employment-to-population ratio provides a historical baseline for labour-market participation. It says nothing by itself about job quality, skills, or security.',
     plannedMetric: 'Employment-to-population ratio',
     geography: 'World and selected countries',
     sourceHint: 'International Labour Organization Modelled Estimates, via World Bank and Our World in Data',
@@ -602,11 +617,11 @@ export const stories: StoryDefinition[] = [
   },
   {
     slug: 'wealth-distribution-and-inequality',
-    title: 'Wealth Distribution & Inequality',
+    title: 'Top 1% wealth share',
     category: 'future',
     status: 'published',
     summary:
-      'The richest 1% hold a large share of household wealth, but the level and historical path differ sharply across countries.',
+      'World Inequality Database estimates show the share of household wealth held by the richest 1%. The historical checkpoints are sparse and differ across countries.',
     plannedMetric: 'Share of household net wealth held by the richest 1%',
     geography: 'World and selected countries',
     sourceHint: 'World Inequality Database, via Our World in Data',
@@ -634,16 +649,16 @@ export const stories: StoryDefinition[] = [
   },
   {
     slug: 'economic-growth-debt-and-public-finance',
-    title: 'Economic Growth, Debt & Public Finance',
+    title: 'World growth and central-government debt',
     category: 'future',
     status: 'published',
     summary:
-      'Growth can slow while public debt rises, leaving governments with less room to absorb the next shock.',
+      'World GDP growth and selected countries’ central-government debt describe two separate historical series. Together they do not establish fiscal capacity or sustainability.',
     plannedMetric: 'Annual GDP growth and gross central-government debt as a share of GDP',
     geography: 'World growth and six selected countries',
     sourceHint: 'World Bank national accounts and public-sector debt data, via Our World in Data',
     comparison: {
-      title: 'Two signals, kept separate',
+      title: 'Two measures, kept separate',
       fields: [
         {
           label: 'Growth',
@@ -666,18 +681,18 @@ export const stories: StoryDefinition[] = [
   },
   {
     slug: 'inflation-prices-and-energy',
-    title: 'Inflation, Prices & Energy',
+    title: 'Inflation and renewable electricity',
     category: 'future',
     status: 'published',
     summary:
-      'Price shocks arrive in waves, while the electricity system is slowly changing underneath them.',
+      'Consumer inflation and renewable electricity share move on different clocks. The page keeps them separate rather than implying a common mechanism.',
     plannedMetric:
       'Consumer inflation and renewable electricity share',
     geography: 'World and six selected countries',
     sourceHint:
       'IMF International Financial Statistics via World Bank and Ember, via Our World in Data',
     comparison: {
-      title: 'Two signals, kept separate',
+      title: 'Two measures, kept separate',
       fields: [
         {
           label: 'Prices',
@@ -693,24 +708,24 @@ export const stories: StoryDefinition[] = [
         },
         {
           label: 'Limit',
-          value: 'Inflation is not the same as every household’s cost of living, and renewable electricity is not renewable energy’s share of all energy use. The two lines are context, not a causal claim.',
+          value: 'Inflation describes consumer prices, while renewable electricity describes one part of energy generation. Neither measure gives every household’s cost of living or total renewable-energy use, and the pair is not a causal claim.',
         },
       ],
     },
   },
   {
     slug: 'demographics-and-migration',
-    title: 'Demographics & Migration',
+    title: 'Population age and migrant stock',
     category: 'future',
     status: 'published',
     summary:
-      'The world is getting older on a long arc, while the share of people born abroad changes on a different, more uneven clock.',
+      'Median age and the foreign-born share describe two historical population changes. Only the UN median-age series continues into a source-backed scenario.',
     plannedMetric: 'Median age and share of the population born in another country',
     geography: 'World and six selected countries',
     sourceHint:
       'UN World Population Prospects and UN DESA International Migrant Stock, via Our World in Data',
     comparison: {
-      title: 'Two population signals, kept separate',
+      title: 'Two population measures, kept separate',
       fields: [
         {
           label: 'Age',
@@ -726,18 +741,18 @@ export const stories: StoryDefinition[] = [
         },
         {
           label: 'Limit',
-          value: 'Neither line measures dependency, pension readiness, integration, or the causes of population change. The projection is a scenario, and the migration series is not a flow count.',
+          value: 'These measures do not cover dependency, pension readiness, integration, or the causes of population change. The projection is a scenario, and the migration series counts residents born abroad rather than annual moves.',
         },
       ],
     },
   },
   {
     slug: 'housing-cities-and-infrastructure',
-    title: 'Housing, Cities & Infrastructure',
+    title: 'Housing price-to-income',
     category: 'future',
     status: 'published',
     summary:
-      'House prices have moved faster than incomes in some countries, but a national price-to-income index is only one part of housing pressure.',
+      'The OECD house-price-to-income index compares national house prices with disposable income. It is a housing baseline, not a city or infrastructure measure.',
     plannedMetric: 'OECD house-price-to-income index',
     geography: 'Canada, France, Germany, Japan, Netherlands, Sweden, UK, and US',
     sourceHint: 'OECD Analytical house prices indicators',
@@ -765,17 +780,17 @@ export const stories: StoryDefinition[] = [
   },
   {
     slug: 'health-longevity-and-human-capital',
-    title: 'Health, Longevity & Human Capital',
+    title: 'Healthy life expectancy and health spending',
     category: 'future',
     status: 'published',
     summary:
-      'Living longer matters most when the extra years are healthy, and when health systems can afford to support them.',
+      'Healthy life expectancy and health spending show two historical health measures with different end years. Neither series measures human capital as a whole.',
     plannedMetric: 'Healthy life expectancy and total health spending per person',
     geography: 'World and six selected countries',
     sourceHint:
       'WHO Global Health Observatory and Global Health Expenditure Database via World Bank and Our World in Data',
     comparison: {
-      title: 'Two health signals, kept separate',
+      title: 'Two health measures, kept separate',
       fields: [
         {
           label: 'Healthy years',
@@ -791,18 +806,18 @@ export const stories: StoryDefinition[] = [
         },
         {
           label: 'Limit',
-          value: 'Spending is not care quality or access, and healthy life expectancy is not a diagnosis count. The two measures are context, not evidence that spending caused an outcome.',
+          value: 'Spending describes resources, while healthy life expectancy describes years lived in full health. Neither measure covers care quality, access, or diagnoses, and the pair does not show that spending caused an outcome.',
         },
       ],
     },
   },
   {
     slug: 'governance-risk-and-security',
-    title: 'Governance, Risk & Security',
+    title: 'Rule of law and security',
     category: 'future',
     status: 'published',
     summary:
-      'Rule-of-law scores show how institutional capacity differs across countries, and how little a global country median has shifted.',
+      'World Justice Project scores describe rule of law and its order-and-security factor across changing country panels. They are historical index estimates, not a complete risk register.',
     plannedMetric: 'WJP Rule of Law Index and its Order and Security factor',
     geography: 'Country median and eight selected countries',
     sourceHint: 'World Justice Project Rule of Law Index',
@@ -830,11 +845,11 @@ export const stories: StoryDefinition[] = [
   },
   {
     slug: 'climate-and-environmental-futures',
-    title: 'Climate & Environmental Futures',
+    title: 'Historical fossil CO₂ emissions',
     category: 'future',
     status: 'published',
     summary:
-      'Fossil CO₂ emissions have risen sharply, while the per-person picture is split between high emitters and a still lower-emitting majority.',
+      'Territorial fossil CO₂ emissions have risen sharply. Total and per-person accounting answer different questions and do not provide a future pathway.',
     plannedMetric: 'Territorial fossil CO₂ emissions and fossil CO₂ emissions per person',
     geography: 'World and eight selected countries',
     sourceHint: 'Global Carbon Project via Our World in Data',
@@ -862,11 +877,11 @@ export const stories: StoryDefinition[] = [
   },
   {
     slug: 'capital-markets-and-money-flows',
-    title: 'Capital Markets & Money Flows',
+    title: 'Private-sector credit relative to GDP',
     category: 'future',
     status: 'published',
     summary:
-      'Credit is a bridge between financial markets and the real economy, but the bridge is not equally large or equally stable across countries.',
+      'Private-sector credit relative to GDP is a historical credit-stock measure. It does not measure capital-market activity, annual lending, or money flows directly.',
     plannedMetric: 'Credit to the private non-financial sector as a share of GDP',
     geography: 'BIS all-reporting-economies aggregate and eight selected countries',
     sourceHint: 'Bank for International Settlements, total credit dataset',
@@ -887,12 +902,185 @@ export const stories: StoryDefinition[] = [
         },
         {
           label: 'Limit',
-          value: 'A high ratio is not automatically a crisis, and a low ratio is not automatically healthy. This is a credit-stock signal, not a measure of wealth, annual lending, interest burden, or market capitalization.',
+          value: 'A high ratio does not by itself establish a crisis, just as a low ratio does not establish financial health. It measures a credit stock relative to GDP, not wealth, annual lending, interest burden, or market capitalization.',
         },
       ],
     },
   },
 ];
+
+const evidenceBySlug: Record<string, StoryEvidence> = {
+  'world-hunger': {
+    status: 'historical-estimate',
+    dataThrough: '2024 (food supply: 2023)',
+    note: 'FAO estimates undernourishment; the longer food-supply series is a separate historical measure.',
+    cardLabel: 'Historical estimate',
+  },
+  literacy: {
+    status: 'historical-observation',
+    dataThrough: '2024',
+    note: 'Country observations are reported in different years; the map is not a simultaneous snapshot.',
+    cardLabel: 'Historical observations',
+  },
+  'womens-rights': {
+    status: 'historical-observation',
+    dataThrough: '2023',
+    note: 'The index codes formal economic laws and regulations rather than lived outcomes.',
+    cardLabel: 'Historical observations',
+  },
+  'child-mortality': {
+    status: 'historical-estimate',
+    dataThrough: '2024',
+    note: 'The long reconstruction and modern UN estimates use different source coverage and uncertainty.',
+    cardLabel: 'Historical estimate',
+  },
+  'life-expectancy': {
+    status: 'historical-estimate',
+    dataThrough: '2023',
+    note: 'The series combines historical reconstructions with modern population estimates.',
+    cardLabel: 'Historical estimate',
+  },
+  'vaccination-coverage': {
+    status: 'historical-estimate',
+    dataThrough: '2024',
+    note: 'DTP3 is a routine-immunisation tracer, not a measure of every vaccine or service outcome.',
+    cardLabel: 'Historical estimate',
+  },
+  'electricity-and-sanitation': {
+    status: 'historical-estimate',
+    dataThrough: '2024',
+    note: 'Electricity access and sanitation use are separate service measures with different source histories.',
+    cardLabel: 'Historical estimate',
+  },
+  'extreme-poverty': {
+    status: 'source-extrapolation',
+    dataThrough: '2026 (observed through 2022)',
+    note: 'The final global points are source extrapolations, not new household surveys.',
+    cardLabel: 'Source extrapolation',
+  },
+  'ceo-pay-gap': {
+    status: 'historical-observation',
+    dataThrough: '2025 (absolute compensation: 2024)',
+    note: 'The comparable ratio is a United States series; the international material is separate context.',
+    cardLabel: 'Historical observations',
+  },
+  'climate-change': {
+    status: 'historical-observation',
+    dataThrough: '2025',
+    note: 'Annual land-ocean anomalies vary from year to year around a long-run warming trend.',
+    cardLabel: 'Historical observations',
+  },
+  'wars-and-conflict': {
+    status: 'historical-estimate',
+    dataThrough: '2025',
+    note: 'The series covers state-based conflict and battle-related deaths, not every consequence of war.',
+    cardLabel: 'Historical estimate',
+  },
+  'inequality-by-country': {
+    status: 'historical-estimate',
+    dataThrough: '2024',
+    note: 'Country points are survey observations with different welfare concepts and gaps between years.',
+    cardLabel: 'Historical estimate',
+  },
+  'biodiversity-loss': {
+    status: 'modelled-estimate',
+    dataThrough: '2020',
+    note: 'The Living Planet Index tracks monitored vertebrate populations, not all species or ecosystems.',
+    cardLabel: 'Modelled estimate',
+  },
+  'forced-displacement': {
+    status: 'historical-observation',
+    dataThrough: '2024',
+    note: 'The long series is refugees; the broader panel uses four UNHCR population categories.',
+    cardLabel: 'Historical observations',
+  },
+  'air-pollution': {
+    status: 'modelled-estimate',
+    dataThrough: '2023',
+    note: 'These are population-weighted ambient PM2.5 exposure estimates, not monitor readings or emissions.',
+    cardLabel: 'Modelled estimate',
+  },
+  'democratic-backsliding': {
+    status: 'modelled-estimate',
+    dataThrough: '2025',
+    note: 'V-Dem scores are modelled estimates; small changes should not be read without their uncertainty.',
+    cardLabel: 'Modelled estimate',
+  },
+  'tech-and-ai': {
+    status: 'historical-observation',
+    dataThrough: '2025',
+    note: 'Eurostat reports firm adoption in selected European economies; missing years are reporting gaps.',
+    cardLabel: 'Historical baseline',
+  },
+  'employment-work-and-skills': {
+    status: 'modelled-estimate',
+    dataThrough: '2025',
+    note: 'The core series is the modelled employment-to-population ratio for people aged 15 and older.',
+    cardLabel: 'Historical baseline',
+  },
+  'wealth-distribution-and-inequality': {
+    status: 'modelled-estimate',
+    dataThrough: '2024',
+    note: 'Selected World Inequality Database estimates are sparse checkpoints for the top 1% wealth share.',
+    cardLabel: 'Historical baseline',
+  },
+  'economic-growth-debt-and-public-finance': {
+    status: 'historical-observation',
+    dataThrough: '2023',
+    note: "World growth and selected countries' central-government debt are separate historical measures.",
+    cardLabel: 'Historical baseline',
+  },
+  'inflation-prices-and-energy': {
+    status: 'historical-observation',
+    dataThrough: '2025',
+    note: 'Consumer inflation and renewable electricity share answer different questions and are shown separately.',
+    cardLabel: 'Historical baseline',
+  },
+  'demographics-and-migration': {
+    status: 'source-projection',
+    dataThrough: '2024 observed; 2100 scenario',
+    note: 'The UN medium scenario begins after the observed 2023 median-age series and depends on stated demographic assumptions.',
+    cardLabel: 'Source scenario',
+  },
+  'housing-cities-and-infrastructure': {
+    status: 'historical-observation',
+    dataThrough: '2024',
+    note: 'The plotted measure is a national house-price-to-income index, not a city or infrastructure measure.',
+    cardLabel: 'Historical baseline',
+  },
+  'health-longevity-and-human-capital': {
+    status: 'historical-estimate',
+    dataThrough: '2023 (healthy life expectancy: 2021)',
+    note: 'Healthy life expectancy and current-dollar health spending are separate measures with different end years.',
+    cardLabel: 'Historical baseline',
+  },
+  'governance-risk-and-security': {
+    status: 'modelled-estimate',
+    dataThrough: '2025',
+    note: 'The World Justice Project scores rule of law and order and security for changing country panels.',
+    cardLabel: 'Historical baseline',
+  },
+  'climate-and-environmental-futures': {
+    status: 'historical-observation',
+    dataThrough: '2024',
+    note: 'The charts show territorial fossil CO2 accounting, not impacts, adaptation, or a future pathway.',
+    cardLabel: 'Historical baseline',
+  },
+  'capital-markets-and-money-flows': {
+    status: 'historical-observation',
+    dataThrough: '2025',
+    note: 'Private-sector credit relative to GDP is a credit-stock ratio, not a direct measure of capital-market activity.',
+    cardLabel: 'Historical baseline',
+  },
+};
+
+export const stories: StoryDefinition[] = storyCatalogue.map((story) => {
+  const evidence = evidenceBySlug[story.slug];
+  if (!evidence) {
+    throw new Error(`Story ${story.slug} is missing evidence metadata`);
+  }
+  return { ...story, evidence };
+});
 
 export function getStory(category: string | undefined, slug: string | undefined) {
   return stories.find((story) => story.category === category && story.slug === slug);

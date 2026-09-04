@@ -1,0 +1,33 @@
+{
+  "path": "src/data/hunger-undernourishment.csv",
+  "sourceIds": [
+    "fao-undernourishment"
+  ],
+  "sourceUrls": [
+    "https://ourworldindata.org/grapher/prevalence-of-undernourishment"
+  ],
+  "publishers": [
+    "Food and Agriculture Organization of the United Nations"
+  ],
+  "retrieved": [
+    "2026-08-16"
+  ],
+  "upstreamVersions": [
+    "OWID Grapher variable 1196353"
+  ],
+  "rawFileSha256": "3f7a8bec4c5dfb8ef66c9e78766f2df578827c72e72f43278c83f9d2321aea9e",
+  "checksumScope": "committed local extract",
+  "format": "csv",
+  "columns": [
+    "year",
+    "prevalence_percent"
+  ],
+  "rowCount": 25,
+  "dataFrom": 2000,
+  "dataThrough": 2024,
+  "retainedFilters": [
+    "Global annual series, 2000–2024 in this release"
+  ],
+  "derivedFields": [],
+  "transformation": "The local extract keeps the OWID global series and rounds only for display; no values below FAO’s reporting threshold are imputed."
+}

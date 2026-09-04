@@ -131,9 +131,8 @@ export function LiteracyStory({ story }: LiteracyStoryProps) {
     <StoryFrame story={story}>
       <section className="story-lede">
         <p className="lede">
-          Basic literacy has spread across generations, but the latest map is not a single
-          synchronized snapshot. Each country is shown with the newest reported observation we
-          could retain.
+          Basic literacy has spread across generations. The map combines each country’s newest
+          qualifying observation, so the reported years differ.
         </p>
         <div className="stat-grid">
           <div className="stat-card">
@@ -156,7 +155,7 @@ export function LiteracyStory({ story }: LiteracyStoryProps) {
       <ChartCard
         eyebrow="Selected countries · OWID + UNESCO"
         title="Literacy rose across a broad panel of countries"
-        description="The panel is deliberately balanced across regions and includes countries with different starting points. It is an illustration of long-run change, not a ranking of every country."
+        description="The panel covers several regions and includes countries with different starting points. It illustrates long-run change rather than ranking every country."
         spec={literacySpec}
         data={literacySeries.map((point) => ({
           country: point.country,
@@ -174,7 +173,7 @@ export function LiteracyStory({ story }: LiteracyStoryProps) {
 
       <MapCard
         eyebrow="Latest reported observations · OWID + UNESCO"
-        title="The latest map is uneven by both place and year"
+        title="Latest available adult-literacy observations"
         description="The map includes countries with a reported observation from 2018 onward. Grey means the source does not provide a qualifying recent observation; it does not mean zero literacy."
         spec={literacyMapSpec}
         data={literacyMapSeries.map((point) => ({
@@ -196,8 +195,8 @@ export function LiteracyStory({ story }: LiteracyStoryProps) {
       />
 
       <section className="method-note">
-        <p className="eyebrow">Read the evidence carefully</p>
-        <h2>More literacy is a real gain. The measurement is still imperfect.</h2>
+        <p className="eyebrow">Scope and limits</p>
+        <h2>Adult literacy has spread, but the reporting is uneven.</h2>
         <p>
           Earlier observations often used different age thresholds, survey methods, or minimum
           definitions of literacy. Many developed countries stopped reporting once rates became
@@ -208,7 +207,7 @@ export function LiteracyStory({ story }: LiteracyStoryProps) {
 
       <section className="sources-section">
         <p className="eyebrow">Sources and definitions</p>
-        <h2>Where the numbers and boundaries come from</h2>
+        <h2>Sources and methodology</h2>
         <SourceList sources={allSources} />
       </section>
     </StoryFrame>

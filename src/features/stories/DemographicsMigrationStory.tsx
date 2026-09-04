@@ -80,7 +80,7 @@ const medianPanelSpec: TopLevelSpec = {
   width: 'container',
   height: 360,
   data: { name: 'series' },
-  mark: { type: 'line', point: { filled: true, size: 34 }, strokeWidth: 2.5 },
+  mark: { type: 'line', point: { filled: true, size: 34 }, strokeWidth: 2.5, strokeDash: [5, 4] },
   encoding: {
     x: {
       field: 'year',
@@ -117,26 +117,7 @@ const migrationWorldSpec: TopLevelSpec = {
   data: { name: 'series' },
   layer: [
     {
-      mark: { type: 'area', color: '#8e7bb5', opacity: 0.16 },
-      encoding: {
-        x: {
-          field: 'year',
-          type: 'quantitative',
-          title: 'Year',
-          scale: { domain: [1990, 2024] },
-          axis: { format: 'd', values: [1990, 2000, 2010, 2020, 2024] },
-        },
-        y: {
-          field: 'value',
-          type: 'quantitative',
-          title: 'Foreign-born population (%)',
-          scale: { domain: [0, 5] },
-        },
-        y2: { datum: 0 },
-      },
-    },
-    {
-      mark: { type: 'line', color: '#6f5a9e', strokeWidth: 3 },
+      mark: { type: 'line', color: '#6f5a9e', strokeWidth: 3, strokeDash: [5, 4] },
       encoding: {
         x: { field: 'year', type: 'quantitative', title: 'Year' },
         y: {
@@ -171,7 +152,7 @@ const migrationPanelSpec: TopLevelSpec = {
   width: 'container',
   height: 360,
   data: { name: 'series' },
-  mark: { type: 'line', point: { filled: true, size: 34 }, strokeWidth: 2.5 },
+  mark: { type: 'line', point: { filled: true, size: 34 }, strokeWidth: 2.5, strokeDash: [5, 4] },
   encoding: {
     x: {
       field: 'year',
@@ -227,9 +208,9 @@ export function DemographicsMigrationStory({ story }: DemographicsMigrationStory
     <StoryFrame story={story}>
       <section className="story-lede">
         <p className="lede">
-          Population change is not one thing. Age moves over generations; migration can shift the
-          composition of a country much faster. These lines show both clocks without turning either
-          into a forecast of social outcomes.
+          Median age and the foreign-born share describe different population changes. The median
+          age chart continues into one UN medium scenario; the migrant-stock charts stop at
+          observed reporting points.
         </p>
         <div className="stat-grid">
           <div className="stat-card">
@@ -269,7 +250,7 @@ export function DemographicsMigrationStory({ story }: DemographicsMigrationStory
 
       <ChartCard
         eyebrow="World · UN World Population Prospects via OWID"
-        title="The world gets older on a long arc"
+        title="Observed median age and the UN medium scenario"
         description="The solid line is the UN estimate through 2023. The dashed line is the medium scenario from 2024 onward; the change in line style marks a change in evidence."
         spec={medianWorldSpec}
         data={[
@@ -296,8 +277,8 @@ export function DemographicsMigrationStory({ story }: DemographicsMigrationStory
 
       <ChartCard
         eyebrow="Six selected countries · observed checkpoints"
-        title="Countries reach old age at different speeds"
-        description="The same four checkpoints reveal very different demographic starting points and trajectories. They are not a ranking of wellbeing."
+        title="Observed median age in selected countries"
+        description="Dashed connectors join the same four checkpoints, revealing different demographic starting points and changes. Median age describes age structure, not wellbeing."
         spec={medianPanelSpec}
         data={medianAgePanelSeries.map((point) => ({
           entity: point.entity,
@@ -316,8 +297,8 @@ export function DemographicsMigrationStory({ story }: DemographicsMigrationStory
 
       <ChartCard
         eyebrow="World · UN DESA International Migrant Stock 2024 via OWID"
-        title="The global foreign-born share changed more slowly"
-        description="The points keep the source’s five-year reporting rhythm. This is the share of residents born abroad, not the number who crossed a border during that year."
+        title="Global foreign-born population share"
+        description="Points and dashed connectors keep the source’s five-year reporting rhythm. This is the share of residents born abroad, not the number who crossed a border during that year."
         spec={migrationWorldSpec}
         data={migrationWorldSeries.map((point) => ({
           year: point.year,
@@ -334,8 +315,8 @@ export function DemographicsMigrationStory({ story }: DemographicsMigrationStory
 
       <ChartCard
         eyebrow="Six selected countries · shared checkpoints"
-        title="Migration is much more uneven by country"
-        description="Germany and the United States sit on a different scale from India, Nigeria, and Brazil in this panel. The lines show composition, not integration or social impact."
+        title="Foreign-born population share in selected countries"
+        description="Germany and the United States sit on a different scale from India, Nigeria, and Brazil in this panel. Dashed connectors show population composition; integration and social impact require other measures."
         spec={migrationPanelSpec}
         data={migrationPanelSeries.map((point) => ({
           entity: point.entity,
@@ -353,8 +334,8 @@ export function DemographicsMigrationStory({ story }: DemographicsMigrationStory
       />
 
       <section className="method-note method-note--future">
-        <p className="eyebrow">Read the evidence carefully</p>
-        <h2>Population structure is not destiny.</h2>
+        <p className="eyebrow">Scope and limits</p>
+        <h2>One UN scenario does not settle future population change.</h2>
         <p>
           Median age responds to fertility, mortality, and migration across decades. The UN
           projection is one medium scenario, not a promise. Migrant stock describes where people
@@ -365,7 +346,7 @@ export function DemographicsMigrationStory({ story }: DemographicsMigrationStory
 
       <section className="sources-section">
         <p className="eyebrow">Sources and definitions</p>
-        <h2>Where the demographic signals come from</h2>
+        <h2>Sources and methodology</h2>
         <SourceList sources={sources} />
       </section>
     </StoryFrame>

@@ -18,7 +18,30 @@ const worldSpec: TopLevelSpec = {
   data: { name: 'series' },
   layer: [
     {
+      transform: [{ filter: "datum.status === 'reported-or-survey-based'" }],
       mark: { type: 'line', strokeWidth: 3, color: '#2d746a' },
+      encoding: {
+        x: {
+          field: 'year',
+          type: 'quantitative',
+          title: 'Year',
+          axis: { format: 'd', tickCount: 9 },
+        },
+        y: {
+          field: 'value',
+          type: 'quantitative',
+          title: 'Population below $3/day (%)',
+          scale: { domain: [0, 50] },
+        },
+      },
+    },
+    {
+      transform: [
+        {
+          filter: "datum.status === 'source-extrapolation' || datum.year === 2022",
+        },
+      ],
+      mark: { type: 'line', strokeWidth: 3, strokeDash: [6, 4], color: '#2d746a' },
       encoding: {
         x: {
           field: 'year',
@@ -119,9 +142,9 @@ export function ExtremePovertyStory({ story }: ExtremePovertyStoryProps) {
     <StoryFrame story={story}>
       <section className="story-lede">
         <p className="lede">
-          Extreme poverty has fallen from a global majority to a minority. That is real progress,
-          but the remaining burden is large — and the line does not fall at the same speed
-          everywhere.
+          The retained $3-a-day series starts at {first.value.toFixed(1)}% in {first.year}, more
+          than two in five people. The latest survey-based global point is lower, while the final
+          years are source extrapolations rather than new surveys.
         </p>
         <div className="stat-grid">
           <div className="stat-card">
@@ -152,8 +175,8 @@ export function ExtremePovertyStory({ story }: ExtremePovertyStoryProps) {
 
       <ChartCard
         eyebrow="World · World Bank Poverty and Inequality Platform"
-        title="The global poverty line moved downward"
-        description="The world series falls sharply, with a pandemic-era interruption. Diamond points mark the source-extrapolated 2023–2026 tail; they are not new household surveys."
+        title="The global share below $3/day fell, with an extrapolated tail"
+        description="The solid line ends with the 2022 reported-or-survey-based point. The dashed segment and diamond points cover the source-extrapolated 2023–2026 tail; they are not new household surveys."
         spec={worldSpec}
         data={extremePovertyWorldSeries.map((point) => ({
           year: point.year,
@@ -171,8 +194,8 @@ export function ExtremePovertyStory({ story }: ExtremePovertyStoryProps) {
 
       <ChartCard
         eyebrow="Selected countries · World Bank PIP observations"
-        title="The same line leaves very different distances"
-        description="Country observations are not annual or synchronized. The connecting lines are visual guides between reported points; no missing years have been filled."
+        title="Country observations span different ranges"
+        description="Country observations are not annual or synchronized. Connecting lines guide the eye between reported points; missing years remain empty."
         spec={panelSpec}
         data={extremePovertyPanelSeries.map((point) => ({
           country: point.entity,
@@ -189,19 +212,19 @@ export function ExtremePovertyStory({ story }: ExtremePovertyStoryProps) {
       />
 
       <section className="method-note">
-        <p className="eyebrow">Read the evidence carefully</p>
-        <h2>A poverty line is a floor, not a full picture of hardship.</h2>
+        <p className="eyebrow">Scope and limits</p>
+        <h2>The $3 line captures one part of hardship.</h2>
         <p>
           The $3 line is designed for international comparison, not to describe everything a
           household needs. The platform combines income data in some countries with consumption
-          data in others, and survey methods can change over time. Global and regional points at
-          the end of the series use extrapolation and forecasts documented by the source.
+          data in others, and survey methods can change over time. The source documents the
+          extrapolation and forecasts used for the final global and regional points.
         </p>
       </section>
 
       <section className="sources-section">
         <p className="eyebrow">Sources and definitions</p>
-        <h2>Where the poverty estimates come from</h2>
+        <h2>Sources and methodology</h2>
         <SourceList sources={sources} />
       </section>
     </StoryFrame>

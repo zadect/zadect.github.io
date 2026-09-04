@@ -95,9 +95,9 @@ export function VaccinationCoverageStory({ story }: VaccinationCoverageStoryProp
     <StoryFrame story={story}>
       <section className="story-lede">
         <p className="lede">
-          Vaccines turn prevention into a public system. DTP3 coverage moved from a low global
-          baseline to a high one — and the recent interruption shows that maintenance is part of
-          progress too.
+          The estimated share of one-year-olds receiving DTP3 rose from {first.coverage}% in{' '}
+          {first.year} to {last.coverage}% in {last.year}. The pandemic dip and recovery are
+          visible in the annual series.
         </p>
         <div className="stat-grid">
           <div className="stat-card">
@@ -120,8 +120,8 @@ export function VaccinationCoverageStory({ story }: VaccinationCoverageStoryProp
 
       <ChartCard
         eyebrow="World · WHO + UNICEF"
-        title="The world moved toward a high vaccination baseline"
-        description="Global DTP3 coverage rose sharply over the period, then slipped during the pandemic years before recovering. The recent recovery is not the same as universal coverage."
+        title="Global DTP3 coverage rose, then dipped"
+        description="Global DTP3 coverage rose over the period, fell during the pandemic years, and recovered afterward. The latest estimate still leaves some children without the third dose."
         spec={worldSpec}
         data={vaccinationWorldSeries.map((point) => ({
           year: point.year,
@@ -137,7 +137,7 @@ export function VaccinationCoverageStory({ story }: VaccinationCoverageStoryProp
 
       <ChartCard
         eyebrow="Selected countries · WHO + UNICEF"
-        title="Averages rose, but the starting points were not equal"
+        title="Country coverage started at different levels"
         description="The same three checkpoints make the country contrast readable. Some countries started near universal coverage; others made a much longer climb."
         spec={panelSpec}
         data={vaccinationPanelSeries.map((point) => ({
@@ -155,8 +155,8 @@ export function VaccinationCoverageStory({ story }: VaccinationCoverageStoryProp
       />
 
       <section className="method-note">
-        <p className="eyebrow">Read the evidence carefully</p>
-        <h2>Coverage is a system signal, not a guarantee.</h2>
+        <p className="eyebrow">Scope and limits</p>
+        <h2>DTP3 is one routine-vaccine milestone.</h2>
         <p>
           The estimates combine administrative records, surveys, and country review. For some
           places and years, statistical methods fill reporting gaps. DTP3 says whether a child
@@ -167,7 +167,7 @@ export function VaccinationCoverageStory({ story }: VaccinationCoverageStoryProp
 
       <section className="sources-section">
         <p className="eyebrow">Sources and definitions</p>
-        <h2>Where the vaccination estimates come from</h2>
+        <h2>Sources and methodology</h2>
         <SourceList sources={getSources(['who-unicef-dtp3'])} />
       </section>
     </StoryFrame>

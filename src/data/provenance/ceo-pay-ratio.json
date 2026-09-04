@@ -1,0 +1,34 @@
+{
+  "path": "src/data/ceo-pay-ratio.csv",
+  "sourceIds": [
+    "epi-ceo-pay"
+  ],
+  "sourceUrls": [
+    "https://github.com/Economic/data/releases/download/2026.8.14/epi_swa_data_library.zip"
+  ],
+  "publishers": [
+    "Economic Policy Institute"
+  ],
+  "retrieved": [
+    "2026-08-16"
+  ],
+  "upstreamVersions": [
+    "EPI release 2026.8.14; ceo_pay_ratio.csv"
+  ],
+  "rawFileSha256": "27db6fe4ff20a2acdcab94833ab6c596c5aca920cb214a01de086e74fd664acd",
+  "checksumScope": "committed local extract",
+  "format": "csv",
+  "columns": [
+    "year",
+    "realized_ratio",
+    "granted_ratio"
+  ],
+  "rowCount": 61,
+  "dataFrom": 1965,
+  "dataThrough": 2025,
+  "retainedFilters": [
+    "United States, annual ratio series, 1965–2025 in this release"
+  ],
+  "derivedFields": [],
+  "transformation": "The local extract contains the release’s realized and granted measures in separate columns; the site does not recompute or interpolate the ratios."
+}

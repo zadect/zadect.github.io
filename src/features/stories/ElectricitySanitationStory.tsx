@@ -144,9 +144,8 @@ export function ElectricitySanitationStory({ story }: ElectricitySanitationStory
     <StoryFrame story={story}>
       <section className="story-lede">
         <p className="lede">
-          Electricity and a private, improved toilet change the shape of an ordinary day. The
-          world has moved forward on both — but the gap between basic services is still a lived
-          divide.
+          Electricity access and at least basic sanitation are separate services. Both expanded
+          across the period, but access does not describe reliability, affordability, or safety.
         </p>
         <div className="stat-grid">
           <div className="stat-card">
@@ -181,7 +180,7 @@ export function ElectricitySanitationStory({ story }: ElectricitySanitationStory
 
       <ChartCard
         eyebrow="World · World Bank + WHO/UNICEF JMP"
-        title="Basic services spread across the world"
+        title="Electricity access and sanitation use increased"
         description="The two lines use their longest comparable world series. Electricity access is measured from 1998 here; sanitation use begins in 2000, so the lines are not forced onto a shared starting year."
         spec={worldSpec}
         data={worldChartData}
@@ -196,7 +195,7 @@ export function ElectricitySanitationStory({ story }: ElectricitySanitationStory
 
       <ChartCard
         eyebrow="Selected countries · 2000, 2010, and 2024"
-        title="The global average hides the distance still to travel"
+        title="Country gaps remain"
         description="Each facet keeps the same percentage scale, while country colours show how different starting points and end points can be."
         spec={panelSpec}
         data={panelChartData}
@@ -211,8 +210,8 @@ export function ElectricitySanitationStory({ story }: ElectricitySanitationStory
       />
 
       <section className="method-note">
-        <p className="eyebrow">Read the evidence carefully</p>
-        <h2>Access is a beginning, not the whole service.</h2>
+        <p className="eyebrow">Scope and limits</p>
+        <h2>Access is only one part of service quality.</h2>
         <p>
           The electricity measure means that a basic source can provide light and charge a phone
           or radio for a limited period; it does not say that supply is affordable, reliable, or
@@ -224,7 +223,7 @@ export function ElectricitySanitationStory({ story }: ElectricitySanitationStory
 
       <section className="sources-section">
         <p className="eyebrow">Sources and definitions</p>
-        <h2>Where the service estimates come from</h2>
+        <h2>Sources and methodology</h2>
         <SourceList sources={sources} />
       </section>
     </StoryFrame>

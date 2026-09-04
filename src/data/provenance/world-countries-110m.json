@@ -1,0 +1,30 @@
+{
+  "path": "src/data/world-countries-110m.json",
+  "sourceIds": [
+    "world-atlas-geometry"
+  ],
+  "sourceUrls": [
+    "https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json"
+  ],
+  "publishers": [
+    "World Atlas"
+  ],
+  "retrieved": [
+    "2026-08-16"
+  ],
+  "upstreamVersions": [
+    "World Atlas 2.0.2; Natural Earth 4.1.0; 110m scale"
+  ],
+  "rawFileSha256": "2516c915867c7baf18ddec727aec46c315541a07cfb3d79a6559b05d5e94eee8",
+  "checksumScope": "committed local extract",
+  "format": "json",
+  "columns": [],
+  "rowCount": null,
+  "dataFrom": null,
+  "dataThrough": null,
+  "retainedFilters": [
+    "Country boundary geometry used for both story maps"
+  ],
+  "derivedFields": [],
+  "transformation": "The pinned TopoJSON is converted to local GeoJSON features in the browser and joined by ISO 3166-1 numeric code. Statistical values remain in the story-specific local extracts."
+}

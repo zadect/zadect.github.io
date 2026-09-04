@@ -74,7 +74,7 @@ const panelSpec: TopLevelSpec = {
   width: 'container',
   height: 360,
   data: { name: 'series' },
-  mark: { type: 'line', point: { filled: true, size: 34 }, strokeWidth: 2.5 },
+  mark: { type: 'line', point: { filled: true, size: 34 }, strokeWidth: 2.5, strokeDash: [5, 4] },
   encoding: {
     x: {
       field: 'year',
@@ -134,9 +134,8 @@ export function WealthDistributionInequalityStory({
     <StoryFrame story={story}>
       <section className="story-lede">
         <p className="lede">
-          Wealth is not income, and its distribution can move on a different timetable. This
-          measure follows the share held by the richest 1%: a concentrated slice of the balance
-          sheet, shown with the gaps and estimates left intact.
+          This page follows the share of household net wealth held by the richest 1%. The WID
+          observations are estimates, and the historical checkpoints are unevenly spaced.
         </p>
         <div className="stat-grid">
           <div className="stat-card">
@@ -176,7 +175,7 @@ export function WealthDistributionInequalityStory({
 
       <ChartCard
         eyebrow="World · World Inequality Database via OWID"
-        title="The global line is not a one-way climb"
+        title="Global top 1% wealth-share observations"
         description="Each point is an available WID observation. The spacing is uneven by design: missing years are not filled with invented values."
         spec={worldSpec}
         data={wealthDistributionInequalityWorldSeries.map((point) => ({
@@ -194,8 +193,8 @@ export function WealthDistributionInequalityStory({
 
       <ChartCard
         eyebrow="Six selected countries · shared checkpoints"
-        title="The same slice of wealth has different histories"
-        description="The country lines connect common checkpoints rather than filling the years between them. They show contrasting paths, not a definitive country ranking."
+        title="Top 1% wealth share in selected countries"
+        description="Dashed connectors join common checkpoints rather than filling the years between them. They show contrasting paths; country levels remain modelled estimates with different coverage."
         spec={panelSpec}
         data={wealthDistributionInequalityPanelSeries.map((point) => ({
           entity: point.entity,
@@ -213,19 +212,19 @@ export function WealthDistributionInequalityStory({
       />
 
       <section className="method-note method-note--future">
-        <p className="eyebrow">Read the evidence carefully</p>
-        <h2>A wealth share is one window, not the whole distribution.</h2>
+        <p className="eyebrow">Scope and limits</p>
+        <h2>The top 1% share leaves most of the distribution unmeasured.</h2>
         <p>
-          The line says how much wealth sits with the richest 1%; it does not tell us what the
-          bottom 50% owns, how people move between groups, or whether incomes and living costs are
-          keeping pace. WID combines several sources and models where direct balance-sheet data is
-          limited, so historical comparisons should be read as estimates.
+          The share measures how much wealth the richest 1% holds. It leaves the bottom 50%,
+          movement between groups, income, and living costs outside the chart. WID combines several
+          sources and models where direct balance-sheet data is limited, so historical comparisons
+          are estimates.
         </p>
       </section>
 
       <section className="sources-section">
         <p className="eyebrow">Sources and definitions</p>
-        <h2>Where the wealth-distribution signal comes from</h2>
+        <h2>Sources and methodology</h2>
         <SourceList sources={sources} />
       </section>
     </StoryFrame>

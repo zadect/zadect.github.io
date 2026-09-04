@@ -13,15 +13,21 @@ export function StoryCard({ story }: StoryCardProps) {
       className={`story-card story-card--${story.category}`}
       to={`/${story.category}/${story.slug}`}
     >
-      <span className="story-card__meta">
-        {category.signalLabel}
-        {story.status === 'coming-soon' ? ' · Coming next' : ''}
+      <span className="story-card__header">
+        <span className="story-card__meta">
+          {story.status === 'coming-soon'
+            ? `${category.label} · Coming next`
+            : `${category.label} · ${story.evidence.cardLabel}`}
+        </span>
+        <span className="story-card__arrow" aria-hidden="true">
+          →
+        </span>
       </span>
       <span className="story-card__title">{story.title}</span>
-      <span className="story-card__summary">{story.summary}</span>
-      <span className="story-card__arrow" aria-hidden="true">
-        →
+      <span className="story-card__scope">
+        {story.plannedMetric} · {story.geography} · Through {story.evidence.dataThrough}
       </span>
+      <span className="story-card__summary">{story.summary}</span>
     </Link>
   );
 }

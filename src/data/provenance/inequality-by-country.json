@@ -1,0 +1,35 @@
+{
+  "path": "src/data/inequality-by-country.csv",
+  "sourceIds": [
+    "world-bank-pip-gini"
+  ],
+  "sourceUrls": [
+    "https://ourworldindata.org/grapher/gini-coefficient-wb?survey_comparability=no_spells"
+  ],
+  "publishers": [
+    "Our World in Data"
+  ],
+  "retrieved": [
+    "2026-08-16"
+  ],
+  "upstreamVersions": [
+    "OWID Grapher variable 1277448; PIP release 20260324_2021; last updated 2026-06-26"
+  ],
+  "rawFileSha256": "dcfd9b4e90730098c22382368adb64924363f7e9e8cbaa31236be46675a98c5d",
+  "checksumScope": "committed local extract",
+  "format": "csv",
+  "columns": [
+    "country",
+    "code",
+    "year",
+    "gini"
+  ],
+  "rowCount": 181,
+  "dataFrom": 1963,
+  "dataThrough": 2024,
+  "retainedFilters": [
+    "Selected-country observations from 1963–2024 in this extract"
+  ],
+  "derivedFields": [],
+  "transformation": "The local extract keeps every non-null OWID observation for the declared seven-country panel under the no-spells survey-comparability filter. Missing years are not interpolated; first and latest endpoints are derived locally for the second chart."
+}

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { HashRouter, Link, Route, Routes, useLocation, useParams } from 'react-router-dom';
 import { SiteHeader } from '../components/SiteHeader';
 import { StoryCard } from '../components/StoryCard';
@@ -43,15 +43,40 @@ function HomePage() {
   const badStories = getStoriesByCategory('bad');
   const futureStories = getStoriesByCategory('future');
   const location = useLocation();
+  const [activeSection, setActiveSection] = useState<StoryCategory>('good');
 
   useEffect(() => {
     const section = new URLSearchParams(location.search).get('section');
     if (section !== 'good' && section !== 'bad' && section !== 'future') return;
 
+    setActiveSection(section);
     requestAnimationFrame(() => {
       document.getElementById(`${section}-section`)?.scrollIntoView({ behavior: 'smooth' });
     });
   }, [location.search]);
+
+  useEffect(() => {
+    const sections = (['good', 'bad', 'future'] as const)
+      .map((category) => document.getElementById(`${category}-section`))
+      .filter((section): section is HTMLElement => section !== null);
+    if (sections.length === 0 || !('IntersectionObserver' in window)) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        const category = visible?.target.id.replace('-section', '');
+        if (category === 'good' || category === 'bad' || category === 'future') {
+          setActiveSection(category);
+        }
+      },
+      { rootMargin: '-18% 0px -62% 0px', threshold: [0, 0.25, 0.5] },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div className="site-shell site-shell--home">
@@ -65,14 +90,14 @@ function HomePage() {
               <em> heading?</em>
             </h1>
             <p className="home-hero__intro">
-              Charts that put improving conditions beside worsening ones, and track the forces
-              likely to shape the years ahead.
+              Sourced time series on human welfare, persistent harms, and the topics shaping
+              the future of humanity.
             </p>
             <div className="home-hero__actions">
               <Link className="button button--good" to="/?section=good">
                 Explore the stories
               </Link>
-              <span className="home-hero__aside">Good trends. Bad trends. What comes next.</span>
+              <span className="home-hero__aside">Human welfare. Persistent harms. Future choices.</span>
             </div>
           </div>
           <div
@@ -92,6 +117,10 @@ function HomePage() {
           </div>
         </section>
 
+        <CategoryNavigation
+          activeCategory={activeSection}
+          counts={{ good: goodStories.length, bad: badStories.length, future: futureStories.length }}
+        />
         <StoryIndex category="good" stories={goodStories} />
         <StoryIndex category="bad" stories={badStories} />
         <StoryIndex category="future" stories={futureStories} />
@@ -108,10 +137,38 @@ function HomePage() {
               <span>&amp; The Bad</span>
             </span>
           </Link>
-          <p>By: zadect; update: 2026-08-16</p>
+          <p>By: zadect; update: 2026-09-04</p>
         </div>
       </footer>
     </div>
+  );
+}
+
+interface CategoryNavigationProps {
+  activeCategory: StoryCategory;
+  counts: Record<StoryCategory, number>;
+}
+
+function CategoryNavigation({ activeCategory, counts }: CategoryNavigationProps) {
+  return (
+    <nav className="category-navigation" aria-label="Story category navigation">
+      <div className="category-navigation__inner">
+        {(['good', 'bad', 'future'] as const).map((category) => {
+          const presentation = getStoryCategoryPresentation(category);
+          return (
+            <Link
+              key={category}
+              className={`category-navigation__link category-navigation__link--${category}`}
+              to={`/?section=${category}`}
+              aria-current={activeCategory === category ? 'location' : undefined}
+            >
+              <span>{presentation.label}</span>
+              <strong>{counts[category]}</strong>
+            </Link>
+          );
+        })}
+      </div>
+    </nav>
   );
 }
 
@@ -274,9 +331,9 @@ function NotFoundPage() {
       <SiteHeader />
       <main>
         <section className="not-found">
-          <p className="eyebrow">No line here yet</p>
+          <p className="eyebrow">No story here yet</p>
           <h1>That story does not exist.</h1>
-          <p>Try the overview for the published stories and the documented ideas still to come.</p>
+          <p>Return to the overview for published stories and documented ideas still to come.</p>
           <Link className="button button--good" to="/">
             Back to the overview
           </Link>

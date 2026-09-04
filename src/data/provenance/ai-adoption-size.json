@@ -1,0 +1,36 @@
+{
+  "path": "src/data/ai-adoption-size.csv",
+  "sourceIds": [
+    "eurostat-ai-adoption"
+  ],
+  "sourceUrls": [
+    "https://ec.europa.eu/eurostat/databrowser/view/isoc_eb_ai/default/table?lang=en"
+  ],
+  "publishers": [
+    "Eurostat"
+  ],
+  "retrieved": [
+    "2026-08-16"
+  ],
+  "upstreamVersions": [
+    "Eurostat dataset isoc_eb_ai, retrieved 2026-08-16"
+  ],
+  "rawFileSha256": "85bc55a9d6a20c08aa03bb7c233c390b397646794faefc822addc6ea11ac8314",
+  "checksumScope": "committed local extract",
+  "format": "csv",
+  "columns": [
+    "geo",
+    "country",
+    "size_emp",
+    "year",
+    "value"
+  ],
+  "rowCount": 3,
+  "dataFrom": 2025,
+  "dataThrough": 2025,
+  "retainedFilters": [
+    "Enterprises with 10 or more persons employed in covered non-financial activities; EU-27 and eight selected European countries, reported years 2021, 2023, 2024, and 2025"
+  ],
+  "derivedFields": [],
+  "transformation": "The local extracts retain Eurostat values for E_AI_TANY, unit PC_ENT, size GE10, and activity code C10-S951_X_K. The API-reported 2022 absence is kept as a gap; no values are interpolated."
+}

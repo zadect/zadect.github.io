@@ -144,7 +144,7 @@ const panelTotalSpec: TopLevelSpec = {
   width: 'container',
   height: 370,
   data: { name: 'series' },
-  mark: { type: 'line', point: { filled: true, size: 34 }, strokeWidth: 2.5 },
+  mark: { type: 'line', point: { filled: true, size: 34 }, strokeWidth: 2.5, strokeDash: [5, 4] },
   encoding: {
     x: {
       field: 'year',
@@ -180,7 +180,7 @@ const panelPerCapitaSpec: TopLevelSpec = {
   width: 'container',
   height: 370,
   data: { name: 'series' },
-  mark: { type: 'line', point: { filled: true, size: 34 }, strokeWidth: 2.5 },
+  mark: { type: 'line', point: { filled: true, size: 34 }, strokeWidth: 2.5, strokeDash: [5, 4] },
   encoding: {
     x: {
       field: 'year',
@@ -247,8 +247,9 @@ export function ClimateEnvironmentalFuturesStory({
     <StoryFrame story={story}>
       <section className="story-lede">
         <p className="lede">
-          The climate signal has two scales. Humanity’s total fossil CO₂ output keeps setting new
-          highs, while per-person emissions reveal a much more divided world.
+          Territorial fossil CO₂ emissions can be read as totals or per person. The two accounting
+          views describe production where it occurs; they do not show climate impacts or a future
+          pathway.
         </p>
         <div className="stat-grid">
           <div className="stat-card">
@@ -288,8 +289,8 @@ export function ClimateEnvironmentalFuturesStory({
 
       <ChartCard
         eyebrow="World · annual series · 1850–2024"
-        title="The total keeps climbing"
-        description="The long line is the global fossil-carbon story: each year’s territorial emissions from coal, oil, gas, flaring, and cement."
+        title="Annual territorial fossil CO₂ emissions"
+        description="Each point records territorial emissions from coal, oil, gas, flaring, and cement in that year."
         spec={worldTotalSpec}
         data={climateWorldTotalSeries.map((point) => ({
           year: point.year,
@@ -306,8 +307,8 @@ export function ClimateEnvironmentalFuturesStory({
 
       <ChartCard
         eyebrow="World · annual series · 1850–2024"
-        title="Per-person emissions tell a different story"
-        description="The world average is not a measure of equal responsibility. It is the total divided by the number of people alive in each year."
+        title="Territorial fossil CO₂ emissions per person"
+        description="The per-person value divides the territorial total by the number of people alive in that year. It describes emissions accounting, not equal responsibility."
         spec={worldPerCapitaSpec}
         data={climateWorldPerCapitaSeries.map((point) => ({
           year: point.year,
@@ -324,7 +325,7 @@ export function ClimateEnvironmentalFuturesStory({
 
       <ChartCard
         eyebrow="Eight selected countries · shared checkpoints"
-        title="Scale and speed are not the same"
+        title="Selected-country territorial emissions"
         description="Country totals reflect population as well as energy use. China and India rise in scale; Germany, Japan, the UK, and the US show different peaks and reversals."
         spec={panelTotalSpec}
         data={climatePanelTotalSeries.map((point) => ({
@@ -344,8 +345,8 @@ export function ClimateEnvironmentalFuturesStory({
 
       <ChartCard
         eyebrow="Eight selected countries · shared checkpoints"
-        title="The gap between people remains wide"
-        description="Per-person lines change the ranking. In 2024, the highest value in this panel was more than twenty times Nigeria’s, even before counting emissions embodied in trade."
+        title="Selected-country emissions per person"
+        description="Per-person values change the ranking. Dashed connectors join the shared checkpoints. In 2024, the highest value in this panel was more than twenty times Nigeria’s, even before counting emissions embodied in trade."
         spec={panelPerCapitaSpec}
         data={climatePanelPerCapitaSeries.map((point) => ({
           entity: point.entity,
@@ -363,19 +364,19 @@ export function ClimateEnvironmentalFuturesStory({
       />
 
       <section className="method-note method-note--future">
-        <p className="eyebrow">Read the evidence carefully</p>
-        <h2>One emissions ledger cannot answer every climate question.</h2>
+        <p className="eyebrow">Scope and limits</p>
+        <h2>Territorial emissions are one accounting boundary.</h2>
         <p>
-          These charts show where fossil CO₂ was produced, not who consumed the resulting goods,
-          who caused historic emissions, or what happens next. They exclude land-use change and
-          are not a forecast. The country panel is a deliberately small set of comparable
-          checkpoints, not a ranking of every country.
+          These charts show where fossil CO₂ was produced. They do not assign emissions to
+          consumers, account for historic responsibility, or describe what happens next. They
+          exclude land-use change and contain no forecast. The country panel is a small set of
+          comparable checkpoints rather than a ranking of every country.
         </p>
       </section>
 
       <section className="sources-section">
         <p className="eyebrow">Sources and definitions</p>
-        <h2>Where the emissions signal comes from</h2>
+        <h2>Sources and methodology</h2>
         <SourceList sources={source} />
       </section>
     </StoryFrame>

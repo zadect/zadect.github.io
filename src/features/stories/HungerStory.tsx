@@ -90,8 +90,9 @@ export function HungerStory({ story }: HungerStoryProps) {
     <StoryFrame story={story}>
       <section className="story-lede">
         <p className="lede">
-          More food has been available per person, while the direct undernourishment estimate has
-          fallen over its shorter comparable series. They are related signals, not the same measure.
+          The comparable undernourishment estimate starts in 2000. Food supply reaches back to
+          1961. Both series move in a better direction, but food available in a country is not the
+          same as food reaching every household.
         </p>
         <div className="stat-grid">
           <div className="stat-card">
@@ -149,7 +150,7 @@ export function HungerStory({ story }: HungerStoryProps) {
       </div>
 
       <section className="method-note">
-        <p className="eyebrow">Read the evidence carefully</p>
+        <p className="eyebrow">Scope and limits</p>
         <h2>The two lines answer different questions.</h2>
         <p>
           The undernourishment estimate is the direct measure, but the globally comparable series
@@ -160,7 +161,7 @@ export function HungerStory({ story }: HungerStoryProps) {
 
       <section className="sources-section">
         <p className="eyebrow">Sources and definitions</p>
-        <h2>Where the numbers come from</h2>
+        <h2>Sources and methodology</h2>
         <SourceList sources={allSources} />
       </section>
     </StoryFrame>

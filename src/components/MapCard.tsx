@@ -1,6 +1,7 @@
 import { VegaEmbed } from 'react-vega';
 import type { TopLevelSpec } from 'vega-lite';
 import type { SourceReference } from '../content/sources';
+import { getEvidenceStatusLabel, useStoryEvidence } from './StoryEvidence';
 
 interface MapRow {
   [key: string]: number | string | undefined;
@@ -33,6 +34,7 @@ export function MapCard({
   noDataLabel = 'Grey indicates no data in the map extract.',
   coverageNote,
 }: MapCardProps) {
+  const storyEvidence = useStoryEvidence();
   const mapId = title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 
   return (
@@ -50,6 +52,12 @@ export function MapCard({
             <strong>Measure:</strong> {definition}
           </p>
         ) : null}
+        {storyEvidence ? (
+          <p className="chart-card__evidence" data-evidence-status={storyEvidence.status}>
+            <strong>{getEvidenceStatusLabel(storyEvidence.status)}</strong>
+            <span>Data through {storyEvidence.dataThrough}</span>
+          </p>
+        ) : null}
       </div>
       <div
         className="chart-card__visual map-card__visual"
@@ -59,6 +67,7 @@ export function MapCard({
       >
         <VegaEmbed spec={spec} options={{ actions: false, renderer: 'svg' }} />
       </div>
+      <p className="chart-card__scroll-cue">Swipe to pan map</p>
       <p className="map-card__legend-note">
         <span aria-hidden="true" />
         {noDataLabel}

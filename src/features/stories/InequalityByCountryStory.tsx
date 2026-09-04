@@ -16,7 +16,7 @@ const giniSpec: TopLevelSpec = {
   width: 'container',
   height: 360,
   data: { name: 'series' },
-  mark: { type: 'line', point: { filled: true, size: 28 }, strokeWidth: 2 },
+  mark: { type: 'point', filled: true, size: 44 },
   encoding: {
     x: {
       field: 'year',
@@ -53,7 +53,7 @@ const endpointSpec: TopLevelSpec = {
   data: { name: 'series' },
   layer: [
     {
-      mark: { type: 'line', strokeWidth: 2.5 },
+      mark: { type: 'line', strokeWidth: 2.5, strokeDash: [5, 4] },
       encoding: {
         x: {
           field: 'year',
@@ -130,16 +130,9 @@ export function InequalityByCountryStory({ story }: InequalityByCountryStoryProp
   const lowestLatest = latestPoints.reduce((current, point) =>
     point.gini < current.gini ? point : current,
   );
-  const largestRise = latestPoints.reduce((current, point, index) => {
-    const first = endpointData[index * 2];
-    if (!first) return current;
-    const change = point.gini - first.gini;
-    return change > current.change ? { point, change } : current;
-  }, { point: latestPoints[0], change: Number.NEGATIVE_INFINITY });
-
   const first = endpointData[0];
   const last = endpointData[1];
-  if (!first || !last || !highestLatest || !lowestLatest || !largestRise.point) {
+  if (!first || !last || !highestLatest || !lowestLatest) {
     throw new Error('Rich and poor story data is incomplete');
   }
 
@@ -149,9 +142,9 @@ export function InequalityByCountryStory({ story }: InequalityByCountryStoryProp
     <StoryFrame story={story}>
       <section className="story-lede">
         <p className="lede">
-          “Rich and poor” is not a single global line. Inequality is measured inside each country,
-          and the shape changes with the country, the survey, and the welfare concept being measured.
-          These lines show the differences without pretending the data is more uniform than it is.
+        The Gini coefficient measures inequality within each country. These observations come
+        from surveys taken in different years and use income in some countries and consumption
+        in others, so the panel is a set of country histories rather than a synchronized ranking.
         </p>
         <div className="stat-grid">
           <div className="stat-card">
@@ -173,10 +166,10 @@ export function InequalityByCountryStory({ story }: InequalityByCountryStoryProp
           </div>
           <div className="stat-card">
             <span className="stat-card__value">
-              +{largestRise.change.toFixed(3)}
+              {formatGini(lowestLatest.gini)}
             </span>
             <span className="stat-card__label">
-              largest first-to-latest rise in the selected panel: {largestRise.point.country}
+              lowest latest reported coefficient: {lowestLatest.country} ({lowestLatest.year})
             </span>
           </div>
         </div>
@@ -186,8 +179,8 @@ export function InequalityByCountryStory({ story }: InequalityByCountryStoryProp
 
       <ChartCard
         eyebrow="Selected countries · World Bank PIP via Our World in Data"
-        title="Inequality does not move in one direction"
-        description="Every point is a reported observation retained by the World Bank PIP series. Lines connect the observations for readability; missing years are not filled locally."
+        title="Reported Gini observations by country"
+        description="Each point is a reported observation retained by the World Bank PIP series. The chart does not connect observations across unsampled years."
         spec={giniSpec}
         data={inequalitySeries.map((point) => ({
           country: point.country,
@@ -207,7 +200,7 @@ export function InequalityByCountryStory({ story }: InequalityByCountryStoryProp
       <ChartCard
         eyebrow="First and latest reported observations · no interpolation"
         title="The endpoint comparison needs context"
-        description="Each line joins a country’s first and latest observation in this extract. It shows the direction between two measured points, not an estimate of every year in between."
+        description="Each connector joins a country’s first and latest observation in this extract. It shows the change between two measured points; the intervening years are unobserved."
         spec={endpointSpec}
         data={endpointData}
         columns={[
@@ -222,22 +215,22 @@ export function InequalityByCountryStory({ story }: InequalityByCountryStoryProp
       />
 
       <section className="method-note">
-        <p className="eyebrow">Read the evidence carefully</p>
-        <h2>A Gini coefficient describes a distribution, not a person’s life.</h2>
+        <p className="eyebrow">Scope and limits</p>
+        <h2>A Gini coefficient describes a distribution.</h2>
         <p>
-          A higher Gini means a more unequal distribution within a country; it does not tell us
+          A higher Gini means a more unequal distribution within a country; it cannot tell us
           whether everyone became richer or poorer. The World Bank combines national survey data,
           using disposable income after taxes and benefits for many high-income countries and
           consumption for many lower-income countries. Survey redesigns can create breaks, and the
           selected countries do not report every year. The lowest latest coefficient in this panel
-          is {formatGini(lowestLatest.gini)} for {lowestLatest.country}, but that is not a global
-          league table.
+          is {formatGini(lowestLatest.gini)} for {lowestLatest.country}; that comparison is not a
+          global league table.
         </p>
       </section>
 
       <section className="sources-section">
         <p className="eyebrow">Sources and definitions</p>
-        <h2>Where the inequality estimates come from</h2>
+        <h2>Sources and methodology</h2>
         <SourceList sources={sources} />
       </section>
     </StoryFrame>

@@ -21,7 +21,7 @@ const medianSpec: TopLevelSpec = {
   width: 'container',
   height: 340,
   data: { name: 'series' },
-  mark: { type: 'line', point: { filled: true, size: 34 }, strokeWidth: 3 },
+  mark: { type: 'line', point: { filled: true, size: 34 }, strokeWidth: 3, strokeDash: [5, 4] },
   encoding: {
     x: {
       field: 'year',
@@ -40,11 +40,11 @@ const medianSpec: TopLevelSpec = {
     color: {
       field: 'signal',
       type: 'nominal',
-      title: 'Signal',
+      title: 'Measure',
       scale: { range: ['#6f5a9e', '#4e8b78'] },
     },
     tooltip: [
-      { field: 'signal', type: 'nominal', title: 'Signal' },
+      { field: 'signal', type: 'nominal', title: 'Measure' },
       { field: 'edition', type: 'nominal', title: 'WJP edition' },
       { field: 'value', type: 'quantitative', title: 'Country median', format: '.3f' },
     ],
@@ -56,7 +56,7 @@ const overallPanelSpec: TopLevelSpec = {
   width: 'container',
   height: 380,
   data: { name: 'series' },
-  mark: { type: 'line', point: { filled: true, size: 28 }, strokeWidth: 2.2 },
+  mark: { type: 'line', point: { filled: true, size: 28 }, strokeWidth: 2.2, strokeDash: [5, 4] },
   encoding: {
     x: {
       field: 'year',
@@ -92,7 +92,7 @@ const securityPanelSpec: TopLevelSpec = {
   width: 'container',
   height: 380,
   data: { name: 'series' },
-  mark: { type: 'line', point: { filled: true, size: 28 }, strokeWidth: 2.2 },
+  mark: { type: 'line', point: { filled: true, size: 28 }, strokeWidth: 2.2, strokeDash: [5, 4] },
   encoding: {
     x: {
       field: 'year',
@@ -160,9 +160,9 @@ export function GovernanceRiskSecurityStory({ story }: GovernanceRiskSecuritySto
     <StoryFrame story={story}>
       <section className="story-lede">
         <p className="lede">
-          Institutions are part of the future too. The Rule of Law Index gives that question a
-          repeatable shape: one overall score, one security dimension, and a visible gap between
-          countries.
+          The World Justice Project reports an overall rule-of-law score and a separate
+          order-and-security factor. The country panel changes between editions, so the median is
+          an unweighted summary of reporting countries.
         </p>
         <div className="stat-grid">
           <div className="stat-card">
@@ -202,8 +202,8 @@ export function GovernanceRiskSecurityStory({ story }: GovernanceRiskSecuritySto
 
       <ChartCard
         eyebrow="WJP editions · median across reporting countries"
-        title="The country median barely moves"
-        description="The overall score and Order and Security factor follow different paths. The median is across countries, not people; the first and 2017 points represent multi-year editions."
+        title="Country median rule-of-law and security scores"
+        description="Dashed connectors join WJP editions, which are not annual observations throughout the series. The median is across countries, not people; the first and 2017 points represent multi-year editions."
         spec={medianSpec}
         data={[
           ...governanceOverallMedianSeries.map((point) => ({
@@ -220,7 +220,7 @@ export function GovernanceRiskSecurityStory({ story }: GovernanceRiskSecuritySto
           })),
         ]}
         columns={[
-          { key: 'signal', label: 'Signal' },
+          { key: 'signal', label: 'Measure' },
           { key: 'year', label: 'Edition year' },
           { key: 'edition', label: 'WJP edition' },
           { key: 'value', label: 'Country median' },
@@ -232,8 +232,8 @@ export function GovernanceRiskSecurityStory({ story }: GovernanceRiskSecuritySto
 
       <ChartCard
         eyebrow="Eight selected countries · WJP historical editions"
-        title="Countries do not share one institutional path"
-        description="The same editions reveal different levels and changes. These are index scores, not rankings of every part of public life."
+        title="Overall rule-of-law scores in selected countries"
+        description="The same editions reveal different levels and changes. These index scores cover the WJP framework rather than every part of public life."
         spec={overallPanelSpec}
         data={governanceOverallPanelSeries.map((point) => ({
           entity: point.entity,
@@ -254,8 +254,8 @@ export function GovernanceRiskSecurityStory({ story }: GovernanceRiskSecuritySto
 
       <ChartCard
         eyebrow="Eight selected countries · WJP Factor 5"
-        title="Security is one dimension, not the whole story"
-        description="Order and Security is strongest in some of the same countries that score well overall, but the lines do not match perfectly. That difference is the point."
+        title="Order-and-security scores in selected countries"
+        description="Order and Security does not follow the overall score in every country. The dashed connectors show where the two measures diverge."
         spec={securityPanelSpec}
         data={governanceSecurityPanelSeries.map((point) => ({
           entity: point.entity,
@@ -275,19 +275,19 @@ export function GovernanceRiskSecurityStory({ story }: GovernanceRiskSecuritySto
       />
 
       <section className="method-note method-note--future">
-        <p className="eyebrow">Read the evidence carefully</p>
-        <h2>A score is a signal, not a verdict.</h2>
+        <p className="eyebrow">Scope and limits</p>
+        <h2>The index covers selected institutional conditions.</h2>
         <p>
           The WJP combines household experience and expert assessment. Country coverage changes
           across editions, and a country median gives each reporting country one vote. The charts
-          show institutional conditions captured by this index; they do not forecast shocks or
-          explain why a score moved.
+          show institutional conditions captured by this index; they cannot forecast shocks or
+          identify why a score moved.
         </p>
       </section>
 
       <section className="sources-section">
         <p className="eyebrow">Sources and definitions</p>
-        <h2>Where the governance signal comes from</h2>
+        <h2>Sources and methodology</h2>
         <SourceList sources={source} />
       </section>
     </StoryFrame>

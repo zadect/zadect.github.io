@@ -19,26 +19,57 @@ const longRunSpec: TopLevelSpec = {
   width: 'container',
   height: 340,
   data: { name: 'series' },
-  mark: { type: 'line', point: { filled: true, size: 24 }, strokeWidth: 3 },
-  encoding: {
-    x: {
-      field: 'year',
-      type: 'quantitative',
-      title: 'Year',
-      axis: { format: 'd', tickCount: 9 },
+  layer: [
+    {
+      transform: [{ filter: "datum.phase === 'Historical reconstruction'" }],
+      mark: { type: 'line', color: '#2d746a', strokeWidth: 3, strokeDash: [4, 3] },
+      encoding: {
+        x: {
+          field: 'year',
+          type: 'quantitative',
+          title: 'Year',
+          axis: { format: 'd', tickCount: 9 },
+        },
+        y: {
+          field: 'rate',
+          type: 'quantitative',
+          title: 'Deaths before age five (%)',
+          scale: { domain: [0, 45] },
+        },
+      },
     },
-    y: {
-      field: 'rate',
-      type: 'quantitative',
-      title: 'Deaths before age five (%)',
-      scale: { domain: [0, 45] },
+    {
+      transform: [{ filter: "datum.phase === 'UN IGME estimate'" }],
+      mark: { type: 'point', filled: true, size: 56, color: '#2d746a' },
+      encoding: {
+        x: { field: 'year', type: 'quantitative', title: 'Year' },
+        y: {
+          field: 'rate',
+          type: 'quantitative',
+          title: 'Deaths before age five (%)',
+          scale: { domain: [0, 45] },
+        },
+      },
     },
-    color: { value: '#2d746a' },
-    tooltip: [
-      { field: 'year', type: 'quantitative', title: 'Year', format: 'd' },
-      { field: 'rate', type: 'quantitative', title: 'Rate', format: '.2f' },
-    ],
-  },
+    {
+      mark: { type: 'point', filled: true, size: 24, color: '#2d746a' },
+      encoding: {
+        x: { field: 'year', type: 'quantitative', title: 'Year' },
+        y: { field: 'rate', type: 'quantitative', title: 'Deaths before age five (%)' },
+        shape: {
+          field: 'phase',
+          type: 'nominal',
+          title: 'Evidence',
+          scale: { domain: ['Historical reconstruction', 'UN IGME estimate'] },
+        },
+        tooltip: [
+          { field: 'year', type: 'quantitative', title: 'Year', format: 'd' },
+          { field: 'rate', type: 'quantitative', title: 'Rate', format: '.2f' },
+          { field: 'phase', type: 'nominal', title: 'Evidence' },
+        ],
+      },
+    },
+  ],
 };
 
 const panelSpec: TopLevelSpec = {
@@ -46,7 +77,12 @@ const panelSpec: TopLevelSpec = {
   width: 'container',
   height: 360,
   data: { name: 'series' },
-  mark: { type: 'line', point: { filled: true, size: 42 }, strokeWidth: 2.5 },
+  mark: {
+    type: 'line',
+    point: { filled: true, size: 42 },
+    strokeWidth: 2.5,
+    strokeDash: [3, 3],
+  },
   encoding: {
     x: {
       field: 'year',
@@ -98,8 +134,9 @@ export function ChildMortalityStory({ story }: ChildMortalityStoryProps) {
     <StoryFrame story={story}>
       <section className="story-lede">
         <p className="lede">
-          One of the clearest signs of progress is a child surviving the first five years of life.
-          The global rate has fallen dramatically — but the remaining risk is still very uneven.
+          The estimated global under-five mortality rate fell from {first.rate.toFixed(1)}% in{' '}
+          {first.year} to {last.rate.toFixed(1)}% in {last.year}. Country estimates still differ
+          widely at the latest checkpoint.
         </p>
         <div className="stat-grid">
           <div className="stat-card">
@@ -122,12 +159,13 @@ export function ChildMortalityStory({ story }: ChildMortalityStoryProps) {
 
       <ChartCard
         eyebrow="World · Gapminder + UN IGME"
-        title="The global risk fell across two centuries"
-        description="The long-run series puts today’s rate beside historical estimates. The plotted checkpoints are taken from the source; the line is a visual guide to the direction of change."
+        title="Estimated under-five mortality fell over the long run"
+        description="The dashed reconstruction ends before the separate 2024 UN IGME point. The break in mark and line style identifies the change in source."
         spec={longRunSpec}
         data={childMortalityLongRunSeries.map((point) => ({
           year: point.year,
           rate: point.rate,
+          phase: point.year < 2024 ? 'Historical reconstruction' : 'UN IGME estimate',
         }))}
         columns={[
           { key: 'year', label: 'Year' },
@@ -139,8 +177,8 @@ export function ChildMortalityStory({ story }: ChildMortalityStoryProps) {
 
       <ChartCard
         eyebrow="Selected countries · UN IGME"
-        title="Progress did not close every gap"
-        description="These shared checkpoints use the UN IGME country estimates. The lines fall together, but they do not end at the same level."
+        title="Country estimates still differ"
+        description="The four points per country are selected UN IGME observations. Dashed connectors guide the eye between checkpoints; they do not represent annual measurements."
         spec={panelSpec}
         data={childMortalityPanelSeries.map((point) => ({
           country: point.entity,
@@ -157,20 +195,19 @@ export function ChildMortalityStory({ story }: ChildMortalityStoryProps) {
       />
 
       <section className="method-note">
-        <p className="eyebrow">Read the evidence carefully</p>
-        <h2>A falling line is a gain measured in lives.</h2>
+        <p className="eyebrow">Scope and limits</p>
+        <h2>Historical reconstruction and UN estimates use different evidence.</h2>
         <p>
           Child mortality reflects many conditions at once: maternal health, nutrition, vaccines,
           clean water, sanitation, medical care, and living standards. The estimates are designed
-          for comparisons over time, but uncertainty is larger where direct registration and
-          survey data are scarce. The chart shows the direction clearly without pretending every
-          country is measured with the same precision.
+          for comparisons over time. Uncertainty is larger where direct registration and survey
+          data are scarce, so precision varies across countries and periods.
         </p>
       </section>
 
       <section className="sources-section">
         <p className="eyebrow">Sources and definitions</p>
-        <h2>Where the mortality estimates come from</h2>
+        <h2>Sources and methodology</h2>
         <SourceList sources={sources} />
       </section>
     </StoryFrame>

@@ -1,0 +1,40 @@
+{
+  "path": "src/data/child-mortality.csv",
+  "sourceIds": [
+    "child-mortality-long-run",
+    "child-mortality-igme"
+  ],
+  "sourceUrls": [
+    "https://ourworldindata.org/grapher/child-mortality",
+    "https://ourworldindata.org/grapher/child-mortality-igme"
+  ],
+  "publishers": [
+    "Our World in Data"
+  ],
+  "retrieved": [
+    "2026-08-16"
+  ],
+  "upstreamVersions": [
+    "OWID Grapher variable 1271844; last updated 2026-06-09",
+    "OWID Grapher variable 1271812; last updated 2026-06-09"
+  ],
+  "rawFileSha256": "b87eb04fd5b03e03de647cfb5be15ff489d6cc15e73211e881e7422e7956856b",
+  "checksumScope": "committed local extract",
+  "format": "csv",
+  "columns": [
+    "series",
+    "entity",
+    "code",
+    "year",
+    "value"
+  ],
+  "rowCount": 66,
+  "dataFrom": 1800,
+  "dataThrough": 2024,
+  "retainedFilters": [
+    "World long-run series, 1800–2024 in the source release",
+    "UN IGME country estimates, 1931–2024 in the source release; selected panel checkpoints are 1965, 1985, 2005, and 2024"
+  ],
+  "derivedFields": [],
+  "transformation": "The local extract keeps exact World observations at five-year checkpoints from 1800 through 2020 plus 2024. No values are interpolated or recomputed. The local extract keeps exact UN IGME observations for Sweden, Brazil, India, Nigeria, and the United States at four shared checkpoint years. No values are interpolated or combined across countries."
+}

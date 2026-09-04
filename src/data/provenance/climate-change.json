@@ -1,0 +1,34 @@
+{
+  "path": "src/data/climate-change.csv",
+  "sourceIds": [
+    "nasa-gistemp"
+  ],
+  "sourceUrls": [
+    "https://data.giss.nasa.gov/gistemp/tabledata_v4/GLB.Ts+dSST.csv"
+  ],
+  "publishers": [
+    "NASA Goddard Institute for Space Studies"
+  ],
+  "retrieved": [
+    "2026-08-16"
+  ],
+  "upstreamVersions": [
+    "GISTEMP v4 annual table; retrieved 2026-08-16"
+  ],
+  "rawFileSha256": "2aaa84fd4395b4a6038e25c9944391d5a33fa28e8377f21a8f50f6f37b18d3f9",
+  "checksumScope": "committed local extract",
+  "format": "csv",
+  "columns": [
+    "series",
+    "year",
+    "value"
+  ],
+  "rowCount": 146,
+  "dataFrom": 1880,
+  "dataThrough": 2025,
+  "retainedFilters": [
+    "Global full-year annual means, 1880–2025; current-year 2026 omitted as incomplete"
+  ],
+  "derivedFields": [],
+  "transformation": "The local extract keeps NASA’s annual J-D global land-ocean means for 1880–2025. The second chart derives arithmetic decade averages from those annual rows; the 2020s point includes 2020–2025 only and is labelled partial."
+}

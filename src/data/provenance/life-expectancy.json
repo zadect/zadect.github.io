@@ -1,0 +1,36 @@
+{
+  "path": "src/data/life-expectancy.csv",
+  "sourceIds": [
+    "life-expectancy-owid"
+  ],
+  "sourceUrls": [
+    "https://ourworldindata.org/grapher/life-expectancy"
+  ],
+  "publishers": [
+    "Our World in Data"
+  ],
+  "retrieved": [
+    "2026-08-16"
+  ],
+  "upstreamVersions": [
+    "OWID Grapher variable 1118466; last updated 2025-10-22"
+  ],
+  "rawFileSha256": "82f33b1a92be37f81c12e462a416d3ebd1b492d013eff4d98d191465ca344052",
+  "checksumScope": "committed local extract",
+  "format": "csv",
+  "columns": [
+    "series",
+    "entity",
+    "code",
+    "year",
+    "value"
+  ],
+  "rowCount": 101,
+  "dataFrom": 1770,
+  "dataThrough": 2023,
+  "retainedFilters": [
+    "World and country estimates, 1543–2023 in the source release"
+  ],
+  "derivedFields": [],
+  "transformation": "The local extract keeps exact World observations from 1770–2023 and selected-country observations at 1950, 1980, 2000, and 2023. No values are interpolated or recomputed."
+}

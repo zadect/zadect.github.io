@@ -1,0 +1,33 @@
+{
+  "path": "src/data/food-availability.csv",
+  "sourceIds": [
+    "fao-food-availability"
+  ],
+  "sourceUrls": [
+    "https://ourworldindata.org/grapher/food-supply-kcal"
+  ],
+  "publishers": [
+    "Food and Agriculture Organization of the United Nations and other historical sources"
+  ],
+  "retrieved": [
+    "2026-08-16"
+  ],
+  "upstreamVersions": [
+    "OWID Grapher variable 1205780"
+  ],
+  "rawFileSha256": "c9dbc109a6ffcd03e1e78cbb8234df4d34d474864e4a86c756ba747cf9892cee",
+  "checksumScope": "committed local extract",
+  "format": "csv",
+  "columns": [
+    "year",
+    "kcal_per_person_day"
+  ],
+  "rowCount": 63,
+  "dataFrom": 1961,
+  "dataThrough": 2023,
+  "retainedFilters": [
+    "Global annual series, 1961–2023 in this release"
+  ],
+  "derivedFields": [],
+  "transformation": "The local extract keeps the OWID world series and rounds to whole kilocalories in the chart table."
+}

@@ -1,0 +1,36 @@
+{
+  "path": "src/data/wealth-distribution-inequality.csv",
+  "sourceIds": [
+    "wid-wealth-top-1-owid"
+  ],
+  "sourceUrls": [
+    "https://ourworldindata.org/grapher/wealth-share-richest"
+  ],
+  "publishers": [
+    "Our World in Data"
+  ],
+  "retrieved": [
+    "2026-08-16"
+  ],
+  "upstreamVersions": [
+    "OWID Grapher variable 1290257; WID 2026 release; last updated 2026-06-18"
+  ],
+  "rawFileSha256": "32c16c96bb3a9832ea09ac26db6ed252614d05bcebdc822719dee488c3a13895",
+  "checksumScope": "committed local extract",
+  "format": "csv",
+  "columns": [
+    "series",
+    "entity",
+    "code",
+    "year",
+    "value"
+  ],
+  "rowCount": 104,
+  "dataFrom": 1820,
+  "dataThrough": 2024,
+  "retainedFilters": [
+    "World observations from 1820–2024 and six-country checkpoint panel in this extract"
+  ],
+  "derivedFields": [],
+  "transformation": "The local extract keeps every available OWID world observation from 1820 through 2024 and shared checkpoints for China, France, Germany, India, South Africa, and the United States. Interpolated and extrapolated observations are excluded; missing years remain visible as gaps between points."
+}

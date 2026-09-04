@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { ChartCard } from './ChartCard';
 import type { TopLevelSpec } from 'vega-lite';
@@ -56,5 +56,32 @@ describe('ChartCard', () => {
     );
 
     expect(screen.getByRole('article')).toHaveAttribute('data-chart-tone', 'future');
+  });
+
+  it('offers a keyboard-operable series selector for multi-series charts', () => {
+    render(
+      <ChartCard
+        eyebrow="Selected countries"
+        title="Country paths"
+        description="Description"
+        spec={spec}
+        data={[
+          { country: 'France', year: 2020, value: 10 },
+          { country: 'Germany', year: 2020, value: 12 },
+        ]}
+        columns={[
+          { key: 'country', label: 'Country' },
+          { key: 'year', label: 'Year' },
+          { key: 'value', label: 'Value' },
+        ]}
+        sources={getSources(['eurostat-ai-adoption'])}
+      />,
+    );
+
+    const selector = screen.getByRole('combobox', { name: 'Show series' });
+    expect(selector).toHaveValue('');
+    expect(screen.getByRole('option', { name: 'France' })).toBeInTheDocument();
+    fireEvent.change(selector, { target: { value: 'Germany' } });
+    expect(selector).toHaveValue('Germany');
   });
 });
