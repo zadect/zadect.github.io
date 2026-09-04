@@ -1,0 +1,41 @@
+{
+  "path": "src/data/electricity-sanitation.csv",
+  "sourceIds": [
+    "world-bank-electricity",
+    "who-unicef-sanitation"
+  ],
+  "sourceUrls": [
+    "https://ourworldindata.org/grapher/share-of-the-population-with-access-to-electricity",
+    "https://ourworldindata.org/grapher/share-using-at-least-basic-sanitation"
+  ],
+  "publishers": [
+    "Our World in Data"
+  ],
+  "retrieved": [
+    "2026-08-16"
+  ],
+  "upstreamVersions": [
+    "OWID Grapher variable 1293777; last updated 2026-07-27",
+    "OWID Grapher variable 1132764; last updated 2025-12-08"
+  ],
+  "rawFileSha256": "8abb5c371bcdb3a09858a6150d7cf156549f214ae1509b904b952196e3ff861b",
+  "checksumScope": "committed local extract",
+  "format": "csv",
+  "columns": [
+    "series",
+    "measure",
+    "entity",
+    "code",
+    "year",
+    "value"
+  ],
+  "rowCount": 82,
+  "dataFrom": 1998,
+  "dataThrough": 2024,
+  "retainedFilters": [
+    "World and country estimates, source timespan 1990–2024; world extract 1998–2024",
+    "World and country estimates, 2000–2024 in the source release"
+  ],
+  "derivedFields": [],
+  "transformation": "The local extract keeps the exact OWID world observations from 1998–2024 and selected-country observations at 2000, 2010, and 2024. No values are interpolated or recomputed. The local extract keeps the exact OWID world observations from 2000–2024 and selected-country observations at 2000, 2010, and 2024. No values are interpolated or recomputed."
+}

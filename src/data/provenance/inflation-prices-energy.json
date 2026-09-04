@@ -1,0 +1,40 @@
+{
+  "path": "src/data/inflation-prices-energy.csv",
+  "sourceIds": [
+    "imf-consumer-inflation-owid",
+    "ember-renewable-electricity-owid"
+  ],
+  "sourceUrls": [
+    "https://ourworldindata.org/grapher/inflation-of-consumer-prices",
+    "https://ourworldindata.org/grapher/share-electricity-renewables"
+  ],
+  "publishers": [
+    "Our World in Data"
+  ],
+  "retrieved": [
+    "2026-08-16"
+  ],
+  "upstreamVersions": [
+    "OWID Grapher variable 1293899; last updated 2026-07-27",
+    "OWID Grapher variable 1295549; last updated 2026-06-30"
+  ],
+  "rawFileSha256": "6ca38d24c846e85077b8c535525d53d97e1a136aa84bebd0dcd01d6f188d9c79",
+  "checksumScope": "committed local extract",
+  "format": "csv",
+  "columns": [
+    "measure",
+    "entity",
+    "code",
+    "year",
+    "value"
+  ],
+  "rowCount": 195,
+  "dataFrom": 1900,
+  "dataThrough": 2025,
+  "retainedFilters": [
+    "World annual series 1981–2025 and six-country checkpoints for 2000, 2010, 2020, and 2024",
+    "World annual series, 1900–2025 in this extract"
+  ],
+  "derivedFields": [],
+  "transformation": "The local extract keeps the complete OWID World series and four shared checkpoints for Brazil, Germany, India, Sweden, the United Kingdom, and the United States. The panel ends in 2024 because the United States has no 2025 observation in this release. The local extract keeps the OWID World series for every year from 1900 through 2025. The source combines Ember data for recent years with Energy Institute, Pinto et al., and UK historical sources where documented; values are not interpolated locally."
+}

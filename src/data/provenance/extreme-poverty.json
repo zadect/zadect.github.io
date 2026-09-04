@@ -1,0 +1,37 @@
+{
+  "path": "src/data/extreme-poverty.csv",
+  "sourceIds": [
+    "world-bank-pip-extreme-poverty"
+  ],
+  "sourceUrls": [
+    "https://ourworldindata.org/grapher/share-of-population-in-extreme-poverty"
+  ],
+  "publishers": [
+    "Our World in Data"
+  ],
+  "retrieved": [
+    "2026-08-16"
+  ],
+  "upstreamVersions": [
+    "OWID Grapher variable 1281387; PIP release 20260324_2021; last updated 2026-06-26"
+  ],
+  "rawFileSha256": "9af5b8e647550e924167d6e08ba6e477c2cff53a9ed6d9c7e8e4fecfa547eab9",
+  "checksumScope": "committed local extract",
+  "format": "csv",
+  "columns": [
+    "series",
+    "entity",
+    "code",
+    "year",
+    "value",
+    "status"
+  ],
+  "rowCount": 148,
+  "dataFrom": 1990,
+  "dataThrough": 2026,
+  "retainedFilters": [
+    "World series 1990–2026; selected-country observations 1990–2024 in this extract"
+  ],
+  "derivedFields": [],
+  "transformation": "The local extract keeps exact OWID world observations from 1990–2026 and all non-null selected-country observations from 1990–2024 for Brazil, India, Nigeria, the United States, and Germany. No missing country years are interpolated; source-extrapolated world points from 2023 onward are marked."
+}

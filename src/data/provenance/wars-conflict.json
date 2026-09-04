@@ -1,0 +1,40 @@
+{
+  "path": "src/data/wars-conflict.csv",
+  "sourceIds": [
+    "ucdp-conflict-deaths",
+    "ucdp-conflict-counts"
+  ],
+  "sourceUrls": [
+    "https://ourworldindata.org/grapher/deaths-in-state-based-conflicts",
+    "https://ourworldindata.org/grapher/number-of-state-based-conflicts"
+  ],
+  "publishers": [
+    "Our World in Data"
+  ],
+  "retrieved": [
+    "2026-08-16"
+  ],
+  "upstreamVersions": [
+    "OWID Grapher variable 1269993; last updated 2026-06-10",
+    "OWID Grapher variables 1270083, 1270084, 1270086, and 1270087; last updated 2026-06-10"
+  ],
+  "rawFileSha256": "618aef43549fac64e2ccda4975d4cb09a6f140ad65e988d544bb91531e0a1d0f",
+  "checksumScope": "committed local extract",
+  "format": "csv",
+  "columns": [
+    "year",
+    "best_deaths",
+    "low_deaths",
+    "high_deaths",
+    "ongoing_conflicts"
+  ],
+  "rowCount": 80,
+  "dataFrom": 1946,
+  "dataThrough": 2025,
+  "retainedFilters": [
+    "World annual series, 1946–2025; PRIO before 1989 and UCDP from 1989 onward",
+    "World annual series, 1946–2025, split by four state-based conflict types"
+  ],
+  "derivedFields": [],
+  "transformation": "The local extract keeps the OWID world rows for best, low, and high estimates. No country allocation, interpolation, or indirect-death estimate is added. The local extract sums the four mutually exclusive world conflict-type columns—interstate, internationalized intrastate, non-internationalized intrastate, and extrasystemic—into one annual total. No regional totals are summed."
+}

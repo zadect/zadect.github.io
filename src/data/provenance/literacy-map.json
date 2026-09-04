@@ -1,0 +1,36 @@
+{
+  "path": "src/data/literacy-map.csv",
+  "sourceIds": [
+    "literacy-owid"
+  ],
+  "sourceUrls": [
+    "https://ourworldindata.org/grapher/cross-country-literacy-rates"
+  ],
+  "publishers": [
+    "Our World in Data"
+  ],
+  "retrieved": [
+    "2026-08-16"
+  ],
+  "upstreamVersions": [
+    "OWID Grapher variable 1271900; updated 2026-05-12"
+  ],
+  "rawFileSha256": "7bbbf2653d0173412f508a4633100f34fda0c640561c31fe1e77f3b7e5e4ef1c",
+  "checksumScope": "committed local extract",
+  "format": "csv",
+  "columns": [
+    "country",
+    "code",
+    "iso_numeric",
+    "year",
+    "rate"
+  ],
+  "rowCount": 117,
+  "dataFrom": 2018,
+  "dataThrough": 2024,
+  "retainedFilters": [
+    "Country observations from 1475–2024; map keeps latest observations from 2018 onward"
+  ],
+  "derivedFields": [],
+  "transformation": "The local line extract keeps the documented 12-country illustrative panel from 1950 onward. The map keeps each country’s latest observation from 2018 onward and preserves that observation year; no values are interpolated."
+}

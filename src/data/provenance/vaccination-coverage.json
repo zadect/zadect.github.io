@@ -1,0 +1,36 @@
+{
+  "path": "src/data/vaccination-coverage.csv",
+  "sourceIds": [
+    "who-unicef-dtp3"
+  ],
+  "sourceUrls": [
+    "https://ourworldindata.org/grapher/share-of-children-immunized-dtp3"
+  ],
+  "publishers": [
+    "Our World in Data"
+  ],
+  "retrieved": [
+    "2026-08-16"
+  ],
+  "upstreamVersions": [
+    "OWID Grapher variable 1077436; last updated 2025-07-15"
+  ],
+  "rawFileSha256": "11c278949704ef94729758a0dc697aaedd08cde25992850757d421c1da1856af",
+  "checksumScope": "committed local extract",
+  "format": "csv",
+  "columns": [
+    "series",
+    "entity",
+    "code",
+    "year",
+    "value"
+  ],
+  "rowCount": 60,
+  "dataFrom": 1980,
+  "dataThrough": 2024,
+  "retainedFilters": [
+    "World and country estimates, 1980–2024 in the source release"
+  ],
+  "derivedFields": [],
+  "transformation": "The local extract keeps the exact annual world series and selected-country observations at 2000, 2019, and 2024. No values are interpolated or recomputed."
+}

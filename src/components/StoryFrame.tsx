@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import type { ReactNode } from 'react';
 import { getStoryCategoryPresentation, type StoryDefinition } from '../content/stories';
 import { SiteHeader } from './SiteHeader';
+import { EvidenceStrip, StoryEvidenceContext } from './StoryEvidence';
 
 interface StoryFrameProps {
   story: StoryDefinition;
@@ -24,7 +25,10 @@ export function StoryFrame({ story, children }: StoryFrameProps) {
             <h1>{story.title}</h1>
             <p className="story-hero__summary">{story.summary}</p>
           </header>
-          {children}
+          <StoryEvidenceContext.Provider value={story.evidence}>
+            <EvidenceStrip story={story} />
+            {children}
+          </StoryEvidenceContext.Provider>
         </div>
       </main>
       <footer className="site-footer">

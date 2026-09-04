@@ -1,0 +1,40 @@
+{
+  "path": "src/data/health-longevity-human-capital.csv",
+  "sourceIds": [
+    "who-healthy-life-expectancy-owid",
+    "who-health-expenditure-owid"
+  ],
+  "sourceUrls": [
+    "https://ourworldindata.org/grapher/healthy-life-expectancy-at-birth",
+    "https://ourworldindata.org/grapher/annual-healthcare-expenditure-per-capita"
+  ],
+  "publishers": [
+    "Our World in Data"
+  ],
+  "retrieved": [
+    "2026-08-16"
+  ],
+  "upstreamVersions": [
+    "WHO Global Health Observatory (2026); OWID variable 1245239",
+    "World Bank WDI release 2026; OWID variable 1294650"
+  ],
+  "rawFileSha256": "8f15a0ebc5a41dab1ccb436b90ba864ab9228f623951cf2b436ce4bd6f0001a1",
+  "checksumScope": "committed local extract",
+  "format": "csv",
+  "columns": [
+    "measure",
+    "entity",
+    "code",
+    "year",
+    "value"
+  ],
+  "rowCount": 94,
+  "dataFrom": 2000,
+  "dataThrough": 2023,
+  "retainedFilters": [
+    "World and six-country annual observations, 2000–2021 in this extract",
+    "World and six-country annual observations, 2000–2023 in this extract"
+  ],
+  "derivedFields": [],
+  "transformation": "The local extract keeps the complete OWID World series and four shared checkpoints for Brazil, Germany, India, Japan, Nigeria, and the United States. Values are not extended beyond the source’s 2021 endpoint. The local extract keeps the complete OWID World observations available through 2023 and four shared checkpoints for Brazil, Germany, India, Japan, Nigeria, and the United States. Values are current international dollars and are not locally inflation-adjusted."
+}

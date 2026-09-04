@@ -1,6 +1,7 @@
 import { VegaEmbed } from 'react-vega';
 import type { TopLevelSpec } from 'vega-lite';
 import type { SourceReference } from '../content/sources';
+import { getEvidenceStatusLabel, useStoryEvidence } from './StoryEvidence';
 
 interface ChartRow {
   [key: string]: number | string | undefined;
@@ -31,6 +32,7 @@ export function ChartCard({
   tone = 'good',
   definition,
 }: ChartCardProps) {
+  const storyEvidence = useStoryEvidence();
   const chartId = title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
   const chartBackground =
     tone === 'bad' ? '#313535' : tone === 'future' ? '#f7f4fa' : '#f8f6ef';
@@ -118,6 +120,12 @@ export function ChartCard({
         {definition ? (
           <p className="chart-card__definition">
             <strong>Measure:</strong> {definition}
+          </p>
+        ) : null}
+        {storyEvidence ? (
+          <p className="chart-card__evidence" data-evidence-status={storyEvidence.status}>
+            <strong>{getEvidenceStatusLabel(storyEvidence.status)}</strong>
+            <span>Data through {storyEvidence.dataThrough}</span>
           </p>
         ) : null}
       </div>

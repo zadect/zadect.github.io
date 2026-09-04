@@ -6,7 +6,7 @@ interface SourceListProps {
 
 export function SourceList({ sources }: SourceListProps) {
   return (
-    <div className="source-list">
+    <div className="source-list" id="sources-and-methodology">
       {sources.map((source) => (
         <article className="source-item" key={source.id}>
           <div>

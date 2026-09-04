@@ -1,0 +1,35 @@
+{
+  "path": "src/data/air-pollution.csv",
+  "sourceIds": [
+    "gbd-pm25-owid"
+  ],
+  "sourceUrls": [
+    "https://ourworldindata.org/grapher/average-exposure-pm25-pollution"
+  ],
+  "publishers": [
+    "Our World in Data"
+  ],
+  "retrieved": [
+    "2026-08-16"
+  ],
+  "upstreamVersions": [
+    "OWID Grapher variable 1293799; last updated 2026-07-27"
+  ],
+  "rawFileSha256": "af063bd9ca03619b1c52686235340436620daa6c44d1f79109e6956dcc2703bc",
+  "checksumScope": "committed local extract",
+  "format": "csv",
+  "columns": [
+    "entity",
+    "code",
+    "year",
+    "pm25"
+  ],
+  "rowCount": 238,
+  "dataFrom": 1990,
+  "dataThrough": 2023,
+  "retainedFilters": [
+    "World and six selected countries, annual 1990–2023 in this extract"
+  ],
+  "derivedFields": [],
+  "transformation": "The local extract keeps the OWID rows for the world and six selected countries from 1990 through 2023. Values are not interpolated or converted; the WHO guideline is shown separately as research context."
+}

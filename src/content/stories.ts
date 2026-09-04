@@ -1,5 +1,18 @@
 export type StoryCategory = 'good' | 'bad' | 'future';
 export type StoryStatus = 'published' | 'coming-soon';
+export type EvidenceStatus =
+  | 'historical-observation'
+  | 'historical-estimate'
+  | 'modelled-estimate'
+  | 'source-extrapolation'
+  | 'source-projection';
+
+export interface StoryEvidence {
+  status: EvidenceStatus;
+  dataThrough: string;
+  note: string;
+  cardLabel: string;
+}
 
 export interface StoryCategoryPresentation {
   label: string;
@@ -44,9 +57,12 @@ export interface StoryDefinition {
   geography: string;
   sourceHint: string;
   comparison?: StoryComparison;
+  evidence: StoryEvidence;
 }
 
-export const stories: StoryDefinition[] = [
+type StorySeed = Omit<StoryDefinition, 'evidence'>;
+
+const storyCatalogue: StorySeed[] = [
   {
     slug: 'world-hunger',
     title: 'World hunger',
@@ -893,6 +909,179 @@ export const stories: StoryDefinition[] = [
     },
   },
 ];
+
+const evidenceBySlug: Record<string, StoryEvidence> = {
+  'world-hunger': {
+    status: 'historical-estimate',
+    dataThrough: '2024 (food supply: 2023)',
+    note: 'FAO estimates undernourishment; the longer food-supply series is a separate historical measure.',
+    cardLabel: 'Historical estimate',
+  },
+  literacy: {
+    status: 'historical-observation',
+    dataThrough: '2024',
+    note: 'Country observations are reported in different years; the map is not a simultaneous snapshot.',
+    cardLabel: 'Historical observations',
+  },
+  'womens-rights': {
+    status: 'historical-observation',
+    dataThrough: '2023',
+    note: 'The index codes formal economic laws and regulations rather than lived outcomes.',
+    cardLabel: 'Historical observations',
+  },
+  'child-mortality': {
+    status: 'historical-estimate',
+    dataThrough: '2024',
+    note: 'The long reconstruction and modern UN estimates use different source coverage and uncertainty.',
+    cardLabel: 'Historical estimate',
+  },
+  'life-expectancy': {
+    status: 'historical-estimate',
+    dataThrough: '2023',
+    note: 'The series combines historical reconstructions with modern population estimates.',
+    cardLabel: 'Historical estimate',
+  },
+  'vaccination-coverage': {
+    status: 'historical-estimate',
+    dataThrough: '2024',
+    note: 'DTP3 is a routine-immunisation tracer, not a measure of every vaccine or service outcome.',
+    cardLabel: 'Historical estimate',
+  },
+  'electricity-and-sanitation': {
+    status: 'historical-estimate',
+    dataThrough: '2024',
+    note: 'Electricity access and sanitation use are separate service measures with different source histories.',
+    cardLabel: 'Historical estimate',
+  },
+  'extreme-poverty': {
+    status: 'source-extrapolation',
+    dataThrough: '2026 (observed through 2022)',
+    note: 'The final global points are source extrapolations, not new household surveys.',
+    cardLabel: 'Source extrapolation',
+  },
+  'ceo-pay-gap': {
+    status: 'historical-observation',
+    dataThrough: '2025 (absolute compensation: 2024)',
+    note: 'The comparable ratio is a United States series; the international material is separate context.',
+    cardLabel: 'Historical observations',
+  },
+  'climate-change': {
+    status: 'historical-observation',
+    dataThrough: '2025',
+    note: 'Annual land-ocean anomalies vary from year to year around a long-run warming trend.',
+    cardLabel: 'Historical observations',
+  },
+  'wars-and-conflict': {
+    status: 'historical-estimate',
+    dataThrough: '2025',
+    note: 'The series covers state-based conflict and battle-related deaths, not every consequence of war.',
+    cardLabel: 'Historical estimate',
+  },
+  'inequality-by-country': {
+    status: 'historical-estimate',
+    dataThrough: '2024',
+    note: 'Country points are survey observations with different welfare concepts and gaps between years.',
+    cardLabel: 'Historical estimate',
+  },
+  'biodiversity-loss': {
+    status: 'modelled-estimate',
+    dataThrough: '2020',
+    note: 'The Living Planet Index tracks monitored vertebrate populations, not all species or ecosystems.',
+    cardLabel: 'Modelled estimate',
+  },
+  'forced-displacement': {
+    status: 'historical-observation',
+    dataThrough: '2024',
+    note: 'The long series is refugees; the broader panel uses four UNHCR population categories.',
+    cardLabel: 'Historical observations',
+  },
+  'air-pollution': {
+    status: 'modelled-estimate',
+    dataThrough: '2023',
+    note: 'These are population-weighted ambient PM2.5 exposure estimates, not monitor readings or emissions.',
+    cardLabel: 'Modelled estimate',
+  },
+  'democratic-backsliding': {
+    status: 'modelled-estimate',
+    dataThrough: '2025',
+    note: 'V-Dem scores are modelled estimates; small changes should not be read without their uncertainty.',
+    cardLabel: 'Modelled estimate',
+  },
+  'tech-and-ai': {
+    status: 'historical-observation',
+    dataThrough: '2025',
+    note: 'Eurostat reports firm adoption in selected European economies; missing years are reporting gaps.',
+    cardLabel: 'Historical baseline',
+  },
+  'employment-work-and-skills': {
+    status: 'modelled-estimate',
+    dataThrough: '2025',
+    note: 'The core series is the modelled employment-to-population ratio for people aged 15 and older.',
+    cardLabel: 'Historical baseline',
+  },
+  'wealth-distribution-and-inequality': {
+    status: 'modelled-estimate',
+    dataThrough: '2024',
+    note: 'Selected World Inequality Database estimates are sparse checkpoints for the top 1% wealth share.',
+    cardLabel: 'Historical baseline',
+  },
+  'economic-growth-debt-and-public-finance': {
+    status: 'historical-observation',
+    dataThrough: '2023',
+    note: "World growth and selected countries' central-government debt are separate historical measures.",
+    cardLabel: 'Historical baseline',
+  },
+  'inflation-prices-and-energy': {
+    status: 'historical-observation',
+    dataThrough: '2025',
+    note: 'Consumer inflation and renewable electricity share answer different questions and are shown separately.',
+    cardLabel: 'Historical baseline',
+  },
+  'demographics-and-migration': {
+    status: 'source-projection',
+    dataThrough: '2024 observed; 2100 scenario',
+    note: 'The UN medium scenario begins after the observed 2023 median-age series and depends on stated demographic assumptions.',
+    cardLabel: 'Source scenario',
+  },
+  'housing-cities-and-infrastructure': {
+    status: 'historical-observation',
+    dataThrough: '2024',
+    note: 'The plotted measure is a national house-price-to-income index, not a city or infrastructure measure.',
+    cardLabel: 'Historical baseline',
+  },
+  'health-longevity-and-human-capital': {
+    status: 'historical-estimate',
+    dataThrough: '2023 (healthy life expectancy: 2021)',
+    note: 'Healthy life expectancy and current-dollar health spending are separate measures with different end years.',
+    cardLabel: 'Historical baseline',
+  },
+  'governance-risk-and-security': {
+    status: 'modelled-estimate',
+    dataThrough: '2025',
+    note: 'The World Justice Project scores rule of law and order and security for changing country panels.',
+    cardLabel: 'Historical baseline',
+  },
+  'climate-and-environmental-futures': {
+    status: 'historical-observation',
+    dataThrough: '2024',
+    note: 'The charts show territorial fossil CO2 accounting, not impacts, adaptation, or a future pathway.',
+    cardLabel: 'Historical baseline',
+  },
+  'capital-markets-and-money-flows': {
+    status: 'historical-observation',
+    dataThrough: '2025',
+    note: 'Private-sector credit relative to GDP is a credit-stock ratio, not a direct measure of capital-market activity.',
+    cardLabel: 'Historical baseline',
+  },
+};
+
+export const stories: StoryDefinition[] = storyCatalogue.map((story) => {
+  const evidence = evidenceBySlug[story.slug];
+  if (!evidence) {
+    throw new Error(`Story ${story.slug} is missing evidence metadata`);
+  }
+  return { ...story, evidence };
+});
 
 export function getStory(category: string | undefined, slug: string | undefined) {
   return stories.find((story) => story.category === category && story.slug === slug);

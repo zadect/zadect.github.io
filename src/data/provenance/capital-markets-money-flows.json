@@ -1,0 +1,36 @@
+{
+  "path": "src/data/capital-markets-money-flows.csv",
+  "sourceIds": [
+    "bis-private-credit-gdp"
+  ],
+  "sourceUrls": [
+    "https://data.bis.org/static/bulk/WS_TC_csv_col.zip"
+  ],
+  "publishers": [
+    "Bank for International Settlements"
+  ],
+  "retrieved": [
+    "2026-08-16"
+  ],
+  "upstreamVersions": [
+    "WS_TC_csv_col.zip dated 2026-06-09; retrieved 2026-08-16"
+  ],
+  "rawFileSha256": "a14940eb21863049c40efd78b9ffa6c512b62f3a357d21592aef043e2da0ef83",
+  "checksumScope": "committed local extract",
+  "format": "csv",
+  "columns": [
+    "series",
+    "entity",
+    "code",
+    "year",
+    "value"
+  ],
+  "rowCount": 235,
+  "dataFrom": 1999,
+  "dataThrough": 2025,
+  "retainedFilters": [
+    "All-reporting-economies aggregate, 1999–2025; eight-country panel, 2000–2025 annual checkpoints"
+  ],
+  "derivedFields": [],
+  "transformation": "The extract keeps BIS series with private non-financial borrowers, all-sector lenders, market valuation, break-adjusted percentage-of-GDP units, and the latest Q4 observation for each year. The panel contains Brazil, China, France, Germany, India, Japan, the United Kingdom, and the United States; missing values are not interpolated."
+}

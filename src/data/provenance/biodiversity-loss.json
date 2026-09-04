@@ -1,0 +1,37 @@
+{
+  "path": "src/data/biodiversity-loss.csv",
+  "sourceIds": [
+    "wwf-zsl-living-planet-index"
+  ],
+  "sourceUrls": [
+    "https://ourworldindata.org/grapher/global-living-planet-index"
+  ],
+  "publishers": [
+    "Our World in Data"
+  ],
+  "retrieved": [
+    "2026-08-16"
+  ],
+  "upstreamVersions": [
+    "Living Planet Report 2024; OWID variables 990513–990515; last updated 2024-09-30"
+  ],
+  "rawFileSha256": "56e31e1e3a30fe908ce683d362a83e0902a8d6efc381891458072839bba0fcbf",
+  "checksumScope": "committed local extract",
+  "format": "csv",
+  "columns": [
+    "series",
+    "entity",
+    "year",
+    "central",
+    "lower",
+    "upper"
+  ],
+  "rowCount": 81,
+  "dataFrom": 1970,
+  "dataThrough": 2020,
+  "retainedFilters": [
+    "World annual index 1970–2020 and five-region checkpoint panel in this extract"
+  ],
+  "derivedFields": [],
+  "transformation": "OWID values are multiplied by the documented conversion factor of 100 so the local index is 1970 = 100. The local extract keeps all 51 world annual rows with central, lower, and upper estimates. Regional rows are retained at six shared checkpoints from 1970 to 2020; no values are interpolated or recomputed."
+}

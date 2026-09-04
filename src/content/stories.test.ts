@@ -42,6 +42,23 @@ describe('story catalogue', () => {
     }
   });
 
+  it('classifies every published story and records a data-through boundary', () => {
+    const statuses = new Set([
+      'historical-observation',
+      'historical-estimate',
+      'modelled-estimate',
+      'source-extrapolation',
+      'source-projection',
+    ]);
+
+    for (const story of stories.filter((candidate) => candidate.status === 'published')) {
+      expect(statuses.has(story.evidence.status)).toBe(true);
+      expect(story.evidence.dataThrough).toBeTruthy();
+      expect(story.evidence.note).toBeTruthy();
+      expect(story.evidence.cardLabel).toBeTruthy();
+    }
+  });
+
   it('documents the child mortality comparison and source scope', () => {
     const story = stories.find((candidate) => candidate.slug === 'child-mortality');
     expect(story?.status).toBe('published');

@@ -1,0 +1,36 @@
+{
+  "path": "src/data/democracy-series.csv",
+  "sourceIds": [
+    "vdem-liberal-democracy"
+  ],
+  "sourceUrls": [
+    "https://ourworldindata.org/grapher/liberal-democracy-index"
+  ],
+  "publishers": [
+    "Our World in Data"
+  ],
+  "retrieved": [
+    "2026-08-16"
+  ],
+  "upstreamVersions": [
+    "V-Dem Country-Year Dataset v16; OWID variable 1209797; updated 2026-03-17"
+  ],
+  "rawFileSha256": "bb012ff0e48c3a06a4604198402524ed00626a034a03568a80aa18cb9f782a42",
+  "checksumScope": "committed local extract",
+  "format": "csv",
+  "columns": [
+    "country",
+    "code",
+    "iso_numeric",
+    "year",
+    "index"
+  ],
+  "rowCount": 467,
+  "dataFrom": 1990,
+  "dataThrough": 2025,
+  "retainedFilters": [
+    "Country-year estimates from 1789–2025; story change map compares 2020 with 2025"
+  ],
+  "derivedFields": [],
+  "transformation": "The local line extract keeps the documented 13-country illustrative panel from 1990–2025. The map keeps countries with both 2020 and 2025 values and calculates 2025 minus 2020; no missing endpoint is imputed locally."
+}

@@ -1,0 +1,34 @@
+{
+  "path": "src/data/iso-country-codes.csv",
+  "sourceIds": [
+    "iso-country-codes"
+  ],
+  "sourceUrls": [
+    "https://raw.githubusercontent.com/datasets/country-codes/master/data/country-codes.csv"
+  ],
+  "publishers": [
+    "Datasets / Open Knowledge Foundation"
+  ],
+  "retrieved": [
+    "2026-08-16"
+  ],
+  "upstreamVersions": [
+    "Country-codes repository snapshot retrieved 2026-08-16"
+  ],
+  "rawFileSha256": "7888cb6a4ff8c7448de56444ec66da3e5e6ceab7e09064571cad26d8888ab9a9",
+  "checksumScope": "committed local extract",
+  "format": "csv",
+  "columns": [
+    "code",
+    "iso_numeric",
+    "country"
+  ],
+  "rowCount": 249,
+  "dataFrom": null,
+  "dataThrough": null,
+  "retainedFilters": [
+    "ISO alpha-3 and numeric codes used to join source rows to map geometry"
+  ],
+  "derivedFields": [],
+  "transformation": "The local crosswalk retains only alpha-3, numeric, and English country-name fields needed to validate the story extracts and the TopoJSON join."
+}

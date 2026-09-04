@@ -1,0 +1,36 @@
+{
+  "path": "src/data/employment-work-skills.csv",
+  "sourceIds": [
+    "ilo-employment-rate-owid"
+  ],
+  "sourceUrls": [
+    "https://ourworldindata.org/grapher/employment-to-population-ratio"
+  ],
+  "publishers": [
+    "Our World in Data"
+  ],
+  "retrieved": [
+    "2026-08-16"
+  ],
+  "upstreamVersions": [
+    "OWID Grapher variable 1294723; last updated 2026-07-27"
+  ],
+  "rawFileSha256": "3ba066293b220bb7b213ef8362cf641897ab14b5dc0fe65c1f4f9f9d3368a092",
+  "checksumScope": "committed local extract",
+  "format": "csv",
+  "columns": [
+    "series",
+    "entity",
+    "code",
+    "year",
+    "value"
+  ],
+  "rowCount": 65,
+  "dataFrom": 1991,
+  "dataThrough": 2025,
+  "retainedFilters": [
+    "World annual series 1991–2025 and six-country checkpoint panel in this extract"
+  ],
+  "derivedFields": [],
+  "transformation": "The local extract keeps the OWID world series for every year from 1991 through 2025 and five shared checkpoints for Germany, India, Japan, Nigeria, Sweden, and the United States. Values are not interpolated or rescaled."
+}

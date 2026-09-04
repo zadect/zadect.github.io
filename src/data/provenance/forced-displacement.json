@@ -1,0 +1,36 @@
+{
+  "path": "src/data/forced-displacement.csv",
+  "sourceIds": [
+    "unhcr-population-api"
+  ],
+  "sourceUrls": [
+    "https://api.unhcr.org/population/v1/population/?yearFrom=1951&yearTo=2024&limit=100"
+  ],
+  "publishers": [
+    "United Nations High Commissioner for Refugees"
+  ],
+  "retrieved": [
+    "2026-08-16"
+  ],
+  "upstreamVersions": [
+    "Refugee Population Statistics Database annual statistics for 2024; API response retrieved 2026-08-16"
+  ],
+  "rawFileSha256": "27b8f1eed52db55faa4fead76fb75261550e7aaf69f220fcd3dd1cdc1a0edbad",
+  "checksumScope": "committed local extract",
+  "format": "csv",
+  "columns": [
+    "year",
+    "refugees",
+    "asylum_seekers",
+    "idps",
+    "oip"
+  ],
+  "rowCount": 74,
+  "dataFrom": 1951,
+  "dataThrough": 2024,
+  "retainedFilters": [
+    "Global year-end stocks, 1951–2024; category coverage is documented separately"
+  ],
+  "derivedFields": [],
+  "transformation": "The local extract keeps the API global aggregate for refugees, asylum-seekers, IDPs, and other people in need of international protection. API dashes and zero placeholders before a category’s observed coverage start are retained as blank; no missing category is treated as an observed zero and no categories are combined with other systems."
+}

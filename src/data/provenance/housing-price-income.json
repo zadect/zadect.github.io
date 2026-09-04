@@ -1,0 +1,35 @@
+{
+  "path": "src/data/housing-price-income.csv",
+  "sourceIds": [
+    "oecd-house-price-income"
+  ],
+  "sourceUrls": [
+    "https://data-explorer.oecd.org/vis?df%5Bds%5D=OECD.ECO.MPD%2CDSD_AN_HOUSE_PRICES%40DF_HOUSE_PRICES%2C1.0"
+  ],
+  "publishers": [
+    "OECD"
+  ],
+  "retrieved": [
+    "2026-08-16"
+  ],
+  "upstreamVersions": [
+    "OECD dataflow version 1.0, retrieved 2026-08-16"
+  ],
+  "rawFileSha256": "d36707accc05fa2e11887b2af27998c73d13ddfbf66d0666c29594acab10ccb3",
+  "checksumScope": "committed local extract",
+  "format": "csv",
+  "columns": [
+    "geo",
+    "country",
+    "year",
+    "value"
+  ],
+  "rowCount": 200,
+  "dataFrom": 2000,
+  "dataThrough": 2024,
+  "retainedFilters": [
+    "Annual HPI_YDH and HPI_YDH_AVG observations for Canada, France, Germany, Japan, the Netherlands, Sweden, the United Kingdom, and the United States, 2000–2024"
+  ],
+  "derivedFields": [],
+  "transformation": "The local trajectory extract keeps HPI_YDH with unit IX. The benchmark extract keeps HPI_YDH_AVG with unit PT_AVG_L_TERM for 2024. Values are not converted into rents, mortgage payments, or an international affordability ranking."
+}

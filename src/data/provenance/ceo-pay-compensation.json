@@ -1,0 +1,37 @@
+{
+  "path": "src/data/ceo-pay-compensation.csv",
+  "sourceIds": [
+    "epi-ceo-compensation"
+  ],
+  "sourceUrls": [
+    "https://www.epi.org/chart/ceo-pay-ceo-compensation-over-time-1b/"
+  ],
+  "publishers": [
+    "Economic Policy Institute"
+  ],
+  "retrieved": [
+    "2026-08-16"
+  ],
+  "upstreamVersions": [
+    "EPI chart post 306615; 2026-08-09 embed"
+  ],
+  "rawFileSha256": "1154b33c1f5908d9ac6d13eaf871abd76972a082452013e22ad16ba356b9c2b1",
+  "checksumScope": "committed local extract",
+  "format": "csv",
+  "columns": [
+    "year",
+    "ceo_realized_thousands",
+    "ceo_granted_thousands",
+    "workers_all_thousands",
+    "workers_industry_thousands",
+    "ceo_value_status"
+  ],
+  "rowCount": 38,
+  "dataFrom": 1965,
+  "dataThrough": 2024,
+  "retainedFilters": [
+    "United States; selected years 1965–1989 and annual values 1992–2024"
+  ],
+  "derivedFields": [],
+  "transformation": "The local extract preserves EPI’s rounded thousands, selected early CEO observations, annual observations from 1992, and the explicit projected status for 2024. Missing early industry-worker values remain blank."
+}

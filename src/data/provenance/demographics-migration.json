@@ -1,0 +1,40 @@
+{
+  "path": "src/data/demographics-migration.csv",
+  "sourceIds": [
+    "un-wpp-median-age-owid",
+    "un-desa-migrant-stock-owid"
+  ],
+  "sourceUrls": [
+    "https://ourworldindata.org/grapher/median-age",
+    "https://ourworldindata.org/grapher/migrant-stock-share"
+  ],
+  "publishers": [
+    "Our World in Data"
+  ],
+  "retrieved": [
+    "2026-08-16"
+  ],
+  "upstreamVersions": [
+    "UN World Population Prospects 2024; OWID variables 950958 and 950961",
+    "UN DESA International Migrant Stock 2024; OWID variable 1015603"
+  ],
+  "rawFileSha256": "cdd30cf0d8ecc171987c26c44661ca23b6e36cb1c1065be58642bc4bded46a36",
+  "checksumScope": "committed local extract",
+  "format": "csv",
+  "columns": [
+    "measure",
+    "entity",
+    "code",
+    "year",
+    "value"
+  ],
+  "rowCount": 213,
+  "dataFrom": 1950,
+  "dataThrough": 2100,
+  "retainedFilters": [
+    "World observed estimates 1950–2023, medium-scenario projections 2024–2100, and six-country checkpoints",
+    "World observations at 1990, 1995, 2000, 2005, 2010, 2015, 2020, and 2024; six-country checkpoints"
+  ],
+  "derivedFields": [],
+  "transformation": "The local extract keeps the complete OWID World observed series, the complete medium-scenario World projection, and four observed checkpoints for Brazil, Germany, India, Japan, Nigeria, and the United States. Observations and projections remain separate. The local extract keeps all eight OWID World observations and five shared checkpoints for Brazil, Germany, India, Japan, Nigeria, and the United States. The source’s five-year reporting rhythm is preserved; no annual values are interpolated."
+}
