@@ -174,7 +174,7 @@ export function LiteracyStory({ story }: LiteracyStoryProps) {
 
       <MapCard
         eyebrow="Latest reported observations · OWID + UNESCO"
-        title="The latest map is uneven by both place and year"
+        title="Latest available adult-literacy observations"
         description="The map includes countries with a reported observation from 2018 onward. Grey means the source does not provide a qualifying recent observation; it does not mean zero literacy."
         spec={literacyMapSpec}
         data={literacyMapSeries.map((point) => ({
@@ -196,8 +196,8 @@ export function LiteracyStory({ story }: LiteracyStoryProps) {
       />
 
       <section className="method-note">
-        <p className="eyebrow">Read the evidence carefully</p>
-        <h2>More literacy is a real gain. The measurement is still imperfect.</h2>
+        <p className="eyebrow">Scope and limits</p>
+        <h2>Adult literacy has spread, but the reporting is uneven.</h2>
         <p>
           Earlier observations often used different age thresholds, survey methods, or minimum
           definitions of literacy. Many developed countries stopped reporting once rates became
@@ -208,7 +208,7 @@ export function LiteracyStory({ story }: LiteracyStoryProps) {
 
       <section className="sources-section">
         <p className="eyebrow">Sources and definitions</p>
-        <h2>Where the numbers and boundaries come from</h2>
+        <h2>Sources and methodology</h2>
         <SourceList sources={allSources} />
       </section>
     </StoryFrame>

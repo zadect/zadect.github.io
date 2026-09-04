@@ -182,7 +182,7 @@ export function ForcedDisplacementStory({ story }: ForcedDisplacementStoryProps)
 
       <ChartCard
         eyebrow="World · UNHCR Refugee Data Finder"
-        title="The refugee stock has grown over the long run"
+        title="Refugees counted at year-end"
         description="This is the longest annual series in the extract. It counts refugees present at year-end, not new arrivals or applications during the year."
         spec={refugeeSpec}
         data={forcedDisplacementSeries.map((point) => ({
@@ -200,7 +200,7 @@ export function ForcedDisplacementStory({ story }: ForcedDisplacementStoryProps)
 
       <ChartCard
         eyebrow="World · four UNHCR categories · 1993–2024"
-        title="Internal displacement now dominates the comparable panel"
+        title="Four UNHCR categories, shown separately"
         description="The lines keep the categories separate. Blank values mean that the category was not reported in the source yet; they are not zeros."
         spec={categorySpec}
         data={categoryData.map((point) => ({
@@ -223,7 +223,7 @@ export function ForcedDisplacementStory({ story }: ForcedDisplacementStoryProps)
       />
 
       <section className="method-note">
-        <p className="eyebrow">Read the evidence carefully</p>
+        <p className="eyebrow">Scope and limits</p>
         <h2>The headline number depends on the accounting boundary.</h2>
         <p>
           UNHCR’s 2024 Global Trends report gives a broader headline total than the four-category
@@ -237,7 +237,7 @@ export function ForcedDisplacementStory({ story }: ForcedDisplacementStoryProps)
 
       <section className="sources-section">
         <p className="eyebrow">Sources and definitions</p>
-        <h2>Where the displacement measures come from</h2>
+        <h2>Sources and methodology</h2>
         <SourceList sources={sources} />
       </section>
     </StoryFrame>

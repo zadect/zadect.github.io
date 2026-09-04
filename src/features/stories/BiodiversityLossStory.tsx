@@ -130,9 +130,8 @@ export function BiodiversityLossStory({ story }: BiodiversityLossStoryProps) {
     <StoryFrame story={story}>
       <section className="story-lede">
         <p className="lede">
-          This is not a headcount of every wild animal. It is a signal from monitored vertebrate
-          populations: the average index fell sharply after 1970, while the regional lines show
-          that the loss has not been evenly distributed.
+          The Living Planet Index tracks monitored vertebrate populations. Its global central
+          estimate fell sharply after 1970, while the regional checkpoints show different paths.
         </p>
         <div className="stat-grid">
           <div className="stat-card">
@@ -168,7 +167,7 @@ export function BiodiversityLossStory({ story }: BiodiversityLossStoryProps) {
 
       <ChartCard
         eyebrow="World · WWF / ZSL via Our World in Data"
-        title="The monitored-population signal fell sharply"
+        title="The monitored vertebrate-population index fell sharply"
         description="The index is set to 100 in 1970. The line is the central estimate; the shaded band shows the report’s lower and upper estimates."
         spec={worldSpec}
         data={biodiversityWorldSeries.map((point) => ({
@@ -209,8 +208,8 @@ export function BiodiversityLossStory({ story }: BiodiversityLossStoryProps) {
       />
 
       <section className="method-note">
-        <p className="eyebrow">Read the evidence carefully</p>
-        <h2>A falling index is a warning about monitored populations, not a census of nature.</h2>
+        <p className="eyebrow">Scope and limits</p>
+        <h2>The index describes monitored populations, not all biodiversity.</h2>
         <p>
           The Living Planet Index aggregates trends from thousands of monitored vertebrate
           populations. It does not say that every population declined by the same amount, and it
@@ -222,7 +221,7 @@ export function BiodiversityLossStory({ story }: BiodiversityLossStoryProps) {
 
       <section className="sources-section">
         <p className="eyebrow">Sources and definitions</p>
-        <h2>Where the biodiversity signal comes from</h2>
+        <h2>Sources and methodology</h2>
         <SourceList sources={sources} />
       </section>
     </StoryFrame>

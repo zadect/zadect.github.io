@@ -97,8 +97,8 @@ export function WomensRightsStory({ story }: WomensRightsStoryProps) {
     <StoryFrame story={story}>
       <section className="story-lede">
         <p className="lede">
-          The legal rules around women’s economic lives have moved a long way. That progress is
-          real — and it still leaves a gap between what the law says and what life delivers.
+          The World Bank’s legal-equality index records a large rise since 1970. It covers formal
+          economic rights; enforcement and lived outcomes require different evidence.
         </p>
         <div className="stat-grid">
           <div className="stat-card">
@@ -155,8 +155,8 @@ export function WomensRightsStory({ story }: WomensRightsStoryProps) {
       />
 
       <section className="method-note">
-        <p className="eyebrow">Read the evidence carefully</p>
-        <h2>Better laws matter. They are not the whole story.</h2>
+        <p className="eyebrow">Scope and limits</p>
+        <h2>Formal rights and lived equality are different measures.</h2>
         <p>
           The index is built for comparison by applying standardized assumptions to laws and
           regulations. It does not tell us whether a right is enforced, whether women can use it
@@ -167,7 +167,7 @@ export function WomensRightsStory({ story }: WomensRightsStoryProps) {
 
       <section className="sources-section">
         <p className="eyebrow">Sources and definitions</p>
-        <h2>Where the legal-equality evidence comes from</h2>
+        <h2>Sources and methodology</h2>
         <SourceList sources={sources} />
       </section>
     </StoryFrame>

@@ -65,10 +65,10 @@ const democracyMapSpec: TopLevelSpec = {
         type: 'quantitative',
         scale: {
           domain: [-0.4, 0, 0.4],
-          range: ['#c66c53', '#f0c56f', '#4d9b87'],
+          range: ['#b56b55', '#c8c2b8', '#3f7896'],
           clamp: true,
         },
-        legend: { title: 'Change in index' },
+        legend: { title: 'Index change (2020–2025)' },
       },
       value: '#4a4f4d',
     },
@@ -116,6 +116,7 @@ export function DemocraticBackslidingStory({ story }: DemocraticBackslidingStory
 
   const largestDecline = mostExtreme('low');
   const largestImprovement = mostExtreme('high');
+  const nearZeroCount = democracyMapSeries.filter((point) => Math.abs(point.change) < 0.03).length;
   const storySources = getSources(['vdem-liberal-democracy']);
   const mapSources = getSources([
     'vdem-liberal-democracy',
@@ -136,9 +137,9 @@ export function DemocraticBackslidingStory({ story }: DemocraticBackslidingStory
     <StoryFrame story={story}>
       <section className="story-lede">
         <p className="lede">
-          Democracy did not move in one direction between 2020 and 2025. The map separates
-          countries where the Liberal Democracy Index fell from countries where it rose, while the
-          line chart keeps several trajectories visible.
+          The V-Dem Liberal Democracy Index fell in some countries between 2020 and 2025 and rose
+          in others. The map uses a neutral midpoint for small changes; it does not attach
+          uncertainty intervals to those endpoint differences.
         </p>
         <div className="stat-grid">
           <div className="stat-card stat-card--dark">
@@ -148,6 +149,12 @@ export function DemocraticBackslidingStory({ story }: DemocraticBackslidingStory
             </span>
             <span className="stat-card__label">
               five-year index change in {largestDecline.country}, the largest decline in the map
+            </span>
+          </div>
+          <div className="stat-card stat-card--dark">
+            <span className="stat-card__value">{nearZeroCount}</span>
+            <span className="stat-card__label">
+              mapped countries with an absolute five-year change below 0.03
             </span>
           </div>
           <div className="stat-card stat-card--dark">
@@ -191,8 +198,8 @@ export function DemocraticBackslidingStory({ story }: DemocraticBackslidingStory
 
       <MapCard
         eyebrow="Five-year change · V-Dem + OWID"
-        title="Where the index fell — and where it recovered"
-        description="The map shows 2025 minus 2020. Warm tones indicate a decline, green tones an increase, and grey countries lack one of the two endpoint observations."
+        title="Five-year change in the Liberal Democracy Index"
+        description="The map shows 2025 minus 2020. Brown indicates a decline, blue an increase, and the neutral midpoint covers changes near zero. Grey outlined countries lack one endpoint observation."
         spec={democracyMapSpec}
         data={democracyMapSeries.map((point) => ({
           country: point.country,
@@ -216,8 +223,8 @@ export function DemocraticBackslidingStory({ story }: DemocraticBackslidingStory
       />
 
       <section className="method-note method-note--dark">
-        <p className="eyebrow">Read the evidence carefully</p>
-        <h2>A falling index is a warning signal, not a full explanation.</h2>
+        <p className="eyebrow">Scope and limits</p>
+        <h2>Small endpoint changes need cautious interpretation.</h2>
         <p>
           V-Dem combines expert-coded evidence and factual indicators into a model-based estimate.
           A five-year decline can point to meaningful institutional deterioration, but it does not
@@ -227,7 +234,7 @@ export function DemocraticBackslidingStory({ story }: DemocraticBackslidingStory
 
       <section className="sources-section">
         <p className="eyebrow">Sources and definitions</p>
-        <h2>Where the numbers and boundaries come from</h2>
+        <h2>Sources and methodology</h2>
         <SourceList sources={allSources} />
       </section>
     </StoryFrame>

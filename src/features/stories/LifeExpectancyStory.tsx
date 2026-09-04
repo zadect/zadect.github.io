@@ -19,26 +19,57 @@ const longRunSpec: TopLevelSpec = {
   width: 'container',
   height: 340,
   data: { name: 'series' },
-  mark: { type: 'line', point: { filled: true, size: 24 }, strokeWidth: 3 },
-  encoding: {
-    x: {
-      field: 'year',
-      type: 'quantitative',
-      title: 'Year',
-      axis: { format: 'd', tickCount: 9 },
+  layer: [
+    {
+      transform: [{ filter: "datum.phase === 'Historical reconstruction'" }],
+      mark: { type: 'line', color: '#2d746a', strokeWidth: 3, strokeDash: [4, 3] },
+      encoding: {
+        x: {
+          field: 'year',
+          type: 'quantitative',
+          title: 'Year',
+          axis: { format: 'd', tickCount: 9 },
+        },
+        y: {
+          field: 'years',
+          type: 'quantitative',
+          title: 'Life expectancy (years)',
+          scale: { domain: [20, 85] },
+        },
+      },
     },
-    y: {
-      field: 'years',
-      type: 'quantitative',
-      title: 'Life expectancy (years)',
-      scale: { domain: [20, 85] },
+    {
+      transform: [{ filter: "datum.phase === 'UN WPP estimate'" }],
+      mark: { type: 'line', color: '#2d746a', strokeWidth: 3 },
+      encoding: {
+        x: { field: 'year', type: 'quantitative', title: 'Year' },
+        y: {
+          field: 'years',
+          type: 'quantitative',
+          title: 'Life expectancy (years)',
+          scale: { domain: [20, 85] },
+        },
+      },
     },
-    color: { value: '#2d746a' },
-    tooltip: [
-      { field: 'year', type: 'quantitative', title: 'Year', format: 'd' },
-      { field: 'years', type: 'quantitative', title: 'Years', format: '.1f' },
-    ],
-  },
+    {
+      mark: { type: 'point', filled: true, size: 24, color: '#2d746a' },
+      encoding: {
+        x: { field: 'year', type: 'quantitative', title: 'Year' },
+        y: { field: 'years', type: 'quantitative', title: 'Life expectancy (years)' },
+        shape: {
+          field: 'phase',
+          type: 'nominal',
+          title: 'Evidence',
+          scale: { domain: ['Historical reconstruction', 'UN WPP estimate'] },
+        },
+        tooltip: [
+          { field: 'year', type: 'quantitative', title: 'Year', format: 'd' },
+          { field: 'years', type: 'quantitative', title: 'Years', format: '.1f' },
+          { field: 'phase', type: 'nominal', title: 'Evidence' },
+        ],
+      },
+    },
+  ],
 };
 
 const panelSpec: TopLevelSpec = {
@@ -46,7 +77,12 @@ const panelSpec: TopLevelSpec = {
   width: 'container',
   height: 360,
   data: { name: 'series' },
-  mark: { type: 'line', point: { filled: true, size: 42 }, strokeWidth: 2.5 },
+  mark: {
+    type: 'line',
+    point: { filled: true, size: 42 },
+    strokeWidth: 2.5,
+    strokeDash: [3, 3],
+  },
   encoding: {
     x: {
       field: 'year',
@@ -98,9 +134,9 @@ export function LifeExpectancyStory({ story }: LifeExpectancyStoryProps) {
     <StoryFrame story={story}>
       <section className="story-lede">
         <p className="lede">
-          Longer lives are not an abstract promise. They are the result of fewer children dying,
-          better treatment, safer work, and healthier everyday conditions — with setbacks still
-          visible in the line.
+          Estimated world life expectancy rose from {first.years.toFixed(0)} years in {first.year}{' '}
+          to {last.years.toFixed(0)} years in {last.year}. The average fell during the pandemic,
+          and country gaps remain.
         </p>
         <div className="stat-grid">
           <div className="stat-card">
@@ -126,11 +162,12 @@ export function LifeExpectancyStory({ story }: LifeExpectancyStoryProps) {
       <ChartCard
         eyebrow="World · OWID long-run compilation"
         title="The average human life became much longer"
-        description="The series combines historical mortality research with modern UN estimates. The dip around the pandemic is a reminder that progress is a direction, not a guarantee."
+        description="The dashed segment is the historical reconstruction; the solid segment uses UN World Population Prospects estimates from 1950 onward."
         spec={longRunSpec}
         data={lifeExpectancyLongRunSeries.map((point) => ({
           year: point.year,
           years: point.years,
+          phase: point.year < 1950 ? 'Historical reconstruction' : 'UN WPP estimate',
         }))}
         columns={[
           { key: 'year', label: 'Year' },
@@ -143,7 +180,7 @@ export function LifeExpectancyStory({ story }: LifeExpectancyStoryProps) {
       <ChartCard
         eyebrow="Selected countries · UN WPP"
         title="Longer lives arrived at different speeds"
-        description="The country panel keeps the same four checkpoints for each country. The lines rise together, but the distance between them remains meaningful."
+        description="The country panel keeps four selected checkpoints for each country. Dashed connectors are visual guides between observations, not annual estimates."
         spec={panelSpec}
         data={lifeExpectancyPanelSeries.map((point) => ({
           country: point.entity,
@@ -160,8 +197,8 @@ export function LifeExpectancyStory({ story }: LifeExpectancyStoryProps) {
       />
 
       <section className="method-note">
-        <p className="eyebrow">Read the evidence carefully</p>
-        <h2>One average hides many different lives.</h2>
+        <p className="eyebrow">Scope and limits</p>
+        <h2>Life expectancy is an average, not a typical lifespan.</h2>
         <p>
           Life expectancy is an average across a population. It does not say that people die at
           that age, and it can improve while large gaps by income, sex, region, or cause of death
@@ -172,7 +209,7 @@ export function LifeExpectancyStory({ story }: LifeExpectancyStoryProps) {
 
       <section className="sources-section">
         <p className="eyebrow">Sources and definitions</p>
-        <h2>Where the life-expectancy estimates come from</h2>
+        <h2>Sources and methodology</h2>
         <SourceList sources={getSources(['life-expectancy-owid'])} />
       </section>
     </StoryFrame>

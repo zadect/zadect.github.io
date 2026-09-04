@@ -162,10 +162,9 @@ export function AirPollutionStory({ story }: AirPollutionStoryProps) {
     <StoryFrame story={story}>
       <section className="story-lede">
         <p className="lede">
-          PM2.5 is small enough to travel deep into the lungs. The measure here is exposure, not
-          emissions: it weights the estimate by where people live. The world average has eased
-          since 1990, but it remains well above the WHO’s health-protection reference, and the
-          country lines do not move together.
+          This series estimates population-weighted outdoor PM2.5 exposure. The world average
+          eased after 1990 but remains above the WHO annual guideline, and selected countries
+          follow different paths.
         </p>
         <div className="stat-grid">
           <div className="stat-card">
@@ -196,7 +195,7 @@ export function AirPollutionStory({ story }: AirPollutionStoryProps) {
 
       <ChartCard
         eyebrow="World · GBD 2023 via World Bank and Our World in Data"
-        title="The global average remains far above the reference line"
+        title="Global ambient PM2.5 exposure remains above the WHO guideline"
         description="The line is the population-weighted annual mean PM2.5 exposure. The dashed line marks the WHO 2021 annual mean guideline recommendation of 5 µg/m³."
         spec={worldSpec}
         data={worldSeries.map((point) => ({
@@ -214,7 +213,7 @@ export function AirPollutionStory({ story }: AirPollutionStoryProps) {
 
       <ChartCard
         eyebrow="Six selected countries · same annual series"
-        title="The country lines tell different stories"
+        title="Selected countries have different exposure paths"
         description="Some selected countries move down over the period; others remain much higher. The dashed line is the WHO reference, not a legal threshold."
         spec={countrySpec}
         data={countrySeries.map((point) => ({
@@ -233,8 +232,8 @@ export function AirPollutionStory({ story }: AirPollutionStoryProps) {
       />
 
       <section className="method-note">
-        <p className="eyebrow">Read the evidence carefully</p>
-        <h2>Exposure is not the same thing as emissions or deaths.</h2>
+        <p className="eyebrow">Scope and limits</p>
+        <h2>Exposure, emissions, and health outcomes require different measures.</h2>
         <p>
           The series estimates the concentration people are exposed to, using population weighting
           and modeled data. It does not identify which sources caused the particles, measure what
@@ -246,7 +245,7 @@ export function AirPollutionStory({ story }: AirPollutionStoryProps) {
 
       <section className="sources-section">
         <p className="eyebrow">Sources and definitions</p>
-        <h2>Where the air-pollution signal comes from</h2>
+        <h2>Sources and methodology</h2>
         <SourceList sources={sources} />
       </section>
     </StoryFrame>

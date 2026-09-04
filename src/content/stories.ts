@@ -68,7 +68,8 @@ const storyCatalogue: StorySeed[] = [
     title: 'World hunger',
     category: 'good',
     status: 'published',
-    summary: 'A long decline in the share of people without enough food, with important limits to the evidence.',
+    summary:
+      'Undernourishment is measured from 2000; food supply reaches back to 1961. The two series point in the same direction but measure different things.',
     plannedMetric: 'Prevalence of undernourishment and food availability',
     geography: 'World',
     sourceHint: 'FAO and Our World in Data',
@@ -88,10 +89,11 @@ const storyCatalogue: StorySeed[] = [
   },
   {
     slug: 'literacy',
-    title: 'Literacy',
+    title: 'Adult literacy',
     category: 'good',
     status: 'published',
-    summary: 'Basic literacy has spread widely, though the map still shows uneven coverage and unfinished progress.',
+    summary:
+      'Basic literacy has spread widely. The latest country observations still arrive in different years and leave visible reporting gaps.',
     plannedMetric: 'Adult literacy rate',
     geography: 'Selected countries and latest reported country observations',
     sourceHint: 'UNESCO Institute for Statistics and Our World in Data',
@@ -115,11 +117,11 @@ const storyCatalogue: StorySeed[] = [
   },
   {
     slug: 'womens-rights',
-    title: "Women's rights",
+    title: 'Legal equality for women',
     category: 'good',
     status: 'published',
     summary:
-      'The laws shaping women’s economic lives have changed substantially, but legal equality is not the same as lived equality.',
+      'The World Bank’s legal-equality index has risen substantially. It measures formal economic rights, not whether those rights are enforced or experienced equally.',
     plannedMetric: 'Women, Business and the Law Index',
     geography: 'World and selected countries',
     sourceHint: 'World Bank Women, Business and the Law, via Our World in Data',
@@ -211,12 +213,12 @@ const storyCatalogue: StorySeed[] = [
   },
   {
     slug: 'vaccination-coverage',
-    title: 'Vaccination coverage',
+    title: 'DTP3 vaccination coverage',
     category: 'good',
     status: 'published',
     summary:
-      'Routine immunisation reached far more children, but the recent dip shows how quickly coverage can slip.',
-    plannedMetric: 'Share of children receiving routine vaccines',
+      'The share of one-year-olds receiving a third DTP dose rose sharply, dipped during the pandemic, and recovered without reaching every child.',
+    plannedMetric: 'Third dose of the diphtheria, tetanus, and pertussis vaccine (DTP3)',
     geography: 'World and countries',
     sourceHint: 'WHO and UNICEF estimates',
     comparison: {
@@ -247,7 +249,7 @@ const storyCatalogue: StorySeed[] = [
     category: 'good',
     status: 'published',
     summary:
-      'Basic services have spread widely, but the distance between electricity access and sanitation use still shapes daily life.',
+      'Electricity access and at least basic sanitation have spread, but they remain separate services with different gaps and definitions.',
     plannedMetric: 'Share of the population with electricity access and basic sanitation use',
     geography: 'World and countries',
     sourceHint: 'World Bank and WHO/UNICEF Joint Monitoring Programme, via Our World in Data',
@@ -338,7 +340,7 @@ const storyCatalogue: StorySeed[] = [
     category: 'bad',
     status: 'published',
     summary:
-      'The global temperature anomaly has moved upward for more than a century, turning a noisy annual line into a clear shift in the baseline.',
+      'Annual temperature anomalies vary, while recent decades sit well above the earlier NASA baseline.',
     plannedMetric: 'Global land-ocean surface temperature anomaly',
     geography: 'World',
     sourceHint: 'NASA Goddard Institute for Space Studies GISTEMP v4',
@@ -370,7 +372,7 @@ const storyCatalogue: StorySeed[] = [
     category: 'bad',
     status: 'published',
     summary:
-      'Conflict has two different signals: how many people die in fighting, and how many state-based conflicts remain active.',
+      'State-based conflict can be counted by deaths and by active conflicts. Those measures describe different parts of organized violence.',
     plannedMetric: 'Battle deaths and conflict incidence',
     geography: 'World and regions',
     sourceHint: 'UCDP and Our World in Data',
@@ -403,7 +405,7 @@ const storyCatalogue: StorySeed[] = [
     status: 'published',
     summary:
       'Inequality moves differently across countries: some lines rose, some fell, and the surveys do not all measure the same welfare concept.',
-    plannedMetric: 'Gini coefficient and income shares',
+    plannedMetric: 'Gini coefficient',
     geography: 'Selected countries',
     sourceHint: 'World Bank Poverty and Inequality Platform',
     comparison: {
@@ -430,13 +432,13 @@ const storyCatalogue: StorySeed[] = [
   },
   {
     slug: 'biodiversity-loss',
-    title: 'Biodiversity loss',
+    title: 'Monitored vertebrate populations',
     category: 'bad',
     status: 'published',
     summary:
-      'Monitored vertebrate populations have declined sharply since 1970, with regional lines moving at very different speeds.',
-    plannedMetric: 'Species population and extinction-risk indicators',
-    geography: 'World and biomes',
+      'The Living Planet Index shows a sharp decline in monitored vertebrate populations since 1970, with regional trends moving at different speeds.',
+    plannedMetric: 'Living Planet Index of monitored vertebrate populations',
+    geography: 'World and broad regions',
     sourceHint: 'Living Planet Index and IUCN Red List',
     comparison: {
       title: 'What the Living Planet Index measures',
@@ -462,11 +464,11 @@ const storyCatalogue: StorySeed[] = [
   },
   {
     slug: 'forced-displacement',
-    title: 'Forced displacement',
+    title: 'Refugees and forced displacement',
     category: 'bad',
     status: 'published',
     summary:
-      'The number of people counted in UNHCR displacement categories has risen, while internal displacement now dominates the comparable panel.',
+      'The long series counts refugees. A separate four-category UNHCR panel shows how internally displaced people now dominate that accounting boundary.',
     plannedMetric:
       'Refugees, internally displaced people, asylum-seekers, and other people in need of international protection',
     geography: 'World and regions',
@@ -495,13 +497,13 @@ const storyCatalogue: StorySeed[] = [
   },
   {
     slug: 'air-pollution',
-    title: 'Air pollution',
+    title: 'Ambient PM2.5 exposure',
     category: 'bad',
     status: 'published',
     summary:
-      'Average PM2.5 exposure has fallen in some countries, but the world line remains far above the level WHO recommends for health protection.',
+      'Population-weighted ambient PM2.5 exposure has fallen in some countries, but the world estimate remains above the WHO health guideline.',
     plannedMetric: 'Population-weighted annual mean PM2.5 exposure',
-    geography: 'World and cities',
+    geography: 'World and selected countries',
     sourceHint: 'Global Burden of Disease Study, World Bank, Our World in Data, and WHO',
     comparison: {
       title: 'What the air-pollution series compares',
@@ -530,8 +532,9 @@ const storyCatalogue: StorySeed[] = [
     title: 'Democratic backsliding',
     category: 'bad',
     status: 'published',
-    summary: 'The latest five-year changes show democratic deterioration in some countries and recovery in others.',
-    plannedMetric: 'Democracy and civil-liberties indices',
+    summary:
+      'The V-Dem liberal-democracy index fell in some countries between 2020 and 2025 and rose in others; small changes need cautious reading.',
+    plannedMetric: 'V-Dem Liberal Democracy Index',
     geography: 'Selected countries and countries with comparable 2020–2025 values',
     sourceHint: 'V-Dem and Our World in Data',
     comparison: {

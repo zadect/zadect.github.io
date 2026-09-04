@@ -39,21 +39,23 @@ describe('app routes', () => {
 
     window.location.hash = '#/good/literacy';
     render(<App />);
-    expect(screen.getByRole('heading', { name: 'Literacy' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Adult literacy' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /literacy rose across a broad panel/i })).toBeInTheDocument();
     expect(screen.getByText(/World Bank\/UNESCO cross-check found the same reporting gap/i)).toBeInTheDocument();
 
     window.location.hash = '#/bad/democratic-backsliding';
     render(<App />);
     expect(screen.getByRole('heading', { name: 'Democratic backsliding' })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: /where the index fell/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: /five-year change in the liberal democracy index/i }),
+    ).toBeInTheDocument();
   });
 
   it('renders the published Women’s rights story', () => {
     window.location.hash = '#/good/womens-rights';
     render(<App />);
 
-    expect(screen.getByRole('heading', { name: "Women's rights" })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Legal equality for women' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /legal baseline has risen/i })).toBeInTheDocument();
     expect(screen.getByText(/formal legal provisions, not enforcement/i)).toBeInTheDocument();
   });
@@ -80,7 +82,7 @@ describe('app routes', () => {
     window.location.hash = '#/good/vaccination-coverage';
     render(<App />);
 
-    expect(screen.getByRole('heading', { name: 'Vaccination coverage' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'DTP3 vaccination coverage' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /high vaccination baseline/i })).toBeInTheDocument();
     expect(
       screen.getAllByText(/share of one-year-olds who received the third dose/i),
@@ -104,7 +106,7 @@ describe('app routes', () => {
 
     expect(screen.getByRole('heading', { name: 'Extreme poverty' })).toBeInTheDocument();
     expect(
-      screen.getByRole('heading', { name: /global poverty line moved downward/i }),
+      screen.getByRole('heading', { name: /global share below \$3\/day fell/i }),
     ).toBeInTheDocument();
     expect(screen.getByText(/income data in some countries with consumption data/i)).toBeInTheDocument();
   });
@@ -115,7 +117,7 @@ describe('app routes', () => {
 
     expect(screen.getByRole('heading', { name: 'Climate change' })).toBeInTheDocument();
     expect(
-      screen.getByRole('heading', { name: /annual signal keeps moving upward/i }),
+      screen.getByRole('heading', { name: /annual anomalies vary around a warmer baseline/i }),
     ).toBeInTheDocument();
     expect(screen.getByText(/global average hides regional and seasonal differences/i)).toBeInTheDocument();
   });
@@ -126,7 +128,7 @@ describe('app routes', () => {
 
     expect(screen.getByRole('heading', { name: 'Wars and conflict' })).toBeInTheDocument();
     expect(
-      screen.getByRole('heading', { name: /deaths can spike when conflicts intensify/i }),
+      screen.getByRole('heading', { name: /battle-related deaths in state-based conflicts/i }),
     ).toBeInTheDocument();
     expect(screen.getAllByText(/deaths from disease, hunger, displacement/i)).not.toHaveLength(0);
   });
@@ -137,7 +139,7 @@ describe('app routes', () => {
 
     expect(screen.getByRole('heading', { name: 'Rich and poor' })).toBeInTheDocument();
     expect(
-      screen.getByRole('heading', { name: /inequality does not move in one direction/i }),
+      screen.getByRole('heading', { name: /reported gini observations by country/i }),
     ).toBeInTheDocument();
     expect(screen.getByText(/survey redesigns can create breaks/i)).toBeInTheDocument();
   });
@@ -146,20 +148,24 @@ describe('app routes', () => {
     window.location.hash = '#/bad/biodiversity-loss';
     render(<App />);
 
-    expect(screen.getByRole('heading', { name: 'Biodiversity loss' })).toBeInTheDocument();
     expect(
-      screen.getByRole('heading', { name: /monitored-population signal fell sharply/i }),
+      screen.getByRole('heading', { name: 'Monitored vertebrate populations' }),
     ).toBeInTheDocument();
-    expect(screen.getByText(/not a headcount of every wild animal/i)).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: /monitored vertebrate-population index fell sharply/i }),
+    ).toBeInTheDocument();
+    expect(screen.getAllByText(/monitored vertebrate populations/i)).not.toHaveLength(0);
   });
 
   it('renders the published forced displacement story', () => {
     window.location.hash = '#/bad/forced-displacement';
     render(<App />);
 
-    expect(screen.getByRole('heading', { name: 'Forced displacement' })).toBeInTheDocument();
     expect(
-      screen.getByRole('heading', { name: /internal displacement now dominates/i }),
+      screen.getByRole('heading', { name: 'Refugees and forced displacement' }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: /four unhcr categories, shown separately/i }),
     ).toBeInTheDocument();
     expect(screen.getByText(/headline number depends on the accounting boundary/i)).toBeInTheDocument();
   });
@@ -168,9 +174,9 @@ describe('app routes', () => {
     window.location.hash = '#/bad/air-pollution';
     render(<App />);
 
-    expect(screen.getByRole('heading', { name: 'Air pollution' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Ambient PM2.5 exposure' })).toBeInTheDocument();
     expect(
-      screen.getByRole('heading', { name: /global average remains far above/i }),
+      screen.getByRole('heading', { name: /global ambient pm2\.5 exposure remains above/i }),
     ).toBeInTheDocument();
     expect(screen.getByText(/modeled exposure estimates, not direct monitor readings/i)).toBeInTheDocument();
   });

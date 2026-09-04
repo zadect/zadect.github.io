@@ -116,9 +116,8 @@ export function ClimateChangeStory({ story }: ClimateChangeStoryProps) {
     <StoryFrame story={story}>
       <section className="story-lede">
         <p className="lede">
-          The climate signal is not hidden in a single hot year. It is the sustained shift in the
-          baseline: recent years sit well above the range that shaped the first half of the
-          record.
+          Annual anomalies vary, but recent years sit well above the earlier NASA baseline. The
+          decadal averages make that change easier to compare than any single record year.
         </p>
         <div className="stat-grid">
           <div className="stat-card">
@@ -152,8 +151,8 @@ export function ClimateChangeStory({ story }: ClimateChangeStoryProps) {
 
       <ChartCard
         eyebrow="World · NASA GISTEMP v4"
-        title="The annual signal keeps moving upward"
-        description="Each point is NASA’s full-year global land-ocean temperature anomaly. The 2026 row is omitted because the current-year record is incomplete."
+        title="Annual anomalies vary around a warmer baseline"
+        description="Each point is NASA’s full-year global land-ocean temperature anomaly relative to 1951–1980. Annual records rise and fall; the decade averages below show the longer shift."
         spec={annualSpec}
         data={climateAnnualSeries.map((point) => ({
           year: point.year,
@@ -191,8 +190,8 @@ export function ClimateChangeStory({ story }: ClimateChangeStoryProps) {
       />
 
       <section className="method-note">
-        <p className="eyebrow">Read the evidence carefully</p>
-        <h2>A global average is a warning light, not a local forecast.</h2>
+        <p className="eyebrow">Scope and limits</p>
+        <h2>A global average does not describe every place or season.</h2>
         <p>
           A temperature anomaly compares a year with a baseline; it is not the temperature
           outside your window or a prediction of tomorrow. The global mean also hides regional
@@ -203,7 +202,7 @@ export function ClimateChangeStory({ story }: ClimateChangeStoryProps) {
 
       <section className="sources-section">
         <p className="eyebrow">Sources and definitions</p>
-        <h2>Where the temperature record comes from</h2>
+        <h2>Sources and methodology</h2>
         <SourceList sources={sources} />
       </section>
     </StoryFrame>

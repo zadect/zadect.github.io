@@ -33,7 +33,7 @@ test('the overview links to both published stories', async ({ page }) => {
   await expect(page).toHaveURL(/#\/bad\/ceo-pay-gap/);
   await expect(page.getByRole('heading', { name: /the ratio is far above its 1960s level/i })).toBeVisible();
   await expect(page.getByRole('heading', { name: /a defined contrast/i })).toBeVisible();
-  await expect(page.locator('.chart-card__visual svg')).toHaveCount(3);
+  await expect(page.locator('.chart-card__visual svg')).toHaveCount(4);
 });
 
 test('desktop landing cards contain every story title', async ({ page }, testInfo) => {
@@ -105,7 +105,7 @@ test('mobile chart cards contain wide drawings in local scrollers', async ({ pag
 
 test('the new literacy and democracy stories render their charts and maps', async ({ page }) => {
   await page.goto('/#/good/literacy');
-  await expect(page.getByRole('heading', { name: 'Literacy', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Adult literacy', exact: true })).toBeVisible();
   await expect(page.getByRole('heading', { name: /literacy rose across a broad panel/i })).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
   expect(await page.locator('.map-card__visual .mark-shape path').count()).toBeGreaterThan(50);
@@ -116,7 +116,9 @@ test('the new literacy and democracy stories render their charts and maps', asyn
   await expect(
     page.getByRole('heading', { name: 'Democratic backsliding', exact: true }),
   ).toBeVisible();
-  await expect(page.getByRole('heading', { name: /where the index fell/i })).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: /five-year change in the liberal democracy index/i }),
+  ).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
   expect(await page.locator('.map-card__visual .mark-shape path').count()).toBeGreaterThan(100);
   await expect(page.getByText(/one of the 2020 or 2025 endpoint values is missing/i)).toBeVisible();
@@ -125,7 +127,7 @@ test('the new literacy and democracy stories render their charts and maps', asyn
 
 test('the Women’s rights story renders its legal-equality charts', async ({ page }) => {
   await page.goto('/#/good/womens-rights');
-  await expect(page.getByRole('heading', { name: "Women's rights", exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Legal equality for women', exact: true })).toBeVisible();
   await expect(page.getByRole('heading', { name: /legal baseline has risen worldwide/i })).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
   await expect(page.getByText(/formal legal provisions, not enforcement/i)).toBeVisible();
@@ -139,7 +141,7 @@ test('the child mortality story renders its long-run and country charts', async 
   await expect(page.getByRole('heading', { name: 'Child mortality', exact: true })).toBeVisible();
   await expect(page.getByRole('heading', { name: /global risk fell across two centuries/i })).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
-  await expect(page.getByText(/the remaining risk is still very uneven/i)).toBeVisible();
+  await expect(page.getByText(/country estimates still differ widely/i)).toBeVisible();
   await expect(page.getByRole('link', { name: /Child mortality rate/i }).first()).toBeVisible();
 });
 
@@ -148,16 +150,16 @@ test('the life expectancy story renders its long-run and country charts', async 
   await expect(page.getByRole('heading', { name: 'Life expectancy', exact: true })).toBeVisible();
   await expect(page.getByRole('heading', { name: /average human life became much longer/i })).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
-  await expect(page.getByText(/one average hides many different lives/i)).toBeVisible();
+  await expect(page.getByText(/life expectancy is an average, not a typical lifespan/i)).toBeVisible();
   await expect(page.getByRole('link', { name: /Life expectancy/i }).first()).toBeVisible();
 });
 
 test('the vaccination coverage story renders its world and country charts', async ({ page }) => {
   await page.goto('/#/good/vaccination-coverage');
-  await expect(page.getByRole('heading', { name: 'Vaccination coverage', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'DTP3 vaccination coverage', exact: true })).toBeVisible();
   await expect(page.getByRole('heading', { name: /high vaccination baseline/i })).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
-  await expect(page.getByText(/coverage is a system signal/i)).toBeVisible();
+  await expect(page.getByText(/DTP3 tracks one routine-vaccine milestone/i)).toBeVisible();
   await expect(page.getByRole('link', { name: /DTP3 vaccination coverage/i }).first()).toBeVisible();
 });
 
@@ -177,7 +179,7 @@ test('the electricity and sanitation story renders its service charts', async ({
 test('the extreme poverty story renders its world and country charts', async ({ page }) => {
   await page.goto('/#/good/extreme-poverty');
   await expect(page.getByRole('heading', { name: 'Extreme poverty', exact: true })).toBeVisible();
-  await expect(page.getByRole('heading', { name: /global poverty line moved downward/i })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /global share below \$3\/day fell/i })).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
   await expect(page.getByText(/source-extrapolated 2023–2026 tail/i).first()).toBeVisible();
   await expect(page.getByText(/income data in some countries with consumption data/i)).toBeVisible();
@@ -189,7 +191,7 @@ test('the extreme poverty story renders its world and country charts', async ({ 
 test('the climate change story renders its annual and decade charts', async ({ page }) => {
   await page.goto('/#/bad/climate-change');
   await expect(page.getByRole('heading', { name: 'Climate change', exact: true })).toBeVisible();
-  await expect(page.getByRole('heading', { name: /annual signal keeps moving upward/i })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /annual anomalies vary around a warmer baseline/i })).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
   await expect(page.getByText(/2020s point uses six complete years/i)).toBeVisible();
   await expect(page.getByText(/global average hides regional and seasonal differences/i)).toBeVisible();
@@ -202,7 +204,7 @@ test('the wars and conflict story renders its two measures', async ({ page }) =>
   await page.goto('/#/bad/wars-and-conflict');
   await expect(page.getByRole('heading', { name: 'Wars and conflict', exact: true })).toBeVisible();
   await expect(
-    page.getByRole('heading', { name: /deaths can spike when conflicts intensify/i }),
+    page.getByRole('heading', { name: /battle-related deaths in state-based conflicts/i }),
   ).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
   await expect(page.getByText(/deaths from disease, hunger, displacement/i).first()).toBeVisible();
@@ -215,7 +217,7 @@ test('the rich and poor story renders its Gini charts', async ({ page }) => {
   await page.goto('/#/bad/inequality-by-country');
   await expect(page.getByRole('heading', { name: 'Rich and poor', exact: true })).toBeVisible();
   await expect(
-    page.getByRole('heading', { name: /inequality does not move in one direction/i }),
+    page.getByRole('heading', { name: /reported gini observations by country/i }),
   ).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
   await expect(page.getByText(/survey redesigns can create breaks/i)).toBeVisible();
@@ -226,12 +228,14 @@ test('the rich and poor story renders its Gini charts', async ({ page }) => {
 
 test('the biodiversity loss story renders its global and regional charts', async ({ page }) => {
   await page.goto('/#/bad/biodiversity-loss');
-  await expect(page.getByRole('heading', { name: 'Biodiversity loss', exact: true })).toBeVisible();
   await expect(
-    page.getByRole('heading', { name: /monitored-population signal fell sharply/i }),
+    page.getByRole('heading', { name: 'Monitored vertebrate populations', exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: /monitored vertebrate-population index fell sharply/i }),
   ).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
-  await expect(page.getByText(/not a headcount of every wild animal/i)).toBeVisible();
+  await expect(page.getByText(/the index describes monitored populations, not all biodiversity/i)).toBeVisible();
   await expect(
     page.getByRole('link', { name: /Living Planet Index/i }).first(),
   ).toBeVisible();
@@ -239,9 +243,11 @@ test('the biodiversity loss story renders its global and regional charts', async
 
 test('the forced displacement story renders its long-run and category charts', async ({ page }) => {
   await page.goto('/#/bad/forced-displacement');
-  await expect(page.getByRole('heading', { name: 'Forced displacement', exact: true })).toBeVisible();
   await expect(
-    page.getByRole('heading', { name: /internal displacement now dominates/i }),
+    page.getByRole('heading', { name: 'Refugees and forced displacement', exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: /four unhcr categories, shown separately/i }),
   ).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
   await expect(page.getByText(/blank values mean that the category was not reported/i)).toBeVisible();
@@ -250,9 +256,9 @@ test('the forced displacement story renders its long-run and category charts', a
 
 test('the air pollution story renders its global and country charts', async ({ page }) => {
   await page.goto('/#/bad/air-pollution');
-  await expect(page.getByRole('heading', { name: 'Air pollution', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Ambient PM2.5 exposure', exact: true })).toBeVisible();
   await expect(
-    page.getByRole('heading', { name: /global average remains far above/i }),
+    page.getByRole('heading', { name: /global ambient pm2\.5 exposure remains above/i }),
   ).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
   await expect(page.getByText(/the line is the population-weighted annual mean/i)).toBeVisible();
