@@ -137,7 +137,7 @@ function HomePage() {
               <span>&amp; The Bad</span>
             </span>
           </Link>
-          <p>By: zadect; update: 2026-08-16</p>
+          <p>By: zadect; update: 2026-09-04</p>
         </div>
       </footer>
     </div>
