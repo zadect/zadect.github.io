@@ -65,6 +65,18 @@ test('desktop landing cards contain every story title', async ({ page }, testInf
 
   expect(overflowingCards).toEqual([]);
 
+  const cardHeaderOverlaps = await page.locator('.story-card').evaluateAll((cards) =>
+    cards
+      .map((card) => {
+        const meta = card.querySelector('.story-card__meta')?.getBoundingClientRect();
+        const arrow = card.querySelector('.story-card__arrow')?.getBoundingClientRect();
+        return meta && arrow ? meta.right > arrow.left : false;
+      })
+      .filter(Boolean),
+  );
+
+  expect(cardHeaderOverlaps).toEqual([]);
+
   const misalignedRows = await page.locator('.story-list').evaluateAll((lists) =>
     lists.flatMap((list) => {
       const rows = new Map<number, number[]>();

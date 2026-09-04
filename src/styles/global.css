@@ -591,7 +591,16 @@ h2 {
   background: var(--future-soft);
 }
 
+.story-card__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  min-width: 0;
+  min-height: 2.25rem;
+}
+
 .story-card__meta {
+  flex: 1 1 auto;
   min-width: 0;
   max-width: 100%;
   color: var(--good-deep);
@@ -652,9 +661,7 @@ h2 {
 }
 
 .story-card__arrow {
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
+  flex: 0 0 auto;
   font-size: 1.5rem;
   line-height: 1;
 }
