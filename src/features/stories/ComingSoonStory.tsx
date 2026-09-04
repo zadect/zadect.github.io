@@ -18,7 +18,7 @@ export function ComingSoonStory({ story }: ComingSoonStoryProps) {
             ← Back to the overview
           </Link>
           <section className="coming-soon">
-            <p className="eyebrow">{category.signalLabel}</p>
+            <p className="eyebrow">{category.label}</p>
             <p className="coming-soon__label">Coming next</p>
             <h1>{story.title}</h1>
             <p className="lede">{story.summary}</p>

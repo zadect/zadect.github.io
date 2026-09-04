@@ -162,7 +162,7 @@ export function AiTechStory({ story }: AiTechStoryProps) {
       <ChartCard
         eyebrow="EU-27 enterprise adoption · Eurostat"
         title="Reported firm AI adoption, with a 2022 reporting gap"
-        description="Each point is a reported Eurostat observation for 2021, 2023, 2024, or 2025. The empty 2022 position is deliberate: it is not interpolated."
+        description="Each point is a reported Eurostat observation for 2021, 2023, 2024, or 2025. The empty 2022 position marks a reporting gap; no value is interpolated."
         spec={aiTimelineSpec}
         data={aiEuAdoptionChartSeries.map((point) => ({
           year: point.year,

@@ -295,7 +295,7 @@ export function HealthLongevityHumanCapitalStory({
       <ChartCard
         eyebrow="World · WHO Global Health Observatory via OWID"
         title="Healthy life expectancy"
-        description="Healthy life expectancy increased through 2019 before falling in 2020 and 2021. The line is a population estimate, not a count of diagnoses."
+        description="Healthy life expectancy increased through 2019 before falling in 2020 and 2021. The series estimates years lived in full health; it does not count diagnoses."
         spec={haleWorldSpec}
         data={healthyLifeExpectancyWorldSeries.map((point) => ({
           year: point.year,
@@ -333,7 +333,7 @@ export function HealthLongevityHumanCapitalStory({
       <ChartCard
         eyebrow="World · WHO Global Health Expenditure Database via World Bank and OWID"
         title="World health spending per person"
-        description="The world total combines public and private current health expenditure per person. It is expressed in current international dollars, so it is not an inflation-adjusted real-spending series."
+        description="The world total combines public and private current health expenditure per person. It is expressed in current international dollars rather than inflation-adjusted real spending."
         spec={spendingWorldSpec}
         data={healthSpendingWorldSeries.map((point) => ({
           year: point.year,
@@ -370,12 +370,13 @@ export function HealthLongevityHumanCapitalStory({
 
       <section className="method-note method-note--future">
         <p className="eyebrow">Scope and limits</p>
-        <h2>These measures do not establish a spending effect.</h2>
+        <h2>The two measures answer different health questions.</h2>
         <p>
           Healthy life expectancy blends mortality and disability estimates. Spending combines
           public and private outlays and is reported in current international dollars. Neither
-          measure tells us how fairly care is distributed, which treatments work, or whether one
-          caused the other. The charts show capacity and outcomes as separate signals.
+          measure shows how fairly care is distributed or which treatments work, and the series
+          cannot establish that spending caused an outcome. The charts keep resources and health
+          outcomes separate.
         </p>
       </section>
 

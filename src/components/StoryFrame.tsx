@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import type { ReactNode } from 'react';
 import { getStoryCategoryPresentation, type StoryDefinition } from '../content/stories';
 import { SiteHeader } from './SiteHeader';
-import { EvidenceStrip, StoryEvidenceContext } from './StoryEvidence';
+import { EvidenceStrip, getEvidenceStatusLabel, StoryEvidenceContext } from './StoryEvidence';
 
 interface StoryFrameProps {
   story: StoryDefinition;
@@ -21,7 +21,9 @@ export function StoryFrame({ story, children }: StoryFrameProps) {
             ← Back to the overview
           </Link>
           <header className="story-hero">
-            <p className="eyebrow">{category.signalLabel}</p>
+            <p className="eyebrow">
+              {category.label} · {getEvidenceStatusLabel(story.evidence.status)}
+            </p>
             <h1>{story.title}</h1>
             <p className="story-hero__summary">{story.summary}</p>
           </header>

@@ -90,14 +90,14 @@ function HomePage() {
               <em> heading?</em>
             </h1>
             <p className="home-hero__intro">
-              Charts that put improving conditions beside worsening ones, and track the forces
-              likely to shape the years ahead.
+              Sourced time series on human welfare, persistent harms, and the conditions shaping
+              future decisions.
             </p>
             <div className="home-hero__actions">
               <Link className="button button--good" to="/?section=good">
                 Explore the stories
               </Link>
-              <span className="home-hero__aside">Good trends. Bad trends. What comes next.</span>
+              <span className="home-hero__aside">Human welfare. Persistent harms. Future choices.</span>
             </div>
           </div>
           <div
@@ -331,9 +331,9 @@ function NotFoundPage() {
       <SiteHeader />
       <main>
         <section className="not-found">
-          <p className="eyebrow">No line here yet</p>
+          <p className="eyebrow">No story here yet</p>
           <h1>That story does not exist.</h1>
-          <p>Try the overview for the published stories and the documented ideas still to come.</p>
+          <p>Return to the overview for published stories and documented ideas still to come.</p>
           <Link className="button button--good" to="/">
             Back to the overview
           </Link>

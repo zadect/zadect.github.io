@@ -278,7 +278,7 @@ export function DemographicsMigrationStory({ story }: DemographicsMigrationStory
       <ChartCard
         eyebrow="Six selected countries · observed checkpoints"
         title="Observed median age in selected countries"
-        description="Dashed connectors join the same four checkpoints, revealing different demographic starting points and changes. They are not a ranking of wellbeing."
+        description="Dashed connectors join the same four checkpoints, revealing different demographic starting points and changes. Median age describes age structure, not wellbeing."
         spec={medianPanelSpec}
         data={medianAgePanelSeries.map((point) => ({
           entity: point.entity,
@@ -316,7 +316,7 @@ export function DemographicsMigrationStory({ story }: DemographicsMigrationStory
       <ChartCard
         eyebrow="Six selected countries · shared checkpoints"
         title="Foreign-born population share in selected countries"
-        description="Germany and the United States sit on a different scale from India, Nigeria, and Brazil in this panel. Dashed connectors show composition, not integration or social impact."
+        description="Germany and the United States sit on a different scale from India, Nigeria, and Brazil in this panel. Dashed connectors show population composition; integration and social impact require other measures."
         spec={migrationPanelSpec}
         data={migrationPanelSeries.map((point) => ({
           entity: point.entity,

@@ -197,8 +197,7 @@ export function CeoPayStory({ story }: CeoPayStoryProps) {
         <p className="lede">
           EPI’s comparison is an average-to-average ratio: compensation for CEOs at the largest US
           public companies against compensation for production and nonsupervisory workers. The
-          ratio is far higher now than it was in the 1960s, with large swings when stock prices
-          move.
+          ratio is far higher now than in the 1960s, with large swings when stock prices move.
         </p>
         <div className="stat-grid">
           <div className="stat-card stat-card--dark">
@@ -222,7 +221,7 @@ export function CeoPayStory({ story }: CeoPayStoryProps) {
 
       <section className="definition-card definition-card--dark" aria-labelledby="ceo-definition-title">
         <p className="eyebrow">What this compares</p>
-        <h2 id="ceo-definition-title">A defined contrast, not a company-level pay ratio.</h2>
+        <h2 id="ceo-definition-title">How the two compensation averages are defined.</h2>
         <dl className="definition-grid">
           <div>
             <dt>Numerator</dt>
@@ -248,8 +247,8 @@ export function CeoPayStory({ story }: CeoPayStoryProps) {
           <div>
             <dt>Limit</dt>
             <dd>
-              The ratio compares two averages from different populations. It is not the pay ratio
-              between a particular CEO and that company’s median employee.
+              The ratio compares two averages from different populations. It cannot be read as the
+              pay ratio between a particular CEO and that company’s median employee.
             </dd>
           </div>
         </dl>
@@ -326,7 +325,7 @@ export function CeoPayStory({ story }: CeoPayStoryProps) {
         <ChartCard
           eyebrow="US absolute compensation · EPI"
           title="Worker compensation in the same industries"
-          description="Average annual compensation for production and nonsupervisory workers in the industries represented by the CEO sample. This is not a median employee wage."
+          description="Average annual compensation for production and nonsupervisory workers in the industries represented by the CEO sample. It is an average worker-compensation series, rather than a median employee wage."
           spec={workerCompensationSpec}
           data={workerChartSeries.map((point) => ({
             year: point.year,
@@ -381,7 +380,7 @@ export function CeoPayStory({ story }: CeoPayStoryProps) {
 
       <section className="sources-section">
         <p className="eyebrow">Sources and definitions</p>
-        <h2>Where the numbers come from</h2>
+        <h2>Sources and methodology</h2>
         <SourceList sources={allSources} />
       </section>
     </StoryFrame>

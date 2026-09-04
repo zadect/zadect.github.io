@@ -131,9 +131,8 @@ export function LiteracyStory({ story }: LiteracyStoryProps) {
     <StoryFrame story={story}>
       <section className="story-lede">
         <p className="lede">
-          Basic literacy has spread across generations, but the latest map is not a single
-          synchronized snapshot. Each country is shown with the newest reported observation we
-          could retain.
+          Basic literacy has spread across generations. The map combines each country’s newest
+          qualifying observation, so the reported years differ.
         </p>
         <div className="stat-grid">
           <div className="stat-card">
@@ -156,7 +155,7 @@ export function LiteracyStory({ story }: LiteracyStoryProps) {
       <ChartCard
         eyebrow="Selected countries · OWID + UNESCO"
         title="Literacy rose across a broad panel of countries"
-        description="The panel is deliberately balanced across regions and includes countries with different starting points. It is an illustration of long-run change, not a ranking of every country."
+        description="The panel covers several regions and includes countries with different starting points. It illustrates long-run change rather than ranking every country."
         spec={literacySpec}
         data={literacySeries.map((point) => ({
           country: point.country,

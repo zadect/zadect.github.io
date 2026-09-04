@@ -161,7 +161,7 @@ export function LifeExpectancyStory({ story }: LifeExpectancyStoryProps) {
 
       <ChartCard
         eyebrow="World · OWID long-run compilation"
-        title="The average human life became much longer"
+        title="Estimated life expectancy rose over the long run"
         description="The dashed segment is the historical reconstruction; the solid segment uses UN World Population Prospects estimates from 1950 onward."
         spec={longRunSpec}
         data={lifeExpectancyLongRunSeries.map((point) => ({
@@ -179,7 +179,7 @@ export function LifeExpectancyStory({ story }: LifeExpectancyStoryProps) {
 
       <ChartCard
         eyebrow="Selected countries · UN WPP"
-        title="Longer lives arrived at different speeds"
+        title="Country estimates at selected checkpoints"
         description="The country panel keeps four selected checkpoints for each country. Dashed connectors are visual guides between observations, not annual estimates."
         spec={panelSpec}
         data={lifeExpectancyPanelSeries.map((point) => ({
@@ -198,12 +198,12 @@ export function LifeExpectancyStory({ story }: LifeExpectancyStoryProps) {
 
       <section className="method-note">
         <p className="eyebrow">Scope and limits</p>
-        <h2>Life expectancy is an average, not a typical lifespan.</h2>
+        <h2>Life expectancy summarizes a population.</h2>
         <p>
-          Life expectancy is an average across a population. It does not say that people die at
-          that age, and it can improve while large gaps by income, sex, region, or cause of death
-          remain. Historical values also combine sources with different coverage; the source notes
-          make those transitions visible.
+          It describes the average years a newborn would live if that year’s age-specific death
+          rates stayed constant. Large gaps by income, sex, region, or cause of death can remain
+          inside the average. Historical values also combine sources with different coverage; the
+          source notes identify those transitions.
         </p>
       </section>
 

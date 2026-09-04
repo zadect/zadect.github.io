@@ -16,11 +16,11 @@ interface StudyContextProps {
 export function StudyContext({ items }: StudyContextProps) {
   return (
     <section className="study-context" aria-labelledby="study-context-title">
-      <p className="eyebrow">Separate research context</p>
-      <h2 id="study-context-title">Useful studies, kept out of the plotted series.</h2>
+      <p className="eyebrow">Related research</p>
+      <h2 id="study-context-title">Studies that address the wider question.</h2>
       <p className="study-context__intro">
-        These publications widen the question. Their estimates and scenarios are not inputs to the
-        charts above.
+        These publications cover questions beyond the plotted measures. Their estimates and
+        scenarios are separate from the charts above.
       </p>
       <div className="study-grid">
         {items.map((item) => (

@@ -200,7 +200,7 @@ export function InequalityByCountryStory({ story }: InequalityByCountryStoryProp
       <ChartCard
         eyebrow="First and latest reported observations · no interpolation"
         title="The endpoint comparison needs context"
-        description="Each line joins a country’s first and latest observation in this extract. It shows the direction between two measured points, not an estimate of every year in between."
+        description="Each connector joins a country’s first and latest observation in this extract. It shows the change between two measured points; the intervening years are unobserved."
         spec={endpointSpec}
         data={endpointData}
         columns={[
@@ -216,15 +216,15 @@ export function InequalityByCountryStory({ story }: InequalityByCountryStoryProp
 
       <section className="method-note">
         <p className="eyebrow">Scope and limits</p>
-        <h2>A Gini coefficient describes a distribution, not a person’s life.</h2>
+        <h2>A Gini coefficient describes a distribution.</h2>
         <p>
-          A higher Gini means a more unequal distribution within a country; it does not tell us
+          A higher Gini means a more unequal distribution within a country; it cannot tell us
           whether everyone became richer or poorer. The World Bank combines national survey data,
           using disposable income after taxes and benefits for many high-income countries and
           consumption for many lower-income countries. Survey redesigns can create breaks, and the
           selected countries do not report every year. The lowest latest coefficient in this panel
-          is {formatGini(lowestLatest.gini)} for {lowestLatest.country}, but that is not a global
-          league table.
+          is {formatGini(lowestLatest.gini)} for {lowestLatest.country}; that comparison is not a
+          global league table.
         </p>
       </section>
 

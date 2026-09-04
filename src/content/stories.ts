@@ -16,7 +16,6 @@ export interface StoryEvidence {
 
 export interface StoryCategoryPresentation {
   label: string;
-  signalLabel: string;
   heading: string;
   description: string;
 }
@@ -24,19 +23,16 @@ export interface StoryCategoryPresentation {
 export const storyCategoryPresentation: Record<StoryCategory, StoryCategoryPresentation> = {
   good: {
     label: 'The good',
-    signalLabel: 'Good signal',
-    heading: 'Signals of human progress',
-    description: 'Each card opens a sourced time series, its definition, and the date its data ends.',
+    heading: 'Measured improvements in human welfare',
+    description: 'Each story links to a sourced time series, its definition, and the date of its latest data.',
   },
   bad: {
     label: 'The bad',
-    signalLabel: 'Bad signal',
-    heading: 'Signals we cannot look away from',
-    description: 'Each card opens a sourced time series, its definition, and the date its data ends.',
+    heading: 'Measured harms and widening gaps',
+    description: 'Each story links to a sourced time series, its definition, and the date of its latest data.',
   },
   future: {
     label: 'The future',
-    signalLabel: 'Future baseline',
     heading: 'Conditions shaping the next decades',
     description: 'Historical baselines for decisions that will shape the years ahead.',
   },
@@ -302,7 +298,7 @@ const storyCatalogue: StorySeed[] = [
         },
         {
           label: 'Limit',
-          value: 'The line is a monetary floor, not a complete measure of deprivation. Countries may use income or consumption data, and survey definitions can change over time.',
+          value: 'The $3 threshold captures purchasing power, not every dimension of deprivation. Countries may use income or consumption data, and survey definitions can change over time.',
         },
       ],
     },
@@ -361,7 +357,7 @@ const storyCatalogue: StorySeed[] = [
         },
         {
           label: 'Limit',
-          value: 'A global average hides regional and seasonal differences. This page shows the observed temperature signal, not a forecast or an impact estimate.',
+          value: 'A global average hides regional and seasonal differences. This page shows the observed temperature record, not a forecast or an impact estimate.',
         },
       ],
     },
@@ -404,7 +400,7 @@ const storyCatalogue: StorySeed[] = [
     category: 'bad',
     status: 'published',
     summary:
-      'Inequality moves differently across countries: some lines rose, some fell, and the surveys do not all measure the same welfare concept.',
+      'Inequality changed in different directions across countries, and the surveys do not all measure the same welfare concept.',
     plannedMetric: 'Gini coefficient',
     geography: 'Selected countries',
     sourceHint: 'World Bank Poverty and Inequality Platform',
@@ -457,7 +453,7 @@ const storyCatalogue: StorySeed[] = [
         },
         {
           label: 'Limit',
-          value: 'This is not a census of all wildlife, a count of species, or a direct measure of extinction. Monitoring coverage is uneven and the index is sensitive to which populations are observed.',
+          value: 'The index is not a census of wildlife or species and cannot measure extinction directly. Monitoring coverage is uneven and the result depends on which populations are observed.',
         },
       ],
     },
@@ -550,7 +546,7 @@ const storyCatalogue: StorySeed[] = [
         },
         {
           label: 'Limit',
-          value: 'This is a model-based signal of change, not a causal explanation or a complete ranking of political systems.',
+          value: 'This model-based estimate describes change in one index; it does not identify causes or rank every part of a political system.',
         },
       ],
     },
@@ -662,7 +658,7 @@ const storyCatalogue: StorySeed[] = [
     geography: 'World growth and six selected countries',
     sourceHint: 'World Bank national accounts and public-sector debt data, via Our World in Data',
     comparison: {
-      title: 'Two signals, kept separate',
+      title: 'Two measures, kept separate',
       fields: [
         {
           label: 'Growth',
@@ -696,7 +692,7 @@ const storyCatalogue: StorySeed[] = [
     sourceHint:
       'IMF International Financial Statistics via World Bank and Ember, via Our World in Data',
     comparison: {
-      title: 'Two signals, kept separate',
+      title: 'Two measures, kept separate',
       fields: [
         {
           label: 'Prices',
@@ -712,7 +708,7 @@ const storyCatalogue: StorySeed[] = [
         },
         {
           label: 'Limit',
-          value: 'Inflation is not the same as every household’s cost of living, and renewable electricity is not renewable energy’s share of all energy use. The two lines are context, not a causal claim.',
+          value: 'Inflation describes consumer prices, while renewable electricity describes one part of energy generation. Neither measure gives every household’s cost of living or total renewable-energy use, and the pair is not a causal claim.',
         },
       ],
     },
@@ -729,7 +725,7 @@ const storyCatalogue: StorySeed[] = [
     sourceHint:
       'UN World Population Prospects and UN DESA International Migrant Stock, via Our World in Data',
     comparison: {
-      title: 'Two population signals, kept separate',
+      title: 'Two population measures, kept separate',
       fields: [
         {
           label: 'Age',
@@ -745,7 +741,7 @@ const storyCatalogue: StorySeed[] = [
         },
         {
           label: 'Limit',
-          value: 'Neither line measures dependency, pension readiness, integration, or the causes of population change. The projection is a scenario, and the migration series is not a flow count.',
+          value: 'These measures do not cover dependency, pension readiness, integration, or the causes of population change. The projection is a scenario, and the migration series counts residents born abroad rather than annual moves.',
         },
       ],
     },
@@ -794,7 +790,7 @@ const storyCatalogue: StorySeed[] = [
     sourceHint:
       'WHO Global Health Observatory and Global Health Expenditure Database via World Bank and Our World in Data',
     comparison: {
-      title: 'Two health signals, kept separate',
+      title: 'Two health measures, kept separate',
       fields: [
         {
           label: 'Healthy years',
@@ -810,7 +806,7 @@ const storyCatalogue: StorySeed[] = [
         },
         {
           label: 'Limit',
-          value: 'Spending is not care quality or access, and healthy life expectancy is not a diagnosis count. The two measures are context, not evidence that spending caused an outcome.',
+          value: 'Spending describes resources, while healthy life expectancy describes years lived in full health. Neither measure covers care quality, access, or diagnoses, and the pair does not show that spending caused an outcome.',
         },
       ],
     },
@@ -906,7 +902,7 @@ const storyCatalogue: StorySeed[] = [
         },
         {
           label: 'Limit',
-          value: 'A high ratio is not automatically a crisis, and a low ratio is not automatically healthy. This is a credit-stock signal, not a measure of wealth, annual lending, interest burden, or market capitalization.',
+          value: 'A high ratio does not by itself establish a crisis, just as a low ratio does not establish financial health. It measures a credit stock relative to GDP, not wealth, annual lending, interest burden, or market capitalization.',
         },
       ],
     },

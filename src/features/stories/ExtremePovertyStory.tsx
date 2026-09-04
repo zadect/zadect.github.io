@@ -194,8 +194,8 @@ export function ExtremePovertyStory({ story }: ExtremePovertyStoryProps) {
 
       <ChartCard
         eyebrow="Selected countries · World Bank PIP observations"
-        title="The same line leaves very different distances"
-        description="Country observations are not annual or synchronized. The connecting lines are visual guides between reported points; no missing years have been filled."
+        title="Country observations span different ranges"
+        description="Country observations are not annual or synchronized. Connecting lines guide the eye between reported points; missing years remain empty."
         spec={panelSpec}
         data={extremePovertyPanelSeries.map((point) => ({
           country: point.entity,
@@ -213,12 +213,12 @@ export function ExtremePovertyStory({ story }: ExtremePovertyStoryProps) {
 
       <section className="method-note">
         <p className="eyebrow">Scope and limits</p>
-        <h2>A poverty line is a floor, not a full picture of hardship.</h2>
+        <h2>The $3 line captures one part of hardship.</h2>
         <p>
           The $3 line is designed for international comparison, not to describe everything a
           household needs. The platform combines income data in some countries with consumption
-          data in others, and survey methods can change over time. Global and regional points at
-          the end of the series use extrapolation and forecasts documented by the source.
+          data in others, and survey methods can change over time. The source documents the
+          extrapolation and forecasts used for the final global and regional points.
         </p>
       </section>
 

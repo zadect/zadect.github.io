@@ -178,8 +178,8 @@ export function DemocraticBackslidingStory({ story }: DemocraticBackslidingStory
 
       <ChartCard
         eyebrow="Selected countries · V-Dem + OWID"
-        title="The trajectories do not move together"
-        description="This balanced panel covers several regions and contrasting paths. It is not a ranking: the lines show how a model-based index changed over time."
+        title="Selected country index paths"
+        description="This balanced panel covers several regions and contrasting paths. The lines show how a model-based index changed over time; they do not rank political systems."
         spec={democracySpec}
         data={democracySeries.map((point) => ({
           country: point.country,

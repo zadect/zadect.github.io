@@ -40,11 +40,11 @@ const medianSpec: TopLevelSpec = {
     color: {
       field: 'signal',
       type: 'nominal',
-      title: 'Signal',
+      title: 'Measure',
       scale: { range: ['#6f5a9e', '#4e8b78'] },
     },
     tooltip: [
-      { field: 'signal', type: 'nominal', title: 'Signal' },
+      { field: 'signal', type: 'nominal', title: 'Measure' },
       { field: 'edition', type: 'nominal', title: 'WJP edition' },
       { field: 'value', type: 'quantitative', title: 'Country median', format: '.3f' },
     ],
@@ -220,7 +220,7 @@ export function GovernanceRiskSecurityStory({ story }: GovernanceRiskSecuritySto
           })),
         ]}
         columns={[
-          { key: 'signal', label: 'Signal' },
+          { key: 'signal', label: 'Measure' },
           { key: 'year', label: 'Edition year' },
           { key: 'edition', label: 'WJP edition' },
           { key: 'value', label: 'Country median' },
@@ -233,7 +233,7 @@ export function GovernanceRiskSecurityStory({ story }: GovernanceRiskSecuritySto
       <ChartCard
         eyebrow="Eight selected countries · WJP historical editions"
         title="Overall rule-of-law scores in selected countries"
-        description="The same editions reveal different levels and changes. These are index scores, not rankings of every part of public life."
+        description="The same editions reveal different levels and changes. These index scores cover the WJP framework rather than every part of public life."
         spec={overallPanelSpec}
         data={governanceOverallPanelSeries.map((point) => ({
           entity: point.entity,
@@ -255,7 +255,7 @@ export function GovernanceRiskSecurityStory({ story }: GovernanceRiskSecuritySto
       <ChartCard
         eyebrow="Eight selected countries · WJP Factor 5"
         title="Order-and-security scores in selected countries"
-        description="Order and Security is strongest in some of the same countries that score well overall, but the dashed connectors do not match perfectly. That difference is the point."
+        description="Order and Security does not follow the overall score in every country. The dashed connectors show where the two measures diverge."
         spec={securityPanelSpec}
         data={governanceSecurityPanelSeries.map((point) => ({
           entity: point.entity,
@@ -280,8 +280,8 @@ export function GovernanceRiskSecurityStory({ story }: GovernanceRiskSecuritySto
         <p>
           The WJP combines household experience and expert assessment. Country coverage changes
           across editions, and a country median gives each reporting country one vote. The charts
-          show institutional conditions captured by this index; they do not forecast shocks or
-          explain why a score moved.
+          show institutional conditions captured by this index; they cannot forecast shocks or
+          identify why a score moved.
         </p>
       </section>
 

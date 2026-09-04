@@ -169,7 +169,7 @@ export function EmploymentWorkSkillsStory({ story }: EmploymentWorkSkillsStoryPr
       <ChartCard
         eyebrow="World · ILO Modelled Estimates via World Bank and OWID"
         title="Global employment-to-population ratio"
-        description="The line is the share of people aged 15 and older who were employed. The 2020 drop is visible, but the latest point remains below the 1991 starting point."
+        description="The series shows the share of people aged 15 and older who were employed. The 2020 drop is visible, and the latest point remains below the 1991 starting point."
         spec={worldSpec}
         data={employmentWorkSkillsWorldSeries.map((point) => ({
           year: point.year,
@@ -187,7 +187,7 @@ export function EmploymentWorkSkillsStory({ story }: EmploymentWorkSkillsStoryPr
       <ChartCard
         eyebrow="Six selected countries · shared checkpoints"
         title="Selected-country employment observations"
-        description="Dashed connectors join five common checkpoints. They make differences in level and recovery visible, but they are not a ranking of job quality."
+        description="Dashed connectors join five common checkpoints. They make differences in level and recovery visible; the employment rate does not rank job quality."
         spec={panelSpec}
         data={employmentWorkSkillsPanelSeries.map((point) => ({
           entity: point.entity,

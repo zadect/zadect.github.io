@@ -121,7 +121,7 @@ export function WomensRightsStory({ story }: WomensRightsStoryProps) {
       <ChartCard
         eyebrow="Global legal index · World Bank + OWID"
         title="The legal baseline has risen worldwide"
-        description="The World Bank’s index tracks formal legal provisions across eight areas that shape women’s economic opportunity. It is a long-run legal signal, not a measure of lived equality."
+        description="The World Bank’s index records formal legal provisions across eight areas that shape women’s economic opportunity. Lived equality requires different evidence."
         spec={worldRightsSpec}
         data={womensRightsWorldSeries.map((point) => ({
           year: point.year,
@@ -138,7 +138,7 @@ export function WomensRightsStory({ story }: WomensRightsStoryProps) {
       <ChartCard
         eyebrow="Selected countries · World Bank + OWID"
         title="Countries moved at different speeds"
-        description="These checkpoints keep the comparison readable across regions. A line’s height is a legal score; it is not a ranking of women’s actual economic power or safety."
+        description="These checkpoints keep the comparison readable across regions. Each line shows the country’s legal score at four dates; the score does not rank economic power or safety."
         spec={countryRightsSpec}
         data={panelData.map((point) => ({
           country: point.country,
@@ -156,12 +156,12 @@ export function WomensRightsStory({ story }: WomensRightsStoryProps) {
 
       <section className="method-note">
         <p className="eyebrow">Scope and limits</p>
-        <h2>Formal rights and lived equality are different measures.</h2>
+        <h2>The index records laws; enforcement needs separate evidence.</h2>
         <p>
           The index is built for comparison by applying standardized assumptions to laws and
           regulations. It does not tell us whether a right is enforced, whether women can use it
-          in practice, or how rights differ across regions and groups within a country. The line
-          shows legal change — not the full experience of women.
+          in practice, or how rights differ across regions and groups within a country. It therefore
+          measures legal change rather than women’s full experience.
         </p>
       </section>
 

@@ -14,8 +14,12 @@ describe('app routes', () => {
   it('renders the overview with all three categories', () => {
     render(<App />);
     expect(screen.getByRole('heading', { name: /where is humanity heading/i })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: /signals of human progress/i })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: /signals we cannot look away from/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: /measured improvements in human welfare/i }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: /measured harms and widening gaps/i }),
+    ).toBeInTheDocument();
     expect(
       screen.getByRole('heading', { name: /conditions shaping the next decades/i }),
     ).toBeInTheDocument();
@@ -73,7 +77,9 @@ describe('app routes', () => {
     render(<App />);
 
     expect(screen.getByRole('heading', { name: 'Child mortality' })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: /global risk fell across two centuries/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: /estimated under-five mortality fell over the long run/i }),
+    ).toBeInTheDocument();
     expect(screen.getByText(/estimated probability that a newborn dies/i)).toBeInTheDocument();
   });
 
@@ -82,7 +88,9 @@ describe('app routes', () => {
     render(<App />);
 
     expect(screen.getByRole('heading', { name: 'Life expectancy' })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: /average human life became much longer/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: /estimated life expectancy rose over the long run/i }),
+    ).toBeInTheDocument();
     expect(screen.getAllByText(/period life expectancy at birth/i)).not.toHaveLength(0);
   });
 
@@ -91,7 +99,9 @@ describe('app routes', () => {
     render(<App />);
 
     expect(screen.getByRole('heading', { name: 'DTP3 vaccination coverage' })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: /high vaccination baseline/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: /global dtp3 coverage rose, then dipped/i }),
+    ).toBeInTheDocument();
     expect(
       screen.getAllByText(/share of one-year-olds who received the third dose/i),
     ).not.toHaveLength(0);
@@ -103,7 +113,7 @@ describe('app routes', () => {
 
     expect(screen.getByRole('heading', { name: 'Electricity and sanitation' })).toBeInTheDocument();
     expect(
-      screen.getByRole('heading', { name: /basic services spread across the world/i }),
+      screen.getByRole('heading', { name: /electricity access and sanitation use increased/i }),
     ).toBeInTheDocument();
     expect(screen.getByText(/reliability, service quality/i)).toBeInTheDocument();
   });
@@ -175,7 +185,7 @@ describe('app routes', () => {
     expect(
       screen.getByRole('heading', { name: /four unhcr categories, shown separately/i }),
     ).toBeInTheDocument();
-    expect(screen.getByText(/headline number depends on the accounting boundary/i)).toBeInTheDocument();
+    expect(screen.getByText(/headline total uses a different accounting boundary/i)).toBeInTheDocument();
   });
 
   it('renders the published air pollution story', () => {
@@ -260,7 +270,7 @@ describe('app routes', () => {
     expect(
       screen.getByRole('heading', { name: /healthy life expectancy$/i }),
     ).toBeInTheDocument();
-    expect(screen.getByText(/do not establish a spending effect/i)).toBeInTheDocument();
+    expect(screen.getByText(/two measures answer different health questions/i)).toBeInTheDocument();
   });
 
   it('renders the published governance, risk, and security Future story', () => {
@@ -309,11 +319,11 @@ describe('app routes', () => {
       'href',
       '#/?section=future',
     );
-    expect(screen.getByRole('region', { name: /signals of human progress/i })).toHaveAttribute(
+    expect(screen.getByRole('region', { name: /measured improvements in human welfare/i })).toHaveAttribute(
       'id',
       'good-section',
     );
-    expect(screen.getByRole('region', { name: /signals we cannot look away from/i })).toHaveAttribute(
+    expect(screen.getByRole('region', { name: /measured harms and widening gaps/i })).toHaveAttribute(
       'id',
       'bad-section',
     );
@@ -330,9 +340,9 @@ describe('app routes', () => {
     render(<App />);
 
     expect(screen.getByRole('heading', { name: 'Firm AI adoption' })).toBeInTheDocument();
-    expect(screen.getByText('Future baseline')).toBeInTheDocument();
+    expect(screen.getByText(/The future · Historical observation/i)).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /reported firm ai adoption/i })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: /useful studies, kept out/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /studies that address the wider question/i })).toBeInTheDocument();
 
     window.location.hash = '#/future/housing-cities-and-infrastructure';
     render(<App />);
@@ -345,7 +355,9 @@ describe('app routes', () => {
     window.location.hash = '#/bad/ceo-pay-gap';
     render(<App />);
 
-    expect(screen.getByRole('heading', { name: /a defined contrast/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: /how the two compensation averages are defined/i }),
+    ).toBeInTheDocument();
     expect(screen.getAllByText(/average annual compensation for CEOs/i)).not.toHaveLength(0);
     expect(screen.getByRole('heading', { name: /CEO compensation, measured in dollars/i })).toBeInTheDocument();
     expect(

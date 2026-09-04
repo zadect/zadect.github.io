@@ -38,7 +38,9 @@ test('the overview links to both published stories', async ({ page }) => {
   await page.getByRole('link', { name: /ceo pay gap/i }).first().click();
   await expect(page).toHaveURL(/#\/bad\/ceo-pay-gap/);
   await expect(page.getByRole('heading', { name: /the ratio is far above its 1960s level/i })).toBeVisible();
-  await expect(page.getByRole('heading', { name: /a defined contrast/i })).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: /how the two compensation averages are defined/i }),
+  ).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(4);
   await page.getByText('Open citations and methodology').click();
   await expect(page.locator('.source-disclosure')).toHaveAttribute('open', '');
@@ -153,7 +155,9 @@ test('the Women’s rights story renders its legal-equality charts', async ({ pa
 test('the child mortality story renders its long-run and country charts', async ({ page }) => {
   await page.goto('/#/good/child-mortality');
   await expect(page.getByRole('heading', { name: 'Child mortality', exact: true })).toBeVisible();
-  await expect(page.getByRole('heading', { name: /global risk fell across two centuries/i })).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: /estimated under-five mortality fell over the long run/i }),
+  ).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
   await expect(page.getByText(/country estimates still differ widely/i)).toBeVisible();
   await expect(page.getByRole('link', { name: /Child mortality rate/i }).first()).toBeVisible();
@@ -162,18 +166,22 @@ test('the child mortality story renders its long-run and country charts', async 
 test('the life expectancy story renders its long-run and country charts', async ({ page }) => {
   await page.goto('/#/good/life-expectancy');
   await expect(page.getByRole('heading', { name: 'Life expectancy', exact: true })).toBeVisible();
-  await expect(page.getByRole('heading', { name: /average human life became much longer/i })).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: /estimated life expectancy rose over the long run/i }),
+  ).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
-  await expect(page.getByText(/life expectancy is an average, not a typical lifespan/i)).toBeVisible();
+  await expect(page.getByText(/life expectancy summarizes a population/i)).toBeVisible();
   await expect(page.getByRole('link', { name: /Life expectancy/i }).first()).toBeVisible();
 });
 
 test('the vaccination coverage story renders its world and country charts', async ({ page }) => {
   await page.goto('/#/good/vaccination-coverage');
   await expect(page.getByRole('heading', { name: 'DTP3 vaccination coverage', exact: true })).toBeVisible();
-  await expect(page.getByRole('heading', { name: /high vaccination baseline/i })).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: /global dtp3 coverage rose, then dipped/i }),
+  ).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
-  await expect(page.getByText(/DTP3 tracks one routine-vaccine milestone/i)).toBeVisible();
+  await expect(page.getByText(/DTP3 is one routine-vaccine milestone/i)).toBeVisible();
   await expect(page.getByRole('link', { name: /DTP3 vaccination coverage/i }).first()).toBeVisible();
 });
 
@@ -182,7 +190,9 @@ test('the electricity and sanitation story renders its service charts', async ({
   await expect(
     page.getByRole('heading', { name: 'Electricity and sanitation', exact: true }),
   ).toBeVisible();
-  await expect(page.getByRole('heading', { name: /basic services spread across the world/i })).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: /electricity access and sanitation use increased/i }),
+  ).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
   await expect(page.getByText(/reliability, service quality/i)).toBeVisible();
   await expect(
@@ -264,7 +274,7 @@ test('the forced displacement story renders its long-run and category charts', a
     page.getByRole('heading', { name: /four unhcr categories, shown separately/i }),
   ).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
-  await expect(page.getByText(/blank values mean that the category was not reported/i)).toBeVisible();
+  await expect(page.getByText(/a blank value means the source had not reported/i)).toBeVisible();
   await expect(page.getByRole('link', { name: /Refugee Data Finder/i }).first()).toBeVisible();
 });
 
@@ -275,7 +285,7 @@ test('the air pollution story renders its global and country charts', async ({ p
     page.getByRole('heading', { name: /global ambient pm2\.5 exposure remains above/i }),
   ).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
-  await expect(page.getByText(/the line is the population-weighted annual mean/i)).toBeVisible();
+  await expect(page.getByText(/the series shows population-weighted annual mean/i)).toBeVisible();
   await page.getByText('Open citations and methodology').click();
   await expect(page.getByText('WHO global air quality guidelines', { exact: true })).toBeVisible();
 });
@@ -285,8 +295,10 @@ test('the published Future stories render their charts and context cards', async
   await expect(page.getByRole('heading', { name: 'Firm AI adoption', exact: true })).toBeVisible();
   await expect(page.getByRole('heading', { name: /reported firm ai adoption/i })).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(3);
-  await expect(page.getByText(/2022 position is deliberate/i)).toBeVisible();
-  await expect(page.getByRole('heading', { name: /useful studies, kept out/i })).toBeVisible();
+  await expect(page.getByText(/2022 position marks a reporting gap/i)).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: /studies that address the wider question/i }),
+  ).toBeVisible();
   await expect(page.locator('.study-card')).toHaveCount(2);
 
   await page.goto('/#/future/housing-cities-and-infrastructure');
@@ -295,7 +307,7 @@ test('the published Future stories render their charts and context cards', async
   ).toBeVisible();
   await expect(page.getByRole('heading', { name: /national house-price-to-income index/i })).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
-  await expect(page.getByText(/not an absolute affordability ranking/i)).toBeVisible();
+  await expect(page.getByText(/ranking of absolute affordability across countries/i)).toBeVisible();
   await expect(page.locator('.study-card')).toHaveCount(2);
 
   await page.goto('/#/future/employment-work-and-skills');
@@ -367,7 +379,7 @@ test('the published Future stories render their charts and context cards', async
   ).toBeVisible();
   await expect(page.getByRole('heading', { name: /healthy life expectancy$/i })).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(4);
-  await expect(page.getByText(/do not establish a spending effect/i)).toBeVisible();
+  await expect(page.getByText(/two measures answer different health questions/i)).toBeVisible();
   await expect(
     page.getByRole('link', { name: /Healthy life expectancy at birth/i }).first(),
   ).toBeVisible();

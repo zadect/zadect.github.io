@@ -132,8 +132,8 @@ export function HousingStory({ story }: HousingStoryProps) {
           <div className="stat-card">
             <span className="stat-card__value">{lowest.value.toFixed(1)}</span>
             <span className="stat-card__label">
-              2024 index in {lowest.country}, the lowest in this selected panel — not an absolute
-              affordability ranking
+              2024 index in {lowest.country}, the lowest in this panel; country levels are not
+              absolute affordability rankings
             </span>
           </div>
         </div>
@@ -187,7 +187,7 @@ export function HousingStory({ story }: HousingStoryProps) {
 
       <section className="method-note method-note--future">
         <p className="eyebrow">Scope and limits</p>
-        <h2>The national index leaves rent, supply, and city differences out.</h2>
+        <h2>The national index omits rent, supply, and city differences.</h2>
         <p>
           The OECD measure does not show what renters pay, how mortgages have changed, whether
           homes are adequate, how much is being built, or whether a particular city has become

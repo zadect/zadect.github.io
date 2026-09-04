@@ -168,7 +168,7 @@ export function BiodiversityLossStory({ story }: BiodiversityLossStoryProps) {
       <ChartCard
         eyebrow="World · WWF / ZSL via Our World in Data"
         title="The monitored vertebrate-population index fell sharply"
-        description="The index is set to 100 in 1970. The line is the central estimate; the shaded band shows the report’s lower and upper estimates."
+        description="The index is set to 100 in 1970. The central estimate is accompanied by the report’s lower and upper estimates in the shaded band."
         spec={worldSpec}
         data={biodiversityWorldSeries.map((point) => ({
           year: point.year,
@@ -189,8 +189,8 @@ export function BiodiversityLossStory({ story }: BiodiversityLossStoryProps) {
 
       <ChartCard
         eyebrow="Five broad regions · six shared checkpoints"
-        title="The regional picture is not uniform"
-        description="These checkpoints keep the comparison synchronized. They show broad regional patterns, not a ranking of every country or ecosystem."
+        title="Regional index estimates diverged"
+        description="These checkpoints keep the comparison synchronized. They show broad regional patterns rather than a ranking of countries or ecosystems."
         spec={regionSpec}
         data={biodiversityRegionSeries.map((point) => ({
           entity: point.entity,
@@ -212,10 +212,10 @@ export function BiodiversityLossStory({ story }: BiodiversityLossStoryProps) {
         <h2>The index describes monitored populations, not all biodiversity.</h2>
         <p>
           The Living Planet Index aggregates trends from thousands of monitored vertebrate
-          populations. It does not say that every population declined by the same amount, and it
-          does not directly count extinctions. Monitoring is uneven across places, species, and
-          time; the uncertainty band is part of the result. The regional lines use the report’s
-          central estimates at shared checkpoints, without local interpolation.
+          populations. Populations can change by very different amounts, and the index does not
+          directly count extinctions. Monitoring is uneven across places, species, and time; the
+          uncertainty band is part of the result. The regional lines use the report’s central
+          estimates at shared checkpoints, without local interpolation.
         </p>
       </section>
 

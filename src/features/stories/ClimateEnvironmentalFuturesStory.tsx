@@ -290,7 +290,7 @@ export function ClimateEnvironmentalFuturesStory({
       <ChartCard
         eyebrow="World · annual series · 1850–2024"
         title="Annual territorial fossil CO₂ emissions"
-        description="The long line is the global fossil-carbon story: each year’s territorial emissions from coal, oil, gas, flaring, and cement."
+        description="Each point records territorial emissions from coal, oil, gas, flaring, and cement in that year."
         spec={worldTotalSpec}
         data={climateWorldTotalSeries.map((point) => ({
           year: point.year,
@@ -308,7 +308,7 @@ export function ClimateEnvironmentalFuturesStory({
       <ChartCard
         eyebrow="World · annual series · 1850–2024"
         title="Territorial fossil CO₂ emissions per person"
-        description="The world average is not a measure of equal responsibility. It is the total divided by the number of people alive in each year."
+        description="The per-person value divides the territorial total by the number of people alive in that year. It describes emissions accounting, not equal responsibility."
         spec={worldPerCapitaSpec}
         data={climateWorldPerCapitaSeries.map((point) => ({
           year: point.year,
@@ -367,10 +367,10 @@ export function ClimateEnvironmentalFuturesStory({
         <p className="eyebrow">Scope and limits</p>
         <h2>Territorial emissions are one accounting boundary.</h2>
         <p>
-          These charts show where fossil CO₂ was produced, not who consumed the resulting goods,
-          who caused historic emissions, or what happens next. They exclude land-use change and
-          are not a forecast. The country panel is a deliberately small set of comparable
-          checkpoints, not a ranking of every country.
+          These charts show where fossil CO₂ was produced. They do not assign emissions to
+          consumers, account for historic responsibility, or describe what happens next. They
+          exclude land-use change and contain no forecast. The country panel is a small set of
+          comparable checkpoints rather than a ranking of every country.
         </p>
       </section>
 

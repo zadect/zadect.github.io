@@ -204,7 +204,7 @@ export function CapitalMarketsMoneyFlowsStory({
       <ChartCard
         eyebrow="Eight selected countries · fourth-quarter observations · 2000–2025"
         title="Credit-to-GDP ratios in selected countries"
-        description="The same measure produces very different levels and turning points. The lines show a signal about financial scale, not a league table of economic health."
+        description="The same measure produces very different levels and turning points. The ratios describe financial scale; they do not rank economic health."
         spec={panelSpec}
         data={capitalMarketsPanelSeries.map((point) => ({
           entity: point.entity,

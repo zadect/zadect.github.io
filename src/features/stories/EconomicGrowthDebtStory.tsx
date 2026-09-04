@@ -164,7 +164,7 @@ export function EconomicGrowthDebtStory({ story }: EconomicGrowthDebtStoryProps)
       <ChartCard
         eyebrow="World · World Bank and OECD national accounts"
         title="Annual world GDP growth"
-        description="The line shows annual inflation-adjusted GDP growth. The dashed rule marks zero growth; it does not mark a healthy or unhealthy level."
+        description="The series shows annual inflation-adjusted GDP growth. The dashed rule marks zero growth; it is not a benchmark for economic health."
         spec={growthSpec}
         data={economicGrowthWorldSeries.map((point) => ({
           year: point.year,
@@ -182,7 +182,7 @@ export function EconomicGrowthDebtStory({ story }: EconomicGrowthDebtStoryProps)
       <ChartCard
         eyebrow="Six selected countries · World Bank debt database"
         title="Central-government debt as a share of GDP"
-        description="These lines show gross central-government debt as a share of GDP. They are fiscal signals, not a complete balance sheet or a ranking of sustainability."
+        description="The series shows gross central-government debt as a share of GDP. It is one fiscal measure, not a complete balance sheet or a ranking of sustainability."
         spec={debtSpec}
         data={publicDebtPanelSeries.map((point) => ({
           entity: point.entity,

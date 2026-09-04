@@ -197,7 +197,7 @@ export function WarsConflictStory({ story }: WarsConflictStoryProps) {
       <ChartCard
         eyebrow="World · UCDP / PRIO via Our World in Data"
         title="Battle-related deaths in state-based conflicts"
-        description="The central line is the best estimate of people killed by fighting. The shaded area shows the source’s low-to-high range."
+        description="The central series gives the best estimate of people killed by fighting. The shaded area gives the source’s low-to-high range."
         spec={deathsSpec}
         data={warsConflictSeries.map((point) => ({
           year: point.year,
@@ -236,7 +236,7 @@ export function WarsConflictStory({ story }: WarsConflictStoryProps) {
 
       <section className="method-note">
         <p className="eyebrow">Scope and limits</p>
-        <h2>Battle deaths cover only one part of war’s human cost.</h2>
+        <h2>Battle deaths cover one part of war’s human cost.</h2>
         <p>
           The series counts deaths attributed to fighting, not the wider human cost of war. It
           leaves out deaths from disease, hunger, displacement, and other indirect effects. Before

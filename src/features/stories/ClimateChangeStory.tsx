@@ -169,7 +169,7 @@ export function ClimateChangeStory({ story }: ClimateChangeStoryProps) {
 
       <ChartCard
         eyebrow="Ten-year averages · derived from NASA annual values"
-        title="The warming is a shift in the baseline"
+        title="Decadal averages show the warming trend"
         description="Averages make the direction easier to see. The 2020s point uses six complete years, 2020–2025, so it is marked as partial."
         spec={decadeSpec}
         data={climateDecadeSeries.map((point) => ({
@@ -191,12 +191,11 @@ export function ClimateChangeStory({ story }: ClimateChangeStoryProps) {
 
       <section className="method-note">
         <p className="eyebrow">Scope and limits</p>
-        <h2>A global average does not describe every place or season.</h2>
+        <h2>A global average leaves local conditions out.</h2>
         <p>
-          A temperature anomaly compares a year with a baseline; it is not the temperature
-          outside your window or a prediction of tomorrow. The global mean also hides regional
-          differences, seasonal extremes, and changes in the oceans and land surfaces. The chart
-          shows the observed signal; it does not model the causes or the impacts.
+          A temperature anomaly compares a year with the 1951–1980 baseline. The global mean
+          hides regional differences, seasonal extremes, and changes in the oceans and land
+          surfaces. This page reports the observed record; it does not model causes or impacts.
         </p>
       </section>
 

@@ -159,8 +159,8 @@ export function ChildMortalityStory({ story }: ChildMortalityStoryProps) {
 
       <ChartCard
         eyebrow="World · Gapminder + UN IGME"
-        title="The global risk fell across two centuries"
-        description="The dashed line joins historical reconstruction checkpoints. The 2024 UN IGME estimate is shown as a separate point so the source transition is visible."
+        title="Estimated under-five mortality fell over the long run"
+        description="The dashed reconstruction ends before the separate 2024 UN IGME point. The break in mark and line style identifies the change in source."
         spec={longRunSpec}
         data={childMortalityLongRunSeries.map((point) => ({
           year: point.year,
@@ -177,8 +177,8 @@ export function ChildMortalityStory({ story }: ChildMortalityStoryProps) {
 
       <ChartCard
         eyebrow="Selected countries · UN IGME"
-        title="Progress did not close every gap"
-        description="These shared checkpoints use UN IGME country estimates. Dashed connectors help show that the four points are selected observations, not annual measurements."
+        title="Country estimates still differ"
+        description="The four points per country are selected UN IGME observations. Dashed connectors guide the eye between checkpoints; they do not represent annual measurements."
         spec={panelSpec}
         data={childMortalityPanelSeries.map((point) => ({
           country: point.entity,
@@ -196,13 +196,12 @@ export function ChildMortalityStory({ story }: ChildMortalityStoryProps) {
 
       <section className="method-note">
         <p className="eyebrow">Scope and limits</p>
-        <h2>The historical reconstruction and modern estimates are not identical.</h2>
+        <h2>Historical reconstruction and UN estimates use different evidence.</h2>
         <p>
           Child mortality reflects many conditions at once: maternal health, nutrition, vaccines,
           clean water, sanitation, medical care, and living standards. The estimates are designed
-          for comparisons over time, but uncertainty is larger where direct registration and
-          survey data are scarce. The chart shows the direction clearly without pretending every
-          country is measured with the same precision.
+          for comparisons over time. Uncertainty is larger where direct registration and survey
+          data are scarce, so precision varies across countries and periods.
         </p>
       </section>
 

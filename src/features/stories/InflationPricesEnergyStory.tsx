@@ -246,7 +246,7 @@ export function InflationPricesEnergyStory({ story }: InflationPricesEnergyStory
       <ChartCard
         eyebrow="World · IMF International Financial Statistics via World Bank and OWID"
         title="Annual consumer inflation"
-        description="The line is the annual change in consumer prices. The dashed 2% rule is only a visual reference and is not a universal stability threshold."
+        description="The series shows the annual change in consumer prices. The dashed 2% rule is a visual reference, not a universal stability threshold."
         spec={inflationWorldSpec}
         data={inflationWorldSeries.map((point) => ({
           year: point.year,
@@ -264,7 +264,7 @@ export function InflationPricesEnergyStory({ story }: InflationPricesEnergyStory
       <ChartCard
         eyebrow="Six selected countries · shared checkpoints"
         title="Selected-country inflation observations"
-        description="Dashed connectors join four common checkpoints. They show differences in timing and magnitude without pretending that one basket or policy experience is universal."
+        description="Dashed connectors join four common checkpoints. They show differences in timing and magnitude while each country’s basket and policy context remains distinct."
         spec={inflationPanelSpec}
         data={inflationPanelSeries.map((point) => ({
           entity: point.entity,

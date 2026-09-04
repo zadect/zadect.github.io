@@ -196,7 +196,7 @@ export function AirPollutionStory({ story }: AirPollutionStoryProps) {
       <ChartCard
         eyebrow="World · GBD 2023 via World Bank and Our World in Data"
         title="Global ambient PM2.5 exposure remains above the WHO guideline"
-        description="The line is the population-weighted annual mean PM2.5 exposure. The dashed line marks the WHO 2021 annual mean guideline recommendation of 5 µg/m³."
+        description="The series shows population-weighted annual mean PM2.5 exposure. The dashed rule marks the WHO 2021 annual mean guideline recommendation of 5 µg/m³."
         spec={worldSpec}
         data={worldSeries.map((point) => ({
           year: point.year,
@@ -214,7 +214,7 @@ export function AirPollutionStory({ story }: AirPollutionStoryProps) {
       <ChartCard
         eyebrow="Six selected countries · same annual series"
         title="Selected countries have different exposure paths"
-        description="Some selected countries move down over the period; others remain much higher. The dashed line is the WHO reference, not a legal threshold."
+        description="Some selected countries move down over the period while others remain much higher. The dashed rule is the WHO reference, not a legal threshold."
         spec={countrySpec}
         data={countrySeries.map((point) => ({
           entity: point.entity,
