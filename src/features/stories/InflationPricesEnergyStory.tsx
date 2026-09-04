@@ -79,7 +79,7 @@ const inflationPanelSpec: TopLevelSpec = {
   width: 'container',
   height: 360,
   data: { name: 'series' },
-  mark: { type: 'line', point: { filled: true, size: 34 }, strokeWidth: 2.5 },
+  mark: { type: 'line', point: { filled: true, size: 34 }, strokeWidth: 2.5, strokeDash: [5, 4] },
   encoding: {
     x: {
       field: 'year',
@@ -206,8 +206,8 @@ export function InflationPricesEnergyStory({ story }: InflationPricesEnergyStory
     <StoryFrame story={story}>
       <section className="story-lede">
         <p className="lede">
-          Prices do not rise in a straight line. Energy systems do not change on the same clock.
-          Put together, the lines show a future shaped by short shocks and slow infrastructure.
+          Consumer inflation records annual price changes. Renewable electricity records a
+          generation share. They are separate historical measures with different time scales.
         </p>
         <div className="stat-grid">
           <div className="stat-card">
@@ -245,8 +245,8 @@ export function InflationPricesEnergyStory({ story }: InflationPricesEnergyStory
 
       <ChartCard
         eyebrow="World · IMF International Financial Statistics via World Bank and OWID"
-        title="Inflation arrives in waves"
-        description="The line is the annual change in consumer prices. A dashed reference at 2% is a visual benchmark, not a universal definition of price stability."
+        title="Annual consumer inflation"
+        description="The line is the annual change in consumer prices. The dashed 2% rule is only a visual reference and is not a universal stability threshold."
         spec={inflationWorldSpec}
         data={inflationWorldSeries.map((point) => ({
           year: point.year,
@@ -263,8 +263,8 @@ export function InflationPricesEnergyStory({ story }: InflationPricesEnergyStory
 
       <ChartCard
         eyebrow="Six selected countries · shared checkpoints"
-        title="The same years, different price paths"
-        description="The country lines use four common checkpoints. They show differences in timing and magnitude without pretending that one basket or policy experience is universal."
+        title="Selected-country inflation observations"
+        description="Dashed connectors join four common checkpoints. They show differences in timing and magnitude without pretending that one basket or policy experience is universal."
         spec={inflationPanelSpec}
         data={inflationPanelSeries.map((point) => ({
           entity: point.entity,
@@ -283,7 +283,7 @@ export function InflationPricesEnergyStory({ story }: InflationPricesEnergyStory
 
       <ChartCard
         eyebrow="World · Ember and historical electricity sources via OWID"
-        title="The electricity mix turns slowly, then accelerates"
+        title="Renewable share of world electricity"
         description="Renewable electricity was already a large part of the early power system because hydropower dominated it. The long dip and recent rise are both part of the story."
         spec={renewableSpec}
         data={renewableElectricityWorldSeries.map((point) => ({
@@ -300,8 +300,8 @@ export function InflationPricesEnergyStory({ story }: InflationPricesEnergyStory
       />
 
       <section className="method-note method-note--future">
-        <p className="eyebrow">Read the evidence carefully</p>
-        <h2>Different clocks, not a single forecast.</h2>
+        <p className="eyebrow">Scope and limits</p>
+        <h2>Inflation and renewable electricity answer different questions.</h2>
         <p>
           Inflation measures a yearly change in prices; it does not tell us how expensive a life
           feels to every household. Renewable electricity is a generation share, so it can rise
@@ -312,7 +312,7 @@ export function InflationPricesEnergyStory({ story }: InflationPricesEnergyStory
 
       <section className="sources-section">
         <p className="eyebrow">Sources and definitions</p>
-        <h2>Where the price and energy signals come from</h2>
+        <h2>Sources and methodology</h2>
         <SourceList sources={sources} />
       </section>
     </StoryFrame>

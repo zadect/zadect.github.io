@@ -267,8 +267,8 @@ test('the air pollution story renders its global and country charts', async ({ p
 
 test('the published Future stories render their charts and context cards', async ({ page }) => {
   await page.goto('/#/future/tech-and-ai');
-  await expect(page.getByRole('heading', { name: 'AI & Tech', exact: true })).toBeVisible();
-  await expect(page.getByRole('heading', { name: /adoption rose, but the series has a real gap/i })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Firm AI adoption', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /reported firm ai adoption/i })).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(3);
   await expect(page.getByText(/2022 position is deliberate/i)).toBeVisible();
   await expect(page.getByRole('heading', { name: /useful studies, kept out/i })).toBeVisible();
@@ -276,114 +276,115 @@ test('the published Future stories render their charts and context cards', async
 
   await page.goto('/#/future/housing-cities-and-infrastructure');
   await expect(
-    page.getByRole('heading', { name: 'Housing, Cities & Infrastructure', exact: true }),
+    page.getByRole('heading', { name: 'Housing price-to-income', exact: true }),
   ).toBeVisible();
-  await expect(page.getByRole('heading', { name: /prices and incomes did not move together/i })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /national house-price-to-income index/i })).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
   await expect(page.getByText(/not an absolute affordability ranking/i)).toBeVisible();
   await expect(page.locator('.study-card')).toHaveCount(2);
 
   await page.goto('/#/future/employment-work-and-skills');
   await expect(
-    page.getByRole('heading', { name: 'Employment, Work & Skills', exact: true }),
+    page.getByRole('heading', { name: 'Employment rates', exact: true }),
   ).toBeVisible();
   await expect(
-    page.getByRole('heading', { name: /global work rate dipped/i }),
+    page.getByRole('heading', { name: /global employment-to-population ratio/i }),
   ).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
-  await expect(page.getByText(/not a measure of job quality/i)).toBeVisible();
+  await expect(page.getByText(/does not describe job quality/i)).toBeVisible();
   await expect(
     page.getByRole('link', { name: /Employment rate/i }).first(),
   ).toBeVisible();
 
   await page.goto('/#/future/wealth-distribution-and-inequality');
   await expect(
-    page.getByRole('heading', { name: 'Wealth Distribution & Inequality', exact: true }),
+    page.getByRole('heading', { name: 'Top 1% wealth share', exact: true }),
   ).toBeVisible();
   await expect(
-    page.getByRole('heading', { name: /global line is not a one-way climb/i }),
+    page.getByRole('heading', { name: /global top 1% wealth-share observations/i }),
   ).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
-  await expect(page.getByText(/not the whole distribution/i)).toBeVisible();
+  await expect(page.getByText(/leaves most of the distribution unmeasured/i)).toBeVisible();
   await expect(
     page.getByRole('link', { name: /Wealth share of the richest 1%/i }).first(),
   ).toBeVisible();
 
   await page.goto('/#/future/economic-growth-debt-and-public-finance');
   await expect(
-    page.getByRole('heading', { name: 'Economic Growth, Debt & Public Finance', exact: true }),
+    page.getByRole('heading', { name: 'World growth and central-government debt', exact: true }),
   ).toBeVisible();
   await expect(
-    page.getByRole('heading', { name: /growth has a rhythm of shocks/i }),
+    page.getByRole('heading', { name: /annual world gdp growth/i }),
   ).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
-  await expect(page.getByText(/not a complete balance sheet/i)).toBeVisible();
+  await expect(page.getByText(/do not establish fiscal sustainability/i)).toBeVisible();
   await expect(
     page.getByRole('link', { name: /Annual GDP growth/i }).first(),
   ).toBeVisible();
 
   await page.goto('/#/future/inflation-prices-and-energy');
   await expect(
-    page.getByRole('heading', { name: 'Inflation, Prices & Energy', exact: true }),
+    page.getByRole('heading', { name: 'Inflation and renewable electricity', exact: true }),
   ).toBeVisible();
-  await expect(page.getByRole('heading', { name: /inflation arrives in waves/i })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /annual consumer inflation/i })).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(3);
-  await expect(page.getByText(/different clocks, not a single forecast/i)).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: /inflation and renewable electricity answer different questions/i }),
+  ).toBeVisible();
   await expect(
     page.getByRole('link', { name: /Inflation of consumer prices/i }).first(),
   ).toBeVisible();
 
   await page.goto('/#/future/demographics-and-migration');
   await expect(
-    page.getByRole('heading', { name: 'Demographics & Migration', exact: true }),
+    page.getByRole('heading', { name: 'Population age and migrant stock', exact: true }),
   ).toBeVisible();
-  await expect(page.getByRole('heading', { name: /the world gets older on a long arc/i })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /observed median age and the un medium scenario/i })).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(4);
-  await expect(page.getByText(/population structure is not destiny/i)).toBeVisible();
+  await expect(page.getByText(/one un scenario does not settle future population change/i)).toBeVisible();
   await expect(
     page.getByRole('link', { name: /Median age of the population/i }).first(),
   ).toBeVisible();
 
   await page.goto('/#/future/health-longevity-and-human-capital');
   await expect(
-    page.getByRole('heading', { name: 'Health, Longevity & Human Capital', exact: true }),
+    page.getByRole('heading', { name: 'Healthy life expectancy and health spending', exact: true }),
   ).toBeVisible();
-  await expect(page.getByRole('heading', { name: /healthy years rose/i })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /healthy life expectancy$/i })).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(4);
-  await expect(page.getByText(/more spending is not a guarantee/i)).toBeVisible();
+  await expect(page.getByText(/do not establish a spending effect/i)).toBeVisible();
   await expect(
     page.getByRole('link', { name: /Healthy life expectancy at birth/i }).first(),
   ).toBeVisible();
 
   await page.goto('/#/future/governance-risk-and-security');
   await expect(
-    page.getByRole('heading', { name: 'Governance, Risk & Security', exact: true }),
+    page.getByRole('heading', { name: 'Rule of law and security', exact: true }),
   ).toBeVisible();
-  await expect(page.getByRole('heading', { name: /country median barely moves/i })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /country median rule-of-law and security scores/i })).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(3);
-  await expect(page.getByText(/a score is a signal, not a verdict/i)).toBeVisible();
+  await expect(page.getByText(/selected institutional conditions/i)).toBeVisible();
   await expect(
     page.getByRole('link', { name: /WJP Rule of Law Index 2025/i }).first(),
   ).toBeVisible();
 
   await page.goto('/#/future/climate-and-environmental-futures');
   await expect(
-    page.getByRole('heading', { name: 'Climate & Environmental Futures', exact: true }),
+    page.getByRole('heading', { name: 'Historical fossil CO₂ emissions', exact: true }),
   ).toBeVisible();
-  await expect(page.getByRole('heading', { name: /the total keeps climbing/i })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /annual territorial fossil co₂ emissions/i })).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(4);
-  await expect(page.getByText(/one emissions ledger cannot answer every climate question/i)).toBeVisible();
+  await expect(page.getByText(/territorial emissions are one accounting boundary/i)).toBeVisible();
   await expect(
     page.getByRole('link', { name: /Fossil CO₂ emissions — Global Carbon Budget/i }).first(),
   ).toBeVisible();
 
   await page.goto('/#/future/capital-markets-and-money-flows');
   await expect(
-    page.getByRole('heading', { name: 'Capital Markets & Money Flows', exact: true }),
+    page.getByRole('heading', { name: 'Private-sector credit relative to GDP', exact: true }).first(),
   ).toBeVisible();
-  await expect(page.getByRole('heading', { name: /credit rose, then pulled back/i })).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
-  await expect(page.getByText(/a large credit bridge is not a verdict/i)).toBeVisible();
+  await expect(page.getByText(/credit-to-gdp ratio is a stock measure/i)).toBeVisible();
   await expect(
     page.getByRole('link', { name: /Credit to the private non-financial sector/i }).first(),
   ).toBeVisible();
@@ -403,8 +404,8 @@ test('header category links target their homepage sections', async ({ page }) =>
   await page.locator('header.site-header').getByRole('link', { name: 'Future', exact: true }).click();
   await expect(page).toHaveURL(/#\/\?section=future/);
   await expect(page.locator('#future-section')).toBeVisible();
-  await page.locator('#future-section').getByRole('link', { name: /ai & tech/i }).click();
+  await page.locator('#future-section').getByRole('link', { name: /firm ai adoption/i }).click();
   await expect(page).toHaveURL(/#\/future\/tech-and-ai/);
-  await expect(page.getByRole('heading', { name: 'AI & Tech', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Firm AI adoption', exact: true })).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(3);
 });

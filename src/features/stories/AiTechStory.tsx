@@ -22,7 +22,7 @@ const aiTimelineSpec: TopLevelSpec = {
   width: 'container',
   height: 340,
   data: { name: 'series' },
-  mark: { type: 'line', point: { filled: true, size: 42 }, strokeWidth: 3 },
+  mark: { type: 'point', filled: true, size: 42 },
   encoding: {
     x: {
       field: 'year',
@@ -51,7 +51,7 @@ const aiCountryEndpointSpec: TopLevelSpec = {
   width: 'container',
   height: 360,
   data: { name: 'series' },
-  mark: { type: 'line', point: { filled: true, size: 38 }, strokeWidth: 2.5 },
+  mark: { type: 'line', point: { filled: true, size: 38 }, strokeWidth: 2.5, strokeDash: [5, 4] },
   encoding: {
     x: {
       field: 'year',
@@ -130,8 +130,9 @@ export function AiTechStory({ story }: AiTechStoryProps) {
     <StoryFrame story={story}>
       <section className="story-lede">
         <p className="lede">
-          AI is moving from experiment to enterprise practice. The cleanest comparable signal we
-          have here is adoption — not what adoption will do to work.
+          Eurostat reports the share of firms using at least one listed AI technology. The
+          comparable EU series rises across the reported observations, with 2022 left blank because
+          it was not reported in this extract.
         </p>
         <div className="stat-grid">
           <div className="stat-card">
@@ -160,8 +161,8 @@ export function AiTechStory({ story }: AiTechStoryProps) {
 
       <ChartCard
         eyebrow="EU-27 enterprise adoption · Eurostat"
-        title="Adoption rose, but the series has a real gap"
-        description="Eurostat reports comparable observations for 2021, 2023, 2024, and 2025. The empty 2022 position is deliberate: it is not interpolated."
+        title="Reported firm AI adoption, with a 2022 reporting gap"
+        description="Each point is a reported Eurostat observation for 2021, 2023, 2024, or 2025. The empty 2022 position is deliberate: it is not interpolated."
         spec={aiTimelineSpec}
         data={aiEuAdoptionChartSeries.map((point) => ({
           year: point.year,
@@ -180,8 +181,8 @@ export function AiTechStory({ story }: AiTechStoryProps) {
 
       <ChartCard
         eyebrow="Selected countries · Eurostat"
-        title="The starting points and pace are different"
-        description="This endpoint view compares the same eight countries in the first and latest reported years. It shows adoption spread, not a league table or a causal explanation."
+        title="2021 and 2025 country observations"
+        description="This endpoint view compares the same eight countries in the first and latest reported years. Dashed connectors join those endpoints; they do not show the intervening years."
         spec={aiCountryEndpointSpec}
         data={aiCountryEndpointSeries.map((point) => ({
           country: point.country,
@@ -200,7 +201,7 @@ export function AiTechStory({ story }: AiTechStoryProps) {
 
       <ChartCard
         eyebrow="EU-27 by enterprise size · Eurostat"
-        title="Scale still matters"
+        title="Reported adoption by enterprise size in 2025"
         description="In 2025, the largest enterprises reported AI use much more often than the smallest enterprises in the same covered activity scope."
         spec={aiSizeSpec}
         data={aiEnterpriseSizeSeries.map((point) => ({
@@ -217,8 +218,8 @@ export function AiTechStory({ story }: AiTechStoryProps) {
       />
 
       <section className="method-note method-note--future">
-        <p className="eyebrow">Read the evidence carefully</p>
-        <h2>Adoption is the beginning of the story, not its conclusion.</h2>
+        <p className="eyebrow">Scope and limits</p>
+        <h2>The survey records firm adoption, not its effects.</h2>
         <p>
           The survey asks whether an enterprise uses at least one listed AI technology. It does
           not tell us how deeply the tool is embedded, which workers use it, whether tasks are
@@ -255,7 +256,7 @@ export function AiTechStory({ story }: AiTechStoryProps) {
 
       <section className="sources-section">
         <p className="eyebrow">Sources and definitions</p>
-        <h2>Where the adoption evidence and wider research come from</h2>
+        <h2>Sources and methodology</h2>
         <SourceList sources={allSources} />
       </section>
     </StoryFrame>

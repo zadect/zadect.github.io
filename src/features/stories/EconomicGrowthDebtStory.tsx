@@ -125,8 +125,9 @@ export function EconomicGrowthDebtStory({ story }: EconomicGrowthDebtStoryProps)
     <StoryFrame story={story}>
       <section className="story-lede">
         <p className="lede">
-          A growing economy can create room to act. Debt can narrow it. These are not two sides of
-          one equation here, but two public signals that often sit in the same policy conversation.
+          World real GDP growth and central-government debt are separate historical measures. The
+          first describes annual output change; the second describes a selected public-debt stock
+          relative to GDP.
         </p>
         <div className="stat-grid">
           <div className="stat-card">
@@ -162,7 +163,7 @@ export function EconomicGrowthDebtStory({ story }: EconomicGrowthDebtStoryProps)
 
       <ChartCard
         eyebrow="World · World Bank and OECD national accounts"
-        title="Growth has a rhythm of shocks and rebounds"
+        title="Annual world GDP growth"
         description="The line shows annual inflation-adjusted GDP growth. The dashed rule marks zero growth; it does not mark a healthy or unhealthy level."
         spec={growthSpec}
         data={economicGrowthWorldSeries.map((point) => ({
@@ -180,7 +181,7 @@ export function EconomicGrowthDebtStory({ story }: EconomicGrowthDebtStoryProps)
 
       <ChartCard
         eyebrow="Six selected countries · World Bank debt database"
-        title="Debt paths separate after the same shocks"
+        title="Central-government debt as a share of GDP"
         description="These lines show gross central-government debt as a share of GDP. They are fiscal signals, not a complete balance sheet or a ranking of sustainability."
         spec={debtSpec}
         data={publicDebtPanelSeries.map((point) => ({
@@ -199,8 +200,8 @@ export function EconomicGrowthDebtStory({ story }: EconomicGrowthDebtStoryProps)
       />
 
       <section className="method-note method-note--future">
-        <p className="eyebrow">Read the evidence carefully</p>
-        <h2>Two lines do not make a forecast.</h2>
+        <p className="eyebrow">Scope and limits</p>
+        <h2>Growth and debt do not establish fiscal sustainability by themselves.</h2>
         <p>
           GDP growth can reflect population, productivity, prices, and statistical revisions.
           Gross debt leaves out assets, interest costs, maturity, currency, and private
@@ -211,7 +212,7 @@ export function EconomicGrowthDebtStory({ story }: EconomicGrowthDebtStoryProps)
 
       <section className="sources-section">
         <p className="eyebrow">Sources and definitions</p>
-        <h2>Where the growth and debt signals come from</h2>
+        <h2>Sources and methodology</h2>
         <SourceList sources={sources} />
       </section>
     </StoryFrame>

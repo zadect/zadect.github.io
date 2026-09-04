@@ -76,7 +76,7 @@ const halePanelSpec: TopLevelSpec = {
   width: 'container',
   height: 360,
   data: { name: 'series' },
-  mark: { type: 'line', point: { filled: true, size: 34 }, strokeWidth: 2.5 },
+  mark: { type: 'line', point: { filled: true, size: 34 }, strokeWidth: 2.5, strokeDash: [5, 4] },
   encoding: {
     x: {
       field: 'year',
@@ -171,7 +171,7 @@ const spendingPanelSpec: TopLevelSpec = {
   width: 'container',
   height: 360,
   data: { name: 'series' },
-  mark: { type: 'line', point: { filled: true, size: 34 }, strokeWidth: 2.5 },
+  mark: { type: 'line', point: { filled: true, size: 34 }, strokeWidth: 2.5, strokeDash: [5, 4] },
   encoding: {
     x: {
       field: 'year',
@@ -249,8 +249,9 @@ export function HealthLongevityHumanCapitalStory({
     <StoryFrame story={story}>
       <section className="story-lede">
         <p className="lede">
-          A longer life is not the whole health story. The useful question is how many of those
-          years are lived in good health, and what societies spend to make that possible.
+          Healthy life expectancy and health spending measure different parts of health. The
+          first ends in 2021; spending continues to 2023 and is reported in current international
+          dollars.
         </p>
         <div className="stat-grid">
           <div className="stat-card">
@@ -293,7 +294,7 @@ export function HealthLongevityHumanCapitalStory({
 
       <ChartCard
         eyebrow="World · WHO Global Health Observatory via OWID"
-        title="Healthy years rose, then the pandemic cut into them"
+        title="Healthy life expectancy"
         description="Healthy life expectancy increased through 2019 before falling in 2020 and 2021. The line is a population estimate, not a count of diagnoses."
         spec={haleWorldSpec}
         data={healthyLifeExpectancyWorldSeries.map((point) => ({
@@ -311,8 +312,8 @@ export function HealthLongevityHumanCapitalStory({
 
       <ChartCard
         eyebrow="Six selected countries · shared checkpoints"
-        title="The same shock lands on different health baselines"
-        description="Country lines use 2000, 2010, 2020, and 2021. They show different levels and changes, not a complete ranking of health systems."
+        title="Healthy life expectancy in selected countries"
+        description="Dashed connectors join the 2000, 2010, 2020, and 2021 observations. They show different levels and changes, not a complete ranking of health systems."
         spec={halePanelSpec}
         data={healthyLifeExpectancyPanelSeries.map((point) => ({
           entity: point.entity,
@@ -331,7 +332,7 @@ export function HealthLongevityHumanCapitalStory({
 
       <ChartCard
         eyebrow="World · WHO Global Health Expenditure Database via World Bank and OWID"
-        title="Health spending kept climbing"
+        title="World health spending per person"
         description="The world total combines public and private current health expenditure per person. It is expressed in current international dollars, so it is not an inflation-adjusted real-spending series."
         spec={spendingWorldSpec}
         data={healthSpendingWorldSeries.map((point) => ({
@@ -349,8 +350,8 @@ export function HealthLongevityHumanCapitalStory({
 
       <ChartCard
         eyebrow="Six selected countries · shared checkpoints"
-        title="Spending levels remain widely separated"
-        description="These lines use the same four checkpoints. Current international dollars make cross-country purchasing power more comparable, but they do not make health systems equivalent."
+        title="Health spending per person in selected countries"
+        description="Dashed connectors join the same four checkpoints. Current international dollars make cross-country purchasing power more comparable, but they do not make health systems equivalent."
         spec={spendingPanelSpec}
         data={healthSpendingPanelSeries.map((point) => ({
           entity: point.entity,
@@ -368,8 +369,8 @@ export function HealthLongevityHumanCapitalStory({
       />
 
       <section className="method-note method-note--future">
-        <p className="eyebrow">Read the evidence carefully</p>
-        <h2>More spending is not a guarantee of more healthy years.</h2>
+        <p className="eyebrow">Scope and limits</p>
+        <h2>These measures do not establish a spending effect.</h2>
         <p>
           Healthy life expectancy blends mortality and disability estimates. Spending combines
           public and private outlays and is reported in current international dollars. Neither
@@ -380,7 +381,7 @@ export function HealthLongevityHumanCapitalStory({
 
       <section className="sources-section">
         <p className="eyebrow">Sources and definitions</p>
-        <h2>Where the health signals come from</h2>
+        <h2>Sources and methodology</h2>
         <SourceList sources={sources} />
       </section>
     </StoryFrame>

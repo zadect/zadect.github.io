@@ -74,7 +74,7 @@ const panelSpec: TopLevelSpec = {
   width: 'container',
   height: 360,
   data: { name: 'series' },
-  mark: { type: 'line', point: { filled: true, size: 34 }, strokeWidth: 2.5 },
+  mark: { type: 'line', point: { filled: true, size: 34 }, strokeWidth: 2.5, strokeDash: [5, 4] },
   encoding: {
     x: {
       field: 'year',
@@ -130,9 +130,9 @@ export function EmploymentWorkSkillsStory({ story }: EmploymentWorkSkillsStoryPr
     <StoryFrame story={story}>
       <section className="story-lede">
         <p className="lede">
-          Before asking whether work is secure, skilled, or fairly paid, start with a simpler
-          question: how many adults are working at all? This broad rate fell during the pandemic
-          and has not returned to its 1991 level globally.
+          The ILO employment-to-population ratio counts people aged 15 and older who worked during
+          the reference period. The world estimate fell during the pandemic and remains below its
+          1991 level in this series.
         </p>
         <div className="stat-grid">
           <div className="stat-card">
@@ -168,7 +168,7 @@ export function EmploymentWorkSkillsStory({ story }: EmploymentWorkSkillsStoryPr
 
       <ChartCard
         eyebrow="World · ILO Modelled Estimates via World Bank and OWID"
-        title="The global work rate dipped, then recovered partway"
+        title="Global employment-to-population ratio"
         description="The line is the share of people aged 15 and older who were employed. The 2020 drop is visible, but the latest point remains below the 1991 starting point."
         spec={worldSpec}
         data={employmentWorkSkillsWorldSeries.map((point) => ({
@@ -186,8 +186,8 @@ export function EmploymentWorkSkillsStory({ story }: EmploymentWorkSkillsStoryPr
 
       <ChartCard
         eyebrow="Six selected countries · shared checkpoints"
-        title="Country lines start and end in different places"
-        description="These lines connect five common checkpoints. They make differences in level and recovery visible, but they are not a ranking of job quality."
+        title="Selected-country employment observations"
+        description="Dashed connectors join five common checkpoints. They make differences in level and recovery visible, but they are not a ranking of job quality."
         spec={panelSpec}
         data={employmentWorkSkillsPanelSeries.map((point) => ({
           entity: point.entity,
@@ -205,8 +205,8 @@ export function EmploymentWorkSkillsStory({ story }: EmploymentWorkSkillsStoryPr
       />
 
       <section className="method-note method-note--future">
-        <p className="eyebrow">Read the evidence carefully</p>
-        <h2>A work rate is a starting point, not a verdict on work.</h2>
+        <p className="eyebrow">Scope and limits</p>
+        <h2>The employment rate does not describe job quality.</h2>
         <p>
           A person counts as employed after at least one hour of work in the reference period.
           That makes the measure useful for a broad comparison, but it cannot show whether work is
@@ -217,7 +217,7 @@ export function EmploymentWorkSkillsStory({ story }: EmploymentWorkSkillsStoryPr
 
       <section className="sources-section">
         <p className="eyebrow">Sources and definitions</p>
-        <h2>Where the employment signal comes from</h2>
+        <h2>Sources and methodology</h2>
         <SourceList sources={sources} />
       </section>
     </StoryFrame>

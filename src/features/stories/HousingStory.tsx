@@ -117,8 +117,9 @@ export function HousingStory({ story }: HousingStoryProps) {
     <StoryFrame story={story}>
       <section className="story-lede">
         <p className="lede">
-          When house prices outrun household incomes, pressure builds. This first release tracks
-          that national relationship — and keeps the missing pieces visible.
+          The OECD house-price-to-income index compares national residential prices with
+          disposable income per person. It provides a housing baseline; it does not cover cities
+          or infrastructure.
         </p>
         <div className="stat-grid">
           <div className="stat-card">
@@ -146,7 +147,7 @@ export function HousingStory({ story }: HousingStoryProps) {
 
       <ChartCard
         eyebrow="National trajectories · OECD"
-        title="Prices and incomes did not move together"
+        title="National house-price-to-income index"
         description="The index is 100 in 2015 for each country. A rising line means nominal house prices increased faster than nominal disposable household income per head relative to that base."
         spec={housingTrajectorySpec}
         data={housingPriceIncomeSeries.map((point) => ({
@@ -166,7 +167,7 @@ export function HousingStory({ story }: HousingStoryProps) {
 
       <ChartCard
         eyebrow="Within-country benchmark · OECD"
-        title="The latest point sits above or below each country’s own norm"
+        title="2024 index relative to each country’s long-term average"
         description="This second view is deliberately within-country. A value of 100 means the 2024 index is at that country’s long-term average; it is not a ranking of absolute affordability across countries."
         spec={housingBenchmarkSpec}
         data={housingBenchmarkSeries.map((point) => ({
@@ -185,8 +186,8 @@ export function HousingStory({ story }: HousingStoryProps) {
       />
 
       <section className="method-note method-note--future">
-        <p className="eyebrow">Read the evidence carefully</p>
-        <h2>A national index is a pressure signal, not a full housing diagnosis.</h2>
+        <p className="eyebrow">Scope and limits</p>
+        <h2>The national index leaves rent, supply, and city differences out.</h2>
         <p>
           The OECD measure does not show what renters pay, how mortgages have changed, whether
           homes are adequate, how much is being built, or whether a particular city has become
@@ -223,7 +224,7 @@ export function HousingStory({ story }: HousingStoryProps) {
 
       <section className="sources-section">
         <p className="eyebrow">Sources and definitions</p>
-        <h2>Where the housing evidence and wider research come from</h2>
+        <h2>Sources and methodology</h2>
         <SourceList sources={allSources} />
       </section>
     </StoryFrame>

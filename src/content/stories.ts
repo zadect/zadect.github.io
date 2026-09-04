@@ -36,9 +36,9 @@ export const storyCategoryPresentation: Record<StoryCategory, StoryCategoryPrese
   },
   future: {
     label: 'The future',
-    signalLabel: 'Future signal',
-    heading: 'Questions for the years ahead',
-    description: 'Selected signals that point to potential future developments for humanity.',
+    signalLabel: 'Future baseline',
+    heading: 'Conditions shaping the next decades',
+    description: 'Historical baselines for decisions that will shape the years ahead.',
   },
 };
 
@@ -557,11 +557,11 @@ const storyCatalogue: StorySeed[] = [
   },
   {
     slug: 'tech-and-ai',
-    title: 'AI & Tech',
+    title: 'Firm AI adoption',
     category: 'future',
     status: 'published',
     summary:
-      'Businesses are adopting AI faster, but adoption alone does not tell us whether work is better, fewer jobs exist, or productivity has risen.',
+      'Eurostat records a rising share of firms using at least one AI technology across the EU and selected European countries. The missing 2022 observation remains a reporting gap.',
     plannedMetric: 'Share of enterprises using at least one AI technology',
     geography: 'EU-27 and selected European countries',
     sourceHint: 'Eurostat enterprise ICT survey',
@@ -589,11 +589,11 @@ const storyCatalogue: StorySeed[] = [
   },
   {
     slug: 'employment-work-and-skills',
-    title: 'Employment, Work & Skills',
+    title: 'Employment rates',
     category: 'future',
     status: 'published',
     summary:
-      'The share of adults in work has moved unevenly across the world, offering a baseline before we ask whether those jobs are good ones.',
+      'The employment-to-population ratio provides a historical baseline for labour-market participation. It says nothing by itself about job quality, skills, or security.',
     plannedMetric: 'Employment-to-population ratio',
     geography: 'World and selected countries',
     sourceHint: 'International Labour Organization Modelled Estimates, via World Bank and Our World in Data',
@@ -621,11 +621,11 @@ const storyCatalogue: StorySeed[] = [
   },
   {
     slug: 'wealth-distribution-and-inequality',
-    title: 'Wealth Distribution & Inequality',
+    title: 'Top 1% wealth share',
     category: 'future',
     status: 'published',
     summary:
-      'The richest 1% hold a large share of household wealth, but the level and historical path differ sharply across countries.',
+      'World Inequality Database estimates show the share of household wealth held by the richest 1%. The historical checkpoints are sparse and differ across countries.',
     plannedMetric: 'Share of household net wealth held by the richest 1%',
     geography: 'World and selected countries',
     sourceHint: 'World Inequality Database, via Our World in Data',
@@ -653,11 +653,11 @@ const storyCatalogue: StorySeed[] = [
   },
   {
     slug: 'economic-growth-debt-and-public-finance',
-    title: 'Economic Growth, Debt & Public Finance',
+    title: 'World growth and central-government debt',
     category: 'future',
     status: 'published',
     summary:
-      'Growth can slow while public debt rises, leaving governments with less room to absorb the next shock.',
+      'World GDP growth and selected countries’ central-government debt describe two separate historical series. Together they do not establish fiscal capacity or sustainability.',
     plannedMetric: 'Annual GDP growth and gross central-government debt as a share of GDP',
     geography: 'World growth and six selected countries',
     sourceHint: 'World Bank national accounts and public-sector debt data, via Our World in Data',
@@ -685,11 +685,11 @@ const storyCatalogue: StorySeed[] = [
   },
   {
     slug: 'inflation-prices-and-energy',
-    title: 'Inflation, Prices & Energy',
+    title: 'Inflation and renewable electricity',
     category: 'future',
     status: 'published',
     summary:
-      'Price shocks arrive in waves, while the electricity system is slowly changing underneath them.',
+      'Consumer inflation and renewable electricity share move on different clocks. The page keeps them separate rather than implying a common mechanism.',
     plannedMetric:
       'Consumer inflation and renewable electricity share',
     geography: 'World and six selected countries',
@@ -719,11 +719,11 @@ const storyCatalogue: StorySeed[] = [
   },
   {
     slug: 'demographics-and-migration',
-    title: 'Demographics & Migration',
+    title: 'Population age and migrant stock',
     category: 'future',
     status: 'published',
     summary:
-      'The world is getting older on a long arc, while the share of people born abroad changes on a different, more uneven clock.',
+      'Median age and the foreign-born share describe two historical population changes. Only the UN median-age series continues into a source-backed scenario.',
     plannedMetric: 'Median age and share of the population born in another country',
     geography: 'World and six selected countries',
     sourceHint:
@@ -752,11 +752,11 @@ const storyCatalogue: StorySeed[] = [
   },
   {
     slug: 'housing-cities-and-infrastructure',
-    title: 'Housing, Cities & Infrastructure',
+    title: 'Housing price-to-income',
     category: 'future',
     status: 'published',
     summary:
-      'House prices have moved faster than incomes in some countries, but a national price-to-income index is only one part of housing pressure.',
+      'The OECD house-price-to-income index compares national house prices with disposable income. It is a housing baseline, not a city or infrastructure measure.',
     plannedMetric: 'OECD house-price-to-income index',
     geography: 'Canada, France, Germany, Japan, Netherlands, Sweden, UK, and US',
     sourceHint: 'OECD Analytical house prices indicators',
@@ -784,11 +784,11 @@ const storyCatalogue: StorySeed[] = [
   },
   {
     slug: 'health-longevity-and-human-capital',
-    title: 'Health, Longevity & Human Capital',
+    title: 'Healthy life expectancy and health spending',
     category: 'future',
     status: 'published',
     summary:
-      'Living longer matters most when the extra years are healthy, and when health systems can afford to support them.',
+      'Healthy life expectancy and health spending show two historical health measures with different end years. Neither series measures human capital as a whole.',
     plannedMetric: 'Healthy life expectancy and total health spending per person',
     geography: 'World and six selected countries',
     sourceHint:
@@ -817,11 +817,11 @@ const storyCatalogue: StorySeed[] = [
   },
   {
     slug: 'governance-risk-and-security',
-    title: 'Governance, Risk & Security',
+    title: 'Rule of law and security',
     category: 'future',
     status: 'published',
     summary:
-      'Rule-of-law scores show how institutional capacity differs across countries, and how little a global country median has shifted.',
+      'World Justice Project scores describe rule of law and its order-and-security factor across changing country panels. They are historical index estimates, not a complete risk register.',
     plannedMetric: 'WJP Rule of Law Index and its Order and Security factor',
     geography: 'Country median and eight selected countries',
     sourceHint: 'World Justice Project Rule of Law Index',
@@ -849,11 +849,11 @@ const storyCatalogue: StorySeed[] = [
   },
   {
     slug: 'climate-and-environmental-futures',
-    title: 'Climate & Environmental Futures',
+    title: 'Historical fossil CO₂ emissions',
     category: 'future',
     status: 'published',
     summary:
-      'Fossil CO₂ emissions have risen sharply, while the per-person picture is split between high emitters and a still lower-emitting majority.',
+      'Territorial fossil CO₂ emissions have risen sharply. Total and per-person accounting answer different questions and do not provide a future pathway.',
     plannedMetric: 'Territorial fossil CO₂ emissions and fossil CO₂ emissions per person',
     geography: 'World and eight selected countries',
     sourceHint: 'Global Carbon Project via Our World in Data',
@@ -881,11 +881,11 @@ const storyCatalogue: StorySeed[] = [
   },
   {
     slug: 'capital-markets-and-money-flows',
-    title: 'Capital Markets & Money Flows',
+    title: 'Private-sector credit relative to GDP',
     category: 'future',
     status: 'published',
     summary:
-      'Credit is a bridge between financial markets and the real economy, but the bridge is not equally large or equally stable across countries.',
+      'Private-sector credit relative to GDP is a historical credit-stock measure. It does not measure capital-market activity, annual lending, or money flows directly.',
     plannedMetric: 'Credit to the private non-financial sector as a share of GDP',
     geography: 'BIS all-reporting-economies aggregate and eight selected countries',
     sourceHint: 'Bank for International Settlements, total credit dataset',
