@@ -26,13 +26,13 @@ export const storyCategoryPresentation: Record<StoryCategory, StoryCategoryPrese
     label: 'The good',
     signalLabel: 'Good signal',
     heading: 'Signals of human progress',
-    description: 'Categories of signals that indicate positive developments in human welfare.',
+    description: 'Each card opens a sourced time series, its definition, and the date its data ends.',
   },
   bad: {
     label: 'The bad',
     signalLabel: 'Bad signal',
     heading: 'Signals we cannot look away from',
-    description: 'Categories of signals that indicate negative developments in human welfare.',
+    description: 'Each card opens a sourced time series, its definition, and the date its data ends.',
   },
   future: {
     label: 'The future',

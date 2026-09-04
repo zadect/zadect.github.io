@@ -23,6 +23,12 @@ test('the overview links to both published stories', async ({ page }) => {
     }),
   ).toHaveCount(0);
   await expect(page.getByText('By: zadect; update: 2026-08-16', { exact: true })).toHaveCount(1);
+  await expect(page.getByRole('navigation', { name: 'Story category navigation' })).toBeVisible();
+  await expect(
+    page
+      .getByRole('navigation', { name: 'Story category navigation' })
+      .getByRole('link', { name: /the good/i }),
+  ).toHaveAttribute('aria-current', 'location');
   await page.getByRole('link', { name: /world hunger/i }).first().click();
   await expect(page).toHaveURL(/#\/good\/world-hunger/);
   await expect(page.getByRole('heading', { name: /fewer people are undernourished/i })).toBeVisible();
@@ -34,6 +40,11 @@ test('the overview links to both published stories', async ({ page }) => {
   await expect(page.getByRole('heading', { name: /the ratio is far above its 1960s level/i })).toBeVisible();
   await expect(page.getByRole('heading', { name: /a defined contrast/i })).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(4);
+  await page.getByText('Open citations and methodology').click();
+  await expect(page.locator('.source-disclosure')).toHaveAttribute('open', '');
+  await expect(
+    page.getByRole('link', { name: 'CEO-to-worker compensation ratio', exact: true }).last(),
+  ).toBeVisible();
 });
 
 test('desktop landing cards contain every story title', async ({ page }, testInfo) => {
@@ -78,6 +89,8 @@ test('mobile chart cards contain wide drawings in local scrollers', async ({ pag
     true,
   );
   expect(hungerMetrics.every(({ visualTabIndex }) => visualTabIndex === '0')).toBe(true);
+  await expect(page.locator('.chart-card__scroll-cue')).toHaveCount(hungerMetrics.length);
+  await expect(page.locator('.chart-card__scroll-cue').first()).toBeVisible();
 
   await page.goto('/#/good/literacy');
   const mapMetrics = await page.locator('.map-card').evaluateAll((cards) =>
@@ -101,6 +114,7 @@ test('mobile chart cards contain wide drawings in local scrollers', async ({ pag
     true,
   );
   expect(mapMetrics.every(({ visualTabIndex }) => visualTabIndex === '0')).toBe(true);
+  await expect(page.locator('.map-card .chart-card__scroll-cue')).toBeVisible();
 });
 
 test('the new literacy and democracy stories render their charts and maps', async ({ page }) => {
@@ -262,6 +276,7 @@ test('the air pollution story renders its global and country charts', async ({ p
   ).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(2);
   await expect(page.getByText(/the line is the population-weighted annual mean/i)).toBeVisible();
+  await page.getByText('Open citations and methodology').click();
   await expect(page.getByText('WHO global air quality guidelines', { exact: true })).toBeVisible();
 });
 

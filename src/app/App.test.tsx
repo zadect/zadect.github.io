@@ -25,6 +25,12 @@ describe('app routes', () => {
       }),
     ).not.toBeInTheDocument();
     expect(screen.getByText('By: zadect; update: 2026-08-16')).toBeInTheDocument();
+    expect(screen.getByRole('navigation', { name: 'Story category navigation' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /the good 8/i })).toHaveAttribute(
+      'aria-current',
+      'location',
+    );
+    expect(screen.getByText(/Prevalence of undernourishment and food availability/i)).toBeInTheDocument();
   });
 
   it('uses the same attribution on story pages', () => {

@@ -67,6 +67,7 @@ export function MapCard({
       >
         <VegaEmbed spec={spec} options={{ actions: false, renderer: 'svg' }} />
       </div>
+      <p className="chart-card__scroll-cue">Swipe to pan map</p>
       <p className="map-card__legend-note">
         <span aria-hidden="true" />
         {noDataLabel}

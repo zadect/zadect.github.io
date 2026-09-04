@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { HashRouter, Link, Route, Routes, useLocation, useParams } from 'react-router-dom';
 import { SiteHeader } from '../components/SiteHeader';
 import { StoryCard } from '../components/StoryCard';
@@ -43,15 +43,40 @@ function HomePage() {
   const badStories = getStoriesByCategory('bad');
   const futureStories = getStoriesByCategory('future');
   const location = useLocation();
+  const [activeSection, setActiveSection] = useState<StoryCategory>('good');
 
   useEffect(() => {
     const section = new URLSearchParams(location.search).get('section');
     if (section !== 'good' && section !== 'bad' && section !== 'future') return;
 
+    setActiveSection(section);
     requestAnimationFrame(() => {
       document.getElementById(`${section}-section`)?.scrollIntoView({ behavior: 'smooth' });
     });
   }, [location.search]);
+
+  useEffect(() => {
+    const sections = (['good', 'bad', 'future'] as const)
+      .map((category) => document.getElementById(`${category}-section`))
+      .filter((section): section is HTMLElement => section !== null);
+    if (sections.length === 0 || !('IntersectionObserver' in window)) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        const category = visible?.target.id.replace('-section', '');
+        if (category === 'good' || category === 'bad' || category === 'future') {
+          setActiveSection(category);
+        }
+      },
+      { rootMargin: '-18% 0px -62% 0px', threshold: [0, 0.25, 0.5] },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div className="site-shell site-shell--home">
@@ -92,6 +117,10 @@ function HomePage() {
           </div>
         </section>
 
+        <CategoryNavigation
+          activeCategory={activeSection}
+          counts={{ good: goodStories.length, bad: badStories.length, future: futureStories.length }}
+        />
         <StoryIndex category="good" stories={goodStories} />
         <StoryIndex category="bad" stories={badStories} />
         <StoryIndex category="future" stories={futureStories} />
@@ -112,6 +141,34 @@ function HomePage() {
         </div>
       </footer>
     </div>
+  );
+}
+
+interface CategoryNavigationProps {
+  activeCategory: StoryCategory;
+  counts: Record<StoryCategory, number>;
+}
+
+function CategoryNavigation({ activeCategory, counts }: CategoryNavigationProps) {
+  return (
+    <nav className="category-navigation" aria-label="Story category navigation">
+      <div className="category-navigation__inner">
+        {(['good', 'bad', 'future'] as const).map((category) => {
+          const presentation = getStoryCategoryPresentation(category);
+          return (
+            <Link
+              key={category}
+              className={`category-navigation__link category-navigation__link--${category}`}
+              to={`/?section=${category}`}
+              aria-current={activeCategory === category ? 'location' : undefined}
+            >
+              <span>{presentation.label}</span>
+              <strong>{counts[category]}</strong>
+            </Link>
+          );
+        })}
+      </div>
+    </nav>
   );
 }
 

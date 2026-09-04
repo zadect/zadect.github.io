@@ -18,6 +18,9 @@ export function StoryCard({ story }: StoryCardProps) {
         {story.status === 'coming-soon' ? ' · Coming next' : ''}
       </span>
       <span className="story-card__title">{story.title}</span>
+      <span className="story-card__scope">
+        {story.plannedMetric} · {story.geography} · Through {story.evidence.dataThrough}
+      </span>
       <span className="story-card__summary">{story.summary}</span>
       <span className="story-card__arrow" aria-hidden="true">
         →
