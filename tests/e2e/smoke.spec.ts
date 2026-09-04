@@ -64,6 +64,27 @@ test('desktop landing cards contain every story title', async ({ page }, testInf
   );
 
   expect(overflowingCards).toEqual([]);
+
+  const misalignedRows = await page.locator('.story-list').evaluateAll((lists) =>
+    lists.flatMap((list) => {
+      const rows = new Map<number, number[]>();
+
+      list.querySelectorAll('.story-card').forEach((card) => {
+        const cardTop = Math.round(card.getBoundingClientRect().top);
+        const title = card.querySelector('.story-card__title');
+        if (!title) {
+          return;
+        }
+
+        const titleTop = Math.round(title.getBoundingClientRect().top);
+        rows.set(cardTop, [...(rows.get(cardTop) ?? []), titleTop]);
+      });
+
+      return [...rows.values()].filter((titleTops) => Math.max(...titleTops) - Math.min(...titleTops) > 2);
+    }),
+  );
+
+  expect(misalignedRows).toEqual([]);
 });
 
 test('mobile chart cards contain wide drawings in local scrollers', async ({ page }, testInfo) => {
