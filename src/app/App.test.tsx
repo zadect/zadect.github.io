@@ -21,7 +21,7 @@ describe('app routes', () => {
       screen.getByRole('heading', { name: /measured harms and widening gaps/i }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole('heading', { name: /conditions shaping the next decades/i }),
+      screen.getByRole('heading', { name: /topics shaping the next decades/i }),
     ).toBeInTheDocument();
     expect(
       screen.queryByRole('heading', {
@@ -328,7 +328,7 @@ describe('app routes', () => {
       'bad-section',
     );
     expect(
-      screen.getByRole('region', { name: /conditions shaping the next decades/i }),
+      screen.getByRole('region', { name: /topics shaping the next decades/i }),
     ).toHaveAttribute(
       'id',
       'future-section',

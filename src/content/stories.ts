@@ -33,7 +33,7 @@ export const storyCategoryPresentation: Record<StoryCategory, StoryCategoryPrese
   },
   future: {
     label: 'The future',
-    heading: 'Conditions shaping the next decades',
+    heading: 'Topics shaping the next decades',
     description: 'Historical baselines for decisions that will shape the years ahead.',
   },
 };
