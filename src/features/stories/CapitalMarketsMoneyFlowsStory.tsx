@@ -233,11 +233,7 @@ export function CapitalMarketsMoneyFlowsStory({
         </p>
       </section>
 
-      <section className="sources-section">
-        <p className="eyebrow">Sources and definitions</p>
-        <h2>Sources and methodology</h2>
-        <SourceList sources={source} />
-      </section>
+      <SourceList sources={source} />
     </StoryFrame>
   );
 }
