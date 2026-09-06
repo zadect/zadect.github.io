@@ -219,11 +219,7 @@ export function BiodiversityLossStory({ story }: BiodiversityLossStoryProps) {
         </p>
       </section>
 
-      <section className="sources-section">
-        <p className="eyebrow">Sources and definitions</p>
-        <h2>Sources and methodology</h2>
-        <SourceList sources={sources} />
-      </section>
+      <SourceList sources={sources} />
     </StoryFrame>
   );
 }

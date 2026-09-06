@@ -207,11 +207,7 @@ export function LifeExpectancyStory({ story }: LifeExpectancyStoryProps) {
         </p>
       </section>
 
-      <section className="sources-section">
-        <p className="eyebrow">Sources and definitions</p>
-        <h2>Sources and methodology</h2>
-        <SourceList sources={getSources(['life-expectancy-owid'])} />
-      </section>
+      <SourceList sources={getSources(['life-expectancy-owid'])} />
     </StoryFrame>
   );
 }

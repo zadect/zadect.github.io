@@ -45,7 +45,7 @@ export function StoryFrame({ story, children }: StoryFrameProps) {
               <span>&amp; The Bad</span>
             </span>
           </Link>
-          <p>By: zadect; update: 2026-09-04</p>
+          <p>By: zadect; update: 2026-09-06</p>
         </div>
       </footer>
     </div>

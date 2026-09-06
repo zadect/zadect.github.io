@@ -22,7 +22,7 @@ test('the overview links to both published stories', async ({ page }) => {
       name: /humanity is changing in more than one direction at once/i,
     }),
   ).toHaveCount(0);
-  await expect(page.getByText('By: zadect; update: 2026-09-04', { exact: true })).toHaveCount(1);
+  await expect(page.getByText('By: zadect; update: 2026-09-06', { exact: true })).toHaveCount(1);
   await expect(page.getByRole('navigation', { name: 'Story category navigation' })).toBeVisible();
   await expect(
     page
@@ -42,11 +42,22 @@ test('the overview links to both published stories', async ({ page }) => {
     page.getByRole('heading', { name: /how the two compensation averages are defined/i }),
   ).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(4);
-  await page.getByText('Open citations and methodology').click();
+  const storyUrl = page.url();
+  await page.getByRole('button', { name: 'Jump to sources' }).click();
+  await expect(page).toHaveURL(storyUrl);
   await expect(page.locator('.source-disclosure')).toHaveAttribute('open', '');
   await expect(
     page.getByRole('link', { name: 'CEO-to-worker compensation ratio', exact: true }).last(),
   ).toBeVisible();
+});
+
+test('story pages do not emit unsupported internal fragment links', async ({ page }) => {
+  await page.goto('/#/bad/forced-displacement');
+  const unsupportedFragments = await page.locator('a[href^="#"]:not([href^="#/"])').evaluateAll((links) =>
+    links.map((link) => link.getAttribute('href')),
+  );
+
+  expect(unsupportedFragments).toEqual([]);
 });
 
 test('desktop landing cards contain every story title', async ({ page }, testInfo) => {
@@ -268,6 +279,44 @@ test('the wars and conflict story renders its two measures', async ({ page }) =>
   await expect(
     page.getByRole('link', { name: /Deaths in state-based conflicts/i }).first(),
   ).toBeVisible();
+});
+
+test('BAD scope notes keep readable contrast', async ({ page }) => {
+  await page.goto('/#/bad/forced-displacement');
+
+  const colors = await page.locator('.method-note').evaluate((note) => {
+    const parseRgb = (value: string) => {
+      const channels = value.match(/\d+(?:\.\d+)?/g)?.map(Number);
+      if (!channels || channels.length < 3) {
+        throw new Error(`Expected an RGB color, received "${value}"`);
+      }
+      return channels.slice(0, 3).map((channel) => channel / 255);
+    };
+    const luminance = (value: string) =>
+      parseRgb(value)
+        .map((channel) => (channel <= 0.03928 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4))
+        .reduce((total, channel, index) => total + channel * [0.2126, 0.7152, 0.0722][index], 0);
+    const ratio = (foreground: string, background: string) => {
+      const foregroundLuminance = luminance(foreground);
+      const backgroundLuminance = luminance(background);
+      return (
+        (Math.max(foregroundLuminance, backgroundLuminance) + 0.05) /
+        (Math.min(foregroundLuminance, backgroundLuminance) + 0.05)
+      );
+    };
+    const background = getComputedStyle(note).backgroundColor;
+    return {
+      background,
+      eyebrowRatio: ratio(getComputedStyle(note.querySelector('.eyebrow')!).color, background),
+      headingRatio: ratio(getComputedStyle(note.querySelector('h2')!).color, background),
+      bodyRatio: ratio(getComputedStyle(note.querySelector('p:last-child')!).color, background),
+    };
+  });
+
+  expect(colors.background).toBe('rgb(49, 53, 53)');
+  expect(colors.eyebrowRatio).toBeGreaterThanOrEqual(4.5);
+  expect(colors.headingRatio).toBeGreaterThanOrEqual(3);
+  expect(colors.bodyRatio).toBeGreaterThanOrEqual(4.5);
 });
 
 test('the rich and poor story renders its Gini charts', async ({ page }) => {

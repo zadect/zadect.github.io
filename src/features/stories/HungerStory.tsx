@@ -159,11 +159,7 @@ export function HungerStory({ story }: HungerStoryProps) {
         </p>
       </section>
 
-      <section className="sources-section">
-        <p className="eyebrow">Sources and definitions</p>
-        <h2>Sources and methodology</h2>
-        <SourceList sources={allSources} />
-      </section>
+      <SourceList sources={allSources} />
     </StoryFrame>
   );
 }

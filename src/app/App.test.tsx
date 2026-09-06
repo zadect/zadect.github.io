@@ -28,7 +28,7 @@ describe('app routes', () => {
         name: /humanity is changing in more than one direction at once/i,
       }),
     ).not.toBeInTheDocument();
-    expect(screen.getByText('By: zadect; update: 2026-09-04')).toBeInTheDocument();
+    expect(screen.getByText('By: zadect; update: 2026-09-06')).toBeInTheDocument();
     expect(screen.getByRole('navigation', { name: 'Story category navigation' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /the good 8/i })).toHaveAttribute(
       'aria-current',
@@ -41,7 +41,17 @@ describe('app routes', () => {
     window.location.hash = '#/good/world-hunger';
     render(<App />);
 
-    expect(screen.getByText('By: zadect; update: 2026-09-04')).toBeInTheDocument();
+    expect(screen.getByText('By: zadect; update: 2026-09-06')).toBeInTheDocument();
+  });
+
+  it('keeps story sources in one collapsed disclosure', () => {
+    window.location.hash = '#/bad/forced-displacement';
+    render(<App />);
+
+    expect(screen.queryByText('Sources and definitions', { exact: true })).not.toBeInTheDocument();
+    expect(screen.queryByRole('heading', { name: 'Sources and methodology' })).not.toBeInTheDocument();
+    expect(screen.getByText('Open citations and methodology')).toBeInTheDocument();
+    expect(document.querySelector('.source-disclosure')).not.toHaveAttribute('open');
   });
 
   it('renders published literacy and democracy stories from hash routes', () => {

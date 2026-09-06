@@ -26,6 +26,16 @@ interface EvidenceStripProps {
 export function EvidenceStrip({ story }: EvidenceStripProps) {
   const { evidence } = story;
 
+  const jumpToSources = () => {
+    const disclosure = document.getElementById('sources-and-methodology');
+    if (!(disclosure instanceof HTMLDetailsElement)) {
+      return;
+    }
+
+    disclosure.open = true;
+    disclosure.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
   return (
     <section className="evidence-strip" aria-label="Evidence scope">
       <div className="evidence-strip__item">
@@ -47,9 +57,14 @@ export function EvidenceStrip({ story }: EvidenceStripProps) {
         <strong>{evidence.dataThrough}</strong>
       </div>
       <p className="evidence-strip__note">{evidence.note}</p>
-      <a className="evidence-strip__link" href="#sources-and-methodology">
-        Definitions and methodology
-      </a>
+      <button
+        className="evidence-strip__link"
+        type="button"
+        aria-controls="sources-and-methodology"
+        onClick={jumpToSources}
+      >
+        Jump to sources
+      </button>
     </section>
   );
 }
