@@ -1,5 +1,37 @@
 import { expect, test } from '@playwright/test';
 
+const badStoryRoutes = [
+  '/#/bad/ceo-pay-gap',
+  '/#/bad/climate-change',
+  '/#/bad/wars-and-conflict',
+  '/#/bad/inequality-by-country',
+  '/#/bad/biodiversity-loss',
+  '/#/bad/forced-displacement',
+  '/#/bad/air-pollution',
+  '/#/bad/democratic-backsliding',
+];
+
+function contrastRatio(foreground: string, background: string) {
+  const parseRgb = (value: string) => {
+    const channels = value.match(/\d+(?:\.\d+)?/g)?.map(Number);
+    if (!channels || channels.length < 3) {
+      throw new Error(`Expected an RGB color, received "${value}"`);
+    }
+    return channels.slice(0, 3).map((channel) => channel / 255);
+  };
+  const luminance = (value: string) =>
+    parseRgb(value)
+      .map((channel) => (channel <= 0.03928 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4))
+      .reduce((total, channel, index) => total + channel * [0.2126, 0.7152, 0.0722][index], 0);
+  const foregroundLuminance = luminance(foreground);
+  const backgroundLuminance = luminance(background);
+
+  return (
+    (Math.max(foregroundLuminance, backgroundLuminance) + 0.05) /
+    (Math.min(foregroundLuminance, backgroundLuminance) + 0.05)
+  );
+}
+
 test('serves cache-busted SVG and ICO favicon assets', async ({ page, request }) => {
   await page.goto('/');
   await expect(page.locator('link[rel="icon"][type="image/svg+xml"]')).toHaveAttribute(
@@ -317,6 +349,52 @@ test('BAD scope notes keep readable contrast', async ({ page }) => {
   expect(colors.eyebrowRatio).toBeGreaterThanOrEqual(4.5);
   expect(colors.headingRatio).toBeGreaterThanOrEqual(3);
   expect(colors.bodyRatio).toBeGreaterThanOrEqual(4.5);
+});
+
+test('all published BAD stat and definition cards use readable dark surfaces', async ({ page }) => {
+  for (const route of badStoryRoutes) {
+    await page.goto(route);
+
+    const cards = await page.locator('.site-shell--bad .stat-card, .site-shell--bad .definition-card').evaluateAll((elements) =>
+      elements.map((card) => {
+        const getColor = (selector: string) => {
+          const element = card.querySelector(selector);
+          return element ? getComputedStyle(element).color : null;
+        };
+        const isStatCard = card.classList.contains('stat-card');
+        const textColors = isStatCard
+          ? {
+              value: getColor('.stat-card__value'),
+              label: getColor('.stat-card__label'),
+            }
+          : {
+              heading: getColor('h2'),
+              eyebrow: getColor('.eyebrow'),
+              label: getColor('.definition-grid dt'),
+              body: getColor('.definition-grid dd'),
+            };
+
+        return {
+          type: isStatCard ? 'stat' : 'definition',
+          background: getComputedStyle(card).backgroundColor,
+          textColors,
+        };
+      }),
+    );
+
+    expect(cards, route).not.toHaveLength(0);
+    for (const card of cards) {
+      expect(card.background, `${route} ${card.type} card background`).toBe('rgb(49, 53, 53)');
+      for (const [textType, color] of Object.entries(card.textColors)) {
+        if (color) {
+          expect(
+            contrastRatio(color, card.background),
+            `${route} ${card.type} card ${textType} contrast`,
+          ).toBeGreaterThanOrEqual(4.5);
+        }
+      }
+    }
+  }
 });
 
 test('the rich and poor story renders its Gini charts', async ({ page }) => {

@@ -931,6 +931,19 @@ h2 {
   color: #c6c0b8;
 }
 
+.site-shell--bad .stat-card {
+  border-color: var(--bad);
+  background: var(--night-soft);
+}
+
+.site-shell--bad .stat-card__value {
+  color: #e49179;
+}
+
+.site-shell--bad .stat-card__label {
+  color: #c6c0b8;
+}
+
 .site-shell--future .stat-card__label {
   color: #5f5870;
 }
@@ -1395,6 +1408,11 @@ th {
   background: var(--night-soft);
 }
 
+.site-shell--bad .definition-card {
+  border-color: var(--bad);
+  background: var(--night-soft);
+}
+
 .definition-card--future {
   border-color: var(--future);
   background: var(--future-soft);
@@ -1422,6 +1440,10 @@ th {
   border-color: var(--night-line);
 }
 
+.site-shell--bad .definition-card .definition-grid > div {
+  border-color: var(--night-line);
+}
+
 .definition-grid dt {
   color: var(--good-deep);
   font-size: 0.7rem;
@@ -1431,6 +1453,10 @@ th {
 }
 
 .definition-card--dark .definition-grid dt {
+  color: #f0c56f;
+}
+
+.site-shell--bad .definition-card .definition-grid dt {
   color: #f0c56f;
 }
 
@@ -1450,6 +1476,10 @@ th {
 }
 
 .definition-card--dark .definition-grid dd {
+  color: #d0c9c1;
+}
+
+.site-shell--bad .definition-card .definition-grid dd {
   color: #d0c9c1;
 }
 
