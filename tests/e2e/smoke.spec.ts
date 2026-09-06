@@ -22,7 +22,7 @@ test('the overview links to both published stories', async ({ page }) => {
       name: /humanity is changing in more than one direction at once/i,
     }),
   ).toHaveCount(0);
-  await expect(page.getByText('By: zadect; update: 2026-09-04', { exact: true })).toHaveCount(1);
+  await expect(page.getByText('By: zadect; update: 2026-09-06', { exact: true })).toHaveCount(1);
   await expect(page.getByRole('navigation', { name: 'Story category navigation' })).toBeVisible();
   await expect(
     page
