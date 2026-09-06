@@ -270,6 +270,44 @@ test('the wars and conflict story renders its two measures', async ({ page }) =>
   ).toBeVisible();
 });
 
+test('BAD scope notes keep readable contrast', async ({ page }) => {
+  await page.goto('/#/bad/forced-displacement');
+
+  const colors = await page.locator('.method-note').evaluate((note) => {
+    const parseRgb = (value: string) => {
+      const channels = value.match(/\d+(?:\.\d+)?/g)?.map(Number);
+      if (!channels || channels.length < 3) {
+        throw new Error(`Expected an RGB color, received "${value}"`);
+      }
+      return channels.slice(0, 3).map((channel) => channel / 255);
+    };
+    const luminance = (value: string) =>
+      parseRgb(value)
+        .map((channel) => (channel <= 0.03928 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4))
+        .reduce((total, channel, index) => total + channel * [0.2126, 0.7152, 0.0722][index], 0);
+    const ratio = (foreground: string, background: string) => {
+      const foregroundLuminance = luminance(foreground);
+      const backgroundLuminance = luminance(background);
+      return (
+        (Math.max(foregroundLuminance, backgroundLuminance) + 0.05) /
+        (Math.min(foregroundLuminance, backgroundLuminance) + 0.05)
+      );
+    };
+    const background = getComputedStyle(note).backgroundColor;
+    return {
+      background,
+      eyebrowRatio: ratio(getComputedStyle(note.querySelector('.eyebrow')!).color, background),
+      headingRatio: ratio(getComputedStyle(note.querySelector('h2')!).color, background),
+      bodyRatio: ratio(getComputedStyle(note.querySelector('p:last-child')!).color, background),
+    };
+  });
+
+  expect(colors.background).toBe('rgb(49, 53, 53)');
+  expect(colors.eyebrowRatio).toBeGreaterThanOrEqual(4.5);
+  expect(colors.headingRatio).toBeGreaterThanOrEqual(3);
+  expect(colors.bodyRatio).toBeGreaterThanOrEqual(4.5);
+});
+
 test('the rich and poor story renders its Gini charts', async ({ page }) => {
   await page.goto('/#/bad/inequality-by-country');
   await expect(page.getByRole('heading', { name: 'Rich and poor', exact: true })).toBeVisible();

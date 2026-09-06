@@ -1353,6 +1353,23 @@ th {
   color: #c6c0b8;
 }
 
+.site-shell--bad .method-note {
+  border-color: var(--bad);
+  background: var(--night-soft);
+}
+
+.site-shell--bad .method-note .eyebrow {
+  color: #e49179;
+}
+
+.site-shell--bad .method-note h2 {
+  color: var(--white);
+}
+
+.site-shell--bad .method-note > p:last-child {
+  color: #c6c0b8;
+}
+
 .method-note--future {
   border-color: var(--future);
   background: var(--future-soft);
