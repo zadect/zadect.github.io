@@ -815,7 +815,11 @@ h2 {
 .evidence-strip__link {
   align-self: end;
   justify-self: end;
+  padding: 0;
+  border: 0;
+  background: transparent;
   color: var(--good-deep);
+  cursor: pointer;
   font-size: 0.74rem;
   font-weight: 800;
   text-align: right;
@@ -1571,6 +1575,7 @@ th {
 .source-disclosure {
   margin-top: 2rem;
   border-top: 1px solid var(--line);
+  scroll-margin-top: 6rem;
 }
 
 .source-disclosure summary {

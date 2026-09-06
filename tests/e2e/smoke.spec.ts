@@ -42,11 +42,22 @@ test('the overview links to both published stories', async ({ page }) => {
     page.getByRole('heading', { name: /how the two compensation averages are defined/i }),
   ).toBeVisible();
   await expect(page.locator('.chart-card__visual svg')).toHaveCount(4);
-  await page.getByText('Open citations and methodology').click();
+  const storyUrl = page.url();
+  await page.getByRole('button', { name: 'Jump to sources' }).click();
+  await expect(page).toHaveURL(storyUrl);
   await expect(page.locator('.source-disclosure')).toHaveAttribute('open', '');
   await expect(
     page.getByRole('link', { name: 'CEO-to-worker compensation ratio', exact: true }).last(),
   ).toBeVisible();
+});
+
+test('story pages do not emit unsupported internal fragment links', async ({ page }) => {
+  await page.goto('/#/bad/forced-displacement');
+  const unsupportedFragments = await page.locator('a[href^="#"]:not([href^="#/"])').evaluateAll((links) =>
+    links.map((link) => link.getAttribute('href')),
+  );
+
+  expect(unsupportedFragments).toEqual([]);
 });
 
 test('desktop landing cards contain every story title', async ({ page }, testInfo) => {
